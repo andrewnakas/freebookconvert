@@ -7,9 +7,13 @@
  * Requires: window.pdfjsLib, window.Tesseract, and (for PDF output) window.PDFLib.
  */
 (function (global) {
-  var TESS_VERSION = '5.1.1';
-  var TESS_CDN = 'https://cdn.jsdelivr.net/npm/tesseract.js@' + TESS_VERSION + '/dist/';
-  var LANG_CDN = 'https://tessdata.projectnaptha.com/4.0.0';
+  // Tesseract.js splits its main lib, the WASM worker, and the WASM core into
+  // three separate npm packages. Each lives at its own CDN path.
+  var TESS_VERSION      = '5.1.1';
+  var TESS_CORE_VERSION = '5.2.0';
+  var TESS_DIST = 'https://cdn.jsdelivr.net/npm/tesseract.js@' + TESS_VERSION + '/dist/';
+  var TESS_CORE = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@' + TESS_CORE_VERSION + '/';
+  var LANG_CDN  = 'https://tessdata.projectnaptha.com/4.0.0';
 
   async function rasterizePage(pdfPage, scale) {
     var viewport = pdfPage.getViewport({ scale: scale });
@@ -37,8 +41,8 @@
   async function createWorker(onLog) {
     if (!global.Tesseract) throw new Error('Tesseract not loaded');
     var worker = await global.Tesseract.createWorker('eng', 1, {
-      workerPath: TESS_CDN + 'worker.min.js',
-      corePath:   TESS_CDN,                // Tesseract finds tesseract-core.wasm.js here
+      workerPath: TESS_DIST + 'worker.min.js',
+      corePath:   TESS_CORE,
       langPath:   LANG_CDN,
       logger: function (m) { if (onLog) onLog(m); }
     });
