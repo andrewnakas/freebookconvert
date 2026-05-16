@@ -103,12 +103,12 @@
     return { blob: blob, filename: file.name.replace(/\.[^.]+$/, '') + '.pdf' };
   }
   async function runPdfOcrText(file, onProgress) {
-    await Promise.all([loadPdfJs(), loadTesseract(), loadModule('/js/pdf-ocr.js')]);
+    await Promise.all([loadPdfJs(), loadTesseract(), loadModule('/js/pdf-ocr.js?v=ocr1')]);
     var r = await global.PdfOcr.convert(file, { format: 'txt', scale: 2 }, onProgress);
     return { blob: r.blob, filename: r.filename };
   }
   async function runPdfOcrPdf(file, onProgress) {
-    await Promise.all([loadPdfJs(), loadPdfLib(), loadTesseract(), loadModule('/js/pdf-ocr.js')]);
+    await Promise.all([loadPdfJs(), loadPdfLib(), loadTesseract(), loadModule('/js/pdf-ocr.js?v=ocr1')]);
     var r = await global.PdfOcr.convert(file, { format: 'pdf', scale: 2 }, onProgress);
     return { blob: r.blob, filename: r.filename };
   }

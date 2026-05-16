@@ -9,11 +9,12 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Cross-Origin-Opener-Policy: same-origin
 
-# Long-cache static assets (CSS, JS, images, fonts)
+# Short cache for JS/CSS so updates roll out fast (no content hashing yet).
+# Browsers revalidate on every load; CDN holds the bytes 5 minutes.
 /css/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300, must-revalidate
 /js/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300, must-revalidate
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 /favicon.ico

@@ -10,7 +10,7 @@
   // Tesseract.js splits its main lib, the WASM worker, and the WASM core into
   // three separate npm packages. Each lives at its own CDN path.
   var TESS_VERSION      = '5.1.1';
-  var TESS_CORE_VERSION = '5.2.0';
+  var TESS_CORE_VERSION = '5.1.1';
   var TESS_DIST = 'https://cdn.jsdelivr.net/npm/tesseract.js@' + TESS_VERSION + '/dist/';
   var TESS_CORE = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@' + TESS_CORE_VERSION + '/';
   var LANG_CDN  = 'https://tessdata.projectnaptha.com/4.0.0';
