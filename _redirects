@@ -1,0 +1,16 @@
+# Cloudflare Pages redirects
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Pretty URLs (rewrite, status 200 = no redirect, just serve)
+/epub-to-pdf     /pages/epub-to-pdf.html  200
+/pdf-to-epub     /pages/pdf-to-epub.html  200
+/cbz-to-pdf      /pages/cbz-to-pdf.html   200
+/epub-to-txt     /pages/epub-to-txt.html  200
+/heic-to-pdf     /pages/heic-to-pdf.html  200
+/about           /pages/about.html        200
+/privacy         /pages/privacy.html      200
+/terms           /pages/terms.html        200
+/contact         /pages/contact.html      200
+
+# 404 fallback (Cloudflare Pages auto-serves /404.html, this is explicit)
+/*               /404.html                404

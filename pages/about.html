@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — FreeBookConvert</title>
+<meta name="description" content="About FreeBookConvert: privacy-first, browser-based file converters that never upload your files.">
+<link rel="canonical" href="https://freebookconvert.com/pages/about.html">
+<link rel="icon" href="../favicon.ico">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="epub-to-pdf.html">EPUB→PDF</a>
+      <a href="pdf-to-epub.html">PDF→EPUB</a>
+      <a href="cbz-to-pdf.html">CBZ→PDF</a>
+      <a href="epub-to-txt.html">EPUB→TXT</a>
+      <a href="heic-to-pdf.html">HEIC→PDF</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="page-intro">
+    <h1>About FreeBookConvert</h1>
+    <p>Online file converters built on a simple principle: your files belong on your device.</p>
+    <p style="font-size:0.9rem"><em>Last updated: 2026-05-15</em></p>
+  </section>
+
+  <section class="content-section">
+    <h2>The privacy problem with most converters</h2>
+    <p>Almost every popular online file converter works by uploading your file to a server, processing it there, and sending the result back. That's fine for cat memes — but problematic for personal ebooks, private documents, business contracts, or photos you'd rather not hand to a stranger's server.</p>
+
+    <p>The FBI and Malwarebytes have <a href="https://www.malwarebytes.com/blog/news/2025/03/warning-over-free-online-file-converters-that-actually-install-malware" rel="noopener">repeatedly warned</a> about malicious file converter sites that serve malware along with — or instead of — the converted file.</p>
+
+    <h2>How FreeBookConvert is different</h2>
+    <p>Every conversion on this site runs inside your web browser using JavaScript and WebAssembly. The libraries that do the heavy lifting (JSZip for archives, pdf-lib for PDF assembly, pdf.js for PDF parsing, libheif via heic-to for HEIC decoding) are mature open-source projects that have been used in millions of apps.</p>
+
+    <p>When you drop a file onto a converter page, here's what happens:</p>
+    <ol>
+      <li>The file is read into your browser's memory as a Blob.</li>
+      <li>JavaScript code already running on the page parses it.</li>
+      <li>A new file is assembled in memory.</li>
+      <li>Your browser saves the new file to your downloads folder.</li>
+    </ol>
+    <p>No upload. No server. You can disconnect from the internet after the page loads and everything still works.</p>
+
+    <h2>How it stays free</h2>
+    <p>FreeBookConvert is funded by unobtrusive display ads. Since there are no per-conversion server costs, ads alone are enough to keep the lights on without paywalls, signup forms, or watermarks.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="about.html">About</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="contact.html">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>

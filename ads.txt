@@ -1,0 +1,5 @@
+# ads.txt for FreeBookConvert
+# After your Google AdSense account is approved, replace pub-0000000000000000
+# below with your real publisher ID (visible in AdSense > Account > Account information).
+# This file MUST be served at the site root: https://yourdomain.com/ads.txt
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

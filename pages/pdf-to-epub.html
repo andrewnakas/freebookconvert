@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF to EPUB Converter &mdash; Free, Private, In-Browser | FreeBookConvert</title>
+<meta name="description" content="Convert PDF documents into reflowable EPUB ebooks directly in your browser. Privacy-first &mdash; no upload, no signup, no watermarks.">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="PDF to EPUB Converter">
+<meta property="og:description" content="Turn PDFs into reflowable EPUB ebooks in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
+<script type="module">
+  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+  window.pdfjsLib = pdfjsLib;
+  window.__pdfjsReady = true;
+  document.dispatchEvent(new Event('pdfjsReady'));
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF to EPUB Converter",
+  "url": "https://freebookconvert.com/pages/pdf-to-epub.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
+      <a href="/pages/epub-to-txt.html">EPUB&rarr;TXT</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-intro">
+    <h1>PDF to EPUB Converter</h1>
+    <p>Turn fixed-layout PDFs into reflowable EPUB ebooks that work on any e-reader. All processing happens in your browser.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <div class="ad-slot ad-slot-top">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop your PDF here</p>
+      <p>or <strong>click to browse</strong></p>
+      <input type="file" id="fileInput" accept=".pdf">
+    </div>
+
+    <div class="controls">
+      <label>Chapter splitting
+        <select id="splitMode">
+          <option value="auto" selected>Auto-detect chapter headings</option>
+          <option value="10">Every 10 pages</option>
+          <option value="20">Every 20 pages</option>
+          <option value="50">Every 50 pages</option>
+          <option value="1000">No split (single chapter)</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Convert to EPUB</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-slot-mid ad-slot-post" id="adSlotPost">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="content-section">
+    <h2>How does PDF to EPUB work?</h2>
+    <p>PDFs are <em>fixed-layout</em> &mdash; every character has a precise position on a fixed-size page. EPUBs are <em>reflowable</em> &mdash; text adapts to the screen, font size, and orientation of whatever device opens it. Converting between them is fundamentally a text-extraction problem.</p>
+
+    <h3>What gets preserved?</h3>
+    <ul>
+      <li>All text content, in reading order.</li>
+      <li>Paragraph breaks based on line spacing.</li>
+      <li>Chapter structure when headings are detected (e.g., "Chapter 1").</li>
+      <li>Title and author metadata from the PDF.</li>
+    </ul>
+
+    <h3>What doesn't transfer well?</h3>
+    <ul>
+      <li>Complex layouts (multi-column scientific papers can produce mixed text order).</li>
+      <li>Scanned PDFs without OCR &mdash; there's no text to extract.</li>
+      <li>Footnotes, page numbers, and headers may appear inline.</li>
+    </ul>
+    <p>For best results, start with a text-based PDF (not a scan).</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/pdf-to-epub.js"></script>
+<script>
+(function () {
+  var files = [];
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'),
+      listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
+      convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      splitEl = CV.$('#splitMode'),
+      adPost = CV.$('#adSlotPost');
+
+  function waitForPdfjs() {
+    return new Promise(function (resolve) {
+      if (window.__pdfjsReady) return resolve();
+      document.addEventListener('pdfjsReady', resolve, { once: true });
+    });
+  }
+
+  function refresh() {
+    CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+  }
+  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
+  resetBtn.addEventListener('click', function () {
+    files = []; refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+    if (adPost) adPost.classList.remove('visible');
+  });
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
+    try {
+      await waitForPdfjs();
+      var mode = splitEl.value;
+      var pagesPerChapter = mode === 'auto' ? 0 : parseInt(mode, 10);
+      var blob = await PdfToEpub.convert(files[0], { pagesPerChapter: pagesPerChapter }, function (p, m) {
+        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+      });
+      var name = files[0].name.replace(/\.pdf$/i, '') + '.epub';
+      CV.downloadBlob(blob, name);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
+      if (adPost) adPost.classList.add('visible');
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { convertBtn.disabled = false; resetBtn.disabled = false; }
+  });
+})();
+</script>
+<script src="/js/consent.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeBookConvert &mdash; Private, Browser-Based File Converters (No Upload)</title>
+<meta name="description" content="Convert EPUB, PDF, CBZ, and HEIC files entirely in your browser. 100% private &mdash; files never leave your device. Free, no signup, no watermarks.">
+<meta name="keywords" content="epub to pdf, pdf to epub, cbz to pdf, epub to txt, heic to pdf, free converter, browser converter, private converter">
+<meta name="robots" content="index,follow">
+<meta name="author" content="FreeBookConvert">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="FreeBookConvert &mdash; Private Browser-Based Converters">
+<meta property="og:description" content="Convert ebooks and images without uploading. Everything runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="FreeBookConvert">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FreeBookConvert &mdash; Private Browser-Based Converters">
+<meta name="twitter:description" content="Convert ebooks and images without uploading. Everything runs in your browser.">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<!-- TODO(AdSense): after approval, uncomment + replace ca-pub-0000000000000000 with your real publisher ID. -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script> -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FreeBookConvert",
+  "url": "https://freebookconvert.com/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (Browser)",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Are my files really not uploaded?","acceptedAnswer":{"@type":"Answer","text":"Correct. All conversion happens with JavaScript and WebAssembly running locally in your browser. You can verify by disconnecting from the internet after the page loads - conversions still work."}},
+    {"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"The only limit is your device's memory. Files up to a few hundred MB typically work fine on modern computers."}},
+    {"@type":"Question","name":"Why is this free?","acceptedAnswer":{"@type":"Answer","text":"The site is supported by unobtrusive ads. We don't need servers to process your files, so costs are minimal."}},
+    {"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, but larger files convert faster on a desktop or laptop."}}
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
+      <a href="/pages/epub-to-txt.html">EPUB&rarr;TXT</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Private, Browser-Based File Converters</h1>
+    <p class="lead">Your files never leave your device. Every conversion runs locally in your browser using WebAssembly and JavaScript. No uploads. No accounts. No watermarks. Forever free.</p>
+  </section>
+
+  <!-- AdSense slot: top banner -->
+  <div class="ad-slot ad-slot-top" data-ad-slot="top-banner">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converters">
+    <h2>Pick a converter</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/epub-to-pdf.html">
+        <h3>EPUB &rarr; PDF</h3>
+        <p>Convert ebooks to PDF with chapters preserved.</p>
+      </a>
+      <a class="card" href="/pages/pdf-to-epub.html">
+        <h3>PDF &rarr; EPUB</h3>
+        <p>Turn PDFs into reflowable ebooks for any reader.</p>
+      </a>
+      <a class="card" href="/pages/cbz-to-pdf.html">
+        <h3>CBZ &rarr; PDF</h3>
+        <p>Convert comic book archives to PDF, pages in correct order.</p>
+      </a>
+      <a class="card" href="/pages/epub-to-txt.html">
+        <h3>EPUB &rarr; TXT</h3>
+        <p>Extract clean plain text from any EPUB.</p>
+      </a>
+      <a class="card" href="/pages/heic-to-pdf.html">
+        <h3>HEIC &rarr; PDF</h3>
+        <p>Combine iPhone photos into one PDF.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Why use FreeBookConvert?</h2>
+    <div class="features">
+      <div><h3>100% Private</h3><p>Conversions happen on your computer. Nothing is uploaded.</p></div>
+      <div><h3>No Limits</h3><p>No file size caps, no daily quotas, no signup.</p></div>
+      <div><h3>No Watermarks</h3><p>Your output is clean and ready to use.</p></div>
+      <div><h3>Works Offline</h3><p>Once the page loads, you don't need an internet connection.</p></div>
+    </div>
+  </section>
+
+  <!-- AdSense slot: in-content -->
+  <div class="ad-slot ad-slot-mid" data-ad-slot="mid-rectangle">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Are my files really not uploaded?</summary><p>Correct. All conversion happens with JavaScript and WebAssembly running locally in your browser. You can verify by disconnecting from the internet after the page loads &mdash; conversions still work.</p></details>
+    <details><summary>Is there a file size limit?</summary><p>The only limit is your device's memory. Files up to a few hundred MB typically work fine on modern computers.</p></details>
+    <details><summary>Why is this free?</summary><p>The site is supported by unobtrusive ads. We don't need servers to process your files, so costs are minimal.</p></details>
+    <details><summary>Does it work on mobile?</summary><p>Yes, but larger files convert faster on a desktop or laptop.</p></details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+<script src="/js/consent.js"></script>
+</body>
+</html>
