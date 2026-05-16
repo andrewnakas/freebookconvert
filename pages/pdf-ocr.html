@@ -17,8 +17,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 <script type="module">
   import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
@@ -157,6 +155,31 @@
       document.addEventListener('pdfjsReady', resolve, { once: true });
     });
   }
+
+  // Lazy CDN loaders. Tesseract (~10 MB) and pdf-lib are only fetched when
+  // the user actually clicks "Run OCR".
+  var _scriptCache = {};
+  function loadScript(url, integrity) {
+    if (_scriptCache[url]) return _scriptCache[url];
+    _scriptCache[url] = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = url;
+      if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
+      document.head.appendChild(s);
+    });
+    return _scriptCache[url];
+  }
+  function loadTesseract() {
+    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
+  }
+  function loadPdfLib() {
+    return loadScript(
+      'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js',
+      'sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI'
+    );
+  }
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
     convertBtn.disabled = files.length === 0;
@@ -175,11 +198,16 @@
     if (!files.length) return;
     convertBtn.disabled = true; resetBtn.disabled = true;
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
-    CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
+    var fmt = formatEl.value;
     try {
+      CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
       await waitForPdfjs();
+      CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
+      var deps = [loadTesseract()];
+      if (fmt === 'pdf') deps.push(loadPdfLib());
+      await Promise.all(deps);
       var result = await PdfOcr.convert(files[0], {
-        format: formatEl.value,
+        format: fmt,
         scale: parseFloat(scaleEl.value)
       }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
