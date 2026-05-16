@@ -45,6 +45,7 @@
   function loadJsZip()  { return loadScript('https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js'); }
   function loadPdfLib() { return loadScript('https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js'); }
   function loadHeicTo() { return loadScript('https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.js'); }
+  function loadTesseract() { return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'); }
 
   // Local converter modules already live in /js/. Load on demand.
   function loadModule(path) { return loadScript(path); }
@@ -101,6 +102,16 @@
     var blob = await global.HeicToPdf.convert([file], { quality: 0.92 }, onProgress);
     return { blob: blob, filename: file.name.replace(/\.[^.]+$/, '') + '.pdf' };
   }
+  async function runPdfOcrText(file, onProgress) {
+    await Promise.all([loadPdfJs(), loadTesseract(), loadModule('/js/pdf-ocr.js')]);
+    var r = await global.PdfOcr.convert(file, { format: 'txt', scale: 2 }, onProgress);
+    return { blob: r.blob, filename: r.filename };
+  }
+  async function runPdfOcrPdf(file, onProgress) {
+    await Promise.all([loadPdfJs(), loadPdfLib(), loadTesseract(), loadModule('/js/pdf-ocr.js')]);
+    var r = await global.PdfOcr.convert(file, { format: 'pdf', scale: 2 }, onProgress);
+    return { blob: r.blob, filename: r.filename };
+  }
 
   // ---------- routes ----------------------------------------------------------
 
@@ -112,7 +123,9 @@
     pdf: [
       { label: 'EPUB (ebook)',        run: runPdfToEpub },
       { label: 'JPG (page images)',   run: runPdfToImage('jpg') },
-      { label: 'PNG (page images)',   run: runPdfToImage('png') }
+      { label: 'PNG (page images)',   run: runPdfToImage('png') },
+      { label: 'TXT via OCR (scanned PDF)', run: runPdfOcrText },
+      { label: 'Searchable PDF via OCR',    run: runPdfOcrPdf }
     ],
     cbz: [{ label: 'PDF',             run: runCbzToPdf }],
     zip: [{ label: 'PDF (as comic archive)', run: runCbzToPdf }],
