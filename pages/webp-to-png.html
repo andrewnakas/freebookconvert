@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEBP to PNG Converter — Free, Private, In-Browser | FreeBookConvert</title>
+<meta name="description" content="Convert WEBP images to PNG in your browser. Batch conversion supported. No upload, no signup, totally free.">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/pages/webp-to-png.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="WEBP to PNG Converter">
+<meta property="og:description" content="Convert WEBP to PNG in your browser. Private and free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/webp-to-png.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "WEBP to PNG Converter",
+  "url": "https://freebookconvert.com/pages/webp-to-png.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
+      <a href="/pages/png-to-jpg.html">PNG&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-intro">
+    <h1>WEBP to PNG Converter</h1>
+    <p>Convert WEBP images to png format &mdash; lossless PNG for editing. Files never leave your device.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <div class="ad-slot ad-slot-top">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop WEBP files here</p>
+      <p>or <strong>click to browse</strong> &mdash; you can select many at once</p>
+      <p style="font-size:0.85rem">Accepts: .webp</p>
+      <input type="file" id="fileInput" accept=".webp" multiple>
+    </div>
+
+    <div class="controls" id="qualityControls">
+      <label>Quality
+        <select id="quality">
+          <option value="0.95">High</option>
+          <option value="0.85" selected>Standard</option>
+          <option value="0.7">Compact</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Convert to PNG</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-slot-mid ad-slot-post" id="adSlotPost">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="content-section">
+    <h2>About WEBP and PNG</h2>
+    <p>Need to send a photo, post it online, or open it in an app that doesn't accept <strong>WEBP</strong>? Converting to <strong>PNG</strong> takes one click here. Multiple files are returned as a single ZIP.</p>
+
+    <h3>What this converter does</h3>
+    <ul>
+      <li>Decodes your WEBP files using your browser's built-in image engine.</li>
+      <li>Re-encodes each image as PNG.</li>
+      <li>For a single file, you get the converted image directly. For multiple files, you get a ZIP.</li>
+    </ul>
+
+    <h3>Is the conversion lossy?</h3>
+    <p>PNG is a lossless format, so the converted image has the same pixel data as the decoded source. The file size may grow when converting from a lossy format like JPG, but no visual quality is lost in the re-encode.</p>
+
+    <h3>Privacy</h3>
+    <p>Conversion happens entirely in your browser. Nothing is uploaded. You can verify by disconnecting from the internet after the page loads &mdash; this page will still convert.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/image-convert.js"></script>
+<script>
+(function () {
+  var TARGET = "png";
+  var files = [];
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'),
+      listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
+      convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      qualityEl = CV.$('#quality'),
+      qualityControls = CV.$('#qualityControls'),
+      adPost = CV.$('#adSlotPost');
+
+  // PNG is lossless; hide the quality slider for PNG targets.
+  if (TARGET === 'png') qualityControls.style.display = 'none';
+
+  function refresh() {
+    CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+  }
+
+  CV.bindDropzone(dz, input, function (n) {
+    files = files.concat(n);
+    refresh();
+    CV.clearStatus(statusEl);
+  }, ['.webp']);
+
+  resetBtn.addEventListener('click', function () {
+    files = []; refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+    if (adPost) adPost.classList.remove('visible');
+  });
+
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    CV.setStatus(statusEl, 'info', 'Starting\u2026');
+    try {
+      var quality = TARGET === 'png' ? 1 : parseFloat(qualityEl.value);
+      var result = await ImageConvert.convertBatch(files, TARGET, { quality: quality }, function (p, m) {
+        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+      });
+      CV.downloadBlob(result.blob, result.filename);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      if (adPost) adPost.classList.add('visible');
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { convertBtn.disabled = false; resetBtn.disabled = false; }
+  });
+})();
+</script>
+<script src="/js/consent.js"></script>
+</body>
+</html>
