@@ -111,6 +111,52 @@ body {
   border: 1px dashed #cfd6e0;
 }
 
+/* Universal converter entry (homepage) */
+.universal-entry {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 18px 0 30px;
+}
+.universal-picker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.universal-picker .uni-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f6f8fa;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 500;
+}
+.universal-picker .uni-file .remove {
+  background: none;
+  border: none;
+  color: var(--error);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0 4px;
+  line-height: 1;
+}
+.universal-picker .uni-target {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+.universal-picker select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
 /* Noscript banner */
 .noscript-banner {
   background: #fef2f2;

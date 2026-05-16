@@ -135,6 +135,9 @@
     refresh();
     CV.clearStatus(statusEl);
   }, ['.heic', '.heif', '.jpg', '.jpeg', '.png']);
+  if (CV.handoff && CV.handoff.receive) {
+    CV.handoff.receive(['.heic', '.heif', '.jpg', '.jpeg', '.png'], function (f) { files = files.concat([f]); refresh(); CV.clearStatus(statusEl); });
+  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -161,6 +164,7 @@
   });
 })();
 </script>
+<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

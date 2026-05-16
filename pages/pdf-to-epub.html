@@ -151,6 +151,9 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
+  if (CV.handoff && CV.handoff.receive) {
+    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
+  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -179,6 +182,7 @@
   });
 })();
 </script>
+<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>
