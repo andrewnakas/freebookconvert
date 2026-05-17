@@ -204,6 +204,41 @@
     };
   }
 
+  // ---------- image -> text (single image OCR) ------------------------------
+
+  async function convertImageToText(file, options, onProgress) {
+    onProgress = onProgress || function () {};
+    onProgress(5, 'Loading OCR engine\u2026');
+    var worker = await createWorker();
+    try {
+      onProgress(20, 'Reading image\u2026');
+      var url = URL.createObjectURL(file);
+      var img = await new Promise(function (resolve, reject) {
+        var i = new Image();
+        i.onload = function () { resolve(i); };
+        i.onerror = function () { reject(new Error('Could not decode image')); };
+        i.src = url;
+      });
+      var canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+      onProgress(40, 'Running OCR\u2026');
+      var data = await ocrPage(worker, canvas);
+      canvas.width = canvas.height = 0;
+      onProgress(98, 'Finalizing\u2026');
+      var blob = new Blob([(data.text || '').trim()], { type: 'text/plain;charset=utf-8' });
+      onProgress(100, 'Done');
+      return {
+        blob: blob,
+        filename: file.name.replace(/\.[^.]+$/, '') + '.txt'
+      };
+    } finally {
+      await worker.terminate();
+    }
+  }
+
   // ---------- public --------------------------------------------------------
 
   async function convert(file, options, onProgress) {
@@ -215,5 +250,5 @@
     return convertToText(file, options, onProgress);
   }
 
-  global.PdfOcr = { convert: convert };
+  global.PdfOcr = { convert: convert, convertImageToText: convertImageToText };
 })(window);

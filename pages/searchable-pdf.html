@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make PDF Searchable &mdash; Add OCR Text Layer (Free, No Upload) | FreeBookConvert</title>
+<meta name="description" content="Make a scanned PDF searchable. We OCR each page and embed an invisible text layer so you can select, copy, and Ctrl-F. Runs in your browser, no upload.">
+<meta name="keywords" content="searchable pdf, make pdf searchable, ocr pdf, pdf with text layer, scanned pdf searchable, free searchable pdf converter">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/pages/searchable-pdf.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Make PDF Searchable (Free OCR)">
+<meta property="og:description" content="Add an invisible OCR text layer to a scanned PDF in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/searchable-pdf.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="module">
+  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+  window.pdfjsLib = pdfjsLib;
+  window.__pdfjsReady = true;
+  document.dispatchEvent(new Event('pdfjsReady'));
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Make PDF Searchable",
+  "url": "https://freebookconvert.com/pages/searchable-pdf.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is a searchable PDF?","acceptedAnswer":{"@type":"Answer","text":"A PDF that looks identical to a scanned PDF but has an invisible text layer behind the page images. You can select, copy, and use Ctrl-F to find text, but the visual appearance is unchanged."}},
+    {"@type":"Question","name":"Is the original look preserved?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page images are embedded at their original dimensions. The OCR text is drawn behind them with zero opacity."}},
+    {"@type":"Question","name":"How large will the output be?","acceptedAnswer":{"@type":"Answer","text":"Roughly the same as the input, sometimes a little smaller because we re-encode pages as JPEG at 80% quality. The text layer adds a few KB per page."}},
+    {"@type":"Question","name":"Can Google index a searchable PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. That is one of the main reasons to make a PDF searchable. The text layer is what crawlers read."}}
+  ]
+}
+</script>
+<!-- AdSense loader (re-enable after site approval) -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script> -->
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
+      <a href="/pages/scanned-pdf-to-text.html">Scanned PDF</a>
+      <a href="/pages/image-to-text.html">Image&rarr;Text</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-intro">
+    <h1>Make a PDF Searchable (Free, In-Browser)</h1>
+    <p>Drop a scanned PDF. We OCR every page and embed an invisible text layer behind the original page images. The result looks identical to your source, but now you can highlight, copy, and Ctrl-F to find text &mdash; same as any "real" PDF. No upload.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop your scanned PDF here</p>
+      <p>or <strong>click to browse</strong></p>
+      <p style="font-size:0.85rem">Accepts: .pdf</p>
+      <input type="file" id="fileInput" accept=".pdf">
+    </div>
+
+    <div class="controls">
+      <label>Render scale
+        <select id="scale">
+          <option value="1.5">1.5x (faster)</option>
+          <option value="2" selected>2x (recommended)</option>
+          <option value="3">3x (slow, best accuracy)</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Make Searchable</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Why make a PDF searchable?</h2>
+    <ul>
+      <li><strong>Search.</strong> Ctrl-F on a 200-page document beats reading it.</li>
+      <li><strong>Indexing.</strong> Google, your filesystem (Spotlight, Windows Search), and document-management systems index the text layer. A scan-only PDF is invisible to them.</li>
+      <li><strong>Accessibility.</strong> Screen readers can speak the text. Without OCR, a scanned PDF is just a wall of images to assistive tech.</li>
+      <li><strong>Copy-paste.</strong> Pull a quote into a document without retyping it.</li>
+      <li><strong>Archival.</strong> If you're scanning paper for long-term storage, OCR makes the archive useful decades later.</li>
+    </ul>
+
+    <h2>How it works</h2>
+    <ol>
+      <li><strong>Render each page</strong> &mdash; pdf.js (Mozilla's PDF engine) draws every page to an off-screen canvas at the chosen resolution.</li>
+      <li><strong>Run OCR on the canvas</strong> &mdash; Tesseract.js reads each canvas and returns recognized words with their bounding boxes.</li>
+      <li><strong>Build a new PDF</strong> &mdash; pdf-lib creates a fresh PDF the same size as the source. The page image goes on first (JPEG-compressed), then each OCR'd word is drawn at its measured position with opacity 0. Invisible, but selectable.</li>
+    </ol>
+    <p>Every step runs locally in your browser. The only network calls are for the libraries themselves (cached after first use).</p>
+
+    <h2>Output size</h2>
+    <p>We re-encode pages as JPEG at 80% quality. For a typical scanned book, the searchable output is about the same size as the input or a little smaller. The invisible text layer adds about 1-3&nbsp;KB per page. If your input was a high-quality color archive, expect roughly 20-40% size reduction; if it was already heavily compressed, the output may grow a few percent.</p>
+
+    <h2>Render scale tradeoff</h2>
+    <ul>
+      <li><strong>1.5x</strong> &mdash; fast, fine for high-quality scans (300+&nbsp;DPI source).</li>
+      <li><strong>2x</strong> &mdash; recommended default. Balances speed and accuracy for most documents.</li>
+      <li><strong>3x</strong> &mdash; slow but best accuracy for low-resolution or faint scans.</li>
+    </ul>
+
+    <h2>Quality &amp; limits</h2>
+    <ul>
+      <li>Selection regions are positioned per-word using Tesseract's bounding boxes. Selection is usable but not pixel-perfect. Highlighting "this exact sentence" works; trying to select half a word can be inconsistent.</li>
+      <li>The invisible text uses Helvetica's widths for positioning. Glyphs Helvetica doesn't have (rare in English) are silently skipped.</li>
+      <li>Two-column documents: OCR reads in visual order. Selecting across columns can pull the wrong words.</li>
+      <li>Handwriting won't OCR &mdash; printed text only.</li>
+    </ul>
+
+    <h2>Alternatives</h2>
+    <p>If you only want the raw text and don't care about preserving the original look, use the <a href="/pages/scanned-pdf-to-text.html">scanned PDF to text</a> page &mdash; it's faster and produces a smaller <code>.txt</code> file. If you have just a single image, use <a href="/pages/image-to-text.html">image to text</a>.</p>
+
+    <h2>FAQ</h2>
+    <details><summary>Will this work with PDFs that already have text?</summary><p>Yes, but you'd be replacing the existing text with OCR text, which is almost certainly worse. If your PDF is already searchable, you don't need this tool.</p></details>
+    <details><summary>Does the original PDF have to be visible (not encrypted)?</summary><p>It has to be openable in your browser. Password-protected PDFs need to be decrypted first.</p></details>
+    <details><summary>Can I do this on a phone?</summary><p>Yes, but it's much slower &mdash; expect 20-40 seconds per page. For anything over 20 pages, a laptop is more practical.</p></details>
+    <details><summary>Why does Cmd-F find some words but not their neighbors?</summary><p>OCR isn't perfect. If a word is misrecognized, search won't find it. Increasing the render scale to 3x helps a lot for marginal scans.</p></details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/pdf-ocr.js?v=ocr1"></script>
+<script>
+(function () {
+  var files = [];
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'),
+      listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
+      convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      scaleEl = CV.$('#scale');
+
+  function waitForPdfjs() {
+    return new Promise(function (resolve) {
+      if (window.__pdfjsReady) return resolve();
+      document.addEventListener('pdfjsReady', resolve, { once: true });
+    });
+  }
+  var _sc = {};
+  function loadScript(url, integrity) {
+    if (_sc[url]) return _sc[url];
+    _sc[url] = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = url;
+      if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
+      document.head.appendChild(s);
+    });
+    return _sc[url];
+  }
+  function loadTesseract() {
+    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
+  }
+  function loadPdfLib() {
+    return loadScript(
+      'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js',
+      'sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI'
+    );
+  }
+
+  function refresh() {
+    CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+  }
+  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
+  if (CV.handoff && CV.handoff.receive) {
+    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
+  }
+  resetBtn.addEventListener('click', function () {
+    files = []; refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+  });
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    try {
+      CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
+      await waitForPdfjs();
+      CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
+      await Promise.all([loadTesseract(), loadPdfLib()]);
+      var result = await PdfOcr.convert(files[0], {
+        format: 'pdf',
+        scale: parseFloat(scaleEl.value)
+      }, function (p, m) {
+        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+      });
+      CV.downloadBlob(result.blob, result.filename);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { convertBtn.disabled = false; resetBtn.disabled = false; }
+  });
+})();
+</script>
+<script src="/js/handoff-receiver.js"></script>
+<script src="/js/consent.js"></script>
+</body>
+</html>

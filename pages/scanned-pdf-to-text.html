@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scanned PDF to Text &mdash; Free OCR Tool, No Upload | FreeBookConvert</title>
+<meta name="description" content="Extract text from a scanned PDF using OCR, entirely in your browser. Fast, free, no signup. Works on image-only PDFs that copy-paste returns blank.">
+<meta name="keywords" content="scanned pdf to text, ocr scanned pdf, extract text from scanned pdf, pdf ocr free, image pdf to text, convert scanned pdf to editable text">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/pages/scanned-pdf-to-text.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Scanned PDF to Text (Free OCR, No Upload)">
+<meta property="og:description" content="OCR a scanned PDF to plain text right in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/scanned-pdf-to-text.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="module">
+  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+  window.pdfjsLib = pdfjsLib;
+  window.__pdfjsReady = true;
+  document.dispatchEvent(new Event('pdfjsReady'));
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Scanned PDF to Text Converter",
+  "url": "https://freebookconvert.com/pages/scanned-pdf-to-text.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why does my scanned PDF have no selectable text?","acceptedAnswer":{"@type":"Answer","text":"A scanned PDF is a series of page images. There is no text layer, only pixels. OCR (optical character recognition) reads the pixels and produces real text."}},
+    {"@type":"Question","name":"Is my PDF uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. OCR runs locally using WebAssembly. The file never leaves your browser. You can verify by disconnecting Wi-Fi after the page loads."}},
+    {"@type":"Question","name":"How accurate is the OCR?","acceptedAnswer":{"@type":"Answer","text":"Clean, high-contrast English scans typically yield 95-99% accuracy. Faint, skewed, or low-resolution scans get noticeably worse results."}},
+    {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"Roughly 3-10 seconds per page on a laptop, 20-40 seconds per page on a phone. A 50-page book finishes in a few minutes."}}
+  ]
+}
+</script>
+<!-- AdSense loader (re-enable after site approval) -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script> -->
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/image-to-text.html">Image&rarr;Text</a>
+      <a href="/pages/searchable-pdf.html">Searchable PDF</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-intro">
+    <h1>Scanned PDF to Text (Free OCR, No Upload)</h1>
+    <p>If you opened a PDF and couldn't select or copy the text, it's a <strong>scanned PDF</strong> &mdash; the page is an image, not text. This tool reads the pixels with OCR (optical character recognition) and gives you back a real <code>.txt</code> file you can edit, paste, search, or feed into any other tool. Everything runs in your browser. The PDF is never uploaded.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop your scanned PDF here</p>
+      <p>or <strong>click to browse</strong></p>
+      <p style="font-size:0.85rem">Accepts: .pdf</p>
+      <input type="file" id="fileInput" accept=".pdf">
+    </div>
+
+    <div class="controls">
+      <label>Render scale
+        <select id="scale">
+          <option value="1.5">1.5x (faster)</option>
+          <option value="2" selected>2x (recommended)</option>
+          <option value="3">3x (slow, best accuracy)</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Extract Text</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>What is a scanned PDF?</h2>
+    <p>When you scan a paper document, your scanner produces an image of each page and bundles those images into a PDF. The file extension is still <code>.pdf</code>, but unlike a "real" PDF (one created from a Word doc, LaTeX, or a browser print), there is no underlying text layer. Search engines, screen readers, and copy-paste all see nothing but pixels.</p>
+    <p>This is also true of:</p>
+    <ul>
+      <li>Photographs of book pages saved as PDF.</li>
+      <li>PDFs generated by some fax-to-PDF services.</li>
+      <li>Old court documents, historical archives, and academic scans.</li>
+      <li>Anything imported into a PDF from a mobile scanning app like Adobe Scan, Scannable, or Microsoft Lens.</li>
+    </ul>
+
+    <h2>How OCR turns the image back into text</h2>
+    <p>Optical character recognition works in three stages:</p>
+    <ol>
+      <li><strong>Binarize and deskew</strong> &mdash; convert the page to black and white, straighten any tilt.</li>
+      <li><strong>Segment</strong> &mdash; find lines, then words, then individual character regions.</li>
+      <li><strong>Recognize</strong> &mdash; a neural network classifies each region against a learned model of the alphabet, digits, and punctuation.</li>
+    </ol>
+    <p>The engine running here is <a href="https://tesseract-ocr.github.io/" rel="noopener">Tesseract</a> &mdash; the open-source OCR project Google maintained for years. We ship the WebAssembly build (Tesseract.js) so it runs entirely in your browser, with no upload.</p>
+
+    <h2>Privacy: nothing is uploaded</h2>
+    <p>This is the main reason we built the tool. Most "free PDF OCR" sites are SaaS products that upload your scan to their server, run OCR there, and email you the result. That's fine for a flyer, terrible for a tax return, medical record, or anything personal.</p>
+    <p>To verify: open DevTools &rarr; Network <em>before</em> clicking Extract Text. You'll see the OCR engine and English language data download once (about 14&nbsp;MB combined, cached after the first run). After that, no request goes out for your PDF.</p>
+
+    <h2>Accuracy tips</h2>
+    <ul>
+      <li><strong>Resolution matters more than anything else.</strong> A 300&nbsp;DPI scan beats a 150&nbsp;DPI scan by a wide margin. If you're scanning fresh, use 300&nbsp;DPI or higher.</li>
+      <li><strong>Use the 3x render scale option</strong> if the PDF was scanned at low resolution &mdash; it gives OCR more pixels to work with.</li>
+      <li><strong>Clean the page</strong> &mdash; remove shadows, fold lines, and finger photos before scanning.</li>
+      <li><strong>Handwriting is not supported.</strong> Tesseract is a printed-text model.</li>
+      <li><strong>Two-column layouts</strong> sometimes get read across the column gutter, mixing the two columns. Crop the PDF to one column at a time if you hit this.</li>
+    </ul>
+
+    <h2>Need the output as a PDF instead?</h2>
+    <p>If you'd rather keep the original look of your scan but add a hidden text layer so you can highlight and search, use the <a href="/pages/searchable-pdf.html">searchable PDF</a> converter. Same OCR engine, different output.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Will it work on a multi-language document?</summary><p>This page is English-only. Mixed-language documents will recognize the English correctly and produce garbled output for other scripts. We may add per-language pages later.</p></details>
+    <details><summary>What's the page-count limit?</summary><p>There's no hard limit, but memory pressure on mobile gets real around 100 pages. On a laptop you can comfortably run several hundred.</p></details>
+    <details><summary>Does it preserve formatting?</summary><p>No. You get the raw text in reading order. Line breaks are kept; bold/italic, fonts, and layout are not. Use the searchable-PDF output if you need the original look.</p></details>
+    <details><summary>Why does the first page take longer than the rest?</summary><p>The first call downloads the OCR engine WebAssembly (~10&nbsp;MB) and English language data (~4&nbsp;MB). Both are cached after that, so subsequent pages and subsequent PDFs are much faster.</p></details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/pdf-ocr.js?v=ocr1"></script>
+<script>
+(function () {
+  var files = [];
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'),
+      listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
+      convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      scaleEl = CV.$('#scale');
+
+  function waitForPdfjs() {
+    return new Promise(function (resolve) {
+      if (window.__pdfjsReady) return resolve();
+      document.addEventListener('pdfjsReady', resolve, { once: true });
+    });
+  }
+  var _sc = {};
+  function loadScript(url) {
+    if (_sc[url]) return _sc[url];
+    _sc[url] = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = url;
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
+      document.head.appendChild(s);
+    });
+    return _sc[url];
+  }
+  function loadTesseract() {
+    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
+  }
+
+  function refresh() {
+    CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+  }
+  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
+  if (CV.handoff && CV.handoff.receive) {
+    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
+  }
+  resetBtn.addEventListener('click', function () {
+    files = []; refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+  });
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    try {
+      CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
+      await waitForPdfjs();
+      CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
+      await loadTesseract();
+      var result = await PdfOcr.convert(files[0], {
+        format: 'txt',
+        scale: parseFloat(scaleEl.value)
+      }, function (p, m) {
+        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+      });
+      CV.downloadBlob(result.blob, result.filename);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { convertBtn.disabled = false; resetBtn.disabled = false; }
+  });
+})();
+</script>
+<script src="/js/handoff-receiver.js"></script>
+<script src="/js/consent.js"></script>
+</body>
+</html>
