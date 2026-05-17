@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Make PDF Searchable &mdash; Add OCR Text Layer (Free, No Upload) | FreeBookConvert</title>
-<meta name="description" content="Make a scanned PDF searchable. We OCR each page and embed an invisible text layer so you can select, copy, and Ctrl-F. Runs in your browser, no upload.">
+<title>Make a PDF Searchable (Free OCR, Runs Locally) | FreeBookConvert</title>
+<meta name="description" content="Turn a scanned PDF into one you can search and copy from. OCR runs in your browser, the original page images stay intact, and nothing is uploaded.">
 <meta name="keywords" content="searchable pdf, make pdf searchable, ocr pdf, pdf with text layer, scanned pdf searchable, free searchable pdf converter">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
@@ -41,10 +41,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"What is a searchable PDF?","acceptedAnswer":{"@type":"Answer","text":"A PDF that looks identical to a scanned PDF but has an invisible text layer behind the page images. You can select, copy, and use Ctrl-F to find text, but the visual appearance is unchanged."}},
-    {"@type":"Question","name":"Is the original look preserved?","acceptedAnswer":{"@type":"Answer","text":"Yes. The page images are embedded at their original dimensions. The OCR text is drawn behind them with zero opacity."}},
-    {"@type":"Question","name":"How large will the output be?","acceptedAnswer":{"@type":"Answer","text":"Roughly the same as the input, sometimes a little smaller because we re-encode pages as JPEG at 80% quality. The text layer adds a few KB per page."}},
-    {"@type":"Question","name":"Can Google index a searchable PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. That is one of the main reasons to make a PDF searchable. The text layer is what crawlers read."}}
+    {"@type":"Question","name":"What is a searchable PDF?","acceptedAnswer":{"@type":"Answer","text":"It looks exactly like a scan. The page images are still there. But there's a hidden text layer sitting behind them, so Cmd-F and copy-paste work like they would on a normal PDF."}},
+    {"@type":"Question","name":"Does the PDF look any different?","acceptedAnswer":{"@type":"Answer","text":"No. The page images are kept at their original dimensions and laid down first. The OCR text is drawn behind them at zero opacity. Same picture, more useful file."}},
+    {"@type":"Question","name":"How big is the output?","acceptedAnswer":{"@type":"Answer","text":"Usually within a few percent of the input. Pages are re-encoded as JPEG at 80%, which often shrinks color scans noticeably and leaves heavily compressed scans about the same. The text layer is 1-3 KB per page."}},
+    {"@type":"Question","name":"Will Google find it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Crawlers read the text layer, not the page pixels, which is most of the reason to add one in the first place."}}
   ]
 }
 </script>
@@ -67,8 +67,8 @@
 
 <main class="container">
   <section class="page-intro">
-    <h1>Make a PDF Searchable (Free, In-Browser)</h1>
-    <p>Drop a scanned PDF. We OCR every page and embed an invisible text layer behind the original page images. The result looks identical to your source, but now you can highlight, copy, and Ctrl-F to find text &mdash; same as any "real" PDF. No upload.</p>
+    <h1>Make a PDF Searchable</h1>
+    <p>Drop a scanned PDF. The original page images stay exactly where they are. Underneath them, we put down an invisible layer of OCR'd text. The file looks the same, but suddenly Cmd-F works, highlighting works, and copy-paste pulls out real words instead of nothing. Nothing leaves your computer.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -101,49 +101,39 @@
   </section>
 
   <section class="content-section">
-    <h2>Why make a PDF searchable?</h2>
+    <h2>What changes when you add a text layer</h2>
+    <p>Suddenly the file behaves like a normal PDF. Cmd-F finds quotes. Spotlight and Windows Search return it when you forget what you named it. Screen readers can read it out loud instead of describing it as a 412-page image. Google can index it if it's on the web. And you can finally pull a paragraph out as a quote without retyping the whole thing.</p>
+
+    <h2>What the tool does, step by step</h2>
+    <p>pdf.js draws each page of your source PDF onto an off-screen canvas. Tesseract.js reads that canvas and returns the words it finds plus where on the page they sit. Then pdf-lib builds a fresh PDF the same dimensions as the original: it places the page as a JPEG, then writes every OCR'd word at its measured position with opacity zero. You can't see the text. The PDF reader can.</p>
+    <p>Every part of that happens in the tab you're in. The only network traffic is the one-time download of the libraries (about 14 MB) and they're cached afterwards.</p>
+
+    <h2>What the file size will look like</h2>
+    <p>Pages get re-encoded as JPEG at 80% quality. For a color archive scan, the output is often 20-40% smaller than the input. For a black-and-white scan that was already heavily compressed, the output might grow a few percent. The hidden text layer is around 1-3 KB per page, which is rounding error on the page images.</p>
+
+    <h2>Which render scale to pick</h2>
     <ul>
-      <li><strong>Search.</strong> Ctrl-F on a 200-page document beats reading it.</li>
-      <li><strong>Indexing.</strong> Google, your filesystem (Spotlight, Windows Search), and document-management systems index the text layer. A scan-only PDF is invisible to them.</li>
-      <li><strong>Accessibility.</strong> Screen readers can speak the text. Without OCR, a scanned PDF is just a wall of images to assistive tech.</li>
-      <li><strong>Copy-paste.</strong> Pull a quote into a document without retyping it.</li>
-      <li><strong>Archival.</strong> If you're scanning paper for long-term storage, OCR makes the archive useful decades later.</li>
+      <li>1.5x is fast and works fine if your source was scanned at 300 DPI or better.</li>
+      <li>2x is the default, and the right answer for almost any document where you're not sure.</li>
+      <li>3x is slow but worth it for faint photocopies, low-resolution faxes, and anything where 2x produces visible errors.</li>
     </ul>
 
-    <h2>How it works</h2>
-    <ol>
-      <li><strong>Render each page</strong> &mdash; pdf.js (Mozilla's PDF engine) draws every page to an off-screen canvas at the chosen resolution.</li>
-      <li><strong>Run OCR on the canvas</strong> &mdash; Tesseract.js reads each canvas and returns recognized words with their bounding boxes.</li>
-      <li><strong>Build a new PDF</strong> &mdash; pdf-lib creates a fresh PDF the same size as the source. The page image goes on first (JPEG-compressed), then each OCR'd word is drawn at its measured position with opacity 0. Invisible, but selectable.</li>
-    </ol>
-    <p>Every step runs locally in your browser. The only network calls are for the libraries themselves (cached after first use).</p>
-
-    <h2>Output size</h2>
-    <p>We re-encode pages as JPEG at 80% quality. For a typical scanned book, the searchable output is about the same size as the input or a little smaller. The invisible text layer adds about 1-3&nbsp;KB per page. If your input was a high-quality color archive, expect roughly 20-40% size reduction; if it was already heavily compressed, the output may grow a few percent.</p>
-
-    <h2>Render scale tradeoff</h2>
+    <h2>Where this gets a bit fuzzy</h2>
     <ul>
-      <li><strong>1.5x</strong> &mdash; fast, fine for high-quality scans (300+&nbsp;DPI source).</li>
-      <li><strong>2x</strong> &mdash; recommended default. Balances speed and accuracy for most documents.</li>
-      <li><strong>3x</strong> &mdash; slow but best accuracy for low-resolution or faint scans.</li>
+      <li>Highlighting follows Tesseract's word boxes. Selecting a whole sentence works cleanly. Trying to grab half a word is hit or miss.</li>
+      <li>The hidden text uses Helvetica metrics for positioning. Letters that aren't in Helvetica (rare in English) get dropped silently.</li>
+      <li>Two-column papers can confuse the reading order. If you select across columns, the order you get out may not match what you'd expect.</li>
+      <li>Handwriting isn't supported. Tesseract is a printed-text model.</li>
     </ul>
 
-    <h2>Quality &amp; limits</h2>
-    <ul>
-      <li>Selection regions are positioned per-word using Tesseract's bounding boxes. Selection is usable but not pixel-perfect. Highlighting "this exact sentence" works; trying to select half a word can be inconsistent.</li>
-      <li>The invisible text uses Helvetica's widths for positioning. Glyphs Helvetica doesn't have (rare in English) are silently skipped.</li>
-      <li>Two-column documents: OCR reads in visual order. Selecting across columns can pull the wrong words.</li>
-      <li>Handwriting won't OCR &mdash; printed text only.</li>
-    </ul>
+    <h2>Other options</h2>
+    <p>If you don't care about keeping the original page images and just want the words out, <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> is faster and produces a small <code>.txt</code>. If your source is a single image (a photo, a screenshot), <a href="/pages/image-to-text.html">Image to Text</a> takes images directly without the PDF middle step.</p>
 
-    <h2>Alternatives</h2>
-    <p>If you only want the raw text and don't care about preserving the original look, use the <a href="/pages/scanned-pdf-to-text.html">scanned PDF to text</a> page &mdash; it's faster and produces a smaller <code>.txt</code> file. If you have just a single image, use <a href="/pages/image-to-text.html">image to text</a>.</p>
-
-    <h2>FAQ</h2>
-    <details><summary>Will this work with PDFs that already have text?</summary><p>Yes, but you'd be replacing the existing text with OCR text, which is almost certainly worse. If your PDF is already searchable, you don't need this tool.</p></details>
-    <details><summary>Does the original PDF have to be visible (not encrypted)?</summary><p>It has to be openable in your browser. Password-protected PDFs need to be decrypted first.</p></details>
-    <details><summary>Can I do this on a phone?</summary><p>Yes, but it's much slower &mdash; expect 20-40 seconds per page. For anything over 20 pages, a laptop is more practical.</p></details>
-    <details><summary>Why does Cmd-F find some words but not their neighbors?</summary><p>OCR isn't perfect. If a word is misrecognized, search won't find it. Increasing the render scale to 3x helps a lot for marginal scans.</p></details>
+    <h2>A few things people ask</h2>
+    <details><summary>What if my PDF already has selectable text?</summary><p>Then you don't need this tool. Running it anyway would replace the existing (good) text with OCR text, which is almost always a downgrade.</p></details>
+    <details><summary>What about password-protected PDFs?</summary><p>You'd have to remove the password first. The browser needs to be able to open the PDF for pdf.js to render it.</p></details>
+    <details><summary>Can I run this on my phone?</summary><p>Yes, but it's slow: 20-40 seconds per page on most phones. For anything over about 20 pages, do it on a laptop.</p></details>
+    <details><summary>Cmd-F finds one word but not the next one. Why?</summary><p>OCR misread it. If your input is a marginal scan, bump the render scale to 3x and it usually clears up.</p></details>
   </section>
 </main>
 

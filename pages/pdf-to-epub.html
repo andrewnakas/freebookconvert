@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to EPUB Converter &mdash; Free, Private, In-Browser | FreeBookConvert</title>
-<meta name="description" content="Convert PDF documents into reflowable EPUB ebooks directly in your browser. Privacy-first &mdash; no upload, no signup, no watermarks.">
+<title>PDF to EPUB (Make a Reflowable Ebook) | FreeBookConvert</title>
+<meta name="description" content="Turn a text-based PDF into a reflowable EPUB ebook your e-reader can resize. Runs in your browser. Won't work on scans.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub.html">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="PDF to EPUB Converter">
-<meta property="og:description" content="Turn PDFs into reflowable EPUB ebooks in your browser.">
+<meta property="og:description" content="Turn a text-based PDF into a reflowable EPUB, in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -56,9 +56,9 @@
 <main class="container">
   <section class="page-intro">
     <h1>PDF to EPUB Converter</h1>
-    <p>Turn fixed-layout PDFs into reflowable EPUB ebooks that work on any e-reader. All processing happens in your browser.</p>
+    <p>Turn a fixed-page PDF into a reflowable EPUB your e-reader can resize. The whole thing runs in your browser.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
-      <strong>Scanned PDF?</strong> If you can't select text inside your PDF, it's a scan &mdash; this converter will produce an empty EPUB. Use <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> instead.
+      <strong>Got a scan?</strong> If you can't select the text inside the PDF, there's no text to extract. The EPUB will come out empty. Try <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> instead.
     </p>
   </section>
 
@@ -103,24 +103,24 @@
   </div>
 
   <section class="content-section">
-    <h2>How does PDF to EPUB work?</h2>
-    <p>PDFs are <em>fixed-layout</em> &mdash; every character has a precise position on a fixed-size page. EPUBs are <em>reflowable</em> &mdash; text adapts to the screen, font size, and orientation of whatever device opens it. Converting between them is fundamentally a text-extraction problem.</p>
+    <h2>How a PDF turns into an EPUB</h2>
+    <p>A PDF locks every character to a specific spot on a fixed page. An EPUB doesn't. The text reflows to fit whatever screen, font size, or orientation the reader is on. Going from PDF to EPUB is really a text-extraction job followed by some structure cleanup.</p>
 
-    <h3>What gets preserved?</h3>
+    <h2>What lands in the EPUB</h2>
     <ul>
-      <li>All text content, in reading order.</li>
-      <li>Paragraph breaks based on line spacing.</li>
-      <li>Chapter structure when headings are detected (e.g., "Chapter 1").</li>
-      <li>Title and author metadata from the PDF.</li>
+      <li>The full text, in reading order.</li>
+      <li>Paragraph breaks inferred from line spacing.</li>
+      <li>Chapter structure when the converter spots headings like "Chapter 1".</li>
+      <li>Title and author, if they're in the PDF metadata.</li>
     </ul>
 
-    <h3>What doesn't transfer well?</h3>
+    <h2>What doesn't come across cleanly</h2>
     <ul>
-      <li>Complex layouts (multi-column scientific papers can produce mixed text order).</li>
-      <li>Scanned PDFs without OCR &mdash; there's no text to extract.</li>
-      <li>Footnotes, page numbers, and headers may appear inline.</li>
+      <li>Multi-column layouts. Two-column scientific papers often interleave the text incorrectly.</li>
+      <li>Scanned PDFs. There's no text to extract from page images. Run OCR first.</li>
+      <li>Footnotes, page numbers, and running headers. These tend to show up inline.</li>
     </ul>
-    <p>For best results, start with a text-based PDF (not a scan).</p>
+    <p>Start with a text-based PDF (one where you can highlight a sentence) and the result will be readable. Start with a scan and the result will be empty.</p>
   </section>
 </main>
 

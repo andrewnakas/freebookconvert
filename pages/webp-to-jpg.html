@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WEBP to JPG Converter — Free, Private, In-Browser | FreeBookConvert</title>
-<meta name="description" content="Convert WEBP images to JPG in your browser. Batch conversion supported. No upload, no signup, totally free.">
+<title>WEBP to JPG (For Apps That Won't Open WEBP) | FreeBookConvert</title>
+<meta name="description" content="Turn WEBP images into JPG so they open in older apps and tools. Batch works. Runs in your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/webp-to-jpg.html">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="WEBP to JPG Converter">
-<meta property="og:description" content="Convert WEBP to JPG in your browser. Private and free.">
+<meta property="og:description" content="Turn WEBP into JPG so old apps will open it. Runs in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/webp-to-jpg.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -49,7 +49,7 @@
 <main class="container">
   <section class="page-intro">
     <h1>WEBP to JPG Converter</h1>
-    <p>Convert WEBP images to jpg format &mdash; JPG for compatibility with older apps. Files never leave your device.</p>
+    <p>You saved an image from the web and it's a .webp. Half the apps on your machine refuse to open it. Drop it here, get a JPG back. Stays on your device.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -62,7 +62,7 @@
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
       <p class="big">Drop WEBP files here</p>
-      <p>or <strong>click to browse</strong> &mdash; you can select many at once</p>
+      <p>or <strong>click to browse</strong> (multiple selection works)</p>
       <p style="font-size:0.85rem">Accepts: .webp</p>
       <input type="file" id="fileInput" accept=".webp" multiple>
     </div>
@@ -92,21 +92,21 @@
   </div>
 
   <section class="content-section">
-    <h2>About WEBP and JPG</h2>
-    <p>Need to send a photo, post it online, or open it in an app that doesn't accept <strong>WEBP</strong>? Converting to <strong>JPG</strong> takes one click here. Multiple files are returned as a single ZIP.</p>
+    <h2>Why WEBP keeps tripping things up</h2>
+    <p>WEBP is fine in browsers and modern editors. Where it falls apart is older software, a lot of corporate tools, some social platforms, and pretty much any photo printer or kiosk. JPG works everywhere, period.</p>
 
-    <h3>What this converter does</h3>
+    <h2>A note about transparency</h2>
+    <p>WEBP can have transparent pixels. JPG can't. If your WEBP has a transparent background, the converter fills it with white. If you want to keep the alpha channel, convert to PNG instead.</p>
+
+    <h2>What this does</h2>
     <ul>
-      <li>Decodes your WEBP files using your browser's built-in image engine.</li>
-      <li>Re-encodes each image as JPG.</li>
-      <li>For a single file, you get the converted image directly. For multiple files, you get a ZIP.</li>
+      <li>Decodes the WEBP with your browser's image engine.</li>
+      <li>Re-saves it as a JPG at the quality you chose.</li>
+      <li>Drop one file, get one back. Drop several, you get a zip.</li>
     </ul>
 
-    <h3>Is the conversion lossy?</h3>
-    <p>JPG is a lossy format. Choose a quality preset above to balance file size and image fidelity. "Standard" works well for photos; "High" is best when you'll edit further; "Compact" minimizes file size for web sharing.</p>
-
-    <h3>Privacy</h3>
-    <p>Conversion happens entirely in your browser. Nothing is uploaded. You can verify by disconnecting from the internet after the page loads &mdash; this page will still convert.</p>
+    <h2>Nothing leaves your browser</h2>
+    <p>The conversion runs locally. After the page loads, you can disconnect from the internet and it still works.</p>
   </section>
 </main>
 

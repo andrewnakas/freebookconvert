@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPG to PNG Converter — Free, Private, In-Browser | FreeBookConvert</title>
-<meta name="description" content="Convert JPG images to PNG in your browser. Batch conversion supported. No upload, no signup, totally free.">
+<title>JPG to PNG (Lossless, In Your Browser) | FreeBookConvert</title>
+<meta name="description" content="Re-save JPGs as PNGs without losing more data. Batch works. Nothing leaves the page.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/jpg-to-png.html">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="JPG to PNG Converter">
-<meta property="og:description" content="Convert JPG to PNG in your browser. Private and free.">
+<meta property="og:description" content="Re-save JPGs as PNG, in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/jpg-to-png.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -49,7 +49,7 @@
 <main class="container">
   <section class="page-intro">
     <h1>JPG to PNG Converter</h1>
-    <p>Convert JPG images to png format &mdash; lossless PNG for editing and transparency support. Files never leave your device.</p>
+    <p>Re-save a JPG as a PNG when you need a lossless source for editing, or you want a format that supports transparency. The image stays on your device.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -62,7 +62,7 @@
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
       <p class="big">Drop JPG files here</p>
-      <p>or <strong>click to browse</strong> &mdash; you can select many at once</p>
+      <p>or <strong>click to browse</strong> (multiple selection works)</p>
       <p style="font-size:0.85rem">Accepts: .jpg, .jpeg</p>
       <input type="file" id="fileInput" accept=".jpg,.jpeg" multiple>
     </div>
@@ -92,21 +92,21 @@
   </div>
 
   <section class="content-section">
-    <h2>About JPG and PNG</h2>
-    <p>Need to send a photo, post it online, or open it in an app that doesn't accept <strong>JPG</strong>? Converting to <strong>PNG</strong> takes one click here. Multiple files are returned as a single ZIP.</p>
+    <h2>Quick reminder on the two formats</h2>
+    <p>JPG is lossy and small. Every time you save a JPG, you lose a little quality. PNG is lossless and bigger. It also supports transparency, which JPG doesn't. If you need to edit a photo without compounding the JPG damage, or if you need a clear background, PNG is the right destination.</p>
 
-    <h3>What this converter does</h3>
+    <h2>How this works</h2>
     <ul>
-      <li>Decodes your JPG files using your browser's built-in image engine.</li>
-      <li>Re-encodes each image as PNG.</li>
-      <li>For a single file, you get the converted image directly. For multiple files, you get a ZIP.</li>
+      <li>Your browser's image engine decodes each JPG.</li>
+      <li>The decoded pixels get saved as a PNG.</li>
+      <li>Drop one file, get one back. Drop several, get a zip.</li>
     </ul>
 
-    <h3>Is the conversion lossy?</h3>
-    <p>PNG is a lossless format, so the converted image has the same pixel data as the decoded source. The file size may grow when converting from a lossy format like JPG, but no visual quality is lost in the re-encode.</p>
+    <h2>About file size</h2>
+    <p>The PNG will almost always be bigger than the JPG you started with. JPG was designed to be compact. The PNG is preserving every pixel the JPG decoder produced. It's not making the photo higher quality than the source. It's just preventing further loss.</p>
 
-    <h3>Privacy</h3>
-    <p>Conversion happens entirely in your browser. Nothing is uploaded. You can verify by disconnecting from the internet after the page loads &mdash; this page will still convert.</p>
+    <h2>Nothing leaves your browser</h2>
+    <p>The conversion runs locally. Cut your internet after loading the page and it still works.</p>
   </section>
 </main>
 

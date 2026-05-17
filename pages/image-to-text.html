@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to Text (Free OCR) &mdash; JPG, PNG, WEBP to .txt | FreeBookConvert</title>
-<meta name="description" content="Free image-to-text OCR. Drop a JPG, PNG, or WEBP and get the extracted text as a .txt file. Runs in your browser, no upload, no signup.">
+<title>Image to Text (OCR for JPG, PNG, WEBP, Screenshots) | FreeBookConvert</title>
+<meta name="description" content="Drag in a screenshot, a photo of a page, or any JPG/PNG/WEBP. You get the text back as a .txt. Runs in the browser, your image never leaves it.">
 <meta name="keywords" content="image to text, jpg to text, png to text ocr, photo to text, picture to text, free ocr, extract text from image, image ocr online">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
@@ -34,10 +34,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WEBP, BMP, GIF (first frame), and HEIC (with the HEIC decoder loaded). Anything the browser can render to a canvas will work."}},
-    {"@type":"Question","name":"Is the photo uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The image stays in your browser. OCR runs locally using WebAssembly."}},
-    {"@type":"Question","name":"Does it work on phone screenshots?","acceptedAnswer":{"@type":"Answer","text":"Yes. Screenshots are usually high-resolution and high-contrast, which is the best case for OCR accuracy."}},
-    {"@type":"Question","name":"Does it handle handwriting?","acceptedAnswer":{"@type":"Answer","text":"No. This is a printed-text engine. Cursive and casual handwriting will not be recognized accurately."}}
+    {"@type":"Question","name":"Which formats work?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WEBP, BMP, the first frame of a GIF, and HEIC if your browser can decode it. If the browser can draw it to a canvas, OCR can read it."}},
+    {"@type":"Question","name":"Does my image get uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The pixels go into a canvas in your tab and straight into the OCR worker. Watch the Network tab if you want to confirm."}},
+    {"@type":"Question","name":"Are screenshots good input?","acceptedAnswer":{"@type":"Answer","text":"The best, actually. They're high-resolution, sharp, and high-contrast, which is exactly what OCR wants."}},
+    {"@type":"Question","name":"What about handwriting?","acceptedAnswer":{"@type":"Answer","text":"Not supported. Tesseract is trained on printed text. Cursive in particular comes out as nonsense."}}
   ]
 }
 </script>
@@ -60,8 +60,8 @@
 
 <main class="container">
   <section class="page-intro">
-    <h1>Image to Text (Free Browser OCR)</h1>
-    <p>Drop a JPG, PNG, WEBP, or screenshot. Get the text inside it as a <code>.txt</code> file. Runs entirely in your browser using the Tesseract OCR engine compiled to WebAssembly. Nothing is uploaded. English text, printed type.</p>
+    <h1>Image to Text</h1>
+    <p>Drop in a screenshot, a phone photo of a page, a JPG of a receipt. Out comes a <code>.txt</code> with the text from the image. The OCR engine (Tesseract, compiled to WebAssembly) runs in this tab. Your image never goes to a server. English, printed type.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -84,43 +84,32 @@
   </section>
 
   <section class="content-section">
-    <h2>When to use this</h2>
+    <h2>What people actually use this for</h2>
+    <p>Pulling a quote out of a screenshot of a tweet someone deleted. Copying text from a video frame. Getting the wifi password off the photo you took of the back of the router. Reading the menu from a phone snap. Grabbing the recipe off the back of a cookbook page. The common thread is text that's stuck inside pixels: you can see it, but you can't select it.</p>
+
+    <h2>Why not just use Google Lens?</h2>
+    <p>If you're already in the iOS or Android camera, Lens or Live Text is probably faster. This tool is for the cases where you have a file on your computer and want to drag it somewhere, or you want the result as an actual <code>.txt</code> file instead of as a clipboard paste, or the image is something you'd rather not hand to Google.</p>
+
+    <h2>What makes OCR good or bad</h2>
+    <p>Tesseract has been around for decades and powers Google Books, among many other things. On a clean printed page at decent resolution it lands at 95-99% accuracy. What ruins it:</p>
     <ul>
-      <li><strong>Screenshots</strong>: copy text out of a video frame, a Discord screenshot, a tweet you can't select, a paywalled article.</li>
-      <li><strong>Photos of documents</strong>: a printed receipt, a textbook page, a recipe card, a whiteboard.</li>
-      <li><strong>Memes and infographics</strong>: pull the text out to translate or quote it elsewhere.</li>
-      <li><strong>Old scans</strong>: a JPG of a letter or page where the text is locked inside the image.</li>
+      <li>Text smaller than about 100 pixels tall (zoom in before screenshotting if you can).</li>
+      <li>Anything more than a few degrees of rotation.</li>
+      <li>JPEGs that have been re-saved a dozen times and are full of compression mush.</li>
+      <li>Stylized fonts, italic body text, decorative typography.</li>
+      <li>White text on a busy photo background.</li>
     </ul>
 
-    <h2>How it compares to other tools</h2>
-    <p>Google Lens, iOS Live Text, and Windows Snip &amp; Sketch all do on-device OCR if you have the right device. They're great when you're already in the camera or screenshot UI. This tool is for the cases when:</p>
-    <ul>
-      <li>You're on a desktop and want to drag-drop a file.</li>
-      <li>You want the result as a <code>.txt</code> file, not just text on the clipboard.</li>
-      <li>You don't want the image leaving your machine for any reason.</li>
-      <li>You're processing a batch and want to script around it.</li>
-    </ul>
+    <h2>Other pages on this site</h2>
+    <p>For a multi-page PDF, <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> does the same OCR per page and concatenates. For an iPhone HEIC, drop it here if your browser handles HEIC, otherwise run it through <a href="/pages/heic-to-jpg.html">HEIC to JPG</a> first.</p>
 
-    <h2>Quality &amp; accuracy</h2>
-    <p>Tesseract is one of the most-used OCR engines in the world &mdash; same one inside Google Books and a hundred SaaS products. Accuracy on a clear, properly oriented printed page is typically 95-99%. Things that hurt accuracy:</p>
-    <ul>
-      <li>Low resolution (under 100&nbsp;px tall for text)</li>
-      <li>Rotation more than a few degrees</li>
-      <li>Heavy compression artifacts (over-saved JPEGs)</li>
-      <li>Decorative fonts and italic-on-italic</li>
-      <li>Text on top of busy backgrounds</li>
-    </ul>
+    <h2>Nothing leaves your browser</h2>
+    <p>The image gets read into a canvas, the pixels get handed to the OCR worker that's running in this tab, the text comes back. There is no point in the pipeline where your file gets sent anywhere. To check, load the page on wifi, turn the wifi off, then OCR something. It keeps working because the engine is cached locally.</p>
 
-    <h2>Other formats</h2>
-    <p>If your text lives in a multi-page PDF, use the <a href="/pages/scanned-pdf-to-text.html">scanned PDF to text</a> page instead &mdash; it rasterizes every page and OCRs them in batch. If your text is in an iPhone HEIC photo, convert it to JPG first with <a href="/pages/heic-to-jpg.html">HEIC to JPG</a>, or drop it here directly if your browser supports HEIC decoding natively.</p>
-
-    <h2>Privacy</h2>
-    <p>The image is read into a canvas locally and the pixel data is handed to the in-browser OCR worker. No upload happens at any stage. Reload the page with Wi-Fi off after the first OCR run and it still works (the engine is cached).</p>
-
-    <h2>FAQ</h2>
-    <details><summary>Why does the output have line breaks in odd places?</summary><p>Tesseract preserves the visual line breaks from the source image. If a paragraph wraps across three lines, the output has three lines. Run a find/replace on single newlines to merge them into a paragraph.</p></details>
-    <details><summary>Can I OCR a whole folder at once?</summary><p>Not yet from this page &mdash; one image at a time. For batch jobs we recommend the npm package <code>tesseract.js</code> directly.</p></details>
-    <details><summary>Does it find the language automatically?</summary><p>No. This page is hard-coded to English. Other languages produce garbage. Per-language pages are on the roadmap.</p></details>
+    <h2>A few things people ask</h2>
+    <details><summary>Why are there line breaks in the middle of paragraphs?</summary><p>OCR preserves the line breaks it sees. A paragraph wrapped across three lines comes out as three lines. A quick find/replace on single newlines fixes it.</p></details>
+    <details><summary>Can I OCR a whole folder at once?</summary><p>Not from this page. For batch jobs, use the <code>tesseract.js</code> npm package directly.</p></details>
+    <details><summary>Will it auto-detect the language?</summary><p>No. The language data on this page is English. Other scripts come out as garbage. Other languages may come later.</p></details>
   </section>
 </main>
 

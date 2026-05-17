@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEIC to JPG Converter — Free, Private, In-Browser | FreeBookConvert</title>
-<meta name="description" content="Convert HEIC images to JPG in your browser. Batch conversion supported. No upload, no signup, totally free.">
+<title>HEIC to JPG (Open iPhone Photos Anywhere) | FreeBookConvert</title>
+<meta name="description" content="Turn HEIC photos from your iPhone into JPGs that open anywhere. Batch works. Nothing uploads.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/heic-to-jpg.html">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="HEIC to JPG Converter">
-<meta property="og:description" content="Convert HEIC to JPG in your browser. Private and free.">
+<meta property="og:description" content="Turn HEIC into JPG, in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/heic-to-jpg.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -50,7 +50,7 @@
 <main class="container">
   <section class="page-intro">
     <h1>HEIC to JPG Converter</h1>
-    <p>Convert HEIC images to jpg format &mdash; universally supported JPG. Files never leave your device.</p>
+    <p>Turn iPhone HEIC photos into JPGs that open on Windows, Android, Slack, your work portal, and basically anything else. The photos stay on your device.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -63,7 +63,7 @@
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
       <p class="big">Drop HEIC files here</p>
-      <p>or <strong>click to browse</strong> &mdash; you can select many at once</p>
+      <p>or <strong>click to browse</strong> (pick as many as you want)</p>
       <p style="font-size:0.85rem">Accepts: .heic, .heif</p>
       <input type="file" id="fileInput" accept=".heic,.heif" multiple>
     </div>
@@ -93,21 +93,21 @@
   </div>
 
   <section class="content-section">
-    <h2>About HEIC and JPG</h2>
-    <p>Need to send a photo, post it online, or open it in an app that doesn't accept <strong>HEIC</strong>? Converting to <strong>JPG</strong> takes one click here. Multiple files are returned as a single ZIP.</p>
+    <h2>HEIC vs. JPG, briefly</h2>
+    <p>HEIC is what your iPhone saves by default. Smaller files, better quality per byte. The catch: most non-Apple software refuses to open them. JPG is older, less efficient, and works absolutely everywhere. If you're trying to share, upload, or paste into something that won't take HEIC, you want JPG.</p>
 
-    <h3>What this converter does</h3>
+    <h2>What happens when you hit convert</h2>
     <ul>
-      <li>Decodes your HEIC files using your browser's built-in image engine (plus the libheif WebAssembly decoder for HEIC inputs).</li>
-      <li>Re-encodes each image as JPG.</li>
-      <li>For a single file, you get the converted image directly. For multiple files, you get a ZIP.</li>
+      <li>The page decodes each HEIC using the libheif WebAssembly build, plus your browser's normal image engine.</li>
+      <li>Each photo gets re-saved as a JPG.</li>
+      <li>Drop one file, get one file back. Drop several, get a zip.</li>
     </ul>
 
-    <h3>Is the conversion lossy?</h3>
-    <p>JPG is a lossy format. Choose a quality preset above to balance file size and image fidelity. "Standard" works well for photos; "High" is best when you'll edit further; "Compact" minimizes file size for web sharing.</p>
+    <h2>About quality</h2>
+    <p>JPG throws away some data when it compresses. The presets are a tradeoff. Standard is fine for most photos. High is what you want if you'll edit the JPG later. Compact gets you the smallest file for sending around.</p>
 
-    <h3>Privacy</h3>
-    <p>Conversion happens entirely in your browser. Nothing is uploaded. You can verify by disconnecting from the internet after the page loads &mdash; this page will still convert.</p>
+    <h2>Nothing leaves your browser</h2>
+    <p>The photos are processed in this tab. The simplest proof: load the page, kill your internet, run a conversion. It still works.</p>
   </section>
 </main>
 

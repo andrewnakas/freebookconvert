@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF OCR &mdash; Extract Text from Scanned PDFs in Your Browser | FreeBookConvert</title>
-<meta name="description" content="OCR a scanned PDF to plain text or a searchable PDF, entirely in your browser. English. No upload, no signup, free.">
+<title>PDF OCR (Pull Text Out of a Scanned PDF) | FreeBookConvert</title>
+<meta name="description" content="Run OCR on a scanned PDF and get back either a .txt file or a searchable PDF. English. Runs in your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/pdf-ocr.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="PDF OCR &mdash; Extract Text from Scanned PDFs">
-<meta property="og:description" content="OCR scanned PDFs to text or a searchable PDF, in your browser.">
+<meta property="og:title" content="PDF OCR (Pull Text Out of a Scanned PDF)">
+<meta property="og:description" content="Run OCR on scanned PDFs and get back text or a searchable PDF. Runs in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/pdf-ocr.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -55,7 +55,7 @@
 <main class="container">
   <section class="page-intro">
     <h1>PDF OCR (Scanned PDF &rarr; Text)</h1>
-    <p>Extract text from a scanned PDF using OCR &mdash; entirely in your browser. Choose plain text output, or a searchable PDF (same look as the original, but you can highlight and copy the text). English only.</p>
+    <p>Got a scanned PDF where the words are just pixels? Run OCR on it here. You can either get a plain <code>.txt</code> of the recognized text, or a searchable PDF that looks the same as the original but lets you select and copy. English only.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -106,27 +106,27 @@
   </div>
 
   <section class="content-section">
-    <h2>How it works</h2>
-    <p>This tool uses <strong>Tesseract.js</strong> (a WebAssembly build of Google's open-source Tesseract OCR engine) and <strong>pdf.js</strong> (the PDF engine built into Firefox) to render each page of your PDF and recognize the text on it. Everything runs locally &mdash; the PDF never leaves your device.</p>
+    <h2>What's running here</h2>
+    <p>Two libraries do the heavy lifting. <strong>pdf.js</strong> (Firefox's PDF engine) renders each page of your PDF to a canvas. <strong>Tesseract.js</strong> (a WebAssembly build of Google's open-source Tesseract OCR) reads the text off that canvas. Both run in your browser. The PDF doesn't go anywhere.</p>
 
-    <h3>Plain text vs. searchable PDF</h3>
+    <h2>Which output to pick</h2>
     <ul>
-      <li><strong>Plain text (.txt):</strong> just the recognized text, one block per page. Smallest output. Use this when you want to paste into a document or feed text into another tool.</li>
-      <li><strong>Searchable PDF (.pdf):</strong> the original page images with an invisible text layer behind them. Looks identical to the source PDF, but you can highlight, copy, and Ctrl-F. Larger file size because the page images are embedded.</li>
+      <li><strong>Plain text (.txt):</strong> just the words, one block per page. Smallest file. Use this if you're going to paste it somewhere or feed it to a script.</li>
+      <li><strong>Searchable PDF (.pdf):</strong> the original page images with an invisible text layer underneath. It looks identical to the source, but you can select text, copy it, and Ctrl-F through it. Bigger file because the page images are baked in.</li>
     </ul>
 
-    <h3>How long does it take?</h3>
-    <p>OCR is computationally expensive. On a modern laptop, expect about 3&ndash;10 seconds per page; on a phone, 20&ndash;40 seconds per page. A 50-page scanned book takes a few minutes either way. The first run also downloads the English language model (~4 MB) and the OCR engine (~10 MB); these are cached after that.</p>
+    <h2>How long this takes</h2>
+    <p>OCR is slow. On a recent laptop, plan for 3 to 10 seconds per page. On a phone, more like 20 to 40 seconds per page. A 50-page book is a coffee break either way. The first run also pulls down the OCR engine (about 10 MB) and the English language data (about 4 MB), but those get cached, so the second run skips the download.</p>
 
-    <h3>Accuracy tips</h3>
+    <h2>Getting decent accuracy</h2>
     <ul>
-      <li>Clean, high-contrast scans get near-perfect results. Faint or skewed scans are noticeably worse.</li>
-      <li>The <em>3x render scale</em> option helps with small text but takes about twice as long as 2x.</li>
-      <li>Handwriting is not supported &mdash; this is printed-text OCR only.</li>
+      <li>Clean, high-contrast scans come out almost perfect. Faded or crooked scans are noticeably worse.</li>
+      <li>The 3x render scale helps with small text. It also roughly doubles the time vs. 2x.</li>
+      <li>Tesseract doesn't do handwriting. Don't try. This is for printed text only.</li>
     </ul>
 
-    <h3>Privacy</h3>
-    <p>The PDF stays in your browser. The only network requests after the page loads are for the OCR engine itself and the English language data, both fetched once and cached. You can verify by opening DevTools &rarr; Network before running a conversion.</p>
+    <h2>Nothing leaves your browser</h2>
+    <p>The PDF stays local. After the page loads, the only network requests are for the OCR engine and language data, both fetched once and cached. Open DevTools, switch to the Network tab, and watch for yourself before you run a conversion.</p>
   </section>
 </main>
 

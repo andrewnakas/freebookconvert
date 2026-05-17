@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CBZ to PDF Converter &mdash; Convert Comic Books in Your Browser | FreeBookConvert</title>
-<meta name="description" content="Convert CBZ comic book archives to PDF directly in your browser. Pages stay in order. No upload, no signup, totally free.">
+<title>CBZ to PDF Converter (Comic Books, In Your Browser) | FreeBookConvert</title>
+<meta name="description" content="Turn a CBZ comic archive into a single PDF you can read on any device. Pages stay in the right order. Nothing uploads.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/cbz-to-pdf.html">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="CBZ to PDF Converter">
-<meta property="og:description" content="Convert comic book archives to PDF in your browser, pages in correct order.">
+<meta property="og:description" content="Turn comic book archives into a single PDF, in your browser, pages in the right order.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/cbz-to-pdf.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -50,7 +50,7 @@
 <main class="container">
   <section class="page-intro">
     <h1>CBZ to PDF Converter</h1>
-    <p>Convert comic book archives (CBZ) to PDF, page by page, directly in your browser. Pages are sorted naturally so issue #2 comes before issue #10.</p>
+    <p>Turn a comic book archive into a single PDF, page by page, right here in this tab. Pages get sorted the way a human would sort them, so page 2 lands before page 10.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -91,19 +91,19 @@
   </div>
 
   <section class="content-section">
-    <h2>About CBZ files</h2>
-    <p>A CBZ file is just a ZIP archive containing the pages of a comic book as individual image files (usually JPG or PNG). PDF is a universally readable format that works on any device &mdash; phones, e-readers, tablets, desktops &mdash; without needing a specialized comic reader app.</p>
+    <h2>What a CBZ actually is</h2>
+    <p>A CBZ is a zip file. Inside it are the comic pages, usually as JPG or PNG. A dedicated comic reader knows how to flip through that zip in order. A PDF reader doesn't need to know anything special, which is why turning a CBZ into a PDF makes it readable on a Kindle, an iPad, a Windows laptop, or any old phone.</p>
 
-    <h3>Why use this converter?</h3>
+    <h2>A few things this does well</h2>
     <ul>
-      <li><strong>Privacy</strong> &mdash; Your comics never leave your computer.</li>
-      <li><strong>Correct page order</strong> &mdash; Uses natural sorting (page 2 before page 10) instead of plain alphabetical.</li>
-      <li><strong>No size limits</strong> &mdash; Convert long volumes without hitting upload caps.</li>
-      <li><strong>Two page modes</strong> &mdash; "Fit to A4" for universal printing, or "Original size" to preserve high-res panels.</li>
+      <li><strong>Keeps your files local.</strong> The pages never go to a server.</li>
+      <li><strong>Sorts pages like a person.</strong> Plain alphabetical puts page 10 before page 2. This one doesn't.</li>
+      <li><strong>Handles long volumes.</strong> No upload cap, since there's no upload.</li>
+      <li><strong>Two sizing modes.</strong> "Fit to A4" if you want to print or share. "Original size" if you want every pixel of the high-res panels.</li>
     </ul>
 
-    <h3>What about CBR?</h3>
-    <p>CBR uses the proprietary RAR format, which isn't readable in pure browser JavaScript without heavy WASM dependencies. If you have a CBR, the easiest workaround is to rename it to <code>.rar</code>, extract with 7-Zip or The Unarchiver, then zip the images into a CBZ.</p>
+    <h2>What about CBR files?</h2>
+    <p>CBR uses RAR, which is proprietary and a pain to decode in a browser without dragging in a huge WebAssembly bundle. So this page doesn't try. The workaround: rename your <code>.cbr</code> to <code>.rar</code>, extract it with 7-Zip or The Unarchiver, then zip the resulting images. Drop that zip here.</p>
   </section>
 </main>
 

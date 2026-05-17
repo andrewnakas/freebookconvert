@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EPUB to PDF Converter &mdash; Free, Private, In-Browser | FreeBookConvert</title>
-<meta name="description" content="Convert EPUB files to PDF in your browser. 100% private, no upload, no signup. Works on Windows, Mac, iPad, and Android.">
+<title>EPUB to PDF Converter (Works in Your Browser) | FreeBookConvert</title>
+<meta name="description" content="Turn an EPUB into a PDF right in your browser. Nothing uploads. Works on Windows, Mac, iPad, and Android phones.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/pages/epub-to-pdf.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="EPUB to PDF Converter &mdash; Free, Private, In-Browser">
-<meta property="og:description" content="Convert EPUB files to PDF in your browser. No upload, no signup.">
+<meta property="og:title" content="EPUB to PDF Converter (Works in Your Browser)">
+<meta property="og:description" content="Turn an EPUB into a PDF without uploading it anywhere.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/pages/epub-to-pdf.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EPUB to PDF Converter">
-<meta name="twitter:description" content="Convert EPUB files to PDF, all in your browser.">
+<meta name="twitter:description" content="Turn an EPUB into a PDF, right in this tab.">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
 <link rel="stylesheet" href="/css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@
 <main class="container">
   <section class="page-intro">
     <h1>EPUB to PDF Converter</h1>
-    <p>Drop an EPUB file below to convert it to a PDF. Your file is never uploaded &mdash; everything happens in your browser.</p>
+    <p>Drop an EPUB below and you'll get a PDF back. The file stays on your machine. The conversion runs in this browser tab.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -89,32 +89,33 @@
   </div>
 
   <section class="content-section">
-    <h2>How to Convert EPUB to PDF</h2>
+    <h2>Three steps</h2>
     <ol>
-      <li>Click the drop zone above or drag your <code>.epub</code> file onto it.</li>
-      <li>Press <strong>Convert to PDF</strong>.</li>
-      <li>When the conversion finishes, the PDF downloads automatically.</li>
+      <li>Drop your <code>.epub</code> on the box above (or click to pick a file).</li>
+      <li>Hit <strong>Convert to PDF</strong>.</li>
+      <li>The PDF downloads as soon as it's ready.</li>
     </ol>
 
-    <h3>Why use this converter?</h3>
-    <p>Most online EPUB-to-PDF tools require you to upload your file to their servers, which raises real privacy concerns &mdash; especially for ebooks you've purchased or written. This converter does the entire job inside your browser using JavaScript. Nothing leaves your device.</p>
+    <h2>How an EPUB becomes a PDF</h2>
+    <p>An EPUB is basically a zip full of HTML and CSS. The reader app decides how the text wraps on your screen. A PDF is the opposite: every word sits in a fixed spot on a fixed page. This tool walks through the chapters in your EPUB, rebuilds the text into A4 pages, and saves the result.</p>
+    <p>Most EPUB-to-PDF sites want you to upload your book first. That's fine for a Project Gutenberg classic. For an ebook you wrote, paid for, or shouldn't be sharing with a random server, it's not great. This page does the work locally, using JavaScript that runs after the page loads.</p>
 
-    <h3>What gets preserved?</h3>
+    <h2>What survives the round trip</h2>
     <ul>
-      <li>Chapter structure and headings</li>
-      <li>Paragraphs and basic formatting</li>
-      <li>Book title and author metadata</li>
+      <li>Chapter titles and the heading hierarchy.</li>
+      <li>Paragraphs, basic bold and italic, and the reading order.</li>
+      <li>Title and author from the EPUB metadata.</li>
     </ul>
-    <p>Complex layouts, custom fonts, and embedded images are simplified for compatibility. For the highest fidelity layout, desktop tools like Calibre may produce slightly nicer output &mdash; but at the cost of installing software and giving up the privacy benefits.</p>
+    <p>Things that don't always make it: custom fonts, fancy CSS layouts, and large embedded images. If you need pixel-perfect fidelity, Calibre on the desktop will usually do better. The tradeoff is installing software and handing the file to another program. If you'd rather not do either, stay here.</p>
 
-    <h3>Is my file private?</h3>
-    <p>Yes. You can verify by disconnecting your computer from the internet after this page loads &mdash; the converter will still work. <a href="/pages/about.html">Learn more about how it works</a>.</p>
+    <h2>Nothing leaves your browser</h2>
+    <p>The easiest way to check: load this page, then turn off your Wi-Fi. The conversion still works. <a href="/pages/about.html">More on how that's set up</a>.</p>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
+    <p>&copy; 2026 FreeBookConvert</p>
     <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
