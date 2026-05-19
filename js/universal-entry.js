@@ -113,45 +113,153 @@
     return { blob: r.blob, filename: r.filename };
   }
 
+  // ---------- combined runners (multi-file) -----------------------------------
+
+  async function runImagesToCombinedPdf(files, onProgress) {
+    await Promise.all([loadPdfLib(), loadHeicTo(), loadModule('/js/heic-to-pdf.js')]);
+    var blob = await global.HeicToPdf.convert(files, { quality: 0.92 }, onProgress);
+    return { blob: blob, filename: 'combined.pdf' };
+  }
+  async function runImagesToSearchablePdf(files, onProgress) {
+    await Promise.all([loadPdfJs(), loadPdfLib(), loadHeicTo(), loadTesseract(),
+                       loadModule('/js/heic-to-pdf.js'), loadModule('/js/pdf-ocr.js?v=ocr1')]);
+    onProgress && onProgress(2, 'Bundling into a PDF\u2026');
+    var pdfBlob = await global.HeicToPdf.convert(files, { quality: 0.92 }, function (p, m) {
+      onProgress && onProgress(Math.min(35, 2 + p * 0.33), m || 'Bundling\u2026');
+    });
+    var pseudo = new File([pdfBlob], 'combined.pdf', { type: 'application/pdf' });
+    var r = await global.PdfOcr.convert(pseudo, { format: 'pdf', scale: 2 }, function (p, m) {
+      onProgress && onProgress(35 + p * 0.65, m || 'OCR\u2026');
+    });
+    return { blob: r.blob, filename: 'combined-searchable.pdf' };
+  }
+  async function mergePdfs(files, onProgress) {
+    await loadPdfLib();
+    onProgress && onProgress(2, 'Merging PDFs\u2026');
+    var merged = await PDFLib.PDFDocument.create();
+    for (var i = 0; i < files.length; i++) {
+      onProgress && onProgress(2 + Math.floor(90 * (i / files.length)), 'Merging ' + (i + 1) + '/' + files.length);
+      var bytes = new Uint8Array(await files[i].arrayBuffer());
+      var src = await PDFLib.PDFDocument.load(bytes);
+      var pages = await merged.copyPages(src, src.getPageIndices());
+      pages.forEach(function (p) { merged.addPage(p); });
+    }
+    var out = await merged.save();
+    return new Blob([out], { type: 'application/pdf' });
+  }
+  async function runPdfsToCombinedPdf(files, onProgress) {
+    var blob = await mergePdfs(files, onProgress);
+    onProgress && onProgress(100, 'Done');
+    return { blob: blob, filename: 'combined.pdf' };
+  }
+  async function runPdfsToCombinedSearchablePdf(files, onProgress) {
+    await Promise.all([loadPdfJs(), loadPdfLib(), loadTesseract(), loadModule('/js/pdf-ocr.js?v=ocr1')]);
+    var mergedBlob = await mergePdfs(files, function (p, m) {
+      onProgress && onProgress(Math.min(30, p * 0.3), m || 'Merging\u2026');
+    });
+    var pseudo = new File([mergedBlob], 'combined.pdf', { type: 'application/pdf' });
+    var r = await global.PdfOcr.convert(pseudo, { format: 'pdf', scale: 2 }, function (p, m) {
+      onProgress && onProgress(30 + p * 0.70, m || 'OCR\u2026');
+    });
+    return { blob: r.blob, filename: 'combined-searchable.pdf' };
+  }
+  async function runPdfsToCombinedText(files, onProgress) {
+    await Promise.all([loadPdfJs(), loadTesseract(), loadModule('/js/pdf-ocr.js?v=ocr1')]);
+    var parts = [];
+    for (var i = 0; i < files.length; i++) {
+      var idx = i;
+      var r = await global.PdfOcr.convert(files[i], { format: 'txt', scale: 2 }, function (p, m) {
+        var overall = (idx + p / 100) / files.length * 100;
+        onProgress && onProgress(overall, '[' + (idx + 1) + '/' + files.length + '] ' + (m || 'OCR\u2026'));
+      });
+      parts.push('===== ' + files[i].name + ' =====\n');
+      parts.push(await r.blob.text());
+      parts.push('\n\n');
+    }
+    return { blob: new Blob(parts, { type: 'text/plain' }), filename: 'combined.txt' };
+  }
+
+  // ---------- batch wrapper: run per-file route, ZIP the outputs --------------
+
+  function runEachZipped(perFileRoute) {
+    return async function (files, onProgress) {
+      await loadJsZip();
+      var zip = new JSZip();
+      for (var i = 0; i < files.length; i++) {
+        var idx = i;
+        var r = await perFileRoute(files[i], function (p, m) {
+          var overall = (idx + p / 100) / files.length * 100;
+          onProgress && onProgress(overall, '[' + (idx + 1) + '/' + files.length + '] ' + (m || 'Working\u2026'));
+        });
+        zip.file(r.filename, r.blob);
+      }
+      onProgress && onProgress(98, 'Packing ZIP\u2026');
+      var blob = await zip.generateAsync({ type: 'blob' });
+      return { blob: blob, filename: 'converted.zip' };
+    };
+  }
+
   // ---------- routes ----------------------------------------------------------
+  // Each route: { label, run(fileOrFiles, onProgress), multi? }
+  // multi: 'each' (one input -> one output, ZIP if multiple)
+  //        'combined' (many inputs -> one output)
+  //        'single' (only available when one file is dropped)
 
   var ROUTES = {
     epub: [
-      { label: 'PDF',                 run: runEpubToPdf },
-      { label: 'TXT (plain text)',    run: runEpubToTxt }
+      { label: 'PDF',                       run: runEpubToPdf,    multi: 'each' },
+      { label: 'TXT (plain text)',          run: runEpubToTxt,    multi: 'each' }
     ],
     pdf: [
-      { label: 'EPUB (ebook)',        run: runPdfToEpub },
-      { label: 'JPG (page images)',   run: runPdfToImage('jpg') },
-      { label: 'PNG (page images)',   run: runPdfToImage('png') },
-      { label: 'TXT via OCR (scanned PDF)', run: runPdfOcrText },
-      { label: 'Searchable PDF via OCR',    run: runPdfOcrPdf }
+      { label: 'EPUB (ebook)',              run: runPdfToEpub,    multi: 'each' },
+      { label: 'JPG (page images)',         run: runPdfToImage('jpg'), multi: 'each' },
+      { label: 'PNG (page images)',         run: runPdfToImage('png'), multi: 'each' },
+      { label: 'TXT via OCR (scanned PDF)', run: runPdfOcrText,   multi: 'each' },
+      { label: 'Searchable PDF via OCR',    run: runPdfOcrPdf,    multi: 'each' },
+      { label: 'Combined PDF (merge)',           run: runPdfsToCombinedPdf,           multi: 'combined' },
+      { label: 'Combined Searchable PDF (OCR)',  run: runPdfsToCombinedSearchablePdf, multi: 'combined' },
+      { label: 'Combined OCR text (.txt)',       run: runPdfsToCombinedText,          multi: 'combined' }
     ],
-    cbz: [{ label: 'PDF',             run: runCbzToPdf }],
-    zip: [{ label: 'PDF (as comic archive)', run: runCbzToPdf }],
+    cbz: [{ label: 'PDF',                   run: runCbzToPdf,     multi: 'each' }],
+    zip: [{ label: 'PDF (as comic archive)', run: runCbzToPdf,    multi: 'each' }],
     heic: [
-      { label: 'PDF',                 run: runHeicToPdf },
-      { label: 'JPG',                 run: runImageTo('jpg') },
-      { label: 'PNG',                 run: runImageTo('png') }
+      { label: 'PDF',                       run: runHeicToPdf,    multi: 'each' },
+      { label: 'JPG',                       run: runImageTo('jpg'), multi: 'each' },
+      { label: 'PNG',                       run: runImageTo('png'), multi: 'each' },
+      { label: 'Combined PDF',              run: runImagesToCombinedPdf,        multi: 'combined' },
+      { label: 'Combined Searchable PDF',   run: runImagesToSearchablePdf,      multi: 'combined' }
     ],
     jpg: [
-      { label: 'PNG',                 run: runImageTo('png') },
-      { label: 'WEBP',                run: runImageTo('webp') },
-      { label: 'PDF',                 run: runImageToPdf }
+      { label: 'PNG',                       run: runImageTo('png'), multi: 'each' },
+      { label: 'WEBP',                      run: runImageTo('webp'), multi: 'each' },
+      { label: 'PDF',                       run: runImageToPdf,   multi: 'each' },
+      { label: 'Combined PDF',              run: runImagesToCombinedPdf,        multi: 'combined' },
+      { label: 'Combined Searchable PDF',   run: runImagesToSearchablePdf,      multi: 'combined' }
     ],
     png: [
-      { label: 'JPG',                 run: runImageTo('jpg') },
-      { label: 'WEBP',                run: runImageTo('webp') },
-      { label: 'PDF',                 run: runImageToPdf }
+      { label: 'JPG',                       run: runImageTo('jpg'), multi: 'each' },
+      { label: 'WEBP',                      run: runImageTo('webp'), multi: 'each' },
+      { label: 'PDF',                       run: runImageToPdf,   multi: 'each' },
+      { label: 'Combined PDF',              run: runImagesToCombinedPdf,        multi: 'combined' },
+      { label: 'Combined Searchable PDF',   run: runImagesToSearchablePdf,      multi: 'combined' }
     ],
     webp: [
-      { label: 'JPG',                 run: runImageTo('jpg') },
-      { label: 'PNG',                 run: runImageTo('png') },
-      { label: 'PDF',                 run: runImageToPdf }
+      { label: 'JPG',                       run: runImageTo('jpg'), multi: 'each' },
+      { label: 'PNG',                       run: runImageTo('png'), multi: 'each' },
+      { label: 'PDF',                       run: runImageToPdf,   multi: 'each' },
+      { label: 'Combined PDF',              run: runImagesToCombinedPdf,        multi: 'combined' },
+      { label: 'Combined Searchable PDF',   run: runImagesToSearchablePdf,      multi: 'combined' }
     ]
   };
   ROUTES.jpeg = ROUTES.jpg;
   ROUTES.heif = ROUTES.heic;
+
+  // Normalize an extension to its bucket key.
+  function bucketOf(ext) {
+    if (ext === 'jpeg') return 'jpg';
+    if (ext === 'heif') return 'heic';
+    return ext;
+  }
 
   // ---------- helpers ---------------------------------------------------------
 
@@ -179,14 +287,17 @@
       '<div class="universal-entry">' +
         '<div class="dropzone" id="uniDrop">' +
           '<p class="big">Drop any supported file here</p>' +
-          '<p>or <strong>click to browse</strong></p>' +
+          '<p>or <strong>click to browse</strong>. Multiple files of the same type are fine.</p>' +
           '<p style="font-size:0.85rem">EPUB &middot; PDF &middot; CBZ &middot; HEIC &middot; JPG &middot; PNG &middot; WEBP</p>' +
-          '<input type="file" id="uniInput">' +
+          '<input type="file" id="uniInput" multiple>' +
         '</div>' +
         '<div id="uniPicker" class="universal-picker" hidden>' +
-          '<div class="uni-file"><span class="uni-name"></span> <span class="uni-size"></span> <button type="button" class="remove" id="uniClear" title="Remove">&times;</button></div>' +
+          '<ul class="uni-files" id="uniFiles"></ul>' +
           '<label class="uni-target">Convert to: <select id="uniTarget"></select></label>' +
-          '<button class="btn" id="uniGo">Convert</button>' +
+          '<div class="actions">' +
+            '<button class="btn" id="uniGo">Convert</button>' +
+            '<button class="btn btn-secondary" id="uniClear" type="button">Reset</button>' +
+          '</div>' +
         '</div>' +
         '<div class="progress" id="uniProgressWrap" style="display:none"><div class="progress-bar" id="uniProgress"></div></div>' +
         '<div id="uniStatus" class="status hidden"></div>' +
@@ -195,8 +306,7 @@
     var dz       = container.querySelector('#uniDrop');
     var input    = container.querySelector('#uniInput');
     var picker   = container.querySelector('#uniPicker');
-    var nameEl   = container.querySelector('.uni-name');
-    var sizeEl   = container.querySelector('.uni-size');
+    var filesEl  = container.querySelector('#uniFiles');
     var targetEl = container.querySelector('#uniTarget');
     var clearBtn = container.querySelector('#uniClear');
     var goBtn    = container.querySelector('#uniGo');
@@ -204,8 +314,9 @@
     var progBar  = container.querySelector('#uniProgress');
     var statusEl = container.querySelector('#uniStatus');
 
-    var current = null;
-    var done = false;  // true after a successful conversion; next click resets
+    var files = [];     // accumulated files
+    var bucket = null;  // normalized extension shared by all files
+    var done = false;
 
     function setStatus(kind, msg) {
       statusEl.className = 'status ' + kind;
@@ -219,7 +330,8 @@
       progBar.style.width = Math.max(0, Math.min(100, pct)) + '%';
     }
     function reset() {
-      current = null;
+      files = [];
+      bucket = null;
       done = false;
       picker.hidden = true;
       dz.style.display = '';
@@ -231,32 +343,72 @@
       goBtn.textContent = 'Convert';
     }
 
-    function accept(file) {
-      clearStatus();
-      var ext = extOf(file.name);
-      var routes = ROUTES[ext];
-      if (!routes) {
-        setStatus('error', 'Sorry, .' + (ext || 'this file') + ' isn\u2019t supported yet. Try EPUB, PDF, CBZ, HEIC, JPG, PNG, or WEBP.');
-        return;
-      }
-      current = { file: file, routes: routes };
-      nameEl.textContent = file.name;
-      sizeEl.textContent = '(' + fmtBytes(file.size) + ')';
+    function renderList() {
+      filesEl.innerHTML = '';
+      files.forEach(function (f, i) {
+        var li = document.createElement('li');
+        li.className = 'uni-file';
+        li.innerHTML = '<span class="uni-name"></span> <span class="uni-size"></span> ' +
+                       '<button type="button" class="remove" title="Remove">&times;</button>';
+        li.querySelector('.uni-name').textContent = f.name;
+        li.querySelector('.uni-size').textContent = '(' + fmtBytes(f.size) + ')';
+        li.querySelector('.remove').addEventListener('click', function () {
+          files.splice(i, 1);
+          if (files.length === 0) { reset(); return; }
+          renderList();
+          renderTargets();
+        });
+        filesEl.appendChild(li);
+      });
+    }
+
+    function renderTargets() {
+      var routes = ROUTES[bucket] || [];
+      var multi = files.length > 1;
       targetEl.innerHTML = '';
+      // For multi-file: 'each' routes are listed first (default behavior),
+      // followed by 'combined' routes. For single-file: drop the combined ones.
       routes.forEach(function (r, i) {
+        if (!multi && r.multi === 'combined') return;
         var opt = document.createElement('option');
         opt.value = String(i);
-        opt.textContent = r.label;
+        opt.textContent = (multi && r.multi === 'each') ? (r.label + ' (each file)') : r.label;
         targetEl.appendChild(opt);
       });
+    }
+
+    function accept(list) {
+      clearStatus();
+      if (!list || !list.length) return;
+      // Determine the bucket from the first incoming file (or the existing one).
+      var firstExt = bucketOf(extOf(list[0].name));
+      if (!ROUTES[firstExt]) {
+        setStatus('error', 'Sorry, .' + (extOf(list[0].name) || 'this file') + ' isn\u2019t supported yet. Try EPUB, PDF, CBZ, HEIC, JPG, PNG, or WEBP.');
+        return;
+      }
+      if (bucket && bucket !== firstExt) {
+        setStatus('error', 'These files are .' + firstExt + ' but the batch is .' + bucket + '. Reset to switch.');
+        return;
+      }
+      var rejected = 0;
+      for (var i = 0; i < list.length; i++) {
+        var ext = bucketOf(extOf(list[i].name));
+        if (ext !== firstExt) { rejected++; continue; }
+        files.push(list[i]);
+      }
+      bucket = firstExt;
+      renderList();
+      renderTargets();
       dz.style.display = 'none';
       picker.hidden = false;
+      if (rejected > 0) {
+        setStatus('info', 'Skipped ' + rejected + ' file(s) that didn\u2019t match .' + bucket + '. Drop one type at a time.');
+      }
     }
 
     dz.addEventListener('click', function () { input.click(); });
     input.addEventListener('change', function (e) {
-      var f = e.target.files && e.target.files[0];
-      if (f) accept(f);
+      if (e.target.files && e.target.files.length) accept(Array.prototype.slice.call(e.target.files));
     });
     ['dragenter', 'dragover'].forEach(function (ev) {
       dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add('dragover'); });
@@ -265,26 +417,34 @@
       dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove('dragover'); });
     });
     dz.addEventListener('drop', function (e) {
-      var f = e.dataTransfer.files && e.dataTransfer.files[0];
-      if (f) accept(f);
+      var dropped = e.dataTransfer && e.dataTransfer.files;
+      if (dropped && dropped.length) accept(Array.prototype.slice.call(dropped));
     });
 
     clearBtn.addEventListener('click', reset);
 
     goBtn.addEventListener('click', async function () {
       if (done) { reset(); return; }
-      if (!current) return;
-      var route = current.routes[parseInt(targetEl.value, 10) || 0];
+      if (!files.length) return;
+      var routes = ROUTES[bucket] || [];
+      var route = routes[parseInt(targetEl.value, 10) || 0];
+      if (!route) return;
       goBtn.disabled = true;
       goBtn.textContent = 'Converting\u2026';
       progWrap.style.display = 'block';
       setProgress(2);
       setStatus('info', 'Loading converter\u2026');
       try {
-        var result = await route.run(current.file, function (p, m) {
-          setProgress(p);
-          if (m) setStatus('info', m);
-        });
+        var result;
+        var onProg = function (p, m) { setProgress(p); if (m) setStatus('info', m); };
+        if (route.multi === 'combined') {
+          result = await route.run(files, onProg);
+        } else if (files.length === 1) {
+          result = await route.run(files[0], onProg);
+        } else {
+          // 'each' on multiple inputs: ZIP the outputs.
+          result = await runEachZipped(route.run)(files, onProg);
+        }
         downloadBlob(result.blob, result.filename);
         setStatus('success', 'Done! Downloaded ' + result.filename);
         goBtn.textContent = 'Convert another';
