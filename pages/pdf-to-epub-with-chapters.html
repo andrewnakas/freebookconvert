@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to EPUB (Make a Reflowable Ebook) | FreeBookConvert</title>
-<meta name="description" content="Turn a text-based PDF into a reflowable EPUB ebook your e-reader can resize. Runs in your browser. Won't work on scans.">
+<title>PDF to EPUB with Chapters & Working Table of Contents | FreeBookConvert</title>
+<meta name="description" content="Convert a PDF into an EPUB that has real chapters and a working table of contents. Auto-detects headings, splits the book, builds the NCX. In your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="PDF to EPUB Converter">
-<meta property="og:description" content="Turn a text-based PDF into a reflowable EPUB, in your browser.">
+<meta property="og:title" content="PDF to EPUB with Chapters">
+<meta property="og:description" content="EPUB with a working table of contents, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -29,11 +29,23 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "PDF to EPUB Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-epub.html",
+  "name": "PDF to EPUB with Chapters",
+  "url": "https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What counts as a chapter?","acceptedAnswer":{"@type":"Answer","text":"The auto-detector looks for lines that match common chapter heading patterns \u2014 \u2018Chapter 1\u2019, \u2018Chapter One\u2019, Roman-numeral headings, all-caps title lines on their own, numbered section headings. When it finds one it makes a new chapter and adds it to the EPUB's NCX (the file readers use to draw the table of contents)."}},
+    {"@type":"Question","name":"What if the auto-detector misses some chapters?","acceptedAnswer":{"@type":"Answer","text":"Use the manual fallback \u2014 split every N pages. For a 300-page novel where the auto-detector misses the prologue, picking 'every 20 pages' gives you a chapter list you can navigate while keeping reasonable section length."}},
+    {"@type":"Question","name":"Do PDF bookmarks become EPUB chapters?","acceptedAnswer":{"@type":"Answer","text":"If the PDF has an outline (the bookmark tree you see in Acrobat's sidebar), this converter reads those entries and uses them as chapter boundaries when available. That's the most reliable input \u2014 a PDF made from a Word doc with proper Heading 1 styles converts cleanly."}},
+    {"@type":"Question","name":"Will my file be uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is parsed locally with pdf.js, the EPUB is assembled locally with JSZip, both running in this tab."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -51,21 +63,21 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
       <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
-      <a href="/pages/epub-to-txt.html">EPUB&rarr;TXT</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-for-kindle-scribe.html">For Scribe</a>
+      <a href="/pages/pdf-for-remarkable.html">For reMarkable</a>
+      <a href="/pages/pdf-for-boox.html">For Boox</a>
+      <a href="/pages/pdf-for-kobo.html">For Kobo</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>PDF to EPUB Converter</h1>
-    <p>Turn a fixed-page PDF into a reflowable EPUB your e-reader can resize. The whole thing runs in your browser.</p>
+    <h1>PDF to EPUB with Real Chapters &amp; a Working TOC</h1>
+    <p>Most PDF-to-EPUB tools dump the whole book into a single file and call it a day — the reader's table of contents shows one entry. This page auto-detects chapter headings, splits the book at those boundaries, and builds the NCX so your e-reader's TOC sidebar actually navigates. If auto-detect misses, the manual fallback splits every N pages so you still get jump points.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
-      <strong>Got a scan?</strong> If you can't select the text inside the PDF, there's no text to extract. The EPUB will come out empty. Try <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> instead.
+      <strong>Scanned PDF?</strong> Headings can't be detected in image-only PDFs. Run <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> first.
     </p>
   </section>
 
@@ -86,11 +98,11 @@
     <div class="controls">
       <label>Chapter splitting
         <select id="splitMode">
-          <option value="auto" selected>Auto-detect chapter headings</option>
+          <option value="auto" selected>Auto-detect chapter headings (recommended)</option>
           <option value="10">Every 10 pages</option>
           <option value="20">Every 20 pages</option>
           <option value="50">Every 50 pages</option>
-          <option value="1000">No split (single chapter)</option>
+          <option value="1000">Single chapter (no TOC entries)</option>
         </select>
       </label>
     </div>
@@ -99,7 +111,7 @@
     <div class="status hidden" id="status"></div>
     <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
     <div class="actions">
-      <button class="btn" id="convertBtn" disabled>Convert to EPUB</button>
+      <button class="btn" id="convertBtn" disabled>Build EPUB with TOC</button>
       <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
     </div>
   </section>
@@ -110,24 +122,36 @@
   </div>
 
   <section class="content-section">
-    <h2>How a PDF turns into an EPUB</h2>
-    <p>A PDF locks every character to a specific spot on a fixed page. An EPUB doesn't. The text reflows to fit whatever screen, font size, or orientation the reader is on. Going from PDF to EPUB is really a text-extraction job followed by some structure cleanup.</p>
+    <h2>What "chapters in EPUB" actually means</h2>
+    <p>An EPUB is a ZIP that contains XHTML files (one or more per chapter), a manifest (<code>content.opf</code>), and a navigation file (<code>toc.ncx</code> in older readers, <code>nav.xhtml</code> in modern ones). The TOC sidebar on your Kindle, Kobo, Boox, or reMarkable reads the navigation file, not the chapter HTML. So "real chapters" means two things: the body is split into separate files (which gives you fast page turns and clean section breaks), and each chapter is registered in the NCX with the right anchor.</p>
 
-    <h2>What lands in the EPUB</h2>
+    <h2>How the auto-detector works</h2>
+    <p>After pdf.js extracts text from the PDF, the converter scans for lines that look like chapter heads. It weighs:</p>
     <ul>
-      <li>The full text, in reading order.</li>
-      <li>Paragraph breaks inferred from line spacing.</li>
-      <li>Chapter structure when the converter spots headings like "Chapter 1".</li>
-      <li>Title and author, if they're in the PDF metadata.</li>
+      <li><strong>The word "Chapter"</strong> followed by a number, a Roman numeral, or a spelled-out number.</li>
+      <li><strong>All-caps lines</strong> on their own paragraph, between 3 and 80 characters.</li>
+      <li><strong>Numbered section heads</strong> like "1.", "1.1", "I.", "Part One".</li>
+      <li><strong>The PDF's own bookmark outline</strong> if the document has one — most reliable signal of all.</li>
+    </ul>
+    <p>Anything matching becomes a chapter boundary. The chapter title goes into the NCX. The body chunk between two boundaries becomes one HTML file.</p>
+
+    <h2>When auto-detect misses</h2>
+    <p>Some PDFs are stylistic: chapter heads in tiny caps, decorative initials, no "Chapter" word anywhere. In those cases the detector finds nothing and the EPUB comes out as a single chapter. The fix is the manual fallback dropdown above — pick "every 20 pages" and you'll at least have 15 jumpable sections in a 300-page book.</p>
+
+    <h2>What the resulting EPUB looks like in popular readers</h2>
+    <ul>
+      <li><strong>Kindle Scribe / Paperwhite / Oasis.</strong> "Go To &rarr; Table of Contents" shows the chapter list. Tap to jump.</li>
+      <li><strong>Kobo Sage / Libra / Clara.</strong> Tap center of screen &rarr; Table of Contents icon. Same chapter list.</li>
+      <li><strong>Boox Note Air / Tab / Palma.</strong> NeoReader's TOC sidebar lists the chapters; tap to navigate.</li>
+      <li><strong>reMarkable 2 / Paper Pro.</strong> Document sidebar &rarr; Table of Contents tab.</li>
+      <li><strong>Apple Books, Google Play Books, Calibre.</strong> All read NCX. All show the chapters.</li>
     </ul>
 
-    <h2>What doesn't come across cleanly</h2>
-    <ul>
-      <li>Multi-column layouts. Two-column scientific papers often interleave the text incorrectly.</li>
-      <li>Scanned PDFs. There's no text to extract from page images. Run OCR first.</li>
-      <li>Footnotes, page numbers, and running headers. These tend to show up inline.</li>
-    </ul>
-    <p>Start with a text-based PDF (one where you can highlight a sentence) and the result will be readable. Start with a scan and the result will be empty.</p>
+    <h2>What doesn't transfer</h2>
+    <p>Sub-chapters (h2 within a chapter) get inlined as bold text rather than nested TOC entries — most readers don't render nested EPUB navigation reliably anyway. Footnotes appear inline, not as pop-ups. Page numbers from the PDF don't carry over (EPUB doesn't have fixed pages).</p>
+
+    <h2>Privacy</h2>
+    <p>The PDF is parsed locally; the EPUB is built locally. The book itself never leaves the tab. Open DevTools' Network panel during conversion to confirm.</p>
   </section>
 </main>
 

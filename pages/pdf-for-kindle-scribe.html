@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to EPUB (Make a Reflowable Ebook) | FreeBookConvert</title>
-<meta name="description" content="Turn a text-based PDF into a reflowable EPUB ebook your e-reader can resize. Runs in your browser. Won't work on scans.">
+<title>Convert PDF for Kindle Scribe (Reflow + Sideload-Ready) | FreeBookConvert</title>
+<meta name="description" content="Convert a PDF into a reflowable EPUB optimized for Kindle Scribe. Text resizes, margins respect the 10.2-inch screen, and the file is ready to email to your @kindle.com address.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-for-kindle-scribe.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="PDF to EPUB Converter">
-<meta property="og:description" content="Turn a text-based PDF into a reflowable EPUB, in your browser.">
+<meta property="og:title" content="Convert PDF for Kindle Scribe">
+<meta property="og:description" content="Reflowable EPUB tuned for Kindle Scribe, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-for-kindle-scribe.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -29,11 +29,36 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "PDF to EPUB Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-epub.html",
+  "name": "PDF for Kindle Scribe Converter",
+  "url": "https://freebookconvert.com/pages/pdf-for-kindle-scribe.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Send a PDF to Kindle Scribe with reflowable text",
+  "step": [
+    {"@type":"HowToStep","name":"Drop your PDF","text":"Drag the PDF into the drop zone or click to browse."},
+    {"@type":"HowToStep","name":"Choose chapter splitting","text":"Auto-detect chapters works for most books. Pick a fixed page count for textbooks."},
+    {"@type":"HowToStep","name":"Build the EPUB","text":"Click Convert. A reflowable EPUB downloads to your computer."},
+    {"@type":"HowToStep","name":"Email to Kindle","text":"Email the EPUB as an attachment to your @kindle.com address, or use the Send to Kindle web uploader."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why not just sideload the PDF directly?","acceptedAnswer":{"@type":"Answer","text":"Kindle Scribe will show a PDF, but the text doesn't reflow. You're stuck pinching to zoom because the page is laid out for an 8.5x11 sheet, not a 10.2-inch e-ink screen. Converting to EPUB lets the Scribe resize the text to whatever font size you choose."}},
+    {"@type":"Question","name":"Will my annotations carry over?","acceptedAnswer":{"@type":"Answer","text":"No. Annotations live in the original PDF file format. After converting, you start with a clean EPUB. The Scribe's pen still works on the new file."}},
+    {"@type":"Question","name":"Does Send to Kindle accept EPUB?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 as of late 2022 Amazon's Send to Kindle service accepts EPUB and converts it to the native AZW3/KFX format on their end. You just email the .epub or drop it into the Send to Kindle web page."}},
+    {"@type":"Question","name":"Is my PDF uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion happens in your browser using pdf.js and JSZip. The only upload involved is when you choose to send the finished EPUB to your @kindle.com address \u2014 that's between you and Amazon."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -51,21 +76,21 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
       <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
       <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
-      <a href="/pages/epub-to-txt.html">EPUB&rarr;TXT</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
+      <a href="/pages/searchable-pdf.html">Searchable PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>PDF to EPUB Converter</h1>
-    <p>Turn a fixed-page PDF into a reflowable EPUB your e-reader can resize. The whole thing runs in your browser.</p>
+    <h1>Convert PDF for Kindle Scribe</h1>
+    <p>Drop a PDF and get back an EPUB that the Kindle Scribe actually treats like a book — text reflows, font size works, the table of contents jumps, the pen still annotates. No more pinch-zoom on a 10.2-inch screen built for typeset prose.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
-      <strong>Got a scan?</strong> If you can't select the text inside the PDF, there's no text to extract. The EPUB will come out empty. Try <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> instead.
+      <strong>Got a scan?</strong> If you can't select text inside the PDF, it's an image — there's no text to reflow. Run <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> first, then come back here.
     </p>
   </section>
 
@@ -86,11 +111,11 @@
     <div class="controls">
       <label>Chapter splitting
         <select id="splitMode">
-          <option value="auto" selected>Auto-detect chapter headings</option>
-          <option value="10">Every 10 pages</option>
+          <option value="auto" selected>Auto-detect chapters (best for novels)</option>
+          <option value="10">Every 10 pages (good for textbooks)</option>
           <option value="20">Every 20 pages</option>
           <option value="50">Every 50 pages</option>
-          <option value="1000">No split (single chapter)</option>
+          <option value="1000">Single chapter (papers, reports)</option>
         </select>
       </label>
     </div>
@@ -99,7 +124,7 @@
     <div class="status hidden" id="status"></div>
     <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
     <div class="actions">
-      <button class="btn" id="convertBtn" disabled>Convert to EPUB</button>
+      <button class="btn" id="convertBtn" disabled>Build EPUB for Scribe</button>
       <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
     </div>
   </section>
@@ -110,24 +135,36 @@
   </div>
 
   <section class="content-section">
-    <h2>How a PDF turns into an EPUB</h2>
-    <p>A PDF locks every character to a specific spot on a fixed page. An EPUB doesn't. The text reflows to fit whatever screen, font size, or orientation the reader is on. Going from PDF to EPUB is really a text-extraction job followed by some structure cleanup.</p>
+    <h2>The Scribe is a great reader. PDFs aren't great files for it.</h2>
+    <p>The Kindle Scribe ships with a 10.2-inch e-ink screen, slightly smaller than a US Letter PDF page. So if you sideload a typical 8.5x11 PDF, the page renders shrunk-to-fit and the body text comes out around 9 pt on a 1872-pixel display. You can pinch to zoom, but the moment you turn the page you're back to tiny. Converting the PDF into a reflowable EPUB fixes this: you pick the font size on the Scribe, and the text rewraps to fill the screen.</p>
 
-    <h2>What lands in the EPUB</h2>
+    <h2>How to get the EPUB onto your Scribe</h2>
+    <ol>
+      <li>Hit convert above. An EPUB downloads.</li>
+      <li>Find your <em>Send to Kindle</em> email address — it's in the Kindle app under Settings &rarr; "Your Account" or on amazon.com/sendtokindle.</li>
+      <li>Email the EPUB to that address. The Scribe pulls it down within a minute or two. (Free Wi-Fi tier limits attachments to 50 MB; Personal Document size limits are 200 MB.)</li>
+      <li>Alternative: the <a href="https://www.amazon.com/sendtokindle" rel="nofollow">Send to Kindle web page</a> accepts EPUB drops directly. No email step.</li>
+    </ol>
+
+    <h2>What works well</h2>
     <ul>
-      <li>The full text, in reading order.</li>
-      <li>Paragraph breaks inferred from line spacing.</li>
-      <li>Chapter structure when the converter spots headings like "Chapter 1".</li>
-      <li>Title and author, if they're in the PDF metadata.</li>
+      <li><strong>Novels and prose books.</strong> Single-column, text-heavy PDFs come out clean.</li>
+      <li><strong>Research papers.</strong> One-column papers reflow beautifully. Two-column papers (most journals) tend to interleave columns — try "Single chapter" and accept that the reading order needs a touch of skipping.</li>
+      <li><strong>Reports and white papers.</strong> Auto-detect catches the section headings.</li>
     </ul>
 
-    <h2>What doesn't come across cleanly</h2>
+    <h2>What doesn't transfer</h2>
     <ul>
-      <li>Multi-column layouts. Two-column scientific papers often interleave the text incorrectly.</li>
-      <li>Scanned PDFs. There's no text to extract from page images. Run OCR first.</li>
-      <li>Footnotes, page numbers, and running headers. These tend to show up inline.</li>
+      <li>Footnotes appear inline rather than as popups.</li>
+      <li>Margin notes you wrote in another reader. Annotations are PDF-specific.</li>
+      <li>Heavily styled layouts (cookbooks, art books) — the visual design is the point of those, so they're better sideloaded as PDFs and viewed with the Scribe's zoom.</li>
     </ul>
-    <p>Start with a text-based PDF (one where you can highlight a sentence) and the result will be readable. Start with a scan and the result will be empty.</p>
+
+    <h2>Why not just use Kindle Convert / Calibre?</h2>
+    <p>You can. Both work. The difference is friction: Calibre is a 200 MB desktop install plus plugins; Kindle Convert is a Mac/Windows-only tool. This page is a URL. Drop a file, get a file, done.</p>
+
+    <h2>Nothing uploads</h2>
+    <p>The PDF stays in your browser. The conversion runs locally using pdf.js and JSZip. If you're sending a sensitive document (legal, medical, manuscript drafts) this matters — the only time anything leaves your machine is when you choose to email the resulting EPUB to your @kindle.com address.</p>
   </section>
 </main>
 
@@ -183,7 +220,7 @@
       var blob = await PdfToEpub.convert(files[0], { pagesPerChapter: pagesPerChapter }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
-      var name = files[0].name.replace(/\.pdf$/i, '') + '.epub';
+      var name = files[0].name.replace(/\.pdf$/i, '') + '-scribe.epub';
       CV.downloadBlob(blob, name);
       CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
       if (adPost) adPost.classList.add('visible');

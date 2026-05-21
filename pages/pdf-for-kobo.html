@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to JPG (Each Page as an Image) | FreeBookConvert</title>
-<meta name="description" content="Turn each page of a PDF into a JPG. Default 2x rendering keeps the text crisp. Runs in your browser.">
+<title>Convert PDF for Kobo (Sage, Libra Colour, Clara BW, Elipsa) | FreeBookConvert</title>
+<meta name="description" content="Turn a PDF into a reflowable EPUB that Kobo opens cleanly. Works with Sage, Libra Colour, Clara BW, Clara Colour, and Elipsa. No Kobo Cloud upload, runs in your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-for-kobo.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="PDF to JPG Converter">
-<meta property="og:description" content="Turn each PDF page into a JPG, in your browser.">
+<meta property="og:title" content="Convert PDF for Kobo">
+<meta property="og:description" content="Reflowable EPUB sized for Kobo e-readers, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-for-kobo.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -29,11 +29,23 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "PDF to JPG Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-jpg.html",
+  "name": "PDF for Kobo Converter",
+  "url": "https://freebookconvert.com/pages/pdf-for-kobo.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Doesn't Kobo open PDFs already?","acceptedAnswer":{"@type":"Answer","text":"Yes, but the text on a PDF doesn't reflow on a 6 or 7-inch screen and the body text comes out tiny. Converting to EPUB gives you the same font-size and margins controls you'd use on a regular Kobo book."}},
+    {"@type":"Question","name":"Will I lose my Kobo annotations?","acceptedAnswer":{"@type":"Answer","text":"PDF annotations don't carry into EPUB (they're stored against fixed pages). After conversion the EPUB is fresh; the Sage and Elipsa pen still works on the new file."}},
+    {"@type":"Question","name":"How do I get the EPUB onto my Kobo?","acceptedAnswer":{"@type":"Answer","text":"Plug the Kobo into your computer via USB, drag the .epub into the \u201cKobo eReader\u201d drive, eject. The book appears on the device after the next sync. You can also use Calibre's Kobo plugin or send via email-to-Pocket, though sideloading is fastest."}},
+    {"@type":"Question","name":"Is the PDF uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is local in this browser tab. Kobo's cloud is never touched."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -51,21 +63,21 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
       <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/pages/pdf-for-kindle-scribe.html">For Scribe</a>
+      <a href="/pages/pdf-for-remarkable.html">For reMarkable</a>
+      <a href="/pages/pdf-for-boox.html">For Boox</a>
+      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>PDF to JPG Converter</h1>
-    <p>Each page of your PDF becomes its own JPG. Default render is 2x, which keeps text sharp on screen and at print sizes. If the PDF has more than one page, you get the images back as a zip.</p>
-    <p style="font-size:0.95rem;margin-top:8px;background:#e8f4fd;padding:10px 14px;border-radius:6px;border-left:3px solid #2b7cd3">
-      <strong>You actually want the text?</strong> <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> gives you an editable <code>.txt</code>. <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> keeps the original look but adds a copyable text layer.
+    <h1>Convert PDF for Kobo</h1>
+    <p>Drop a PDF and get back an EPUB sized for Kobo. The text reflows on Sage (8&Prime;), Libra Colour (7&Prime;), Clara BW / Colour (6&Prime;), and Elipsa (10.3&Prime;) — pick your font size like with any Kobo book instead of pinch-zooming a fixed page.</p>
+    <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
+      <strong>Scanned PDF?</strong> Image-only PDFs have no extractable text. Try <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> first.
     </p>
   </section>
 
@@ -84,17 +96,13 @@
     </div>
 
     <div class="controls">
-      <label>Format
-        <select id="format">
-          <option value="jpg" selected>JPG (smaller)</option>
-          <option value="png">PNG (lossless)</option>
-        </select>
-      </label>
-      <label>Resolution
-        <select id="scale">
-          <option value="1">1x (original)</option>
-          <option value="2" selected>2x (sharp)</option>
-          <option value="3">3x (high-res)</option>
+      <label>Chapter splitting
+        <select id="splitMode">
+          <option value="auto" selected>Auto-detect chapters</option>
+          <option value="10">Every 10 pages</option>
+          <option value="20">Every 20 pages</option>
+          <option value="50">Every 50 pages</option>
+          <option value="1000">Single chapter</option>
         </select>
       </label>
     </div>
@@ -103,7 +111,7 @@
     <div class="status hidden" id="status"></div>
     <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
     <div class="actions">
-      <button class="btn" id="convertBtn" disabled>Convert</button>
+      <button class="btn" id="convertBtn" disabled>Build EPUB for Kobo</button>
       <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
     </div>
   </section>
@@ -114,19 +122,28 @@
   </div>
 
   <section class="content-section">
-    <h2>What's happening under the hood</h2>
-    <p>Mozilla's <strong>pdf.js</strong> (the same engine inside Firefox) renders each page of your PDF onto an HTML canvas. The canvas gets saved as a JPG or PNG. The PDF doesn't leave your machine.</p>
+    <h2>Why Kobo + EPUB beats Kobo + PDF</h2>
+    <p>Kobo's PDF reader has gotten better — there's now a reflow toggle — but the heuristic is fragile on multi-column journals and books with sidebars. EPUB is what Kobo's reader is built around: font selection (Bookerly, Georgia, Kobo's own typefaces), margin controls, line spacing, justification, syncing reading position via Kobo's Cloud (if you sync). PDFs are second-class citizens by comparison.</p>
 
-    <h2>When this is useful</h2>
-    <ul>
-      <li>Dropping a single page into a forum post or social thread.</li>
-      <li>Embedding a PDF page as an image in a Word doc or a slide deck.</li>
-      <li>Pulling figures or charts out of a research paper.</li>
-      <li>Sharing one page without handing over the whole document.</li>
-    </ul>
+    <h2>Sideloading the EPUB</h2>
+    <ol>
+      <li>Convert above. An EPUB downloads.</li>
+      <li>Plug your Kobo into the computer with USB-C (or microUSB on older models).</li>
+      <li>The Kobo mounts as a USB drive labelled <strong>KOBOeReader</strong>. Drag the .epub into the root, or into a folder you've created.</li>
+      <li>Eject. The Kobo processes new books on its next sleep cycle — give it a minute or two before checking the library.</li>
+    </ol>
 
-    <h2>JPG or PNG?</h2>
-    <p>JPG for photos and busy color graphics. PNG for diagrams, screenshots, or anything with text and sharp edges where you don't want compression artifacts. PNG files are usually bigger but lossless.</p>
+    <h2>Will the table of contents work?</h2>
+    <p>Yes, if the original PDF has bookmarks or detectable chapter headings — auto-detect splits there. If the PDF lacks structural cues, pick "Every 20 pages" so you at least have jump points. Kobo's TOC sidebar reads whatever the EPUB exposes.</p>
+
+    <h2>Cover image</h2>
+    <p>The converter pulls the first PDF page as the cover. To replace it, edit the EPUB with Calibre's editor (or Sigil) and swap the cover image — Kobo will pick up the change on the next library scan.</p>
+
+    <h2>Kobo Plus / Pocket integration</h2>
+    <p>Sideloaded EPUBs sit alongside your purchased and Kobo Plus titles. They sync reading position if you have a Kobo account signed in, but the book itself isn't pushed to Kobo's servers — that's only for purchased content.</p>
+
+    <h2>Nothing uploads</h2>
+    <p>The PDF is parsed in this browser tab, the EPUB is built here, you download it, then you choose to plug in your Kobo. At no point does the file go through any cloud — not ours, not Kobo's.</p>
   </section>
 </main>
 
@@ -138,7 +155,7 @@
 </footer>
 
 <script src="/js/common.js"></script>
-<script src="/js/pdf-to-images.js"></script>
+<script src="/js/pdf-to-epub.js"></script>
 <script>
 (function () {
   var files = [];
@@ -146,7 +163,7 @@
       listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
       convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
-      formatEl = CV.$('#format'), scaleEl = CV.$('#scale'),
+      splitEl = CV.$('#splitMode'),
       adPost = CV.$('#adSlotPost');
 
   function waitForPdfjs() {
@@ -177,15 +194,14 @@
     CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
     try {
       await waitForPdfjs();
-      var result = await PdfToImages.convert(files[0], {
-        format: formatEl.value,
-        scale: parseFloat(scaleEl.value),
-        quality: 0.92
-      }, function (p, m) {
+      var mode = splitEl.value;
+      var pagesPerChapter = mode === 'auto' ? 0 : parseInt(mode, 10);
+      var blob = await PdfToEpub.convert(files[0], { pagesPerChapter: pagesPerChapter }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
-      CV.downloadBlob(result.blob, result.filename);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      var name = files[0].name.replace(/\.pdf$/i, '') + '-kobo.epub';
+      CV.downloadBlob(blob, name);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
       if (adPost) adPost.classList.add('visible');
     } catch (e) {
       console.error(e);

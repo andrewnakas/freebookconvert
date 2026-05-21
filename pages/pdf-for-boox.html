@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to JPG (Each Page as an Image) | FreeBookConvert</title>
-<meta name="description" content="Turn each page of a PDF into a JPG. Default 2x rendering keeps the text crisp. Runs in your browser.">
+<title>Convert PDF for Boox (Note Air, Tab, Palma, Go) | FreeBookConvert</title>
+<meta name="description" content="Convert a PDF into a reflowable EPUB tuned for Boox e-readers. Works for Note Air 4, Tab Ultra, Palma 2, Go 10.3. Runs in your browser, no Boox Cloud upload.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-for-boox.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="PDF to JPG Converter">
-<meta property="og:description" content="Turn each PDF page into a JPG, in your browser.">
+<meta property="og:title" content="Convert PDF for Boox">
+<meta property="og:description" content="Reflowable EPUB sized for Boox e-readers, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-for-boox.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -29,11 +29,23 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "PDF to JPG Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-jpg.html",
+  "name": "PDF for Boox Converter",
+  "url": "https://freebookconvert.com/pages/pdf-for-boox.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why convert PDFs? My Boox opens them already.","acceptedAnswer":{"@type":"Answer","text":"Boox readers open PDFs natively and even reflow them in NeoReader's text mode, but reflow on PDF is best-effort and breaks on multi-column or footnoted layouts. A proper EPUB gives you reliable reflow, real font size control, and a working table of contents."}},
+    {"@type":"Question","name":"Which Boox models is this for?","acceptedAnswer":{"@type":"Answer","text":"Any model that runs Android \u2014 Note Air 4 / 4C, Tab Ultra / Ultra C, Tab Mini, Palma 1/2, Go 7 / 10.3, Page, Leaf 3. EPUB import works the same across the line."}},
+    {"@type":"Question","name":"Do I have to use BooxDrop or Boox Cloud?","acceptedAnswer":{"@type":"Answer","text":"No. The EPUB downloads to your computer and you can sideload via USB-C drag-and-drop, BooxDrop over local Wi-Fi, or transfer via microSD on models that support it. Boox Cloud is optional."}},
+    {"@type":"Question","name":"Will my PDF be uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs in this Chrome tab using pdf.js. Watch the Network panel \u2014 nothing leaves except the page assets."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -51,21 +63,21 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
       <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/pages/pdf-for-kindle-scribe.html">For Scribe</a>
+      <a href="/pages/pdf-for-remarkable.html">For reMarkable</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>PDF to JPG Converter</h1>
-    <p>Each page of your PDF becomes its own JPG. Default render is 2x, which keeps text sharp on screen and at print sizes. If the PDF has more than one page, you get the images back as a zip.</p>
-    <p style="font-size:0.95rem;margin-top:8px;background:#e8f4fd;padding:10px 14px;border-radius:6px;border-left:3px solid #2b7cd3">
-      <strong>You actually want the text?</strong> <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> gives you an editable <code>.txt</code>. <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> keeps the original look but adds a copyable text layer.
+    <h1>Convert PDF for Boox</h1>
+    <p>Drop a PDF, get back a reflowable EPUB that the NeoReader app on your Boox handles cleanly. Font size works, chapter list works, the side-note pen still annotates. Tested against Note Air 4, Tab Ultra, Palma 2, and Go 10.3 layouts. Runs in this browser tab.</p>
+    <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
+      <strong>Scanned PDF?</strong> Image-only PDFs have no text to extract. Run <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> first.
     </p>
   </section>
 
@@ -84,17 +96,13 @@
     </div>
 
     <div class="controls">
-      <label>Format
-        <select id="format">
-          <option value="jpg" selected>JPG (smaller)</option>
-          <option value="png">PNG (lossless)</option>
-        </select>
-      </label>
-      <label>Resolution
-        <select id="scale">
-          <option value="1">1x (original)</option>
-          <option value="2" selected>2x (sharp)</option>
-          <option value="3">3x (high-res)</option>
+      <label>Chapter splitting
+        <select id="splitMode">
+          <option value="auto" selected>Auto-detect chapters</option>
+          <option value="10">Every 10 pages</option>
+          <option value="20">Every 20 pages</option>
+          <option value="50">Every 50 pages (textbook)</option>
+          <option value="1000">Single chapter</option>
         </select>
       </label>
     </div>
@@ -103,7 +111,7 @@
     <div class="status hidden" id="status"></div>
     <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
     <div class="actions">
-      <button class="btn" id="convertBtn" disabled>Convert</button>
+      <button class="btn" id="convertBtn" disabled>Build EPUB for Boox</button>
       <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
     </div>
   </section>
@@ -114,19 +122,38 @@
   </div>
 
   <section class="content-section">
-    <h2>What's happening under the hood</h2>
-    <p>Mozilla's <strong>pdf.js</strong> (the same engine inside Firefox) renders each page of your PDF onto an HTML canvas. The canvas gets saved as a JPG or PNG. The PDF doesn't leave your machine.</p>
+    <h2>Why bother with EPUB on Boox specifically</h2>
+    <p>NeoReader's PDF reflow mode is impressive for an e-ink device — but it's an interpretation of a fixed page, not a real reflow. Footnote markers float, multi-column papers interleave columns, and the typesetting can shift between sessions. EPUB gives Boox actual text it can format for you. You pick the typeface (the built-in Bitter, Atkinson Hyperlegible, or your sideloaded OpenDyslexic), the size, the line height, and the device renders exactly that.</p>
 
-    <h2>When this is useful</h2>
+    <h2>Sideloading the EPUB</h2>
+    <ol>
+      <li><strong>USB-C cable.</strong> Plug into your computer. The Boox shows up as a regular USB drive. Drag the .epub into <code>/Books/</code> (or anywhere under the storage root).</li>
+      <li><strong>BooxDrop.</strong> Open BooxDrop on the device, then visit the displayed local-network URL from your computer's browser and upload the EPUB. No cable needed.</li>
+      <li><strong>microSD.</strong> Note Air and Tab models with a card slot will pick up books dropped onto the card too.</li>
+      <li><strong>Send to Email / Push.</strong> Available but routes through Boox's servers — skip if privacy is the reason you're using this tool.</li>
+    </ol>
+
+    <h2>Per-model notes</h2>
     <ul>
-      <li>Dropping a single page into a forum post or social thread.</li>
-      <li>Embedding a PDF page as an image in a Word doc or a slide deck.</li>
-      <li>Pulling figures or charts out of a research paper.</li>
-      <li>Sharing one page without handing over the whole document.</li>
+      <li><strong>Note Air 4 / 4C.</strong> 10.3-inch screen. Auto chapter detection works well for novels; pick "Every 20 pages" for textbooks.</li>
+      <li><strong>Tab Ultra / Ultra C.</strong> Same 10.3-inch class. Color-text books look great with the C variant's Kaleido panel.</li>
+      <li><strong>Palma 2.</strong> 6.13-inch phone-sized. Smaller screen rewards reflowable EPUB more — fixed PDFs are tiny on it.</li>
+      <li><strong>Go 10.3.</strong> Newer entry-level large screen. Same EPUB works.</li>
+      <li><strong>Page / Leaf 3.</strong> 7-inch. Auto chapter detection is the right default.</li>
     </ul>
 
-    <h2>JPG or PNG?</h2>
-    <p>JPG for photos and busy color graphics. PNG for diagrams, screenshots, or anything with text and sharp edges where you don't want compression artifacts. PNG files are usually bigger but lossless.</p>
+    <h2>What works, what doesn't</h2>
+    <ul>
+      <li><strong>Works:</strong> novels, long-form articles, single-column reports, one-column research papers.</li>
+      <li><strong>Mixed:</strong> textbooks (figures often end up between paragraphs they didn't originally come between).</li>
+      <li><strong>Keep as PDF on Boox:</strong> sheet music, engineering schematics, art books — those want the original page geometry, and NeoReader's PDF zoom tools are great for them.</li>
+    </ul>
+
+    <h2>Versus Calibre</h2>
+    <p>Calibre's PDF-to-EPUB plugin is the gold standard for complex books, no argument. But it's a desktop install. This page is a URL. Drop, click, sideload. For most novels the difference in output is negligible.</p>
+
+    <h2>Nothing uploads</h2>
+    <p>Confirm by opening DevTools, hitting Convert, and watching the Network panel stay quiet. The PDF stays in your machine; the EPUB is built in this tab and downloads to your computer.</p>
   </section>
 </main>
 
@@ -138,7 +165,7 @@
 </footer>
 
 <script src="/js/common.js"></script>
-<script src="/js/pdf-to-images.js"></script>
+<script src="/js/pdf-to-epub.js"></script>
 <script>
 (function () {
   var files = [];
@@ -146,7 +173,7 @@
       listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
       convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
-      formatEl = CV.$('#format'), scaleEl = CV.$('#scale'),
+      splitEl = CV.$('#splitMode'),
       adPost = CV.$('#adSlotPost');
 
   function waitForPdfjs() {
@@ -177,15 +204,14 @@
     CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
     try {
       await waitForPdfjs();
-      var result = await PdfToImages.convert(files[0], {
-        format: formatEl.value,
-        scale: parseFloat(scaleEl.value),
-        quality: 0.92
-      }, function (p, m) {
+      var mode = splitEl.value;
+      var pagesPerChapter = mode === 'auto' ? 0 : parseInt(mode, 10);
+      var blob = await PdfToEpub.convert(files[0], { pagesPerChapter: pagesPerChapter }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
-      CV.downloadBlob(result.blob, result.filename);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      var name = files[0].name.replace(/\.pdf$/i, '') + '-boox.epub';
+      CV.downloadBlob(blob, name);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
       if (adPost) adPost.classList.add('visible');
     } catch (e) {
       console.error(e);

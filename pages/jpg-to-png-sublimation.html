@@ -3,31 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEIC to PNG (Lossless iPhone Photo Conversion) | FreeBookConvert</title>
-<meta name="description" content="Decode HEIC photos from your iPhone into PNG. Lossless, batch-friendly, runs in your browser. Nothing uploads.">
+<title>JPG to PNG for Sublimation (300 DPI, Free, No Photoshop) | FreeBookConvert</title>
+<meta name="description" content="Convert JPG to PNG for sublimation printing. Free, in your browser, no Photoshop. Keeps full resolution so 300 DPI shirts and tumblers print sharp.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/heic-to-png.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/jpg-to-png-sublimation.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="HEIC to PNG Converter">
-<meta property="og:description" content="Decode HEIC into PNG, in your browser. Lossless.">
+<meta property="og:title" content="JPG to PNG for Sublimation">
+<meta property="og:description" content="Free JPG to PNG converter for sublimation crafters.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/heic-to-png.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/jpg-to-png-sublimation.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
 <link rel="stylesheet" href="/css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.js" integrity="sha384-+TuTeQmUT7gbjDeK1kc34Ku+i44JqHZ6S/cgqVKf4gLclXpJJOrx9T6gxzDeTln5" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "HEIC to PNG Converter",
-  "url": "https://freebookconvert.com/pages/heic-to-png.html",
+  "name": "JPG to PNG for Sublimation",
+  "url": "https://freebookconvert.com/pages/jpg-to-png-sublimation.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why does sublimation need PNG and not JPG?","acceptedAnswer":{"@type":"Answer","text":"Sublimation transfers anything dark to the substrate. A JPG always has a solid background \u2014 usually white, but white on a white shirt becomes invisible polyester coating. PNG supports a transparent background, so only your actual design transfers. PNG is also lossless, so the edges stay crisp at high DPI."}},
+    {"@type":"Question","name":"Will the JPG come out with a transparent background?","acceptedAnswer":{"@type":"Answer","text":"The format conversion alone does not remove the background \u2014 JPG has no transparency information to preserve. After conversion, use a free background remover (Canva, Remove.bg, or Photopea) on the resulting PNG. Once the background is removed and saved, the PNG is sublimation-ready."}},
+    {"@type":"Question","name":"What DPI does this output?","acceptedAnswer":{"@type":"Answer","text":"Sublimation printers care about pixel count, not the DPI flag in the file. A 3000x3000 pixel PNG prints sharp at 10 inches on a 300 DPI printer. This tool keeps the original resolution of your JPG \u2014 if the JPG was 3000x3000, the PNG will be too."}},
+    {"@type":"Question","name":"Is my design uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs in your browser. Original art, licensed designs, and watermarked work all stay on your device."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -45,19 +56,19 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
       <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
+      <a href="/pages/png-for-cricut.html">For Cricut</a>
       <a href="/pages/png-to-jpg.html">PNG&rarr;JPG</a>
+      <a href="/pages/heic-to-png.html">HEIC&rarr;PNG</a>
+      <a href="/pages/webp-to-png.html">WEBP&rarr;PNG</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>HEIC to PNG Converter</h1>
-    <p>Turn iPhone HEIC photos into PNGs without losing any pixel data. Good for editing or for apps that demand a lossless source. Files stay on your device.</p>
+    <h1>JPG to PNG for Sublimation</h1>
+    <p>Sublimation printing wants PNG with a transparent background — JPG won't work because the white "background" actually transfers as a polyester-coating block on your shirt or tumbler. Drop your JPG here, get back a PNG with the full resolution intact. Free, no Photoshop, no upload.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -69,20 +80,10 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop HEIC files here</p>
-      <p>or <strong>click to browse</strong> (pick as many as you want)</p>
-      <p style="font-size:0.85rem">Accepts: .heic, .heif</p>
-      <input type="file" id="fileInput" accept=".heic,.heif" multiple>
-    </div>
-
-    <div class="controls" id="qualityControls">
-      <label>Quality
-        <select id="quality">
-          <option value="0.95" selected>High</option>
-          <option value="0.85">Standard</option>
-          <option value="0.7">Compact</option>
-        </select>
-      </label>
+      <p class="big">Drop JPG files here</p>
+      <p>or <strong>click to browse</strong></p>
+      <p style="font-size:0.85rem">Accepts: .jpg, .jpeg</p>
+      <input type="file" id="fileInput" accept=".jpg,.jpeg" multiple>
     </div>
 
     <div class="file-list" id="fileList"></div>
@@ -100,21 +101,29 @@
   </div>
 
   <section class="content-section">
-    <h2>Why PNG instead of JPG</h2>
-    <p>JPG saves space but throws away some image data every time it re-encodes. PNG keeps every pixel. If you plan to edit the photo, drop it into a design tool, or hand it off to anyone who'll compress it further, start from PNG so nothing gets stacked on top of an already-lossy file.</p>
+    <h2>The whole sublimation workflow in five steps</h2>
+    <ol>
+      <li><strong>Convert JPG to PNG.</strong> (That's this page.) PNG is the format that supports transparency and stays lossless at 300+ DPI.</li>
+      <li><strong>Remove the background.</strong> The format conversion alone doesn't strip the white background out of the original JPG. Use Canva's free Erase tool, Photopea (a free in-browser Photoshop clone), or remove.bg.</li>
+      <li><strong>Mirror the image.</strong> Sublimation prints in reverse. Your design software (Silhouette Studio, EasySubli, Cricut Design Space) has a mirror toggle.</li>
+      <li><strong>Print on sublimation paper.</strong> Use the manufacturer's ICC profile for the cleanest colors.</li>
+      <li><strong>Press at the temperature your blank wants.</strong> 385&deg;F / 60 seconds is the standard for polyester shirts; tumblers and mugs vary.</li>
+    </ol>
 
-    <h2>What happens under the hood</h2>
-    <ul>
-      <li>Each HEIC gets decoded by libheif (compiled to WebAssembly), then your browser's image engine.</li>
-      <li>Each photo is re-saved as a PNG.</li>
-      <li>One file in, one file out. Several files in, you get a zip.</li>
-    </ul>
+    <h2>Why JPG fails at step 1 and PNG saves you</h2>
+    <p>JPG always fills empty pixels with a color, usually white. Sublimation ink reacts with the polyester coating wherever the printer lays it down — including the white background, which means you get a faint rectangle around your design on dark shirts and slightly off-color "white" on white shirts. PNG supports a transparent alpha channel; pixels that are transparent get no ink, period. That's why every sublimation tutorial says "save as PNG."</p>
 
-    <h2>About file size</h2>
-    <p>PNG files will usually be bigger than the original HEIC, sometimes a lot bigger. That's the price of lossless. The pixels are identical to what the decoder produced from the HEIC. No re-compression is happening.</p>
+    <h2>Resolution matters more than the DPI tag</h2>
+    <p>The DPI field in a PNG header is metadata. The actual sharpness is governed by pixel count and physical print size. A 3000x3000 PNG printed at 10 inches gives you 300 effective DPI no matter what the header says. This tool preserves the original pixel count of your JPG.</p>
 
-    <h2>Nothing leaves your browser</h2>
-    <p>This page does all its work locally. Want to check? Open the page, turn off Wi-Fi, run a conversion. It still goes through.</p>
+    <h2>If your starting file is from an iPhone</h2>
+    <p>iPhone photos are usually HEIC, not JPG. Drop them on <a href="/pages/heic-to-png.html">HEIC to PNG</a> instead and you'll get a PNG directly without an extra step.</p>
+
+    <h2>If your starting file is a WEBP from Pinterest</h2>
+    <p>Same deal — use <a href="/pages/webp-to-png.html">WEBP to PNG</a>. (Quick reminder: only sublimate designs you actually have the right to use commercially. Pinterest art is usually copyrighted.)</p>
+
+    <h2>No upload, ever</h2>
+    <p>Your originals, your watermarked drafts, your client's branding files — they all stay on your machine. Convert, then upload to the background remover yourself when you're ready.</p>
   </section>
 </main>
 
@@ -135,42 +144,33 @@
       listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
       convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
-      qualityEl = CV.$('#quality'),
-      qualityControls = CV.$('#qualityControls'),
       adPost = CV.$('#adSlotPost');
-
-  // PNG is lossless; hide the quality slider for PNG targets.
-  if (TARGET === 'png') qualityControls.style.display = 'none';
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-
   CV.bindDropzone(dz, input, function (n) {
     files = files.concat(n);
     refresh();
     CV.clearStatus(statusEl);
-  }, ['.heic', '.heif']);
+  }, ['.jpg', '.jpeg']);
   if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.heic', '.heif'], function (f) { files = files.concat([f]); refresh(); CV.clearStatus(statusEl); });
+    CV.handoff.receive(['.jpg', '.jpeg'], function (f) { files = files.concat([f]); refresh(); CV.clearStatus(statusEl); });
   }
-
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
     if (adPost) adPost.classList.remove('visible');
   });
-
   convertBtn.addEventListener('click', async function () {
     if (!files.length) return;
     convertBtn.disabled = true; resetBtn.disabled = true;
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     CV.setStatus(statusEl, 'info', 'Starting\u2026');
     try {
-      var quality = TARGET === 'png' ? 1 : parseFloat(qualityEl.value);
-      var result = await ImageConvert.convertBatch(files, TARGET, { quality: quality }, function (p, m) {
+      var result = await ImageConvert.convertBatch(files, TARGET, { quality: 1 }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
       CV.downloadBlob(result.blob, result.filename);

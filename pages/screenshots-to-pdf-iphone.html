@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPG/PNG to PDF (Bundle Images Into One File) | FreeBookConvert</title>
-<meta name="description" content="Drop a pile of JPG, PNG, or WEBP files and get back one PDF. Pages stay in the order you added them. Runs in your browser.">
+<title>Combine iPhone Screenshots Into One PDF (No App) | FreeBookConvert</title>
+<meta name="description" content="Combine iPhone screenshots into one PDF in Safari. No app install, no upload, pages stay in order. Works on iPad too.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/images-to-pdf.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/screenshots-to-pdf-iphone.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="JPG/PNG to PDF Converter">
-<meta property="og:description" content="Bundle a stack of images into one PDF, in your browser.">
+<meta property="og:title" content="Combine iPhone Screenshots Into One PDF">
+<meta property="og:description" content="One PDF from a stack of iPhone screenshots, in Safari. No app.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/images-to-pdf.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/screenshots-to-pdf-iphone.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -22,11 +22,36 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "JPG to PDF Converter",
-  "url": "https://freebookconvert.com/pages/images-to-pdf.html",
+  "name": "Combine iPhone Screenshots Into PDF",
+  "url": "https://freebookconvert.com/pages/screenshots-to-pdf-iphone.html",
   "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Browser",
+  "operatingSystem": "iOS, iPadOS, Any (Browser)",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Combine iPhone screenshots into one PDF",
+  "step": [
+    {"@type":"HowToStep","name":"Open in Safari","text":"On your iPhone, open this page in Safari. Chrome on iOS works too."},
+    {"@type":"HowToStep","name":"Tap the drop zone","text":"Tap the drop zone, choose Photo Library, and select the screenshots in the order you want them in the PDF."},
+    {"@type":"HowToStep","name":"Combine","text":"Tap Combine into PDF. The file is built in the tab."},
+    {"@type":"HowToStep","name":"Save to Files","text":"Tap the download to save the PDF to the Files app or share-sheet it straight into Mail."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does this need an app from the App Store?","acceptedAnswer":{"@type":"Answer","text":"No. It runs in Safari (or any browser). Nothing to install, no review screen, no in-app purchase."}},
+    {"@type":"Question","name":"What about the Books-app trick?","acceptedAnswer":{"@type":"Answer","text":"Selecting screenshots in Photos and using Share \u2192 Print \u2192 long-press the preview \u2192 Save to Files gives you a PDF but loses image quality and you can't control the order. This page keeps quality and respects the order you picked."}},
+    {"@type":"Question","name":"Will it work if my screenshots are HEIC?","acceptedAnswer":{"@type":"Answer","text":"iPhone screenshots are PNG, not HEIC. If a photo in the batch is HEIC, convert it to JPG first with our HEIC to JPG tool, then come back here."}},
+    {"@type":"Question","name":"Are my screenshots uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is built inside Safari using pdf-lib running locally. Watch the Network tab in Safari Web Inspector to confirm."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -44,19 +69,19 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
       <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/heic-to-jpg.html">HEIC&rarr;JPG</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>JPG / PNG to PDF Converter</h1>
-    <p>Take a folder of JPGs, PNGs, or WEBPs and turn it into one PDF. The pages stay in the order you added the files. The whole thing runs in your browser.</p>
+    <h1>Combine iPhone Screenshots Into One PDF</h1>
+    <p>You took 12 screenshots of a chat, a receipt, or a study guide. Now someone wants them as one file. Drop them here and you get a single PDF, pages in the order you picked. No app to install, no Photos export gymnastics.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -68,17 +93,18 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop JPG, PNG, or WEBP files here</p>
-      <p>or <strong>click to browse</strong> (select as many as you want)</p>
+      <p class="big">Tap to pick screenshots</p>
+      <p>or <strong>drag from Files</strong> (on iPad)</p>
+      <p style="font-size:0.85rem">PNG, JPG, WEBP. Pick them in the order you want pages.</p>
       <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp" multiple>
     </div>
 
     <div class="controls">
       <label>Quality
         <select id="quality">
-          <option value="0.92" selected>High (larger file)</option>
+          <option value="0.92" selected>High</option>
           <option value="0.85">Standard</option>
-          <option value="0.7">Compact</option>
+          <option value="0.7">Compact (smaller PDF)</option>
         </select>
       </label>
     </div>
@@ -98,20 +124,28 @@
   </div>
 
   <section class="content-section">
-    <h2>Why bother bundling them</h2>
-    <p>Receipts. Screenshots of a confirmation. A stack of scanned pages your boss asked for. Photos a client wants reviewed. All those become annoying to send as 12 separate attachments. One PDF is easier to email, easier to archive, and prints in order.</p>
+    <h2>How iPhone screenshots usually become a PDF (the hard way)</h2>
+    <p>Open Photos, tap Select, tap each screenshot in order, tap Share, scroll to Print, long-press the preview, then save to Files. It works but the page order matches selection order in a way that's easy to mess up, the image quality drops because Print downsamples, and on the latest iOS the long-press gesture is inconsistent.</p>
 
-    <h2>What this does</h2>
+    <h2>What this page does instead</h2>
     <ul>
-      <li><strong>2 images or 200.</strong> No file count limit.</li>
-      <li><strong>Mix formats.</strong> JPG, PNG, and WEBP can all go into the same PDF.</li>
-      <li><strong>Order you picked.</strong> Pages show up in the order the files came in. To rearrange, hit the &times; on a file and add it back later.</li>
-      <li><strong>A4 pages.</strong> Images scale to fit A4 with aspect ratio kept.</li>
-      <li><strong>Local only.</strong> The images don't leave your computer.</li>
+      <li><strong>Pick in order, pages in that order.</strong> The first screenshot you choose is page 1.</li>
+      <li><strong>Full resolution.</strong> No print-pipeline downsampling. The PNG goes into the PDF at native pixels.</li>
+      <li><strong>Save to Files or share to anywhere.</strong> After the PDF downloads, the iOS share sheet works normally — Mail, Messages, Notes, Drive.</li>
+      <li><strong>Nothing uploaded.</strong> Safari builds the PDF in this tab. No upload progress bar, because there is no upload.</li>
     </ul>
 
-    <h2>A quality-setting note</h2>
-    <p>Scanning a document and want it sharp? Use High. Sending photos to a friend or attaching to an email? Standard or Compact will produce a much smaller file and you won't notice the difference on a phone screen.</p>
+    <h2>Reordering after the fact</h2>
+    <p>Tap the &times; next to a screenshot to drop it from the list, then re-pick it. Pages snap to the order of additions.</p>
+
+    <h2>Edge cases worth knowing</h2>
+    <p>iPhone Long Screenshot (the "Full Page" type from Safari) is already a PDF, not a screenshot — open it from Files instead and you don't need this tool. Screenshots taken on Apple Watch arrive as PNG and work fine here.</p>
+
+    <h2>iPad works too</h2>
+    <p>Same page, same flow. iPad is faster because of the bigger CPU. You can also drag screenshots straight from the Photos app into the drop zone on iPad using split view.</p>
+
+    <h2>Nothing leaves your phone</h2>
+    <p>Open Settings &rarr; Wi-Fi &rarr; turn it off after the page loads. Run the conversion. The PDF still appears. That's the proof.</p>
   </section>
 </main>
 
@@ -162,7 +196,7 @@
       var blob = await HeicToPdf.convert(files, { quality: quality }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
-      var name = 'images-' + new Date().toISOString().slice(0, 10) + '.pdf';
+      var name = 'screenshots-' + new Date().toISOString().slice(0, 10) + '.pdf';
       CV.downloadBlob(blob, name);
       CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
       if (adPost) adPost.classList.add('visible');

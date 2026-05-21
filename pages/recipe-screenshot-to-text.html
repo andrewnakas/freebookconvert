@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Screenshot to Text (Extract Ingredients & Steps) | FreeBookConvert</title>
+<meta name="description" content="Pull the recipe text out of a screenshot. Drop the image, get a .txt with ingredients and steps. No app, no upload, no Honeydew subscription.">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/pages/recipe-screenshot-to-text.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Recipe Screenshot to Text">
+<meta property="og:description" content="Free recipe OCR. Ingredients and steps from a screenshot.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/recipe-screenshot-to-text.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Recipe Screenshot to Text OCR",
+  "url": "https://freebookconvert.com/pages/recipe-screenshot-to-text.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Will this read a recipe from Instagram or TikTok?","acceptedAnswer":{"@type":"Answer","text":"It reads the text you can see in the screenshot. If the recipe is on a caption overlay or a slide image, yes. If it's in the audio of a video, no \u2014 there's nothing visible for OCR to capture."}},
+    {"@type":"Question","name":"Will it format the ingredients into a list?","acceptedAnswer":{"@type":"Answer","text":"It pulls the raw text in reading order, so the ingredients usually come out as one item per line, then steps as paragraphs. You'll likely tidy up the spacing in five seconds. It does not auto-categorize servings, prep time, or nutritional info."}},
+    {"@type":"Question","name":"What about my private recipe collection?","acceptedAnswer":{"@type":"Answer","text":"Nothing uploads. The OCR runs in this Chrome / Safari tab. Your family's secret pie filling stays on your laptop."}},
+    {"@type":"Question","name":"Does it work on handwritten recipe cards?","acceptedAnswer":{"@type":"Answer","text":"Not reliably. Tesseract is built for printed text. Cursive grandma handwriting comes out as gibberish. Print-style handwriting on lined paper at high resolution sometimes works."}}
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/image-to-text.html">Image&rarr;Text</a>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
+      <a href="/pages/scanned-pdf-to-text.html">Scanned PDF</a>
+      <a href="/pages/searchable-pdf.html">Searchable PDF</a>
+      <a href="/pages/screenshots-to-pdf-iphone.html">Screenshots&rarr;PDF</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-intro">
+    <h1>Recipe Screenshot to Text</h1>
+    <p>You screenshotted a recipe from a TikTok overlay, a cookbook page, or a friend's text message. Drop it here and you get a plain text file you can paste into Notes, Notion, a recipe manager, or a shared family doc. No subscription, no Honeydew or Paprika app required, and nothing leaves your browser.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <div class="ad-slot ad-slot-top">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop your recipe screenshot</p>
+      <p>or <strong>click to browse</strong></p>
+      <p style="font-size:0.85rem">JPG &middot; PNG &middot; WEBP &middot; BMP &middot; GIF</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Extract Recipe Text</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-slot-mid ad-slot-post" id="adSlotPost">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="content-section">
+    <h2>The five most common recipe-screenshot sources, ranked by OCR friendliness</h2>
+    <ol>
+      <li><strong>Cookbook page photo, in focus, good light.</strong> Near-perfect. Printed type on plain paper is what Tesseract is built for.</li>
+      <li><strong>TikTok / Reels caption overlay.</strong> Usually high contrast white text on dark. Reads cleanly.</li>
+      <li><strong>iMessage screenshot of a recipe text.</strong> Works well. Tap-and-hold copies the bubble, but if the message contains an image (someone screenshotted the recipe into the chat), you need OCR.</li>
+      <li><strong>Pinterest pin image with recipe text on top.</strong> Variable. Decorative fonts and color overlays trip it up.</li>
+      <li><strong>Handwritten card.</strong> Mostly fails. Use the cookbook-photo trick: write the recipe out in print, photograph, OCR.</li>
+    </ol>
+
+    <h2>How to get the cleanest result</h2>
+    <ul>
+      <li><strong>Zoom in before screenshotting.</strong> Small text becomes mushy when scaled. Pinch in until the text fills the screen.</li>
+      <li><strong>Crop out everything except the recipe.</strong> Time stamps, like buttons, and surrounding chrome confuse the layout parsing.</li>
+      <li><strong>Keep the screenshot rotation upright.</strong> Even a few degrees of tilt hurts accuracy.</li>
+      <li><strong>If it's behind a paywall blur, you can't OCR what isn't there.</strong></li>
+    </ul>
+
+    <h2>From the .txt to a usable recipe</h2>
+    <p>The output is plain text. From there you can paste it into:</p>
+    <ul>
+      <li><strong>Notes / Apple Notes.</strong> Pinch in, paste, done.</li>
+      <li><strong>Notion or Obsidian.</strong> Paste into a recipe template.</li>
+      <li><strong>Paprika or Mela.</strong> Both let you paste raw text and auto-detect ingredients vs. instructions.</li>
+      <li><strong>A Google Doc shared with family.</strong> Easiest no-app option.</li>
+    </ul>
+
+    <h2>What about ChatGPT / AI tools?</h2>
+    <p>An LLM can extract a recipe from a screenshot too, but you're handing the recipe (and any branding or personal info around it) to OpenAI's servers. If the recipe is public, fine. If it's your grandma's, or a cookbook the author asked not to be redistributed, this tool keeps the image local.</p>
+
+    <h2>Nothing leaves the tab</h2>
+    <p>The OCR engine is Tesseract compiled to WebAssembly. It runs in your browser. The "loading" you see on first use is the ~10 MB language data file caching; second use is instant.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/pdf-ocr.js?v=ocr1"></script>
+<script>
+(function () {
+  var files = [];
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'),
+      listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
+      convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      adPost = CV.$('#adSlotPost');
+
+  var _sc = {};
+  function loadScript(url) {
+    if (_sc[url]) return _sc[url];
+    _sc[url] = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = url;
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
+      document.head.appendChild(s);
+    });
+    return _sc[url];
+  }
+  function loadTesseract() {
+    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
+  }
+
+  function refresh() {
+    CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+  }
+  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); },
+    ['.jpg', '.jpeg', '.png', '.webp', '.bmp', '.gif']);
+  resetBtn.addEventListener('click', function () {
+    files = []; refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+    if (adPost) adPost.classList.remove('visible');
+  });
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    try {
+      CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
+      await loadTesseract();
+      var result = await PdfOcr.convertImageToText(files[0], {}, function (p, m) {
+        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+      });
+      CV.downloadBlob(result.blob, result.filename);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      if (adPost) adPost.classList.add('visible');
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { convertBtn.disabled = false; resetBtn.disabled = false; }
+  });
+})();
+</script>
+<script src="/js/handoff-receiver.js"></script>
+<script src="/js/consent.js"></script>
+</body>
+</html>

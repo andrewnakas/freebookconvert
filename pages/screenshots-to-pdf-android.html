@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPG/PNG to PDF (Bundle Images Into One File) | FreeBookConvert</title>
-<meta name="description" content="Drop a pile of JPG, PNG, or WEBP files and get back one PDF. Pages stay in the order you added them. Runs in your browser.">
+<title>Combine Android Screenshots Into One PDF (No App) | FreeBookConvert</title>
+<meta name="description" content="Combine Android screenshots into one PDF in Chrome. No app, no upload, pages stay in the order you picked. Works on Samsung, Pixel, OnePlus.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/images-to-pdf.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/screenshots-to-pdf-android.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="JPG/PNG to PDF Converter">
-<meta property="og:description" content="Bundle a stack of images into one PDF, in your browser.">
+<meta property="og:title" content="Combine Android Screenshots Into One PDF">
+<meta property="og:description" content="One PDF from a stack of Android screenshots, in Chrome. No app.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/images-to-pdf.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/screenshots-to-pdf-android.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -22,11 +22,36 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "JPG to PDF Converter",
-  "url": "https://freebookconvert.com/pages/images-to-pdf.html",
+  "name": "Combine Android Screenshots Into PDF",
+  "url": "https://freebookconvert.com/pages/screenshots-to-pdf-android.html",
   "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Browser",
+  "operatingSystem": "Android, Any (Browser)",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Combine Android screenshots into one PDF",
+  "step": [
+    {"@type":"HowToStep","name":"Open in Chrome","text":"Open this page in Chrome (or any Android browser). No app install needed."},
+    {"@type":"HowToStep","name":"Tap the drop zone","text":"Tap the drop zone, choose your gallery, and select the screenshots in the order you want them as pages."},
+    {"@type":"HowToStep","name":"Combine","text":"Tap Combine into PDF. The PDF is built in the browser tab."},
+    {"@type":"HowToStep","name":"Save","text":"The PDF lands in your Downloads folder. Share it from there to Drive, Gmail, or WhatsApp."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Do I need to install an app from the Play Store?","acceptedAnswer":{"@type":"Answer","text":"No. This is a web page. It works in Chrome, Samsung Internet, Brave, and Firefox on Android with no install."}},
+    {"@type":"Question","name":"What about the built-in Files app PDF option?","acceptedAnswer":{"@type":"Answer","text":"Some Android skins (Samsung One UI, MIUI) have a Save as PDF option in the Files app share sheet, but it builds one PDF per file and doesn't merge a batch in a chosen order. This page does the merge."}},
+    {"@type":"Question","name":"Will this work on a Samsung Galaxy?","acceptedAnswer":{"@type":"Answer","text":"Yes. Samsung Internet, Chrome, and Edge on Galaxy phones all work. You can also drag screenshots from One UI 6 split view straight into the drop zone."}},
+    {"@type":"Question","name":"Are my screenshots uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is built locally in Chrome using pdf-lib. Turn off mobile data after this page loads and the conversion still runs."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -44,19 +69,19 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
       <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/heic-to-jpg.html">HEIC&rarr;JPG</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>JPG / PNG to PDF Converter</h1>
-    <p>Take a folder of JPGs, PNGs, or WEBPs and turn it into one PDF. The pages stay in the order you added the files. The whole thing runs in your browser.</p>
+    <h1>Combine Android Screenshots Into One PDF</h1>
+    <p>You captured 15 screenshots of a chat thread, a recipe, or a bank statement. Now you need them as one PDF for email or storage. Drop them here and the browser builds a single PDF in page order. No Play Store app, no upload, no ads in the middle of the flow.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -68,17 +93,18 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop JPG, PNG, or WEBP files here</p>
-      <p>or <strong>click to browse</strong> (select as many as you want)</p>
+      <p class="big">Tap to pick screenshots</p>
+      <p>or <strong>drag from Files</strong></p>
+      <p style="font-size:0.85rem">PNG, JPG, WEBP. Pick them in the order you want pages.</p>
       <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp" multiple>
     </div>
 
     <div class="controls">
       <label>Quality
         <select id="quality">
-          <option value="0.92" selected>High (larger file)</option>
+          <option value="0.92" selected>High</option>
           <option value="0.85">Standard</option>
-          <option value="0.7">Compact</option>
+          <option value="0.7">Compact (smaller PDF)</option>
         </select>
       </label>
     </div>
@@ -98,20 +124,28 @@
   </div>
 
   <section class="content-section">
-    <h2>Why bother bundling them</h2>
-    <p>Receipts. Screenshots of a confirmation. A stack of scanned pages your boss asked for. Photos a client wants reviewed. All those become annoying to send as 12 separate attachments. One PDF is easier to email, easier to archive, and prints in order.</p>
+    <h2>Why not just use the Files app "Save as PDF"?</h2>
+    <p>One UI, MIUI, and Pixel's Files app all have a Print to PDF route, but they save one screenshot at a time, or they reorder by file modification time, or they downsample for print. None of them let you say "this screenshot is page 1, that one is page 2." This page does.</p>
 
-    <h2>What this does</h2>
+    <h2>Works on every Android skin</h2>
     <ul>
-      <li><strong>2 images or 200.</strong> No file count limit.</li>
-      <li><strong>Mix formats.</strong> JPG, PNG, and WEBP can all go into the same PDF.</li>
-      <li><strong>Order you picked.</strong> Pages show up in the order the files came in. To rearrange, hit the &times; on a file and add it back later.</li>
-      <li><strong>A4 pages.</strong> Images scale to fit A4 with aspect ratio kept.</li>
-      <li><strong>Local only.</strong> The images don't leave your computer.</li>
+      <li><strong>Samsung Galaxy:</strong> Samsung Internet and Chrome both work. Drag from One UI split view.</li>
+      <li><strong>Google Pixel:</strong> Chrome handles it natively. Files app screenshots load instantly.</li>
+      <li><strong>OnePlus / Oppo:</strong> Browser on OxygenOS / ColorOS works the same.</li>
+      <li><strong>Xiaomi / Redmi:</strong> MIUI's Mi Browser, plus Chrome, both supported.</li>
     </ul>
 
-    <h2>A quality-setting note</h2>
-    <p>Scanning a document and want it sharp? Use High. Sending photos to a friend or attaching to an email? Standard or Compact will produce a much smaller file and you won't notice the difference on a phone screen.</p>
+    <h2>Long screenshots (scrolling capture)</h2>
+    <p>If your screenshot is a "Scroll Capture" or "Long Screenshot" (Samsung), it's still a PNG and works here. The PDF page will be tall but the resolution is preserved. If the screenshot is enormous, set Quality to Compact to keep the PDF under your email size limit.</p>
+
+    <h2>Reordering on the fly</h2>
+    <p>Tap the &times; next to any screenshot to remove it. Re-pick it to push it to the end. Pages match the order you added them.</p>
+
+    <h2>Mobile data off? Still works.</h2>
+    <p>Turn off Wi-Fi and mobile data after the page loads. The conversion still runs. The PDF still downloads. That's because nothing leaves the device — the browser does the work locally with pdf-lib.</p>
+
+    <h2>WhatsApp / Drive / Gmail handoff</h2>
+    <p>The finished PDF lands in your Downloads folder. From the notification, tap Share to pipe it into WhatsApp, Drive, Gmail, or any app that takes a PDF.</p>
   </section>
 </main>
 
@@ -162,7 +196,7 @@
       var blob = await HeicToPdf.convert(files, { quality: quality }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
-      var name = 'images-' + new Date().toISOString().slice(0, 10) + '.pdf';
+      var name = 'screenshots-' + new Date().toISOString().slice(0, 10) + '.pdf';
       CV.downloadBlob(blob, name);
       CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
       if (adPost) adPost.classList.add('visible');

@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to JPG (Each Page as an Image) | FreeBookConvert</title>
-<meta name="description" content="Turn each page of a PDF into a JPG. Default 2x rendering keeps the text crisp. Runs in your browser.">
+<title>Convert PDF for reMarkable (EPUB with Annotation-Friendly Margins) | FreeBookConvert</title>
+<meta name="description" content="Turn a PDF into a reflowable EPUB sized for the reMarkable 2 and Paper Pro. Keeps a margin for pen annotations, runs in your browser, no upload to Connect.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-for-remarkable.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="PDF to JPG Converter">
-<meta property="og:description" content="Turn each PDF page into a JPG, in your browser.">
+<meta property="og:title" content="Convert PDF for reMarkable">
+<meta property="og:description" content="Reflowable EPUB tuned for reMarkable 2 / Paper Pro, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-for-remarkable.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -29,11 +29,23 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "PDF to JPG Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-jpg.html",
+  "name": "PDF for reMarkable Converter",
+  "url": "https://freebookconvert.com/pages/pdf-for-remarkable.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why convert PDFs at all? reMarkable opens them.","acceptedAnswer":{"@type":"Answer","text":"It does, but the text doesn't reflow. On a typical US Letter PDF, body text comes out at 9-10pt on the 10.3-inch screen and there's no left margin for handwritten notes. EPUB lets the reMarkable resize the text and gives you white space around it."}},
+    {"@type":"Question","name":"Will the pen annotate the EPUB?","acceptedAnswer":{"@type":"Answer","text":"Yes. reMarkable's pen annotation works on EPUB the same way it does on PDF \u2014 since firmware 3.0. The page-turn model is just different (text flows, no fixed page breaks)."}},
+    {"@type":"Question","name":"Do I have to use reMarkable Connect?","acceptedAnswer":{"@type":"Answer","text":"No. The EPUB downloads to your computer. From there you can sideload via USB, drop it into the desktop app, or use the local-Wi-Fi web upload on the device itself. None of those involve reMarkable's cloud unless you choose to sync."}},
+    {"@type":"Question","name":"Is the PDF uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs in this browser tab using pdf.js. Confirm with DevTools \u2192 Network: nothing leaves except the page assets."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -51,21 +63,21 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
       <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-for-kindle-scribe.html">For Kindle Scribe</a>
+      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
+      <a href="/pages/pdf-ocr.html">PDF OCR</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>PDF to JPG Converter</h1>
-    <p>Each page of your PDF becomes its own JPG. Default render is 2x, which keeps text sharp on screen and at print sizes. If the PDF has more than one page, you get the images back as a zip.</p>
-    <p style="font-size:0.95rem;margin-top:8px;background:#e8f4fd;padding:10px 14px;border-radius:6px;border-left:3px solid #2b7cd3">
-      <strong>You actually want the text?</strong> <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> gives you an editable <code>.txt</code>. <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> keeps the original look but adds a copyable text layer.
+    <h1>Convert PDF for reMarkable</h1>
+    <p>The reMarkable 2 and Paper Pro open PDFs natively, but the text won't reflow and the margins eat the space you want for pen annotations. Convert your PDF into a reflowable EPUB and you get adjustable font sizes, a comfortable left margin, and a real table of contents. The whole thing runs in this tab.</p>
+    <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
+      <strong>If the PDF is a scan</strong> (image-only, can't select text), there's nothing to reflow. Run <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> first.
     </p>
   </section>
 
@@ -84,17 +96,13 @@
     </div>
 
     <div class="controls">
-      <label>Format
-        <select id="format">
-          <option value="jpg" selected>JPG (smaller)</option>
-          <option value="png">PNG (lossless)</option>
-        </select>
-      </label>
-      <label>Resolution
-        <select id="scale">
-          <option value="1">1x (original)</option>
-          <option value="2" selected>2x (sharp)</option>
-          <option value="3">3x (high-res)</option>
+      <label>Chapter splitting
+        <select id="splitMode">
+          <option value="auto" selected>Auto-detect chapters</option>
+          <option value="10">Every 10 pages</option>
+          <option value="20">Every 20 pages</option>
+          <option value="50">Every 50 pages (textbook)</option>
+          <option value="1000">Single chapter (paper)</option>
         </select>
       </label>
     </div>
@@ -103,7 +111,7 @@
     <div class="status hidden" id="status"></div>
     <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
     <div class="actions">
-      <button class="btn" id="convertBtn" disabled>Convert</button>
+      <button class="btn" id="convertBtn" disabled>Build EPUB for reMarkable</button>
       <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
     </div>
   </section>
@@ -114,19 +122,35 @@
   </div>
 
   <section class="content-section">
-    <h2>What's happening under the hood</h2>
-    <p>Mozilla's <strong>pdf.js</strong> (the same engine inside Firefox) renders each page of your PDF onto an HTML canvas. The canvas gets saved as a JPG or PNG. The PDF doesn't leave your machine.</p>
+    <h2>The reMarkable PDF problem in one paragraph</h2>
+    <p>reMarkable's screen is 10.3 inches with a 1872x1404 panel — slightly smaller than a US Letter page. A typical PDF renders at the fixed page geometry, which means body text lands at around 9 pt and the natural left margin for handwriting collapses to nothing. EPUB doesn't have a fixed page concept. Text fills whatever frame the firmware gives it, you pick the size, and reMarkable's reading mode reserves a clean left strip for the pen.</p>
 
-    <h2>When this is useful</h2>
+    <h2>How to get the EPUB onto the reMarkable</h2>
+    <ol>
+      <li>Convert above. An EPUB downloads.</li>
+      <li>Pick one of: drag the file into the desktop app; sideload over USB-C while the device shows its file browser; or use the on-device Wi-Fi web UI at the IP shown on the cable-setup screen.</li>
+      <li>Open the file. The Type Folio / pen still annotates as expected.</li>
+    </ol>
+
+    <h2>What works well on reMarkable EPUB</h2>
     <ul>
-      <li>Dropping a single page into a forum post or social thread.</li>
-      <li>Embedding a PDF page as an image in a Word doc or a slide deck.</li>
-      <li>Pulling figures or charts out of a research paper.</li>
-      <li>Sharing one page without handing over the whole document.</li>
+      <li>Novels, biographies, history books — single-column prose comes out spotless.</li>
+      <li>Research papers reduced to single-column flow (when the PDF was made from a Word doc).</li>
+      <li>Long-form articles and reports.</li>
     </ul>
 
-    <h2>JPG or PNG?</h2>
-    <p>JPG for photos and busy color graphics. PNG for diagrams, screenshots, or anything with text and sharp edges where you don't want compression artifacts. PNG files are usually bigger but lossless.</p>
+    <h2>What's worth keeping as PDF</h2>
+    <ul>
+      <li>Engineering drawings, sheet music, maps.</li>
+      <li>Cookbooks and visually designed art books.</li>
+      <li>Two-column journal papers — the EPUB conversion can interleave the columns. The reMarkable's PDF crop tool is a better answer here.</li>
+    </ul>
+
+    <h2>Why this beats reMarkable's built-in conversion</h2>
+    <p>reMarkable does have a "Text Mode" toggle for opened PDFs. It works fine for plain prose, but the extracted text doesn't survive a sync, you can't edit chapter structure, and the parsing can mis-handle headings. A real EPUB lives in your library as a permanent reflowable book.</p>
+
+    <h2>No reMarkable Connect required</h2>
+    <p>This page doesn't talk to reMarkable's servers. The PDF is parsed locally; the EPUB is built locally. If you don't pay for Connect, you can still sideload the result over USB. That's the whole point.</p>
   </section>
 </main>
 
@@ -138,7 +162,7 @@
 </footer>
 
 <script src="/js/common.js"></script>
-<script src="/js/pdf-to-images.js"></script>
+<script src="/js/pdf-to-epub.js"></script>
 <script>
 (function () {
   var files = [];
@@ -146,7 +170,7 @@
       listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
       convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
-      formatEl = CV.$('#format'), scaleEl = CV.$('#scale'),
+      splitEl = CV.$('#splitMode'),
       adPost = CV.$('#adSlotPost');
 
   function waitForPdfjs() {
@@ -177,15 +201,14 @@
     CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
     try {
       await waitForPdfjs();
-      var result = await PdfToImages.convert(files[0], {
-        format: formatEl.value,
-        scale: parseFloat(scaleEl.value),
-        quality: 0.92
-      }, function (p, m) {
+      var mode = splitEl.value;
+      var pagesPerChapter = mode === 'auto' ? 0 : parseInt(mode, 10);
+      var blob = await PdfToEpub.convert(files[0], { pagesPerChapter: pagesPerChapter }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
-      CV.downloadBlob(result.blob, result.filename);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      var name = files[0].name.replace(/\.pdf$/i, '') + '-remarkable.epub';
+      CV.downloadBlob(blob, name);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
       if (adPost) adPost.classList.add('visible');
     } catch (e) {
       console.error(e);

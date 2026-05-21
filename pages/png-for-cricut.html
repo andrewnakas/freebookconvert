@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEIC to PNG (Lossless iPhone Photo Conversion) | FreeBookConvert</title>
-<meta name="description" content="Decode HEIC photos from your iPhone into PNG. Lossless, batch-friendly, runs in your browser. Nothing uploads.">
+<title>PNG for Cricut Design Space (Transparent Background, Free) | FreeBookConvert</title>
+<meta name="description" content="Convert JPG, HEIC, or WEBP into a PNG with transparent background ready for Cricut Design Space. Free, in your browser, no Cricut Access required.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/heic-to-png.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/png-for-cricut.html">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="HEIC to PNG Converter">
-<meta property="og:description" content="Decode HEIC into PNG, in your browser. Lossless.">
+<meta property="og:title" content="PNG for Cricut Design Space">
+<meta property="og:description" content="JPG/HEIC/WEBP to PNG, ready for Cricut.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/heic-to-png.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/png-for-cricut.html">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
@@ -23,11 +23,23 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "HEIC to PNG Converter",
-  "url": "https://freebookconvert.com/pages/heic-to-png.html",
+  "name": "PNG for Cricut Converter",
+  "url": "https://freebookconvert.com/pages/png-for-cricut.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does Cricut Design Space accept PNG?","acceptedAnswer":{"@type":"Answer","text":"Yes. PNG is one of the upload-supported formats in Design Space, alongside JPG, GIF, BMP, and SVG. For Print Then Cut and most layered cuts, PNG with transparent background is the cleanest input."}},
+    {"@type":"Question","name":"Will my JPG come out with a transparent background?","acceptedAnswer":{"@type":"Answer","text":"This tool converts the file format from JPG/HEIC/WEBP to PNG. PNG supports transparency, but the original JPG has a solid background, so the new PNG will still have that background visible. To remove it, use Cricut Design Space's free Remove Background tool after upload \u2014 it's included with free accounts now."}},
+    {"@type":"Question","name":"Do I need Cricut Access?","acceptedAnswer":{"@type":"Answer","text":"No. PNG upload and background removal are free features in Design Space. Cricut Access is a content library subscription; you don't need it to use your own PNGs."}},
+    {"@type":"Question","name":"Is my image uploaded?","acceptedAnswer":{"@type":"Answer","text":"Not to this tool. The format conversion happens in your browser. The only upload step is the one to Cricut Design Space, which you do yourself afterward."}}
+  ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -45,19 +57,19 @@
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
       <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
       <a href="/pages/png-to-jpg.html">PNG&rarr;JPG</a>
+      <a href="/pages/heic-to-png.html">HEIC&rarr;PNG</a>
+      <a href="/pages/webp-to-png.html">WEBP&rarr;PNG</a>
+      <a href="/pages/jpg-to-png-sublimation.html">For Sublimation</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="page-intro">
-    <h1>HEIC to PNG Converter</h1>
-    <p>Turn iPhone HEIC photos into PNGs without losing any pixel data. Good for editing or for apps that demand a lossless source. Files stay on your device.</p>
+    <h1>PNG for Cricut Design Space</h1>
+    <p>Cricut Design Space wants PNG for most cut projects. If your file is a JPG, a HEIC from your iPhone, or a WEBP saved from a browser, you'll need to convert it first. Drop the file here and you get a PNG ready to upload to Design Space.</p>
   </section>
 
   <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
@@ -69,20 +81,10 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop HEIC files here</p>
-      <p>or <strong>click to browse</strong> (pick as many as you want)</p>
-      <p style="font-size:0.85rem">Accepts: .heic, .heif</p>
-      <input type="file" id="fileInput" accept=".heic,.heif" multiple>
-    </div>
-
-    <div class="controls" id="qualityControls">
-      <label>Quality
-        <select id="quality">
-          <option value="0.95" selected>High</option>
-          <option value="0.85">Standard</option>
-          <option value="0.7">Compact</option>
-        </select>
-      </label>
+      <p class="big">Drop JPG, HEIC, or WEBP files</p>
+      <p>or <strong>click to browse</strong></p>
+      <p style="font-size:0.85rem">Accepts: .jpg, .jpeg, .heic, .heif, .webp</p>
+      <input type="file" id="fileInput" accept=".jpg,.jpeg,.heic,.heif,.webp" multiple>
     </div>
 
     <div class="file-list" id="fileList"></div>
@@ -100,21 +102,28 @@
   </div>
 
   <section class="content-section">
-    <h2>Why PNG instead of JPG</h2>
-    <p>JPG saves space but throws away some image data every time it re-encodes. PNG keeps every pixel. If you plan to edit the photo, drop it into a design tool, or hand it off to anyone who'll compress it further, start from PNG so nothing gets stacked on top of an already-lossy file.</p>
+    <h2>Cricut and PNG, the short version</h2>
+    <p>PNG is the format Cricut Design Space treats best for non-SVG uploads. It supports a transparent background (which is what you need for clean Print Then Cut and layered HTV designs) and it's a lossless format, so the edges of your shapes stay sharp instead of getting JPG smudges.</p>
 
-    <h2>What happens under the hood</h2>
+    <h2>Common starting points</h2>
     <ul>
-      <li>Each HEIC gets decoded by libheif (compiled to WebAssembly), then your browser's image engine.</li>
-      <li>Each photo is re-saved as a PNG.</li>
-      <li>One file in, one file out. Several files in, you get a zip.</li>
+      <li><strong>iPhone HEIC.</strong> Most photos taken on a recent iPhone are HEIC. Design Space won't accept them directly. Drop them here and you get PNG.</li>
+      <li><strong>WEBP from a website.</strong> Right-click-saving from Chrome or Edge often gives you a WEBP — same deal, Cricut doesn't accept it.</li>
+      <li><strong>JPG from your camera.</strong> Works in Design Space, but converting to PNG first means you can use the Remove Background tool more reliably and you don't lose quality on subsequent uploads.</li>
     </ul>
 
-    <h2>About file size</h2>
-    <p>PNG files will usually be bigger than the original HEIC, sometimes a lot bigger. That's the price of lossless. The pixels are identical to what the decoder produced from the HEIC. No re-compression is happening.</p>
+    <h2>Backgrounds and Cricut's free background remover</h2>
+    <p>This tool converts the <em>format</em> from JPG/HEIC/WEBP to PNG, which is the part that requires technical conversion. The original file has whatever background was in the photo. Once you upload the PNG to Design Space, hit "Remove Background" — Cricut made that feature free for everyone in 2023, so you don't need Access.</p>
 
-    <h2>Nothing leaves your browser</h2>
-    <p>This page does all its work locally. Want to check? Open the page, turn off Wi-Fi, run a conversion. It still goes through.</p>
+    <h2>For best cut results</h2>
+    <ul>
+      <li>Start with the highest-resolution version of your image. Bigger PNG = smoother edges in Design Space.</li>
+      <li>If you have control over the source, photograph or scan on a contrasting background (a white object goes on a dark surface, dark on light). That makes the background remover's job easier.</li>
+      <li>Test cut on cheap material before committing to expensive HTV.</li>
+    </ul>
+
+    <h2>Nothing uploads to us</h2>
+    <p>The format conversion runs in your browser. The image stays in this tab until you choose to upload it to Design Space. That matters for original art and licensed designs.</p>
   </section>
 </main>
 
@@ -135,42 +144,33 @@
       listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
       convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
-      qualityEl = CV.$('#quality'),
-      qualityControls = CV.$('#qualityControls'),
       adPost = CV.$('#adSlotPost');
-
-  // PNG is lossless; hide the quality slider for PNG targets.
-  if (TARGET === 'png') qualityControls.style.display = 'none';
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-
   CV.bindDropzone(dz, input, function (n) {
     files = files.concat(n);
     refresh();
     CV.clearStatus(statusEl);
-  }, ['.heic', '.heif']);
+  }, ['.jpg', '.jpeg', '.heic', '.heif', '.webp']);
   if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.heic', '.heif'], function (f) { files = files.concat([f]); refresh(); CV.clearStatus(statusEl); });
+    CV.handoff.receive(['.jpg', '.jpeg', '.heic', '.heif', '.webp'], function (f) { files = files.concat([f]); refresh(); CV.clearStatus(statusEl); });
   }
-
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
     if (adPost) adPost.classList.remove('visible');
   });
-
   convertBtn.addEventListener('click', async function () {
     if (!files.length) return;
     convertBtn.disabled = true; resetBtn.disabled = true;
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     CV.setStatus(statusEl, 'info', 'Starting\u2026');
     try {
-      var quality = TARGET === 'png' ? 1 : parseFloat(qualityEl.value);
-      var result = await ImageConvert.convertBatch(files, TARGET, { quality: quality }, function (p, m) {
+      var result = await ImageConvert.convertBatch(files, TARGET, { quality: 1 }, function (p, m) {
         CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
       });
       CV.downloadBlob(result.blob, result.filename);

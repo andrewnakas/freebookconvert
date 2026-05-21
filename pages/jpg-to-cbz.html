@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG to CBZ (Bundle Manga Pages Into a Comic Archive) | FreeBookConvert</title>
+<meta name="description" content="Drop a folder of JPG or PNG pages and get back a single CBZ comic archive. Pages stay in the order you added them. Works on any browser. No upload.">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<link rel="canonical" href="https://freebookconvert.com/pages/jpg-to-cbz.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="JPG to CBZ Converter">
+<meta property="og:description" content="Bundle JPG or PNG pages into a CBZ comic archive, in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/jpg-to-cbz.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JPG to CBZ Converter",
+  "url": "https://freebookconvert.com/pages/jpg-to-cbz.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is a CBZ file, exactly?","acceptedAnswer":{"@type":"Answer","text":"A CBZ is a regular ZIP file containing image files, one per page, renamed with a .cbz extension. Comic readers like CDisplay, ComicRack, YACReader, KOReader, and Calibre's e-book viewer use the alphabetical order of the files inside to determine page order."}},
+    {"@type":"Question","name":"How does this preserve page order?","acceptedAnswer":{"@type":"Answer","text":"Each file is renamed to a zero-padded sequence number (001.jpg, 002.jpg, ...) based on the order you added it. That means it sorts correctly even at 9999 pages and every reader will display them in the same order."}},
+    {"@type":"Question","name":"Can I use it for manga that reads right-to-left?","acceptedAnswer":{"@type":"Answer","text":"The CBZ itself doesn't carry a reading-direction flag \u2014 it's the reader that decides. Most comic readers have a toggle for right-to-left or 'Manga mode.' Set that on your device after sideloading."}},
+    {"@type":"Question","name":"Will this upload my pages?","acceptedAnswer":{"@type":"Answer","text":"No. JSZip runs in the browser; the CBZ is assembled locally."}}
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
+      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
+      <a href="/pages/png-to-jpg.html">PNG&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page-intro">
+    <h1>JPG to CBZ Converter</h1>
+    <p>Take a stack of JPG, PNG, or WEBP pages — manga scans, scanned comics, a series of photographed pages — and bundle them into a single CBZ. The pages are renumbered in the order you add them, so every comic reader (KOReader, ComicRack, YACReader, Calibre, CDisplay) displays them correctly.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <div class="ad-slot ad-slot-top">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop your page images here</p>
+      <p>or <strong>click to browse</strong> (pick them in reading order)</p>
+      <p style="font-size:0.85rem">JPG &middot; PNG &middot; WEBP</p>
+      <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp" multiple>
+    </div>
+
+    <div class="controls">
+      <label>Archive name
+        <input type="text" id="archiveName" placeholder="my-comic" style="margin-left:6px;padding:4px 8px">
+      </label>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Build CBZ</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-slot-mid ad-slot-post" id="adSlotPost">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="content-section">
+    <h2>What CBZ is, what it isn't</h2>
+    <p>CBZ stands for Comic Book Zip. The format is exactly what the name says: a ZIP file with images inside, given a <code>.cbz</code> extension instead of <code>.zip</code>. There's no manifest file, no metadata schema you have to honor — readers just iterate the archive alphabetically and treat each image as a page. (CBR is the same idea with RAR compression; CB7 with 7z. CBZ is the universal one because every platform handles ZIP.)</p>
+
+    <h2>Why this is better than DIY zipping</h2>
+    <p>You can absolutely make a CBZ by hand: select files in Finder or File Explorer, zip them, rename to .cbz. The problems start when you have <em>page-2.jpg</em> next to <em>page-10.jpg</em> — alphabetical sort gives you 1, 10, 11, ..., 2, 20. This page renames every file to a fixed-width number (001, 002, 003) so the order is what you actually picked.</p>
+
+    <h2>Order matters; this is how you control it</h2>
+    <ul>
+      <li>Add the first page first. It becomes 001.</li>
+      <li>Add the rest in reading order.</li>
+      <li>To rearrange, hit the &times; next to a file and add it again at the end. Easier to redo from scratch than to drag in a UI.</li>
+    </ul>
+
+    <h2>For manga readers</h2>
+    <p>Manga reads right-to-left. The CBZ format doesn't store that — pick a comic reader that does. KOReader (on Kobo, Kindle Paperwhite with KUAL, Boox, reMarkable hacks) has a Manga Mode toggle. YACReader, CDisplayEx, Tachiyomi, Kavita all support right-to-left. Add the toggle once per device and every CBZ you sideload after that respects the setting.</p>
+
+    <h2>For scanning your own comics</h2>
+    <ul>
+      <li>Scan at 300 DPI minimum. 600 DPI for color art if you want to zoom.</li>
+      <li>Save as PNG if the original art has flat color (manga, line art). JPG is fine for photographic covers.</li>
+      <li>Crop and deskew before bundling — readers don't fix that on the fly.</li>
+    </ul>
+
+    <h2>Limits</h2>
+    <p>JSZip in the browser can comfortably handle a few hundred MB of input. A 200-page color manga at 5 MB/page (~1 GB) might run out of memory on a phone but works fine on a laptop. For very large collections, the desktop tool <strong>cbconvert</strong> (CLI) is what you want.</p>
+
+    <h2>Nothing leaves the tab</h2>
+    <p>The files are read into memory, fed into JSZip in this tab, the resulting blob downloads. No upload, no server, no Discord webhook, no analytics about your reading habits.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script>
+(function () {
+  var files = [];
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'),
+      listEl = CV.$('#fileList'), statusEl = CV.$('#status'),
+      convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      nameEl = CV.$('#archiveName'),
+      adPost = CV.$('#adSlotPost');
+
+  function refresh() {
+    CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+  }
+  CV.bindDropzone(dz, input, function (n) {
+    files = files.concat(n);
+    refresh();
+    CV.clearStatus(statusEl);
+  }, ['.jpg', '.jpeg', '.png', '.webp']);
+  resetBtn.addEventListener('click', function () {
+    files = []; refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+    if (adPost) adPost.classList.remove('visible');
+  });
+
+  function pad(n, width) {
+    var s = String(n);
+    while (s.length < width) s = '0' + s;
+    return s;
+  }
+  function extOf(name) {
+    var m = /\.(jpg|jpeg|png|webp)$/i.exec(name);
+    return m ? m[1].toLowerCase() : 'jpg';
+  }
+
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    CV.setStatus(statusEl, 'info', 'Bundling pages\u2026');
+    try {
+      if (typeof window.JSZip !== 'function') throw new Error('ZIP library failed to load');
+      var zip = new JSZip();
+      var width = Math.max(3, String(files.length).length);
+      for (var i = 0; i < files.length; i++) {
+        var f = files[i];
+        var ext = extOf(f.name);
+        var pageName = pad(i + 1, width) + '.' + ext;
+        zip.file(pageName, f);
+        CV.setProgress(progressBar, ((i + 1) / files.length) * 90);
+      }
+      CV.setStatus(statusEl, 'info', 'Compressing\u2026');
+      var blob = await zip.generateAsync({ type: 'blob', compression: 'STORE' }, function (meta) {
+        CV.setProgress(progressBar, 90 + meta.percent * 0.1);
+      });
+      var stem = (nameEl.value || 'comic').replace(/[^a-z0-9-_]+/gi, '-').replace(/^-+|-+$/g, '') || 'comic';
+      var name = stem + '.cbz';
+      CV.downloadBlob(blob, name);
+      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
+      if (adPost) adPost.classList.add('visible');
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { convertBtn.disabled = false; resetBtn.disabled = false; }
+  });
+})();
+</script>
+<script src="/js/handoff-receiver.js"></script>
+<script src="/js/consent.js"></script>
+</body>
+</html>
