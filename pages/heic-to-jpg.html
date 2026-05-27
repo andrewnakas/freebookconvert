@@ -115,13 +115,59 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>The photos are processed in this tab. The simplest proof: load the page, kill your internet, run a conversion. It still works.</p>
+
+    <h2>About the HEIC format</h2>
+    <p>HEIC is Apple's branding for HEIF — High Efficiency Image File Format — a container standardized by MPEG in 2015. Apple flipped iPhones to HEIC by default starting with iOS 11 in late 2017. The image data inside is compressed with HEVC (H.265), which is the same video codec used for 4K Blu-rays. The compression is significantly better than JPG: about half the file size at the same visible quality. HEIC also supports tricks JPG can't — multi-image bursts, depth maps, alpha channels, and 10-bit color. The barrier to widespread adoption was HEVC's patent licensing, which is why a lot of non-Apple software still struggles.</p>
+
+    <h2>About the JPG format</h2>
+    <p>JPEG was finalized by the Joint Photographic Experts Group, an ISO/ITU committee, in 1992. The .jpg extension exists because old Windows insisted on three letters; on every other system, .jpeg is equally valid. JPG uses discrete cosine transform compression — efficient for photographs, lossy by design, terrible for sharp text or solid color blocks. It doesn't support transparency. Despite being more than 30 years old, JPG is still the format every camera, browser, email client, social network, and printer accepts without question. Universality is the whole point.</p>
+
+    <h2>When to use HEIC to JPG (and when not to)</h2>
+    <p>Convert when:</p>
+    <ul>
+      <li>You're uploading photos to a service that rejects HEIC (most insurance portals, job applications, older CMS systems).</li>
+      <li>You're sharing photos with someone on Windows or older Android.</li>
+      <li>You're sending images to a print service or photo lab.</li>
+      <li>You want to edit photos in software that doesn't read HEIC properly.</li>
+    </ul>
+    <p>Stay with HEIC if:</p>
+    <ul>
+      <li>Everyone involved is on Apple devices — there's no benefit and you'll lose file-size efficiency.</li>
+      <li>You're archiving long-term and care about preserving depth maps or 10-bit color data.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>JPG file is bigger than the HEIC.</strong> That's expected. HEIC is more efficient. The JPG keeps the same visible pixels, just in a less-compressed wrapper.</li>
+      <li><strong>Sideways photos.</strong> EXIF orientation is honored. If a particular shot still comes out wrong, the EXIF data was probably stripped earlier — open in Photos, rotate, save a fresh copy.</li>
+      <li><strong>Live Photo motion gone.</strong> Only the still frame converts. The video portion of a Live Photo is a separate .mov file iCloud Photos stores alongside.</li>
+      <li><strong>HEIC won't open at all.</strong> The file might actually be HEIF with a different extension, or a ProRAW DNG. Rename to .heif and try again, or export as JPG from Apple's Photos app first.</li>
+      <li><strong>Quality looks soft.</strong> The Compact preset is aggressive. Switch to Standard or High if the photo is going anywhere beyond a thumbnail.</li>
+      <li><strong>Colors shift slightly.</strong> HEIC supports wide color gamuts (Display P3) that get clamped to sRGB in JPG. The shift is small but real on saturated reds and greens.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are the photos uploaded?</summary><p>No. libheif decodes the HEIC and the browser canvas re-encodes as JPG — all inside this tab. You can confirm with DevTools' Network panel.</p></details>
+    <details><summary>How many photos can I convert at once?</summary><p>50-100 is comfortable on a phone. A laptop can handle several hundred. HEIC decode is CPU-bound, so the more photos the longer it takes.</p></details>
+    <details><summary>Will it run on iPhone?</summary><p>Yes. Safari on iOS handles the conversion. The JPGs land in your Files app's Downloads folder. iCloud Photos won't auto-import them, which is usually what you want.</p></details>
+    <details><summary>Can I keep the original capture date?</summary><p>The conversion preserves the date and basic EXIF in the JPG. GPS coordinates carry over too unless you've stripped them in Privacy settings.</p></details>
+    <details><summary>What if I have hundreds of HEICs from a vacation?</summary><p>Use Apple's own export — in Photos, File &rarr; Export, choose JPG — for huge batches. This page is faster for everything up to a few hundred files.</p></details>
+    <details><summary>What other formats are supported?</summary><p>PNG and PDF are both available from HEIC on this site. Use PNG if you need lossless or transparency.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/heic-to-png.html"><h3>HEIC to PNG</h3><p>Lossless output if you'll edit or print the photo.</p></a>
+      <a class="card" href="/pages/heic-to-pdf.html"><h3>HEIC to PDF</h3><p>Bundle a stack of HEIC photos into one PDF document.</p></a>
+      <a class="card" href="/pages/heic-to-jpg-chromebook.html"><h3>HEIC to JPG on Chromebook</h3><p>The same converter, walkthrough tailored for Chrome OS.</p></a>
+      <a class="card" href="/pages/jpg-to-webp.html"><h3>JPG to WEBP</h3><p>Shrink the resulting JPGs further for web use.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

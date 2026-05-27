@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Convert Files in Your Browser Instead of Uploading | FreeBookConvert Guides</title>
+<meta name="description" content="The privacy and security case for browser-based file conversion, the WebAssembly shift that made it practical, and what kinds of files you should never upload.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/guides/why-browser-conversion.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Why Convert Files in Your Browser Instead of Uploading">
+<meta property="og:description" content="The privacy case for not uploading files, and how WebAssembly made browser-based conversion practical.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://freebookconvert.com/guides/why-browser-conversion.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Convert Files in Your Browser Instead of Uploading",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {"@type": "Organization", "name": "FreeBookConvert"},
+  "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
+  "mainEntityOfPage": "https://freebookconvert.com/guides/why-browser-conversion.html"
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="page-intro">
+    <h1>Why convert files in your browser instead of uploading</h1>
+    <p>Most "free online converter" sites work by taking your file, uploading it to their server, processing it, and giving it back. That model is convenient and, for the wrong file, dangerous. This guide explains why, what changed in the last few years to make a different model possible, and where the tradeoffs are.</p>
+    <p style="font-size:0.9rem;color:#666"><em>Published 2026-05-26 &middot; <a href="/guides/">All guides</a></em></p>
+  </section>
+  <section class="content-section">
+    <h2>The default model: upload, process, download</h2>
+    <p>Type "convert PDF to EPUB" into a search engine and almost every result on the first page asks you to upload your file. The site picks it up on its servers, runs a conversion library against it, and offers the result back as a download. From a usability standpoint, the model is fine — the user doesn't need anything installed, the server has plenty of CPU, and the result arrives in seconds.</p>
+    <p>The trouble is that "your file" stops being yours the moment it leaves your machine. The operator now has a copy. So do whatever logging, backup, and analytics systems they run. And so does anyone who later compromises that infrastructure. For a public-domain ebook this is meaningless. For a contract, a medical bill, a tax form, a manuscript, or a folder of personal photos, it's a stack of risks that the convenient interface doesn't surface.</p>
+
+    <h2>The real risk isn't theoretical</h2>
+    <p>In March 2025 the FBI's Denver field office issued a public warning, echoed by Malwarebytes and TechCrunch coverage, that free online file-converter sites had become a significant malware vector. The model in the wild: legitimate-looking conversion sites that did perform the conversion but also bundled malware into the downloaded result, or scraped sensitive content out of uploaded documents (cryptocurrency seed phrases, financial records, social security numbers) for follow-up scams. The FBI's specific advice was to be skeptical of any free online converter and to prefer tools that don't require uploading.</p>
+    <p>That's separate from the routine risks every honest upload-based site carries: misconfigured S3 buckets, logging that retains files past stated policies, third-party data brokers that get a sliver of metadata, and the simple reality that "deleted after one hour" is a promise nobody can independently verify.</p>
+
+    <h2>What changed: WebAssembly and Canvas</h2>
+    <p>For most of the web's history, doing real work inside a browser was impractical. JavaScript was slow, browsers couldn't read binary file formats efficiently, and the libraries that did the heavy lifting (image decoders, PDF parsers, OCR engines) were native code that ran on servers. Browser-based file conversion existed but was limited to toys and small text formats.</p>
+    <p>Two shifts changed that. The first was WebAssembly, shipped in 2017 and now supported by every modern browser. Wasm lets compiled C, C++, or Rust code run inside the browser at speeds within a couple times of native. That made it practical to compile real libraries — pdf.js (Firefox's own PDF engine), Tesseract (Google's OCR engine), libheif (the HEIC decoder), JSZip, pdf-lib — and run them client-side. The second shift was that browsers grew the APIs needed to read and write binary files locally: the File API, FileReader, Blob, the Canvas 2D context, OffscreenCanvas, and the URL.createObjectURL trick for downloads. Combined, these let you build a full conversion pipeline that never sees the network.</p>
+
+    <h2>Performance: how it actually feels</h2>
+    <p>The performance trade isn't what people expect. Server-side conversion has effectively unlimited CPU but a network round-trip; a 50 MB PDF spends most of its conversion time uploading and downloading. Browser-side conversion has zero network cost but is bounded by your device. The crossover is somewhere around "a recent laptop." On a Mac M-series or a current Windows ultrabook, browser conversion of a couple-hundred-page PDF, a batch of HEIC photos, or a moderate EPUB takes seconds — comparable to a server round-trip on a typical home connection.</p>
+    <p>On phones, browser conversion is slower than a server, mostly because mobile CPUs are conservative on Wasm and RAM is tight. A 200-page PDF that converts in 4 seconds on a laptop might take 20 seconds on an iPhone. For most users that's still acceptable, and for sensitive files the time cost is worth not handing the file to a stranger.</p>
+
+    <h2>What you should never upload to a converter</h2>
+    <p>A short list of files that should never go to an upload-based converter regardless of its reputation:</p>
+    <ul>
+      <li>Contracts, NDAs, and legal documents with party names and financial terms.</li>
+      <li>Medical records, lab results, EOBs, and anything covered by HIPAA in the US or equivalent regimes elsewhere.</li>
+      <li>Tax returns and W-2s.</li>
+      <li>Bank statements and any document showing account numbers.</li>
+      <li>Government IDs (passport scans, driver's licenses).</li>
+      <li>Manuscripts and IP you haven't yet published, especially anything subject to a publishing or employment contract.</li>
+      <li>Customer data, employee data, or anything covered by your employer's data-handling policy.</li>
+      <li>Cryptocurrency seed phrases or recovery sheets. (Yes, people scan these into PDFs. Don't upload them anywhere.)</li>
+    </ul>
+    <p>For everything in this list, browser-based conversion is the right answer — or, for irreplaceable files, a desktop tool like Calibre, ImageMagick, or pdftk that doesn't touch the network at all.</p>
+
+    <h2>How to verify a converter doesn't upload</h2>
+    <p>The benefit of browser-based conversion is that it's externally verifiable. You don't have to trust the operator's privacy promises; you can watch the network and confirm directly.</p>
+    <ul>
+      <li><strong>The DevTools method.</strong> In any modern browser, hit F12 (Cmd-Option-I on Mac), open the Network tab, then run the conversion. The only requests you should see are for the page assets (HTML, CSS, JavaScript libraries) and analytics or ad calls — never anything carrying your file's payload as a request body.</li>
+      <li><strong>The airplane-mode method.</strong> Load the converter page on Wi-Fi, then turn the Wi-Fi off (or unplug the ethernet cable). Run the conversion. If it still works, the file isn't going anywhere — the conversion is happening on your machine. This site is built to pass this test on every converter page.</li>
+      <li><strong>The Content Security Policy header.</strong> Look at the network response headers for the converter page. A strict CSP that doesn't allow <code>connect-src</code> to arbitrary domains is structural evidence the page can't exfiltrate your file even if its code wanted to.</li>
+    </ul>
+
+    <h2>Where the browser model breaks down</h2>
+    <p>Browser conversion isn't always the right answer. A few cases where the upload model is genuinely the better tool:</p>
+    <ul>
+      <li><strong>Huge files.</strong> A 4 GB raw video or a 1000-page color PDF will struggle in a browser tab. Desktop software handles those better.</li>
+      <li><strong>Format support depth.</strong> Niche formats (some CAD exports, old TeX flavors, obscure ebook variants) don't have mature Wasm libraries. A server can run anything.</li>
+      <li><strong>Pipeline jobs.</strong> If you're converting thousands of files as part of a workflow, scripting it against a server API is more practical than dragging files into a tab.</li>
+    </ul>
+    <p>For everyday personal use — converting an EPUB, processing a folder of HEIC photos, getting text out of a scan — browser-based tools are now strictly better for any file that should stay private.</p>
+
+    <h2>Where to go from here</h2>
+    <p>All the converters on <a href="/">FreeBookConvert</a> run in your browser using the model described above. If you'd rather start with format background, see <a href="/guides/what-is-epub.html">What is an EPUB?</a>, <a href="/guides/heic-explained.html">HEIC explained</a>, or <a href="/guides/image-format-comparison.html">JPG vs PNG vs WEBP vs HEIC</a>. For the OCR side specifically, see <a href="/guides/how-ocr-works.html">How OCR actually works</a> and the tools at <a href="/pages/pdf-ocr.html">PDF OCR</a>, <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a>, and <a href="/pages/searchable-pdf.html">Make PDF Searchable</a>.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>

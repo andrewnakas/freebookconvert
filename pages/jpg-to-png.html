@@ -114,13 +114,59 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>The conversion runs locally. Cut your internet after loading the page and it still works.</p>
+
+    <h2>About the JPG format</h2>
+    <p>JPEG was finalized in 1992 by the Joint Photographic Experts Group, the ISO/IEC committee that the format is named after. The .jpg extension is just the .jpeg short form Windows demanded back when filenames were limited to three-letter extensions. Internally, JPG uses discrete cosine transform compression — efficient for photographs, lossy by design, and every save discards a bit more data. JPG can't represent transparent pixels and struggles with sharp text or solid blocks of color. It's been the default photo format on basically every camera, phone, and website for three decades.</p>
+
+    <h2>About the PNG format</h2>
+    <p>PNG was created in 1995 and ratified by the W3C as a recommendation in 1996, originally to dodge the patent fees attached to GIF's LZW compression. It uses the same lossless DEFLATE algorithm that powers ZIP. PNG supports a full 8-bit alpha channel for transparency, multiple color depths up to 16 bits per channel, and gamma correction. It's the format of choice for screenshots, line art, logos, and anything you intend to edit further. Files are larger than JPG because nothing is thrown away.</p>
+
+    <h2>When to use JPG to PNG (and when not to)</h2>
+    <p>Useful when:</p>
+    <ul>
+      <li>You're about to edit a photo and don't want each save to compound JPG damage.</li>
+      <li>A tool you're using only accepts PNG.</li>
+      <li>You're sending a JPG to someone who'll embed it in a layout that needs to be re-exported (catalogs, magazines, ad mockups).</li>
+      <li>You want to add transparency around the photo in a later edit.</li>
+    </ul>
+    <p>Skip the conversion if:</p>
+    <ul>
+      <li>You just want to view, share, or post the photo. PNG doesn't add quality on top of the JPG you started with — it just keeps the existing quality.</li>
+      <li>You're worried about file size on a webpage or email.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>PNG is enormous.</strong> Expected. A 500 KB JPG often becomes a 5 MB PNG. There's no quality slider for PNG — it's all or nothing.</li>
+      <li><strong>JPG artifacts visible in the PNG.</strong> The conversion preserves whatever the JPG had. If you can see compression blocks, they're baked in from the original JPG; PNG can't undo them.</li>
+      <li><strong>Sideways photo.</strong> EXIF orientation is respected. If a particular file still comes out wrong, the EXIF was stripped or invalid; rotate-save in any image viewer first.</li>
+      <li><strong>Result looks identical to the JPG.</strong> That's the point. PNG holds the pixels at their current state without further loss. The "improvement" is preventing future loss, not adding new quality.</li>
+      <li><strong>Some files won't decode.</strong> Progressive JPGs from very old cameras occasionally trip browser decoders. Open and re-save them in any modern editor first.</li>
+      <li><strong>Batch fails on a phone.</strong> Lots of PNGs eat RAM fast. Split into smaller batches.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are my photos uploaded?</summary><p>No. The browser handles decode and encode. The Network tab in DevTools shows zero upload during a conversion.</p></details>
+    <details><summary>Does PNG conversion improve quality?</summary><p>No. It preserves the current quality. If the JPG was already heavily compressed, the PNG looks the same — it just won't degrade further.</p></details>
+    <details><summary>How many files can I convert at once?</summary><p>Hundreds on a desktop, dozens on a phone. RAM is the practical ceiling.</p></details>
+    <details><summary>Will it work on mobile?</summary><p>Yes. Tap the drop zone, choose photos from your library, the results download to your default location.</p></details>
+    <details><summary>What if I have HEIC photos?</summary><p>Use <a href="/pages/heic-to-png.html">HEIC to PNG</a> for those. This tool only accepts JPG.</p></details>
+    <details><summary>What other formats can JPG become?</summary><p>WEBP (much smaller, good for web) is available on this site. PNG and WEBP cover almost every "convert from JPG" case.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/png-to-jpg.html"><h3>PNG to JPG</h3><p>Go the other way when you need smaller files for sharing.</p></a>
+      <a class="card" href="/pages/jpg-to-webp.html"><h3>JPG to WEBP</h3><p>Shrink JPGs to about 30% smaller without visible loss.</p></a>
+      <a class="card" href="/pages/png-to-webp.html"><h3>PNG to WEBP</h3><p>Compress lossless PNGs into smaller WEBP files.</p></a>
+      <a class="card" href="/pages/jpg-to-png-sublimation.html"><h3>JPG to PNG for Sublimation</h3><p>The same conversion tuned for craft sublimation printing.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

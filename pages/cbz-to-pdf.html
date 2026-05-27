@@ -111,13 +111,59 @@
 
     <h2>What about CBR files?</h2>
     <p>CBR uses RAR, which is proprietary and a pain to decode in a browser without dragging in a huge WebAssembly bundle. So this page doesn't try. The workaround: rename your <code>.cbr</code> to <code>.rar</code>, extract it with 7-Zip or The Unarchiver, then zip the resulting images. Drop that zip here.</p>
+
+    <h2>About the CBZ format</h2>
+    <p>CBZ stands for Comic Book ZIP. It's a ZIP archive whose contents are simply image files — usually JPGs or PNGs — named in the order the pages should display. The "format" is a convention more than a standard: it was popularized by community comic readers like CDisplay in the early 2000s. There's no DRM, no metadata required, and no central authority. Any tool that can unzip can read a CBZ. Sister formats CBR (RAR), CB7 (7z), and CBT (TAR) follow the same idea with different compression. The simplicity is the appeal — and the reason scanlation groups and digital preservationists settled on it.</p>
+
+    <h2>About the PDF format</h2>
+    <p>PDF was introduced by Adobe in 1993 to keep document layout consistent across devices. It's been an open ISO standard (ISO 32000) since 2008. A PDF can store text, fonts, vector graphics, and raster images at fixed positions on each page. For comics specifically, the PDF is acting as a thin wrapper around a stack of images — same job a CBZ does, but with one advantage: every device on earth has a PDF reader. Phones, tablets, e-readers, work laptops with locked-down software, the public library kiosk. CBZ requires you to install something. PDF doesn't.</p>
+
+    <h2>When to use CBZ to PDF (and when not to)</h2>
+    <p>Useful when:</p>
+    <ul>
+      <li>You want to read a comic on a Kindle, Kobo, or other e-reader that doesn't have a CBZ app.</li>
+      <li>You're sending pages to someone who has no idea what a CBZ is.</li>
+      <li>You want to print a single volume on paper.</li>
+      <li>You need to keep a long-term archive in a more universally-supported wrapper.</li>
+    </ul>
+    <p>Not the right call when:</p>
+    <ul>
+      <li>You already use a proper comic reader (CDisplayEx, ComicRack, Panels, Chunky). Those handle CBZ natively and faster.</li>
+      <li>The CBZ has full bleed, double-page spreads, or right-to-left manga layout — PDF readers often add gutters or mess up the spread joins.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>Pages out of order.</strong> The CBZ's images aren't zero-padded (page1.jpg, page10.jpg, page2.jpg). This converter handles natural sort, but if the result is still off, rename the files with leading zeros before zipping.</li>
+      <li><strong>PDF is huge.</strong> High-resolution scans at original size produce monster PDFs. Switch to "Fit to A4" — most readers can't display more pixels than that anyway.</li>
+      <li><strong>First page is the back cover.</strong> Some CBZs include a thumbnail or rear cover named alphabetically before the front cover. Rename or remove those files in the source ZIP.</li>
+      <li><strong>Two-page spreads split awkwardly.</strong> A landscape spread becomes two skinny portrait pages. There's no fix inside this tool — you'd need a desktop comic-aware converter.</li>
+      <li><strong>Manga reads left-to-right when it shouldn't.</strong> The PDF format has no concept of right-to-left page order. Your reader app needs the option set manually.</li>
+      <li><strong>Conversion fails on a huge CBZ.</strong> Past about 500 MB the browser may run out of memory. Split the volume into two ZIPs and convert separately.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does the comic get uploaded?</summary><p>No. JSZip and the canvas API do all the work inside your browser tab. Disconnect from the internet after this page loads and the converter still runs.</p></details>
+    <details><summary>What's the largest CBZ this can handle?</summary><p>A few hundred megabytes on a laptop with reasonable RAM. Phones with 4 GB may struggle past 200 MB. Split large omnibuses into separate volumes.</p></details>
+    <details><summary>Will this work on iPad?</summary><p>Yes. Safari handles the conversion. The resulting PDF saves to the Files app and opens cleanly in Books or any third-party reader.</p></details>
+    <details><summary>Will the PDF be searchable?</summary><p>No — the pages are images. To make a comic PDF searchable you'd need to run OCR on it afterward, and OCR generally does poorly on stylized comic lettering anyway.</p></details>
+    <details><summary>What if my file is CBR or CB7?</summary><p>CBR is rarchived; this tool can't read it in-browser. Extract it with a desktop tool and re-zip the images, then come back. CB7 (7-Zip) has the same issue.</p></details>
+    <details><summary>Can I bundle multiple CBZs into one PDF?</summary><p>Not in one shot. Convert each CBZ separately, then merge the resulting PDFs with any standard PDF merger.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/jpg-to-cbz.html"><h3>JPG to CBZ</h3><p>Bundle a folder of comic page scans into a single CBZ.</p></a>
+      <a class="card" href="/pages/images-to-pdf.html"><h3>Images to PDF</h3><p>Combine JPGs, PNGs, and WEBPs into one PDF without the CBZ step.</p></a>
+      <a class="card" href="/pages/pdf-to-jpg.html"><h3>PDF to JPG</h3><p>Pull individual pages back out of a PDF as image files.</p></a>
+      <a class="card" href="/pages/pdf-for-boox.html"><h3>PDF for Boox</h3><p>Tune a PDF specifically for Boox e-ink tablets.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

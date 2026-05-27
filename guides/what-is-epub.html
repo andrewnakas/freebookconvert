@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What is an EPUB? A practical explainer | FreeBookConvert Guides</title>
+<meta name="description" content="EPUB is a zipped folder of XHTML and CSS that e-readers render like tiny websites. Here's what's actually inside, how versions differ, and what to do about DRM and validation.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/guides/what-is-epub.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="What is an EPUB? A practical explainer">
+<meta property="og:description" content="The zipped XHTML container behind every modern ebook, explained without jargon.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://freebookconvert.com/guides/what-is-epub.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is an EPUB? A practical explainer",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {"@type": "Organization", "name": "FreeBookConvert"},
+  "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
+  "mainEntityOfPage": "https://freebookconvert.com/guides/what-is-epub.html"
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="page-intro">
+    <h1>What is an EPUB? A practical explainer</h1>
+    <p>An EPUB is a small website in a zip file. That's almost the entire explanation; the rest is detail.</p>
+    <p style="font-size:0.9rem;color:#666"><em>Published 2026-05-26 &middot; <a href="/guides/">All guides</a></em></p>
+  </section>
+  <section class="content-section">
+    <h2>The one-paragraph answer</h2>
+    <p>EPUB stands for Electronic Publication. A file with the <code>.epub</code> extension is a ZIP archive containing XHTML pages, CSS stylesheets, images, fonts, and a few XML manifests that tell the reader what order to display the files in. Rename any EPUB to <code>.zip</code> and your operating system will open it as a folder. Most of what's inside is the same kind of HTML you'd find on a web page from 2008, give or take some namespace declarations. An e-reader is, at heart, a slow web browser that only loads one site &mdash; the book.</p>
+
+    <h2>A short history</h2>
+    <p>The EPUB format descends from the Open eBook Publication Structure (OEBPS), which was first published in 1999 by an industry group called the Open eBook Forum. That body became the International Digital Publishing Forum (IDPF), and in September 2007 the IDPF released EPUB 2.0 as the official successor to OEBPS. EPUB 3.0 followed in October 2011, bringing HTML5, CSS3, scripting, and MathML into scope. EPUB 3.0.1 was a small revision in 2014, and EPUB 3.2 arrived in May 2019.</p>
+    <p>In January 2017 the IDPF merged into the World Wide Web Consortium (W3C), which is now the steward of the format. EPUB 3.3 became a W3C Recommendation in May 2023, which means it's no longer a draft &mdash; it's the standard. The version numbers stop mattering once you understand that every reader since about 2014 quietly supports EPUB 3 features, and the EPUB 2 spec is preserved mainly so old files keep working.</p>
+
+    <h2>What's inside the container</h2>
+    <p>Unzip an EPUB and you'll see a predictable structure. There's a file called <code>mimetype</code> at the root, which contains the literal string <code>application/epub+zip</code> with no trailing newline. (The spec requires this file to be stored uncompressed and to appear first in the ZIP, so that a reader can identify the format by reading the first thirty bytes.) Then there's a folder called <code>META-INF/</code> containing <code>container.xml</code>, which points to the package document. The package document &mdash; usually called <code>content.opf</code> or <code>package.opf</code> &mdash; is the manifest. It lists every file in the book, declares the reading order, and holds the metadata: title, author, language, identifier, publication date.</p>
+    <p>Alongside the package document you'll find the content itself. A typical EPUB has one XHTML file per chapter (<code>chapter01.xhtml</code>, <code>chapter02.xhtml</code>, and so on), a CSS stylesheet, an images folder, and, in EPUB 3, a navigation document called <code>nav.xhtml</code> that defines the table of contents. EPUB 2 used a separate NCX file (<code>toc.ncx</code>) for the same purpose, and many EPUB 3 files still include an NCX for backward compatibility.</p>
+
+    <h2>EPUB 2 vs 3 vs 3.2</h2>
+    <p>EPUB 2 is XHTML 1.1, CSS 2.1, no scripting, NCX-based table of contents. It's what you'll find in older ebooks, particularly things scanned from Project Gutenberg or files exported by Calibre with default settings. It's robust, it works on everything from a 2008 Sony Reader to a current Kobo, and it can't do much beyond text, images, and a few hyperlinks.</p>
+    <p>EPUB 3 added HTML5, CSS3 with media queries, embedded fonts that actually work, SVG, MathML for equations, the SMIL spec for synchronized media (read-aloud), and JavaScript. The navigation document replaced the NCX as the primary table of contents, though most files still ship both. EPUB 3 also introduced <em>fixed-layout</em> mode, which is the format used for picture books, comics, and cookbooks where the page design matters more than reflowing text.</p>
+    <p>EPUB 3.2 (2019) and 3.3 (2023) are mostly cleanup. They removed some experimental features that nobody used, tightened the accessibility requirements, and pulled the spec into alignment with current web standards. If you're authoring an EPUB today, target EPUB 3 and validate with EPUBCheck. There's no good reason to target EPUB 2 unless you're shipping to a known fleet of pre-2014 devices.</p>
+
+    <h2>Reflowable vs fixed layout</h2>
+    <p>Most EPUBs are <em>reflowable</em>. The text flows like a web page: change the font size on your device, and the lines rewrap to fit. Page numbers become a fiction, replaced by location identifiers or percentages. This is what novels and most non-fiction prose use.</p>
+    <p>A <em>fixed-layout</em> EPUB freezes the page. Each XHTML file has a declared viewport (in pixels), and the reader scales it to fit the screen rather than reflowing the content. You'll see this in children's picture books, where the illustration and text are designed together, and in comics, technical manuals, and anything that was originally typeset in InDesign and exported with layout preserved. Fixed-layout EPUBs are essentially a different beast &mdash; closer to a PDF in spirit, just wrapped in EPUB's container.</p>
+
+    <h2>How readers render EPUBs (and why your Kindle is weird)</h2>
+    <p>Apple Books, Kobo, Google Play Books, Adobe Digital Editions, Calibre's viewer, and most third-party readers render EPUB natively. They parse the XHTML, apply the CSS, and lay it out using a stripped-down web engine. The user-visible difference between readers is mostly typography and how they handle edge cases (drop caps, custom fonts, embedded video).</p>
+    <p>Kindle is the conspicuous exception. Amazon's native formats are MOBI (legacy, retired in 2022) and AZW3 / KF8 (current), and the very latest Kindles use a format called KFX. None of them are EPUB. When you send an EPUB to your Kindle &mdash; via the Send to Kindle email address or the web uploader &mdash; Amazon's servers convert it to AZW3 or KFX before delivering it to the device. As of late 2022, Amazon's Send to Kindle accepts EPUB directly; before that you had to convert to MOBI first. The conversion is mostly lossless for prose, but heavy CSS, custom fonts, and complex fixed layouts can come out looking different than they did in iBooks.</p>
+    <p>If you want a PDF version of an EPUB &mdash; for printing, for a non-EPUB reader, for sending to someone who insists on PDFs &mdash; the <a href="/pages/epub-to-pdf.html">EPUB to PDF converter</a> here renders the book in your browser and gives you back a PDF. The reverse trip, PDF to EPUB, is harder because PDFs don't have semantic structure; <a href="/pages/pdf-to-epub.html">that converter</a> does its best to recover chapter breaks and text flow from the PDF's positioned text runs.</p>
+
+    <h2>DRM and what you can't legally do about it</h2>
+    <p>Many EPUBs sold by retailers ship with Digital Rights Management. Adobe ADEPT is the most common scheme &mdash; it's what Kobo, Google Play Books, and most public libraries (via OverDrive / Libby) used historically. B&amp;N had its own variant. The DRM wraps the EPUB's content in encryption, and only a reader application authorized for your account can decrypt it.</p>
+    <p>You'll find tools that strip ADEPT and other DRM. In the United States, the Digital Millennium Copyright Act (17 U.S.C. &sect; 1201) makes circumventing access controls illegal even on books you've purchased, with narrow exceptions reviewed every three years by the Library of Congress. The EU's Copyright Directive (Article 6 of Directive 2001/29/EC) is similar. None of this is legal advice &mdash; the rules vary by jurisdiction and by what you intend to do with the file &mdash; but be aware that "I bought it" is not, in most places, a legal defense for removing DRM. A DRM'd EPUB is not the same kind of object as a clean EPUB, and most converters (including the ones on this site) will refuse to open it because they don't have the decryption keys, which is the correct behavior.</p>
+
+    <h2>Validation and accessibility</h2>
+    <p>EPUBCheck is the official validator, maintained by the W3C and DAISY Consortium. It's a Java command-line tool, and there are web frontends. It checks that the package document is well-formed, that all manifest entries exist, that the XHTML is valid, that fonts are properly declared. If you're producing an EPUB for distribution, run it through EPUBCheck first &mdash; storefronts like Apple Books and Kobo will reject files with errors.</p>
+    <p>Accessibility has become a real concern in the format. The EPUB Accessibility 1.1 spec (a W3C Recommendation since 2023) defines what makes an EPUB usable with assistive technology: proper heading hierarchy, alt text on images, language tags, semantic markup. The European Accessibility Act took effect on 28 June 2025 and requires that ebooks sold in the EU meet specified accessibility criteria. Publishers have spent the last few years remediating their backlists in response.</p>
+
+    <h2>Where to go from here</h2>
+    <p>If you want to look inside an EPUB, the cheapest tool is your file manager: rename the file's <code>.epub</code> extension to <code>.zip</code> and double-click. You'll see the structure laid out exactly as described above. To edit one, Sigil is the free, open-source standard &mdash; it understands the package document and can keep the manifest in sync as you add or remove files. Calibre is the all-purpose Swiss Army knife: it'll convert, edit, and manage a library, though its conversion output is sometimes more aggressive about CSS rewriting than you'd want.</p>
+    <p>If you just need to get an EPUB into another format quickly, the <a href="/pages/epub-to-pdf.html">EPUB to PDF</a> and <a href="/pages/pdf-to-epub.html">PDF to EPUB</a> tools on this site do the round trip in the browser. And if you're trying to read EPUBs you already own on a Kindle, the situation got considerably better in late 2022 &mdash; just email the file to your @kindle.com address and Amazon handles the rest.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>

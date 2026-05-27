@@ -75,23 +75,21 @@ body {
   margin: 0 auto;
 }
 
+/* Ad slots: hidden until they contain a real ad unit. The .has-ad class
+   is added on slots that have a live <ins class="adsbygoogle"> child so
+   empty placeholders never render during AdSense review. */
 .ad-slot {
-  background: #f1f4f8;
-  border: 1px dashed #cfd6e0;
-  color: #99a3ad;
+  display: none;
+}
+.ad-slot.has-ad {
+  display: block;
   text-align: center;
-  padding: 20px;
   margin: 30px 0;
-  border-radius: 6px;
   min-height: 90px;
-  font-size: 0.85rem;
 }
 
-.ad-slot::before {
-  content: "Ad space \2014 Google AdSense";
-}
-
-/* Post-convert reveal: hide mid-slot until conversion success, then fade in. */
+/* Post-convert reveal: hide mid-slot until conversion success, then fade in.
+   Only takes effect once the slot has a live ad unit (.has-ad). */
 .ad-slot-post {
   opacity: 0;
   max-height: 0;
@@ -102,13 +100,12 @@ body {
   overflow: hidden;
   transition: opacity 0.4s ease, max-height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
 }
-.ad-slot-post.visible {
+.ad-slot-post.has-ad.visible {
   opacity: 1;
   max-height: 400px;
   padding: 20px;
   margin: 30px 0;
   min-height: 90px;
-  border: 1px dashed #cfd6e0;
 }
 
 /* Universal converter entry (homepage) */

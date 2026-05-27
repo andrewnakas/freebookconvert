@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://freebookconvert.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://freebookconvert.com/</loc><lastmod>2026-05-26</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
 
   <!-- Books / documents -->
-  <url><loc>https://freebookconvert.com/pages/epub-to-pdf.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-to-epub.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/cbz-to-pdf.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/epub-to-txt.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-to-jpg.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/images-to-pdf.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-ocr.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/scanned-pdf-to-text.html</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://freebookconvert.com/pages/searchable-pdf.html</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://freebookconvert.com/pages/image-to-text.html</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://freebookconvert.com/pages/epub-to-pdf.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-to-epub.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/cbz-to-pdf.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/epub-to-txt.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-to-jpg.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/images-to-pdf.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-ocr.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/scanned-pdf-to-text.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://freebookconvert.com/pages/searchable-pdf.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://freebookconvert.com/pages/image-to-text.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
 
   <!-- Images -->
-  <url><loc>https://freebookconvert.com/pages/heic-to-pdf.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/heic-to-jpg.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/heic-to-png.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/jpg-to-png.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/jpg-to-webp.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/png-to-jpg.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/png-to-webp.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/webp-to-jpg.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://freebookconvert.com/pages/webp-to-png.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/heic-to-pdf.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/heic-to-jpg.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/heic-to-png.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/jpg-to-png.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/jpg-to-webp.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/png-to-jpg.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/png-to-webp.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/webp-to-jpg.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://freebookconvert.com/pages/webp-to-png.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
   <!-- Long-tail / device-specific landing pages -->
-  <url><loc>https://freebookconvert.com/pages/heic-to-jpg-chromebook.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/screenshots-to-pdf-iphone.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-for-kindle-scribe.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-for-remarkable.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/png-for-cricut.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/jpg-to-png-sublimation.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://freebookconvert.com/pages/recipe-screenshot-to-text.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-for-boox.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-for-kobo.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/jpg-to-cbz.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/heic-to-jpg-chromebook.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/screenshots-to-pdf-iphone.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/screenshots-to-pdf-android.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-for-kindle-scribe.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-for-remarkable.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/png-for-cricut.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/jpg-to-png-sublimation.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freebookconvert.com/pages/recipe-screenshot-to-text.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-for-boox.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-for-kobo.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/jpg-to-cbz.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- Guides -->
+  <url><loc>https://freebookconvert.com/guides/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freebookconvert.com/guides/what-is-epub.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freebookconvert.com/guides/heic-explained.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freebookconvert.com/guides/how-ocr-works.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freebookconvert.com/guides/image-format-comparison.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freebookconvert.com/guides/sideload-ebooks-to-ereader.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freebookconvert.com/guides/why-browser-conversion.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Static pages -->
-  <url><loc>https://freebookconvert.com/pages/about.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://freebookconvert.com/pages/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://freebookconvert.com/pages/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://freebookconvert.com/pages/contact.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://freebookconvert.com/pages/about.html</loc><lastmod>2026-05-26</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://freebookconvert.com/pages/privacy.html</loc><lastmod>2026-05-26</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://freebookconvert.com/pages/terms.html</loc><lastmod>2026-05-26</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://freebookconvert.com/pages/contact.html</loc><lastmod>2026-05-26</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
 </urlset>

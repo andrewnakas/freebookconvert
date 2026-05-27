@@ -115,13 +115,59 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>This page does all its work locally. Want to check? Open the page, turn off Wi-Fi, run a conversion. It still goes through.</p>
+
+    <h2>About the HEIC format</h2>
+    <p>HEIC is the Apple-flavored filename for HEIF, the High Efficiency Image File Format MPEG standardized in 2015. Apple made it the iPhone camera default in iOS 11 (late 2017) to cut storage in half without losing visible quality. Image data inside an HEIC is squeezed with HEVC (H.265), the same codec used for 4K video. Beyond compression, HEIC can hold multiple images, depth maps from portrait mode, and 10-bit color. Non-Apple ecosystems took years to catch up on support because HEVC carries patent licensing fees, which is why Microsoft, Google, and many older tools still treat HEIC as an edge case.</p>
+
+    <h2>About the PNG format</h2>
+    <p>PNG (Portable Network Graphics) was developed in 1995 and standardized by the W3C in 1996 as a free replacement for GIF, whose LZW compression was under patent at the time. It uses lossless DEFLATE compression — the same algorithm as ZIP — and supports a full alpha channel for transparency. PNG is the format of choice for screenshots, logos, line art, anything with sharp edges, and any image that will be re-edited. Files are larger than JPG because nothing's discarded; every pixel is preserved exactly.</p>
+
+    <h2>When to use HEIC to PNG (and when not to)</h2>
+    <p>Right call when:</p>
+    <ul>
+      <li>You'll edit the photo in Photoshop, Affinity, or GIMP and don't want compounding compression loss.</li>
+      <li>You're sending photos to a print shop that wants lossless source files.</li>
+      <li>You're cutting out a subject and need transparency around it.</li>
+      <li>An app or system service that won't read HEIC will read PNG.</li>
+    </ul>
+    <p>Don't bother if:</p>
+    <ul>
+      <li>The photo is going to social media — JPG is smaller and looks identical at display size.</li>
+      <li>You're just sharing snapshots with friends. PNG bloats the file with no visible benefit.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>PNG is huge.</strong> A 2 MB HEIC routinely becomes a 15 MB PNG. That's how lossless works — there's no slider to tighten this up. If size matters, use JPG or WEBP instead.</li>
+      <li><strong>Photo is sideways.</strong> The converter respects EXIF orientation. If a particular file still rotates wrong, the EXIF was probably stripped at some earlier step; open it in Photos and rotate-save first.</li>
+      <li><strong>Live Photo only saves the still.</strong> The moving portion is a separate .mov file Apple stores in iCloud, not embedded in the HEIC. No converter recovers it.</li>
+      <li><strong>HEIC won't open.</strong> A ProRAW shot uses a DNG file with an HEIC preview thumbnail. Export as standard HEIC from Apple Photos first.</li>
+      <li><strong>Colors look slightly off.</strong> HEIC can store Display P3 wide-gamut color. PNG handles ICC profiles, but not every viewer reads them. If saturation looks dialed back, the viewer is showing sRGB-clamped.</li>
+      <li><strong>Browser slows or stalls on big batches.</strong> HEIC decode plus PNG encode is heavy. Convert 20-40 photos at a time, not 200.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are my photos uploaded anywhere?</summary><p>No. libheif (compiled to WebAssembly) decodes inside your browser, and the canvas API re-encodes as PNG. Nothing leaves the tab.</p></details>
+    <details><summary>Does this work on iPhone?</summary><p>Yes. Safari on iOS reads HEIC natively and saves the resulting PNG to your Files app under Downloads.</p></details>
+    <details><summary>Does it work on Windows without the HEIC extension installed?</summary><p>Yes. The decoding is done by libheif in JavaScript, so you don't need Microsoft's paid HEIF/HEVC codec.</p></details>
+    <details><summary>Will transparency be preserved?</summary><p>HEIC photos straight from an iPhone don't have transparency. If you're starting from an HEIC that was edited with an alpha channel (rare), the PNG will keep it.</p></details>
+    <details><summary>How many photos can I do at once?</summary><p>A few dozen on a phone, several hundred on a desktop. Batches are limited by RAM more than CPU.</p></details>
+    <details><summary>What other formats can HEIC become?</summary><p>JPG (smaller file, lossy) and PDF (for bundling photos into a document) are both available on this site.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/heic-to-jpg.html"><h3>HEIC to JPG</h3><p>Lossy output for sharing, social, and small file size.</p></a>
+      <a class="card" href="/pages/heic-to-pdf.html"><h3>HEIC to PDF</h3><p>Bundle iPhone photos into a PDF for uploads or printing.</p></a>
+      <a class="card" href="/pages/png-to-jpg.html"><h3>PNG to JPG</h3><p>Shrink the PNG if it turns out to be larger than you needed.</p></a>
+      <a class="card" href="/pages/png-to-webp.html"><h3>PNG to WEBP</h3><p>Convert further to WEBP for smaller web-friendly files.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

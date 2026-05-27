@@ -128,13 +128,60 @@
       <li>Footnotes, page numbers, and running headers. These tend to show up inline.</li>
     </ul>
     <p>Start with a text-based PDF (one where you can highlight a sentence) and the result will be readable. Start with a scan and the result will be empty.</p>
+
+    <h2>About the PDF format</h2>
+    <p>Portable Document Format was introduced by Adobe Systems in 1993. The original goal was practical: John Warnock wanted documents to look the same on every screen and every printer, regardless of what software made them. Adobe held the spec privately until 2008, when PDF 1.7 was published as ISO 32000-1, making it an open international standard. A PDF stores fonts, vector shapes, and raster images at fixed coordinates. That's its strength for printing and its weakness for reading: a layout designed for an A4 sheet is awkward on a phone or a six-inch e-reader.</p>
+
+    <h2>About the EPUB format</h2>
+    <p>EPUB came out of the International Digital Publishing Forum in 2007, replacing the earlier Open eBook standard. The IDPF folded into the W3C in 2017, which now stewards the spec. The format is essentially a ZIP file containing XHTML, CSS, images, and a manifest describing the reading order. Because the content is HTML, the text reflows to any screen size and respects whatever font size the reader chooses. Kobo, Apple Books, Google Play Books, Nook, and (since 2022) Amazon's Send to Kindle all accept EPUB. It's the open ebook standard.</p>
+
+    <h2>When to use PDF to EPUB (and when not to)</h2>
+    <p>Reflowing a PDF makes sense when:</p>
+    <ul>
+      <li>You're reading a long text-heavy PDF on a phone and tired of pinch-zooming.</li>
+      <li>You want to use a sideloaded book on a Kobo, Kindle Scribe, or reMarkable with proper font controls.</li>
+      <li>The PDF is a novel or report someone exported from Word without thinking about ebook readers.</li>
+      <li>You want to listen to the document via a TTS app that prefers EPUB.</li>
+    </ul>
+    <p>Stay with the PDF if:</p>
+    <ul>
+      <li>The document is a form, contract, or anything where layout has legal meaning.</li>
+      <li>The PDF is a scan with no embedded text. Run <a href="/pages/pdf-ocr.html">OCR</a> first.</li>
+      <li>The content is heavily visual — atlases, art books, technical diagrams.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>EPUB comes out blank or nearly empty.</strong> The PDF has no extractable text layer — it's a scan. Run it through the OCR tool first, then come back.</li>
+      <li><strong>Columns are interleaved.</strong> Two-column journal papers confuse text extraction. Try the "single chapter" option and accept that you'll skim past some headers and footers.</li>
+      <li><strong>Footnotes appear in the middle of paragraphs.</strong> PDFs don't mark footnotes structurally; they're just text at the bottom of the page. The converter has no way to know they're not part of the body.</li>
+      <li><strong>Chapter detection picked the wrong headings.</strong> Switch from auto to a fixed page count (every 20 pages, say) for predictable splits.</li>
+      <li><strong>Password-protected PDF won't open.</strong> Remove the password in your PDF reader's print-to-PDF flow first, then convert.</li>
+      <li><strong>Special characters render as squares.</strong> The font in the PDF used a custom encoding the extractor couldn't decode. Rare but real for academic PDFs with math symbols.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is the PDF uploaded anywhere?</summary><p>No. The conversion is done entirely in your browser using pdf.js and JSZip. Open the Network tab in DevTools while you convert if you want to see for yourself.</p></details>
+    <details><summary>How big a PDF can I drop here?</summary><p>RAM is the limit. Anything up to a few hundred megabytes is fine on a laptop. On a phone with 4 GB of RAM, big PDFs may crash the tab.</p></details>
+    <details><summary>Does this work on iPad and iPhone?</summary><p>Yes. Safari handles the conversion. The EPUB lands in your Files app, ready to send to your reader app of choice.</p></details>
+    <details><summary>Will the images in the PDF come along?</summary><p>Inline images are dropped in this converter — the focus is reading order text. If keeping images is critical, use Calibre on a desktop where you can configure image handling.</p></details>
+    <details><summary>What if the result is messy?</summary><p>PDFs vary wildly in how cleanly they were authored. A book PDF made in InDesign converts neatly; a scientific paper with floating sidebars will need cleanup in an EPUB editor like Sigil.</p></details>
+    <details><summary>What formats does the result work with?</summary><p>Any reader app that takes EPUB, which is most of them. Send to Kindle accepts EPUB directly since late 2022 and converts it to Amazon's native format on their end.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/epub-to-pdf.html"><h3>EPUB to PDF</h3><p>Send the other direction when you need a fixed-page printable file.</p></a>
+      <a class="card" href="/pages/pdf-to-epub-with-chapters.html"><h3>PDF to EPUB with Chapters</h3><p>The same conversion with finer control over chapter detection.</p></a>
+      <a class="card" href="/pages/pdf-ocr.html"><h3>PDF OCR</h3><p>Pull text out of a scanned PDF before you try to convert it.</p></a>
+      <a class="card" href="/pages/pdf-for-kindle-scribe.html"><h3>PDF for Kindle Scribe</h3><p>EPUB tuned for the 10.2-inch Scribe screen and Send to Kindle.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

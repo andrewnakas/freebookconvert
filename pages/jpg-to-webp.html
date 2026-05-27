@@ -114,13 +114,59 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>The work happens locally in this tab. Disconnect from the internet after the page loads and you'll see the conversion still completes.</p>
+
+    <h2>About the JPG format</h2>
+    <p>JPEG was finalized in 1992 by the Joint Photographic Experts Group, an ISO/IEC working group. The .jpg short extension exists because old Windows insisted on three-letter file extensions; .jpeg is the same file. JPG uses discrete cosine transform compression — fantastic for photographs, lossy by design, and bad for sharp lines. The format has been the universal photo standard for three decades. Every camera, browser, social network, and print service handles JPG without question. Its weaknesses are also well known: no transparency, visible compression on flat colors, and degradation every time the file is re-saved.</p>
+
+    <h2>About the WEBP format</h2>
+    <p>WEBP came out of Google in 2010. The format was adapted from the VP8 video codec Google acquired with On2 Technologies that year, with lossless and animated modes added later. WEBP achieves roughly 25-35% smaller files than JPG at the same visual quality, and supports a full alpha channel. Adoption was slow at first because Safari and older browsers held out, but every modern browser ships WEBP support today. Google built WEBP specifically to cut page weight on the web, and that's still where it shines.</p>
+
+    <h2>When to use JPG to WEBP (and when not to)</h2>
+    <p>Good cases:</p>
+    <ul>
+      <li>You're optimizing images for a website and want page weight to drop.</li>
+      <li>You're storing a personal photo archive and want it to take less disk space.</li>
+      <li>You're sending photos through an app that supports WEBP natively (Discord, modern messengers).</li>
+      <li>You're prepping assets for an Android or web app where WEBP is the recommended format.</li>
+    </ul>
+    <p>Don't convert if:</p>
+    <ul>
+      <li>The photos are going somewhere with iffy WEBP support — older email clients, certain photo printers, legacy CMSes.</li>
+      <li>You're sending to recipients on Windows 7 or Office versions that won't preview WEBP.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>WEBP files came out bigger than the JPG.</strong> Rare, but it happens when the source JPG was already very heavily compressed. The encoder has nothing to gain. Stick with the JPG in that case.</li>
+      <li><strong>Visible smearing on faces or skies.</strong> Drop the quality setting one notch up, from Compact to Standard or High. Aggressive compression hits gradients first.</li>
+      <li><strong>Older software won't open the WEBP.</strong> WEBP support landed in Windows in 2018 and macOS in 2020. Anything older needs a viewer like XnView or IrfanView.</li>
+      <li><strong>Sideways photo.</strong> EXIF orientation should carry through. If it doesn't, rotate-save the JPG first in any image viewer.</li>
+      <li><strong>Wrong file extension after download.</strong> Browsers occasionally save .webp as .webp.jpg on certain mobile configurations. Rename the extension manually if needed.</li>
+      <li><strong>Color shift on saturated images.</strong> WEBP uses YUV color space internally, same as JPG, so this is rare — but on wide-gamut sources it can clamp. Use the High preset if it matters.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are my files uploaded?</summary><p>No. The browser handles decode and re-encode in this tab. Open DevTools' Network panel and watch a conversion — there's no upload.</p></details>
+    <details><summary>How much smaller will the WEBP be?</summary><p>Typically 25-35% smaller than the JPG at Standard quality. The exact ratio depends on the photo — busy scenes compress less aggressively than smooth ones.</p></details>
+    <details><summary>How many photos can I batch?</summary><p>Hundreds on a laptop; dozens comfortably on a phone. Compression is fast.</p></details>
+    <details><summary>Will WEBP work on iPhone?</summary><p>Yes. iOS has supported WEBP since iOS 14 in late 2020. Older versions need a third-party viewer.</p></details>
+    <details><summary>Is WEBP good for archival?</summary><p>For an archive you want to last decades, JPG and PNG have a longer track record. WEBP is widely supported but newer.</p></details>
+    <details><summary>What about HEIC?</summary><p>For HEIC sources, use <a href="/pages/heic-to-jpg.html">HEIC to JPG</a> first, or one of the HEIC-specific converters.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/webp-to-jpg.html"><h3>WEBP to JPG</h3><p>Go the other way when a tool refuses to open WEBP.</p></a>
+      <a class="card" href="/pages/png-to-webp.html"><h3>PNG to WEBP</h3><p>Compress lossless PNGs to much smaller WEBPs.</p></a>
+      <a class="card" href="/pages/jpg-to-png.html"><h3>JPG to PNG</h3><p>Lossless output when you'll edit the photo further.</p></a>
+      <a class="card" href="/pages/heic-to-jpg.html"><h3>HEIC to JPG</h3><p>iPhone HEIC to JPG before further conversion.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

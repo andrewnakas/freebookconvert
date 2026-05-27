@@ -114,13 +114,58 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>Conversion happens in this tab. Pull the plug on your Wi-Fi after the page loads and the converter still runs.</p>
+
+    <h2>About the PNG format</h2>
+    <p>PNG (Portable Network Graphics) was published by the W3C in 1996 as a patent-free alternative to GIF after Unisys tried to enforce its LZW compression patent. It's a fully lossless raster format with 8-bit alpha transparency, gamma correction, ICC profile support, and palette/grayscale modes. PNG compresses flat colors and sharp edges efficiently — which is why screenshots, UI mockups, and pixel art end up small as PNGs — but it bloats for photographs because the DEFLATE algorithm wasn't built for natural images. That's the entire reason this conversion to JPG exists.</p>
+
+    <h2>About the JPG format</h2>
+    <p>JPEG was specified by the Joint Photographic Experts Group in 1992 and is still the format most cameras, phones, and websites default to for photographs. It uses a discrete cosine transform plus quantization to throw away the parts of an image the human eye barely notices. The result is dramatic compression — a 5 MB photo PNG often becomes a 400 KB JPG with no visible difference. JPG has no transparency channel, no animation, and degrades when re-saved repeatedly. None of that matters for a one-shot photo export. All of it matters if the image is a logo with a transparent background.</p>
+
+    <h2>When to use PNG to JPG (and when not to)</h2>
+    <p>Pick this conversion when:</p>
+    <ul>
+      <li>The PNG is a photograph and you want a manageable file size for email or upload.</li>
+      <li>You're posting to a site (forums, classifieds, marketplaces) with a hard size cap.</li>
+      <li>You don't need transparency in the output — the image has a solid background or you're fine with white fill.</li>
+      <li>You're freeing up disk space on a folder full of phone or screen captures.</li>
+    </ul>
+    <p>Skip it when:</p>
+    <ul>
+      <li>The image is a logo, icon, screenshot of text, or anything with sharp edges. JPG smears these. Use WEBP or keep the PNG.</li>
+      <li>You need transparency. JPG doesn't have it.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>Text or sharp edges look fuzzy.</strong> JPG's DCT compression smudges anything high-contrast. For screenshots, use PNG or WEBP. If JPG is mandatory, push the quality up to 0.95.</li>
+      <li><strong>Transparent areas turned white.</strong> Expected — JPG has no alpha. If you wanted to keep transparency, convert to WEBP instead.</li>
+      <li><strong>The output is bigger than the source PNG.</strong> Rare, but happens with already-tiny PNGs (icons, sparse pixel art). PNG wins on those. Keep the original.</li>
+      <li><strong>Color cast or banding on gradients.</strong> JPG handles gradients poorly at lower quality settings. Bump the slider up; if that doesn't help, the source already had banding.</li>
+      <li><strong>EXIF orientation came out rotated.</strong> Some PNGs converted from camera HEIC carry stale orientation tags. Use a desktop tool like ExifTool to strip them before converting.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does this upload my PNG anywhere?</summary><p>No. The PNG is decoded by the browser's Canvas API and re-encoded as JPG entirely in this tab. Open DevTools and watch the Network tab to verify.</p></details>
+    <details><summary>What quality setting should I pick?</summary><p>Standard (0.85) is the right default for almost everything. Use High (0.95) for photos you'll print, Compact (0.7) for thumbnails or when you specifically need a tiny file.</p></details>
+    <details><summary>Can I convert dozens of PNGs at once?</summary><p>Yes. Drop a whole folder in and get a single ZIP back. Limited only by your device's memory.</p></details>
+    <details><summary>What happens to transparent backgrounds?</summary><p>They get filled with white. If that's not what you want, use the PNG to WEBP converter instead — WEBP supports alpha.</p></details>
+    <details><summary>Does it work on mobile?</summary><p>Yes. Any modern Safari, Chrome, or Firefox build handles it. Larger batches just take longer on a phone.</p></details>
+    <details><summary>Will quality keep degrading if I convert back and forth?</summary><p>Yes — JPG is lossy. Each save throws away a little more detail. Keep the PNG as your master if you'll re-edit.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/jpg-to-png.html"><h3>JPG to PNG</h3><p>Go the other way when you need lossless for editing.</p></a>
+      <a class="card" href="/pages/png-to-webp.html"><h3>PNG to WEBP</h3><p>Shrink the file but keep transparency.</p></a>
+      <a class="card" href="/pages/heic-to-jpg.html"><h3>HEIC to JPG</h3><p>Convert iPhone photos to JPG instead.</p></a>
+      <a class="card" href="/pages/images-to-pdf.html"><h3>Images to PDF</h3><p>Bundle a batch of images into a single PDF.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

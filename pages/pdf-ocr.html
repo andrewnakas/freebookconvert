@@ -134,13 +134,41 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>The PDF stays local. After the page loads, the only network requests are for the OCR engine and language data, both fetched once and cached. Open DevTools, switch to the Network tab, and watch for yourself before you run a conversion.</p>
+
+    <h2>A short history of OCR</h2>
+    <p>Optical character recognition isn't new. Gustav Tauschek patented a primitive reading machine in 1929. Ray Kurzweil built the first general-purpose omnifont system in the 1970s, originally to read books to blind users. Google open-sourced Tesseract in 2005 after taking it over from HP Labs, and the LSTM-based engine that powers Tesseract 4 and 5 — the version running on this page — was added around 2018. Today's open-source OCR is good enough for clean printed text in any of 100+ languages. It still struggles with handwriting, heavy ornamental fonts, and anything below about 150 DPI.</p>
+
+    <h2>Tips for cleaner output</h2>
+    <ul>
+      <li><strong>Scan at 300 DPI or higher.</strong> Below 200 DPI, accuracy collapses. The OCR engine literally cannot find the strokes of the letters.</li>
+      <li><strong>Black-and-white scans beat color.</strong> Run your scanner in document mode, not photo mode. Less data, sharper edges.</li>
+      <li><strong>Straighten the page.</strong> Tesseract handles small skew, but pages tilted more than 5 degrees lose accuracy fast. Most scanners deskew automatically.</li>
+      <li><strong>Watch out for crammed columns.</strong> Two narrow columns with little gutter often get merged. If accuracy matters, OCR each column separately and stitch the text back together.</li>
+      <li><strong>Strip stamps and watermarks first.</strong> A faint "DRAFT" diagonal across each page will sometimes be recognized as text and contaminate the output.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does my PDF get uploaded for OCR?</summary><p>No. Both pdf.js and Tesseract.js run as WebAssembly inside your browser tab. The only network traffic is the initial download of the OCR model files, which happens once and is cached.</p></details>
+    <details><summary>How accurate is it on a clean scan?</summary><p>For high-quality scans of standard typography, expect 95-99% character accuracy. Numbers and special symbols are slightly worse. Bad scans drop to 80% or below.</p></details>
+    <details><summary>Does it support languages other than English?</summary><p>The default model is English-only because adding more languages roughly doubles the download and memory cost per language. Contact us if you need a specific language and we'll consider adding a variant page.</p></details>
+    <details><summary>Can it read handwriting?</summary><p>No. Tesseract is for printed text. Handwriting requires a different class of model and is genuinely hard. For handwritten notes, look at commercial tools like Google Lens or Microsoft OneNote.</p></details>
+    <details><summary>What's the difference between this and Make PDF Searchable?</summary><p>This page can do either. "Make PDF Searchable" is a dedicated variant focused on the hidden-text-layer output specifically.</p></details>
+    <details><summary>Are there file size limits?</summary><p>Memory is the limit, not policy. Several-hundred-page PDFs at 300 DPI work on a laptop. On a phone, expect the tab to crash above 100-150 pages.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/scanned-pdf-to-text.html"><h3>Scanned PDF to Text</h3><p>Just the words, no PDF wrapper, for scripts or AI tools.</p></a>
+      <a class="card" href="/pages/searchable-pdf.html"><h3>Make PDF Searchable</h3><p>Add a hidden text layer to a scan so Ctrl-F works.</p></a>
+      <a class="card" href="/pages/image-to-text.html"><h3>Image to Text (OCR)</h3><p>OCR a single screenshot or photo instead of a PDF.</p></a>
+      <a class="card" href="/pages/recipe-screenshot-to-text.html"><h3>Recipe Screenshot to Text</h3><p>Pull a recipe out of a screenshot.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

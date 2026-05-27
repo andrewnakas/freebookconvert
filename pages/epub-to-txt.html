@@ -97,13 +97,59 @@
 
     <h2>What you get in the .txt</h2>
     <p>Every word of the book, in reading order, with chapter headings called out. Bold, italics, fonts, and images get dropped. That's plain text. If you need the styling, convert to PDF instead.</p>
+
+    <h2>About the EPUB format</h2>
+    <p>EPUB was released by the International Digital Publishing Forum in 2007 and is now maintained by the W3C (after the IDPF merged in 2017). Open the file with a ZIP tool and you'll find XHTML chapters, CSS, images, and an OPF manifest declaring the reading order. Because the content is HTML under the hood, an EPUB can be styled, hyperlinked, and reflowed across any screen size. It's the format Kobo, Apple Books, Google Play Books, and (since 2022) Send to Kindle all accept. The structure is what makes a clean EPUB-to-text conversion possible: chapters are real headings, not just larger font sizes.</p>
+
+    <h2>About the TXT format</h2>
+    <p>Plain text predates personal computers — the modern ASCII standard is from 1963, with UTF-8 (the Unicode encoding most .txt files use now) finalized in 1993. There's no committee that "owns" plain text; it's just bytes that represent characters. A .txt file has no formatting, no images, no chapters, no metadata. That sounds like a downside until you realize it's also why every editor, every script, every AI model, and every screen reader on earth handles it without complaint.</p>
+
+    <h2>When to use EPUB to TXT (and when not to)</h2>
+    <p>Good fits:</p>
+    <ul>
+      <li>Feeding the book into an LLM or an analysis script that wants raw text.</li>
+      <li>Using a text-to-speech tool that only reads plain text files.</li>
+      <li>Searching across an entire book with grep, ripgrep, or your editor's find-in-files.</li>
+      <li>Pulling quotes into a notes app without dragging styling along.</li>
+      <li>Long-term archival in a format that will still be readable in 50 years.</li>
+    </ul>
+    <p>Bad fits:</p>
+    <ul>
+      <li>You want to read the book on an e-reader — plain text on a Kindle is unpleasant. Keep the EPUB.</li>
+      <li>The book is heavily illustrated. The .txt will be missing most of the actual content.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>Special characters show up as boxes.</strong> Your text editor opened the file in the wrong encoding. The output is UTF-8 — set the editor to match.</li>
+      <li><strong>Chapter breaks aren't obvious.</strong> They are in the file (blank lines and the chapter title), but if you want hard separators, open the result in an editor and find-and-replace blank lines with <code>===</code>.</li>
+      <li><strong>Footnote markers appear as numbers inline.</strong> EPUBs don't always wrap footnote links in semantic markup. The conversion can't tell a footnote ref from regular text.</li>
+      <li><strong>Output is empty.</strong> The EPUB is probably DRM-protected (purchased from a store with locks). DRM blocks any conversion. Open it in its native reader app instead.</li>
+      <li><strong>Lines are weirdly wrapped.</strong> The text isn't hard-wrapped — it's one long paragraph per line. Tools like <code>fold -s -w 80</code> can rewrap.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is the EPUB uploaded?</summary><p>No. The file is read by JavaScript in your browser. Disconnect your internet after the page loads and the conversion still completes.</p></details>
+    <details><summary>What size EPUB can I drop in?</summary><p>Practically unlimited. Even a 50 MB EPUB produces a text file in seconds because no rendering is involved — just text extraction.</p></details>
+    <details><summary>Does this work on a phone?</summary><p>Yes. The result downloads to your default location. On iOS it'll be in the Files app under Downloads.</p></details>
+    <details><summary>Will the metadata (author, title) be included?</summary><p>The first lines of the output include the book title and author from the EPUB's OPF metadata, then the chapters start.</p></details>
+    <details><summary>What if I want a Markdown file instead?</summary><p>Open the .txt in any editor and add the small amount of Markdown you need. Automated EPUB-to-Markdown tools tend to over-format, which is annoying to clean up later.</p></details>
+    <details><summary>What other formats can I get from EPUB?</summary><p>PDF on this site. For Kindle's native AZW3, send the EPUB to your Send to Kindle email and Amazon converts it server-side.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/epub-to-pdf.html"><h3>EPUB to PDF</h3><p>Same source, fixed-page output. Good for printing or sharing.</p></a>
+      <a class="card" href="/pages/pdf-to-epub.html"><h3>PDF to EPUB</h3><p>Reverse direction: a fixed PDF into a reflowable ebook.</p></a>
+      <a class="card" href="/pages/image-to-text.html"><h3>Image to Text</h3><p>OCR a photo or screenshot into plain text.</p></a>
+      <a class="card" href="/pages/scanned-pdf-to-text.html"><h3>Scanned PDF to Text</h3><p>Extract text from PDF scans where the words are pixels, not characters.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

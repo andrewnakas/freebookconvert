@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEIC explained: why your iPhone photos won't open on Windows | FreeBookConvert Guides</title>
+<meta name="description" content="HEIC is Apple's variant of HEIF, encoded with HEVC. It's half the size of JPEG, and for years HEVC's patent licensing kept it locked out of Windows and Android.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/guides/heic-explained.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="HEIC explained: why your iPhone photos won't open on Windows">
+<meta property="og:description" content="Why Apple's iPhone-default photo format gives the rest of the world such a hard time.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://freebookconvert.com/guides/heic-explained.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HEIC explained: why your iPhone photos won't open on Windows",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {"@type": "Organization", "name": "FreeBookConvert"},
+  "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
+  "mainEntityOfPage": "https://freebookconvert.com/guides/heic-explained.html"
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="page-intro">
+    <h1>HEIC explained: why your iPhone photos won't open on Windows</h1>
+    <p>The short version: Apple picked a smarter image codec than JPEG, and the smart codec came with a patent bill that everyone else didn't want to pay.</p>
+    <p style="font-size:0.9rem;color:#666"><em>Published 2026-05-26 &middot; <a href="/guides/">All guides</a></em></p>
+  </section>
+  <section class="content-section">
+    <h2>HEIF vs HEIC: not actually the same thing</h2>
+    <p>People use the terms interchangeably and shouldn't. HEIF, the High Efficiency Image File Format, is a container. It was standardized by the Moving Picture Experts Group in 2015 as part of ISO/IEC 23008-12. The container itself is codec-agnostic &mdash; you can put HEVC-encoded images inside, or AV1-encoded images (in which case the file is called AVIF), or JPEG, or several other things.</p>
+    <p>HEIC is the specific flavor of HEIF that uses HEVC (H.265) for the image data. It's the variant Apple ships. When your iPhone saves a photo with the <code>.heic</code> extension, what's on disk is a HEIF container holding one or more HEVC-encoded still images, plus thumbnails, plus EXIF metadata, plus &mdash; if you took a Live Photo &mdash; a short HEVC-encoded video and an audio track. A single HEIC file can hold burst sequences, depth maps, alpha channels, and image edits applied non-destructively. It's closer to a Photoshop document in its ambitions than to a JPEG.</p>
+
+    <h2>Apple's reason: roughly half the size</h2>
+    <p>iOS 11 shipped on 19 September 2017, and with it the default camera format on the iPhone 7 and newer changed from JPEG to HEIC. Apple's pitch was straightforward: at comparable visual quality, HEIC files are roughly half the size of JPEGs. The exact ratio depends on the image &mdash; flat skies compress especially well, busy foliage less so &mdash; but a 50% size reduction at the same perceptual quality is broadly accurate and consistent with the HEVC compression gains over JPEG's underlying DCT-based scheme.</p>
+    <p>For Apple, this matters in three places: the photos take up less space on the device, they upload to iCloud faster and cheaper, and they download to other devices quicker. For a company that sells storage tiers, getting the same photo library into half the space was good for users and good for margins.</p>
+
+    <h2>The HEVC patent problem</h2>
+    <p>HEVC is the video codec that powers HEIC, and its patent licensing is famously a mess. Where the previous-generation H.264 codec ended up with a single relatively well-behaved patent pool (MPEG LA), H.265 fractured into at least three competing pools &mdash; MPEG LA, HEVC Advance (now Access Advance), and Velos Media &mdash; plus a number of patent holders who never joined any pool and license bilaterally. The combined royalty obligations were both higher and more uncertain than for H.264.</p>
+    <p>Apple paid the fees, baked HEVC decoding into iOS and macOS hardware, and moved on. Microsoft and Google did not. On Windows, the HEVC Video Extensions necessary to view HEIC files have been a paid add-on in the Microsoft Store for years &mdash; one dollar in most regions &mdash; because Microsoft would otherwise owe royalties per Windows install. (There is a free version Microsoft pre-installs on some OEM machines and a free "from device manufacturer" variant, but the standard consumer path is the paid app.) Android phone makers similarly had to pick whether to license; many didn't, and so an iPhone photo airdropped or messaged to an Android phone would, for a long time, simply fail to open.</p>
+    <p>The patent situation is the entire reason a perfectly-encoded photo file from an iPhone fails to display when emailed to a relative on a Dell laptop. There's nothing wrong with the file. The codec to decode it just isn't installed, because installing it without a license is an infringement.</p>
+
+    <h2>How to make your iPhone shoot JPEG instead</h2>
+    <p>If you don't need the size savings and you do need universal compatibility, you can switch. On iOS, go to Settings &rarr; Camera &rarr; Formats and pick "Most Compatible." That sets the capture format to JPEG (or H.264 video) instead of HEIC/HEVC. New photos you take will be JPEGs. Photos already in your library remain HEIC; the setting doesn't retroactively re-encode them.</p>
+    <p>There's also a more interesting option: Settings &rarr; Photos &rarr; "Transfer to Mac or PC." If you set this to "Automatic," iOS will convert HEIC to JPEG on the fly when you connect your phone to a computer over USB &mdash; the device keeps the HEIC original but hands you a JPEG. "Keep Originals" does the opposite. AirDrop, by the way, has its own behavior: AirDropping a photo to a Mac sends the HEIC; AirDropping to an iCloud-shared album or to certain apps may convert.</p>
+
+    <h2>Converting in bulk</h2>
+    <p>If you've already accumulated a few thousand HEICs and want them as JPEGs or PNGs, the options break down roughly as follows.</p>
+    <p>On a Mac, the built-in Preview app can convert: open the files, File &rarr; Export, pick JPEG or PNG. For batches, the Photos app's Export menu (File &rarr; Export &rarr; "Export Unmodified Originals" vs "Export 1 Photo") handles bulk conversion to JPEG. Automator and Shortcuts can build a folder action that converts on drop.</p>
+    <p>On Windows, with the HEVC extensions installed, the Photos app will open HEICs but won't bulk-convert. Third-party tools (IrfanView with the HEIC plugin, XnConvert, ImageMagick from the command line if you're comfortable with it) handle batches. Some image hosts and cloud services convert on upload, which is convenient but means uploading your photo library to a stranger.</p>
+    <p>If you'd rather convert without uploading anything, the in-browser converters here &mdash; <a href="/pages/heic-to-jpg.html">HEIC to JPG</a>, <a href="/pages/heic-to-png.html">HEIC to PNG</a>, and <a href="/pages/heic-to-pdf.html">HEIC to PDF</a> &mdash; do the decode and re-encode locally with WebAssembly. Useful when the photos in question are passports, IDs, medical records, or anything else you'd rather not send to a server.</p>
+
+    <h2>What metadata survives the trip</h2>
+    <p>A HEIC file holds quite a lot of metadata: capture date, GPS coordinates, lens model, exposure settings, depth-map data, image edits, the original orientation, color profile information. When you convert to JPEG or PNG, some of this transfers cleanly and some doesn't.</p>
+    <p>EXIF (the standard photo metadata block) survives in JPEG output if the converter preserves it; PNG can carry EXIF but most viewers ignore it. Depth maps, Live Photo video tracks, burst sequences, and the non-destructive edit history are HEIF-container features that JPEG simply has no slot for &mdash; they get dropped. GPS coordinates transfer if you let them; many converters offer an option to strip GPS for privacy. Color profiles transfer to JPEG (which supports ICC profiles) and survive in PNG (which also supports them). If you're shooting in Apple's Display P3 wide-gamut color space, converting to sRGB JPEG involves a color-space conversion that the converter is doing for you, whether or not it tells you.</p>
+
+    <h2>When HEIC is actually worth keeping</h2>
+    <p>The format is genuinely good. If you live entirely inside the Apple ecosystem &mdash; iPhone, Mac, iPad, iCloud Photos &mdash; HEIC works invisibly and saves real money on storage. The compression artifacts are noticeably less ugly than JPEG's at the same file size. Depth maps and Live Photos depend on the container.</p>
+    <p>The friction is purely at the edges, when a HEIC has to leave Apple's walled garden. For those cases, converting to JPEG (universal, lossy, slightly bigger) or PNG (universal, lossless, considerably bigger) is the right move. AVIF, the AV1-encoded sibling of HEIC, sidesteps the patent issue and is broadly supported in modern browsers, but Apple's cameras don't produce AVIF natively, so it's mostly relevant for web delivery rather than for your photo archive.</p>
+
+    <h2>The slow thaw</h2>
+    <p>Windows 11 and recent Android versions are noticeably friendlier to HEIC than their predecessors. Google Photos has handled HEIC uploads without complaint for years. Microsoft Outlook Web auto-previews HEIC attachments. Some HEVC patents have begun to expire (the codec was finalized in 2013, and patent terms typically run twenty years, though the relevant patents have varying filing dates), which over the next several years will simplify the licensing picture. In practice, for the foreseeable future, you'll still occasionally hit a tool or a website that refuses HEIC and demands JPEG. Knowing why &mdash; and having a conversion path that doesn't involve uploading your photos to someone else &mdash; is the practical takeaway.</p>
+
+    <h2>Where to go from here</h2>
+    <p>If you're hitting the problem right now, the quickest fix is changing the iPhone capture setting to "Most Compatible" so new photos are JPEGs. For existing HEICs you can't open, batch-convert with one of the tools mentioned above. For one-offs, the browser converters here will turn a HEIC into a JPG, PNG, or PDF without round-tripping through a server &mdash; useful when the photo is something you'd rather not hand to a stranger.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>

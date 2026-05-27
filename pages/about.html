@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — FreeBookConvert</title>
-<meta name="description" content="About FreeBookConvert: privacy-first, browser-based file converters that never upload your files.">
+<meta name="description" content="About FreeBookConvert: who runs it, why it exists, how the browser-based conversion works, and how it stays free.">
+<meta name="robots" content="index,follow">
 <link rel="canonical" href="https://freebookconvert.com/pages/about.html">
 <link rel="icon" href="../favicon.ico">
 <link rel="stylesheet" href="../css/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -23,11 +23,11 @@
   <div class="container">
     <a href="../index.html" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="epub-to-pdf.html">EPUB→PDF</a>
-      <a href="pdf-to-epub.html">PDF→EPUB</a>
-      <a href="cbz-to-pdf.html">CBZ→PDF</a>
-      <a href="epub-to-txt.html">EPUB→TXT</a>
-      <a href="heic-to-pdf.html">HEIC→PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="pdf-to-jpg.html">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
@@ -35,35 +35,62 @@
   <section class="page-intro">
     <h1>About FreeBookConvert</h1>
     <p>Online file converters built on a simple principle: your files belong on your device.</p>
-    <p style="font-size:0.9rem"><em>Last updated: 2026-05-15</em></p>
+    <p style="font-size:0.9rem"><em>Last updated: 2026-05-26</em></p>
   </section>
 
   <section class="content-section">
-    <h2>The privacy problem with most converters</h2>
-    <p>Almost every popular online file converter works by uploading your file to a server, processing it there, and sending the result back. That's fine for cat memes — but problematic for personal ebooks, private documents, business contracts, or photos you'd rather not hand to a stranger's server.</p>
+    <h2>Who runs this site</h2>
+    <p>FreeBookConvert is built and operated by Andrew Nakas, an independent software developer based in the United States. It is not a venture-backed company, not a shell of a larger network, and not staffed by an SEO content team. One person writes the converters, maintains the infrastructure, and answers email.</p>
+    <p>The site started as a personal project after one too many encounters with online converters that demanded an upload, an email address, and the patience to wait through a "Pro" upsell for a one-line text extraction. Every converter on FreeBookConvert was written from scratch around open-source libraries that can run inside a browser, with the goal that you can do the work without trusting anyone — including us — with the contents of your file.</p>
 
-    <p>The FBI and Malwarebytes have <a href="https://www.malwarebytes.com/blog/news/2025/03/warning-over-free-online-file-converters-that-actually-install-malware" rel="noopener">repeatedly warned</a> about malicious file converter sites that serve malware along with — or instead of — the converted file.</p>
+    <h2>The privacy problem with most converters</h2>
+    <p>Almost every popular online file converter works by uploading your file to a server, processing it there, and sending the result back. That model is fine for cat memes. It's problematic for personal ebooks, private documents, business contracts, manuscripts, tax forms, or photos you'd rather not hand to a stranger's server. In March 2025 the FBI's Denver field office and Malwarebytes publicly warned that a measurable number of online file-converter sites had become a vector for malware delivery and data theft, with attackers bundling malicious payloads into the converted output or scraping uploaded documents for credentials and financial data.</p>
+    <p>Even when an operator is honest, "deleted after one hour" is a claim nobody can verify from the outside. Once a file leaves your machine, you can't get it back.</p>
 
     <h2>How FreeBookConvert is different</h2>
-    <p>Every conversion on this site runs inside your web browser using JavaScript and WebAssembly. The libraries that do the heavy lifting (JSZip for archives, pdf-lib for PDF assembly, pdf.js for PDF parsing, libheif via heic-to for HEIC decoding) are mature open-source projects that have been used in millions of apps.</p>
+    <p>Every conversion on this site runs inside your web browser using JavaScript and WebAssembly. The libraries that do the heavy lifting are mature open-source projects with millions of installs:</p>
+    <ul>
+      <li><strong>JSZip</strong> for reading and writing the ZIP container behind EPUB, CBZ, and our batch ZIP outputs.</li>
+      <li><strong>pdf-lib</strong> for assembling PDFs and editing existing ones.</li>
+      <li><strong>pdf.js</strong> (Firefox's own engine) for parsing PDFs and rendering pages.</li>
+      <li><strong>heic-to</strong> (built on libheif compiled to WebAssembly) for decoding iPhone HEIC photos.</li>
+      <li><strong>Tesseract.js</strong> (a WebAssembly build of Google's open-source Tesseract) for OCR on scanned PDFs and images.</li>
+    </ul>
 
-    <p>When you drop a file onto a converter page, here's what happens:</p>
+    <p>When you drop a file onto a converter page, here is exactly what happens:</p>
     <ol>
-      <li>The file is read into your browser's memory as a Blob.</li>
-      <li>JavaScript code already running on the page parses it.</li>
+      <li>Your browser reads the file into memory as a Blob.</li>
+      <li>JavaScript already running on the page parses it (no further downloads of your file, no transmission).</li>
       <li>A new file is assembled in memory.</li>
-      <li>Your browser saves the new file to your downloads folder.</li>
+      <li>Your browser saves the new file to your downloads folder using a standard <code>&lt;a download&gt;</code> link or <code>URL.createObjectURL</code>.</li>
     </ol>
-    <p>No upload. No server. You can disconnect from the internet after the page loads and everything still works.</p>
+    <p>No upload, no server. You can disconnect from the internet after the page loads and the conversions keep working. We encourage you to verify this — open DevTools, switch to the Network tab, and watch the requests during a conversion.</p>
 
     <h2>How it stays free</h2>
-    <p>FreeBookConvert is funded by unobtrusive display ads. Since there are no per-conversion server costs, ads alone are enough to keep the lights on without paywalls, signup forms, or watermarks.</p>
+    <p>FreeBookConvert is funded by unobtrusive display advertising served by Google AdSense. Since there are no per-conversion server costs (no compute, no storage, no bandwidth for the files themselves), ads alone are enough to cover the hosting bill without paywalls, signup forms, watermarks, file-size limits, or "premium" tiers. If you'd rather not see ads, browser ad blockers work normally on this site; please consider <a href="contact.html">contacting us</a> with feedback instead of just blocking, especially if you encounter an ad you found inappropriate.</p>
+
+    <h2>Editorial policy</h2>
+    <p>The content on this site (the converter pages and the <a href="/guides/">guides</a>) is written and reviewed by the operator. We don't republish content from elsewhere, we don't use AI-generated marketing copy for the explainer text, and we don't accept paid placements or sponsored articles. Where we cite a fact — a format's history, a library's behavior, a regulator's warning — we link to the primary source where one exists.</p>
+    <p>If you spot a factual error on any page, email us. Corrections happen the same week.</p>
+
+    <h2>What this site doesn't do</h2>
+    <ul>
+      <li>It doesn't strip DRM. EPUBs from Apple Books, Kindle, library lending services, and similar sources cannot be converted here. Stripping DRM is a copyright violation in most jurisdictions and we don't enable it.</li>
+      <li>It doesn't store or distribute copyrighted content. Nothing you convert is uploaded to us; we have no library of files.</li>
+      <li>It doesn't track you across the web. Standard Google Analytics with anonymization is the only third-party analytics; there is no advertising profiler beyond Google AdSense, which you can opt out of (<a href="privacy.html">privacy policy section 6</a>).</li>
+    </ul>
+
+    <h2>Stack and infrastructure</h2>
+    <p>The site is static HTML, CSS, and JavaScript served from Cloudflare Pages. There is no backend application, no database of users, no server-side rendering, and no per-user state stored anywhere. The strict Content Security Policy on each converter page limits the network destinations any script can reach, which is structural evidence that a page cannot exfiltrate your file even if it wanted to. Source is hosted in a private repository; we plan to open-source individual converters as they mature.</p>
+
+    <h2>Contact</h2>
+    <p>Bugs, feature requests, factual corrections, privacy questions, press inquiries, and DMCA notices all go to <a href="mailto:contact@freebookconvert.com">contact@freebookconvert.com</a>. See the <a href="contact.html">Contact page</a> for what to include in each case.</p>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="about.html">About</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="about.html">About</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="contact.html">Contact</a></nav>
   </div>
 </footer>
 </body>

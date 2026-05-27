@@ -112,13 +112,59 @@
 
     <h2>Reordering</h2>
     <p>Pages follow the order you added the photos. Easiest way to reorder: add the photos in the order you want them. To swap one, hit the &times; on it and add it back at the end.</p>
+
+    <h2>About the HEIC format</h2>
+    <p>HEIC is Apple's file extension for HEIF — High Efficiency Image Format — a container standardized by the Moving Picture Experts Group (MPEG) in 2015. The image data inside uses HEVC (H.265) intra-frame compression, the same codec used for 4K video. Apple flipped to HEIC as the default camera output in iOS 11 in 2017 because it cuts photo file sizes roughly in half compared to JPG at the same visible quality. The format also supports things JPG never could: live photos, depth maps, multiple images in one file, and 10-bit color. The downside is licensing — HEVC has patent fees — which is why Windows, Android, and most web apps were slow to support it.</p>
+
+    <h2>About the PDF format</h2>
+    <p>PDF arrived in 1993 from Adobe as a way to freeze a document's layout. After more than a decade as a proprietary spec it became an open ISO standard in 2008 (ISO 32000-1), with PDF 2.0 (ISO 32000-2) following in 2017. The format embeds fonts, vector paths, and bitmap images at fixed coordinates per page. For a photo-to-PDF job, the PDF is acting as a thin container that everything from a bank's upload portal to an e-reader will accept, because nobody had to install anything special to view a PDF in twenty years.</p>
+
+    <h2>When to use HEIC to PDF (and when not to)</h2>
+    <p>Useful when:</p>
+    <ul>
+      <li>An office uploader, insurance portal, or school form demands PDF and won't accept HEIC or JPG.</li>
+      <li>You're sending a stack of receipts or document photos as one attachment.</li>
+      <li>You need a printable layout — most desktop print dialogs handle PDF more reliably than image batches.</li>
+      <li>You're emailing photos to someone on Windows or older Android who has trouble opening HEIC at all.</li>
+    </ul>
+    <p>Skip the PDF wrap if:</p>
+    <ul>
+      <li>You only have one photo and the recipient just wants an image — send it as JPG instead.</li>
+      <li>The recipient wants editable photo files for a design project.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>PDF is enormous.</strong> Default quality embeds the photos at near-original resolution. Drop to Standard or Compact for a much smaller PDF that still looks fine on screens.</li>
+      <li><strong>Sideways photo.</strong> The converter honors EXIF orientation. If a photo is still wrong, open it in Photos, rotate, save a copy, and use that copy.</li>
+      <li><strong>Some photos won't decode.</strong> Photos shot in Apple's ProRAW format (DNG) have an HEIC thumbnail but the main image is RAW. Export them as standard JPG/HEIC from the Photos app first.</li>
+      <li><strong>Live Photo motion is lost.</strong> Only the still frame goes into the PDF. The video portion is in a separate file Apple stores alongside the HEIC.</li>
+      <li><strong>Mixed orientation looks weird.</strong> Portrait shots fill the A4 page; landscape shots leave white space top and bottom. Rotate the landscape originals in Photos if you want them full-width on landscape pages.</li>
+      <li><strong>Browser stalls on a huge batch.</strong> HEIC decoding is CPU-heavy. Convert 30 photos at a time rather than 300.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Do my photos leave the phone or laptop?</summary><p>No. libheif (WebAssembly) and the canvas API do the work locally. Open the Network tab in DevTools and you'll see no upload traffic.</p></details>
+    <details><summary>Will this run on iPhone Safari?</summary><p>Yes. It's actually the easiest case — iOS hands HEIC files to the converter in their native format and the PDF saves to your Files app.</p></details>
+    <details><summary>What about Windows or Chromebook?</summary><p>Works there too. The libheif build handles HEIC decoding regardless of OS, so you don't need Microsoft's paid HEIC codec.</p></details>
+    <details><summary>Can I send the PDF straight to email after?</summary><p>Yes. The download saves locally; from there it's the same as any other PDF attachment.</p></details>
+    <details><summary>What's the max number of photos?</summary><p>A few dozen is comfortable on a phone. A laptop handles 100+ without trouble. RAM is the only ceiling.</p></details>
+    <details><summary>Does this preserve photo metadata?</summary><p>Capture date and basic EXIF survive as page metadata in the PDF, but it's not exposed in most PDF readers. If you need a clean audit trail, keep the original HEIC files alongside.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/heic-to-jpg.html"><h3>HEIC to JPG</h3><p>Convert HEIC photos to JPG one-for-one without bundling.</p></a>
+      <a class="card" href="/pages/heic-to-png.html"><h3>HEIC to PNG</h3><p>Same source, lossless PNG output for editing.</p></a>
+      <a class="card" href="/pages/images-to-pdf.html"><h3>Images to PDF</h3><p>Build a PDF from JPG, PNG, or WEBP files instead.</p></a>
+      <a class="card" href="/pages/screenshots-to-pdf-iphone.html"><h3>Screenshots to PDF (iPhone)</h3><p>iPhone-specific flow for screenshot bundles.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

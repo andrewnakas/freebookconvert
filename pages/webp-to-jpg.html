@@ -114,13 +114,58 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>The conversion runs locally. After the page loads, you can disconnect from the internet and it still works.</p>
+
+    <h2>About the WEBP format</h2>
+    <p>WEBP was released by Google in 2010, derived from the VP8 video codec it had acquired through the purchase of On2 Technologies. It combines lossy and lossless modes, full alpha transparency, animation, and ICC color profile support into one container. Google's pitch was straightforward: smaller files at equivalent quality. By 2026 every modern browser ships native WEBP decoding, and many image-heavy sites serve WEBP as the default with JPG as a fallback. The drag is desktop and platform support — corporate document tools, some printers, photo kiosks, and many social platforms still treat WEBP as a foreign object.</p>
+
+    <h2>About the JPG format</h2>
+    <p>JPEG was standardized in 1992 by the Joint Photographic Experts Group and has been the universal photo format ever since. It uses block-based DCT compression and quantization to discard the parts of an image the human visual system doesn't notice. Every operating system, every camera, every web service, every printer accepts JPG. It has no transparency, no animation, and recompresses lossy on every save — but for the simple job of "take a picture, send it somewhere," it remains unbeaten. JPEG is what you reach for when you need something to open everywhere without questions.</p>
+
+    <h2>When to use WEBP to JPG (and when not to)</h2>
+    <p>Pick this conversion when:</p>
+    <ul>
+      <li>A platform (an older job-application portal, a print shop, a kiosk, your insurance carrier's claim system) refuses to accept WEBP.</li>
+      <li>You're emailing the image to someone whose mail client or phone won't preview WEBP.</li>
+      <li>You're attaching the photo to an MMS, a forum post, or a document template that only supports JPG.</li>
+      <li>The recipient has older software (Office 2013, ancient Photoshop) that doesn't know what to do with WEBP.</li>
+    </ul>
+    <p>Skip it when:</p>
+    <ul>
+      <li>The image has transparency you need to keep. Convert to PNG instead.</li>
+      <li>The recipient already accepts WEBP — converting just throws away quality.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>Transparent areas filled with white.</strong> JPG has no alpha channel. If you need to keep transparency, convert to PNG.</li>
+      <li><strong>JPG is bigger than the source WEBP.</strong> WEBP compresses better than JPG at equivalent quality, so the JPG will often be 20-40% larger. Normal.</li>
+      <li><strong>Image looks softer than the WEBP.</strong> JPG and WEBP have different artifact patterns. WEBP blurs less at the same quality. Bump quality to High to minimize the difference.</li>
+      <li><strong>Wrong orientation in the JPG.</strong> Some WEBPs strip EXIF orientation. Open the JPG in your photo viewer and rotate, or re-export the original.</li>
+      <li><strong>Animated WEBP only produced one JPG frame.</strong> Browsers don't expose multi-frame export. Use ffmpeg if you need every frame.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does the WEBP file get uploaded?</summary><p>No. The image is decoded and re-encoded entirely in your browser tab. You can verify with DevTools Network panel — your file never leaves the page.</p></details>
+    <details><summary>What quality should I pick?</summary><p>Standard (0.85) for most things. High (0.95) for archival or print. Compact (0.7) for thumbnails or strict size limits.</p></details>
+    <details><summary>Can I batch convert?</summary><p>Yes. Drop in a whole folder and the converter returns a single ZIP with all the JPGs.</p></details>
+    <details><summary>What happens to transparency?</summary><p>It gets flattened to white. To keep transparency, use the WEBP to PNG converter instead.</p></details>
+    <details><summary>Will EXIF metadata survive?</summary><p>Basic EXIF (orientation, timestamps, camera model) usually survives. GPS coordinates and ICC profiles sometimes get dropped depending on the browser.</p></details>
+    <details><summary>Does this work on mobile?</summary><p>Yes. Any current mobile browser handles it. Larger batches just take longer.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/webp-to-png.html"><h3>WEBP to PNG</h3><p>Keep transparency by converting to PNG instead.</p></a>
+      <a class="card" href="/pages/jpg-to-webp.html"><h3>JPG to WEBP</h3><p>Go back the other way for smaller files on the web.</p></a>
+      <a class="card" href="/pages/heic-to-jpg.html"><h3>HEIC to JPG</h3><p>Convert iPhone photos to JPG.</p></a>
+      <a class="card" href="/pages/png-to-jpg.html"><h3>PNG to JPG</h3><p>Shrink large PNG photos for email or upload.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

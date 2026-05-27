@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How OCR actually works (and why your scan looks fine but converts badly) | FreeBookConvert Guides</title>
+<meta name="description" content="OCR turns pictures of text into text. A walk through binarization, deskewing, line detection, and the LSTM that made Tesseract 4 finally usable.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/guides/how-ocr-works.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="How OCR actually works">
+<meta property="og:description" content="The pipeline behind optical character recognition, and why DPI and lighting matter more than your CPU.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://freebookconvert.com/guides/how-ocr-works.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How OCR actually works (and why your scan looks fine but converts badly)",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {"@type": "Organization", "name": "FreeBookConvert"},
+  "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
+  "mainEntityOfPage": "https://freebookconvert.com/guides/how-ocr-works.html"
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="page-intro">
+    <h1>How OCR actually works (and why your scan looks fine but converts badly)</h1>
+    <p>OCR is the process of turning a picture of text back into text. To a human it looks trivial; to a computer it's a stack of stages where any one of them can ruin the answer.</p>
+    <p style="font-size:0.9rem;color:#666"><em>Published 2026-05-26 &middot; <a href="/guides/">All guides</a></em></p>
+  </section>
+  <section class="content-section">
+    <h2>A short history</h2>
+    <p>The first patent for a reading machine for text belongs to the Austrian engineer Gustav Tauschek, filed in Germany in 1929. His device was a mechanical-optical contraption that compared characters against a rotating drum of stencils using photoelectric cells. It worked, sort of, on a narrow set of typefaces.</p>
+    <p>The modern lineage starts with Ray Kurzweil's reading machine for the blind, which Kurzweil Computer Products launched in 1976. It combined a flatbed scanner, omni-font character recognition software, and a speech synthesizer. The first customer was Stevie Wonder. The software ran on a DEC PDP-11 and cost $50,000.</p>
+    <p>For most of the next two decades OCR was the domain of commercial products &mdash; OmniPage, Readiris, ABBYY FineReader, Adobe Acrobat's built-in engine &mdash; with quality slowly creeping upward and prices slowly creeping down. The open-source side was anemic until HP donated its in-house engine to Google in 2005, who released it as Tesseract. Tesseract 3 was competent but clearly behind the commercial state of the art. Tesseract 4, released in October 2018, replaced the character-classifier core with an LSTM neural network, and the accuracy gap closed dramatically.</p>
+
+    <h2>The pipeline, stage by stage</h2>
+    <p>Modern OCR is not one algorithm but a sequence of them. Each stage hands its output to the next, and an error early in the pipeline propagates &mdash; you can't recover a character from a region the line detector failed to find.</p>
+
+    <h3>1. Binarization</h3>
+    <p>The first thing the engine does is reduce the input image to two colors: black where it thinks the ink is, white where it thinks the paper is. A naive approach picks a single global threshold and applies it to every pixel. This breaks immediately on real-world scans, where lighting is uneven and the paper darkens at the spine of a book. Modern engines use adaptive thresholding, often Sauvola's method (1997) or Otsu's method (1979) computed in tiles across the page, so the threshold varies based on local brightness. A bad binarization step turns "rn" into "m" and "cl" into "d" before any recognition has happened.</p>
+
+    <h3>2. Deskew and despeckle</h3>
+    <p>Pages put on a flatbed at a slight angle have to be rotated back to level. Engines estimate skew by running Hough transforms on the binarized page or by analyzing horizontal projection profiles &mdash; the row of pixels that contains the most text density is a baseline, and the angle of that line is the skew. Once the page is upright, small specks of noise (dust on the scanner glass, sensor noise from a phone camera) get filtered out by morphological opening.</p>
+
+    <h3>3. Layout analysis</h3>
+    <p>Now the engine has to figure out what's a column, what's a heading, what's a caption, what's a figure. This is harder than it sounds. A two-column journal article needs to be read down column one and then down column two, not left-to-right across both. Tables need to be recognized as tables rather than misread as paragraphs. Page numbers and headers need to be separated from body text. Tesseract uses a page-segmentation mode that you select up front (single column, sparse text, single block, table, etc.); newer engines try to detect layout automatically.</p>
+
+    <h3>4. Line and word detection</h3>
+    <p>Within each text block, the engine finds individual lines by looking at horizontal projections of black pixel counts. Within each line, it segments words by detecting gaps wider than the typical inter-character spacing. This is where italic and condensed typefaces tend to confuse classical engines &mdash; "in" and "m" look very similar when the letters touch.</p>
+
+    <h3>5. Character recognition</h3>
+    <p>The character classifier is the headline algorithm. In Tesseract 3 and earlier engines, this stage extracted hand-crafted features from each glyph (stroke geometry, topological holes, aspect ratios) and matched against a feature database. In Tesseract 4 and later, the line of pixels is fed directly to an LSTM &mdash; a recurrent neural network that reads the line left to right and emits character probabilities at each position. The LSTM doesn't recognize one character at a time; it sees a sliding window of pixels and predicts the most likely character sequence. This is why it handles connected scripts and ligatures better than the older approach.</p>
+
+    <h3>6. Language modeling</h3>
+    <p>The classifier's raw output is a set of probabilities. "cl" and "d" look almost identical at low resolution; the engine decides which by checking which produces a more plausible word in the target language. Tesseract ships per-language data files (<code>eng.traineddata</code>, <code>fra.traineddata</code>, and so on) containing dictionaries and character-bigram statistics. Pick the wrong language for the page and you'll see the classifier insisting that English text contains "the" but mangling everything around it. Pick the right language and accuracy rises measurably.</p>
+
+    <h2>Why 300 DPI matters</h2>
+    <p>OCR engines are tuned for the resolution at which classical office scans were produced: 300 dots per inch. At 300 DPI, a 10-point character is about 42 pixels tall &mdash; enough that the classifier can see the difference between the bowl of a "b" and the bowl of a "d," the foot of an "f" and the lack of one in "t."</p>
+    <p>Below about 200 DPI, character details collapse. The cross-stroke of "e" gets indistinguishable from the body of "o." Serif details disappear. The engine starts substituting visually similar letters at random.</p>
+    <p>Above 600 DPI you don't get more accuracy &mdash; you just get larger files and slower processing. A few engines actually do worse at very high DPI because their internal scaling assumes mid-range input. If you have control over the scan, 300 DPI grayscale is the sweet spot. Photographing a page with a phone camera, you want the text to be at least 25-30 pixels tall &mdash; angle the camera carefully and crop tight.</p>
+
+    <h2>Why your scan looks fine but converts badly</h2>
+    <p>A page that looks perfectly readable on screen can still produce terrible OCR. The common causes:</p>
+    <ul>
+      <li><strong>Low effective resolution.</strong> A 1080p photo of a full page is about 130 DPI. Looks great, OCRs badly.</li>
+      <li><strong>JPEG compression artifacts around text.</strong> Strong JPEG compression introduces ringing artifacts around high-contrast edges. The engine sees those ringing pixels as part of the character and misclassifies.</li>
+      <li><strong>Uneven lighting.</strong> Phone photos of a textbook held open often have a bright center and dark margins. Adaptive binarization helps but doesn't fix everything.</li>
+      <li><strong>Curved pages.</strong> A book spine warps lines. Some engines (ABBYY's commercial product, modern Google Cloud OCR) do dewarping; Tesseract doesn't.</li>
+      <li><strong>Background patterns.</strong> A receipt printed on patterned paper, a form printed on light-blue safety paper &mdash; the binarization step has nothing clean to lock onto.</li>
+      <li><strong>Mixed fonts and sizes.</strong> A page that combines a serif body with a sans-serif caption with monospaced code samples confuses classifiers tuned for any one style.</li>
+    </ul>
+
+    <h2>Handwriting is a different beast</h2>
+    <p>OCR engines tuned for printed text fail almost completely on handwriting. The character shapes are too variable, the spacing is unreliable, and the language-modeling assumptions don't carry over. Handwriting recognition (HTR) is its own field, and the modern approach uses CNN+LSTM or transformer architectures trained on specific datasets &mdash; IAM for English block handwriting, Bentham for historical English script, and various script-specific corpora.</p>
+    <p>Google's online Handwriting API and Apple's PencilKit live-handwriting recognition use approaches very different from page-based OCR. For most converter tools, including this one, handwriting is unsupported &mdash; if you feed in a handwritten page, you'll get a handful of recognized words and a lot of garbage.</p>
+
+    <h2>Output as text vs as a PDF text layer</h2>
+    <p>OCR engines can emit results in two practically different forms. The first is plain text or formatted text &mdash; you get a <code>.txt</code> or <code>.docx</code> or Markdown file containing the recognized words. The original image is gone; what's left is the engine's best guess at the words.</p>
+    <p>The second form is a <em>searchable PDF</em>. Here the original page image is preserved, and the OCR engine adds an invisible text layer positioned exactly over the visible glyphs. To the eye, the PDF looks identical to the scan. To Cmd-F (or Ctrl-F), the text is suddenly there. Copy a sentence out and you'll paste the OCR engine's interpretation, not the image. This is the right output when you want to keep the original document but be able to search it &mdash; archived books, legal exhibits, anything where the visual artifact matters.</p>
+    <p>If you want just the text, the <a href="/pages/pdf-ocr.html">PDF OCR</a> and <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> converters here output plain text. For the searchable-PDF flavor, <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> preserves the image and adds the invisible layer. For OCRing a single image (a photo of a sign, a screenshot of a recipe), <a href="/pages/image-to-text.html">Image to Text</a> is the entry point. All of them run Tesseract in WebAssembly inside the browser, so the page stays on your machine.</p>
+
+    <h2>Languages and scripts</h2>
+    <p>Tesseract ships trained data for about 100 languages, with quality varying widely. Latin-script European languages are well-covered. Cyrillic is good. Arabic and Hebrew are supported but right-to-left handling adds complexity. CJK (Chinese, Japanese, Korean) requires special data files because the character set is huge &mdash; a typical Chinese OCR data file is hundreds of megabytes against the few megabytes for English &mdash; and recognition accuracy on these scripts depends heavily on font and clarity. Devanagari, Thai, and other complex scripts have their own engines and tend to be where the modern transformer-based approaches significantly outperform the LSTM.</p>
+    <p>The single most useful thing you can do to improve OCR quality is correctly identify the language up front. Multilingual pages can be processed by listing multiple languages in the engine config (Tesseract accepts <code>eng+fra</code>), at the cost of slower recognition and a slightly higher rate of language-confusion errors.</p>
+
+    <h2>Where to go from here</h2>
+    <p>If you're getting bad OCR, look at the input before blaming the engine. Re-scan at 300 DPI in grayscale. If you only have a photo, take it again with the page flat, even lighting, and the camera held parallel. Crop tightly. Save as PNG or TIFF rather than JPEG. Run a quick contrast adjustment if the page is faded. Then re-OCR.</p>
+    <p>If the input is the best you can get and the output is still rough, accept that OCR is statistical &mdash; even excellent engines hit 99% accuracy on clean printed text, which means one wrong character per hundred. For legal or archival use, a human pass over the OCR output is non-negotiable. For "I just want to grep this thing," 99% is often plenty.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -112,13 +112,60 @@
 
     <h2>A quality-setting note</h2>
     <p>Scanning a document and want it sharp? Use High. Sending photos to a friend or attaching to an email? Standard or Compact will produce a much smaller file and you won't notice the difference on a phone screen.</p>
+
+    <h2>About JPG, PNG, and WEBP</h2>
+    <p>This converter accepts three of the most common image formats. JPG, finalized by the Joint Photographic Experts Group in 1992, is lossy and great for photos. PNG (Portable Network Graphics) was developed by an internet working group and standardized by the W3C in 1996 as a free alternative to GIF; it's lossless and supports transparency. WEBP is a more recent format Google released in 2010 and refined for years afterward — it's roughly half the size of JPG at equivalent quality and supports both lossy and lossless modes. All three end up as embedded images inside the PDF on the way through.</p>
+
+    <h2>About the PDF format</h2>
+    <p>PDF was introduced by Adobe in 1993 to keep a document's layout consistent on any screen or printer. Since 2008 it's been an open ISO standard (ISO 32000). Internally, a PDF is a stack of pages, each containing text, vectors, and embedded images at fixed coordinates. For this converter the job is straightforward: take each input image, scale it onto an A4 page, and write the pages out as one PDF. The result is a file every email client, e-reader, and operating system can open without extra software.</p>
+
+    <h2>When to use Images to PDF (and when not to)</h2>
+    <p>Good for:</p>
+    <ul>
+      <li>Bundling a stack of receipt photos for an expense report.</li>
+      <li>Combining scanned tax pages into a single attachment.</li>
+      <li>Sending a portfolio of design comps as one file.</li>
+      <li>Making screenshots into a numbered walkthrough.</li>
+      <li>Archiving photos of a whiteboard meeting in order.</li>
+    </ul>
+    <p>Not the right tool when:</p>
+    <ul>
+      <li>You need the text inside the images to be selectable. Use <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Searchable PDF</a> instead.</li>
+      <li>You're posting individual images to social media — leave them as separate files.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>PDF is way bigger than expected.</strong> "High" quality embeds the originals at full resolution. For documents on screens, Standard or Compact gives you the same visible result at a fraction of the size.</li>
+      <li><strong>Pages came out in the wrong order.</strong> The order matches the order you added files. Reset and re-add them in the order you want.</li>
+      <li><strong>Landscape photo is sideways.</strong> Most cameras embed orientation metadata; the converter respects EXIF rotation. If a photo still comes out wrong, open it in your viewer, "Save As," and try again — that usually bakes in the correct rotation.</li>
+      <li><strong>HEIC files won't drop in.</strong> HEIC isn't accepted here. Run them through <a href="/pages/heic-to-pdf.html">HEIC to PDF</a> directly or convert HEIC to JPG first.</li>
+      <li><strong>Big batch fails partway through.</strong> Browser tabs have RAM limits. Split a 200-image batch into two runs and merge the resulting PDFs.</li>
+      <li><strong>Transparent PNG areas show black.</strong> A transparent background can't survive in JPG-encoded PDF embedding. Save the PNG with a white background first if that matters.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are my photos uploaded?</summary><p>No. Everything happens in the browser tab. The Network panel in DevTools shows zero upload traffic during a conversion.</p></details>
+    <details><summary>How many images can I bundle at once?</summary><p>Practically, a few hundred. The hard limit is your device's RAM. On a phone, batches above 50 images get risky.</p></details>
+    <details><summary>Does it work on mobile?</summary><p>Yes. Tap the drop zone to open your photo picker. The finished PDF saves to your Downloads or Files location.</p></details>
+    <details><summary>Can I mix portrait and landscape images?</summary><p>Yes. Each image scales independently onto an A4 portrait page. Landscape photos appear with white space top and bottom.</p></details>
+    <details><summary>Can I set page size to Letter instead of A4?</summary><p>Not in this tool. The difference is small (215 vs. 210 mm wide). If your printer is set to Letter, it'll shrink-to-fit without losing visible quality.</p></details>
+    <details><summary>What other formats can these images become?</summary><p>You can convert between JPG, PNG, and WEBP individually with the format-specific converters on this site.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/pdf-to-jpg.html"><h3>PDF to JPG</h3><p>Reverse direction: extract each PDF page as an image.</p></a>
+      <a class="card" href="/pages/heic-to-pdf.html"><h3>HEIC to PDF</h3><p>Same idea but accepts iPhone HEIC photos directly.</p></a>
+      <a class="card" href="/pages/screenshots-to-pdf-iphone.html"><h3>Screenshots to PDF (iPhone)</h3><p>Bundle a string of iPhone screenshots into a single PDF.</p></a>
+      <a class="card" href="/pages/searchable-pdf.html">  <h3>Searchable PDF</h3><p>Make the resulting PDF text-selectable with OCR.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

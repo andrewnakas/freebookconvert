@@ -114,13 +114,58 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>All the work happens in this tab. Want to confirm? Disconnect from the internet after the page loads. Conversions still complete.</p>
+
+    <h2>About the PNG format</h2>
+    <p>PNG (Portable Network Graphics) was finalized by the W3C in 1996 as the open replacement for GIF, which at the time was encumbered by Unisys's LZW compression patent. It's a lossless raster format: every pixel that goes in comes out exactly the same. PNG handles full 8-bit alpha transparency, palette images, and grayscale, and is the default screenshot format on macOS, Windows, and most Linux desktops. Because the compression is lossless and tuned for flat colors and sharp edges, PNG produces small files for UI mockups, logos, and pixel art, but balloons for photographs.</p>
+
+    <h2>About the WEBP format</h2>
+    <p>WEBP is Google's image format, released in 2010 and built on top of the same VP8 video codec that powered early WebRTC. It supports both lossy and lossless modes, plus alpha transparency, animation, and ICC color profiles. The selling point is size: at visually similar quality, WEBP files are typically 25-35% smaller than JPEG and 50-80% smaller than PNG. Every modern browser supports it, and the format is the default for Google's own image-heavy properties. The catch is older desktop apps and Windows Photo Viewer (pre-Win11) still refuse to open it.</p>
+
+    <h2>When to use PNG to WEBP (and when not to)</h2>
+    <p>Pick this conversion when:</p>
+    <ul>
+      <li>You're shipping image assets for a website and need the page to load faster.</li>
+      <li>The PNG has transparency you can't lose by going through JPG.</li>
+      <li>You have a folder of screenshots eating up disk space.</li>
+      <li>You're packaging app or game art and every megabyte counts.</li>
+    </ul>
+    <p>Skip it when:</p>
+    <ul>
+      <li>The PNG is going to a print shop, government portal, or older desktop tool that still rejects WEBP.</li>
+      <li>You need lossless fidelity for an archive or for further editing.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>The WEBP looks blurry compared to the PNG.</strong> The quality slider is set too low. Bump it from Compact to Standard or High and the visible loss disappears.</li>
+      <li><strong>Transparency turned into a black or white halo.</strong> Some older PNGs use 1-bit transparency masks instead of an alpha channel. Re-export the source with full alpha and convert again.</li>
+      <li><strong>The output is bigger than the source.</strong> Rare, but happens with pixel art or tiny PNGs already heavily optimized. WEBP's overhead doesn't pay off below a few KB. Keep the PNG.</li>
+      <li><strong>Colors shifted slightly.</strong> WEBP encoders sometimes drop or rewrite the ICC color profile. For brand or print work, keep a PNG master.</li>
+      <li><strong>Browser can't preview the WEBP.</strong> If you're on Windows 10 with no Photo Viewer update, open it in any current browser instead. The file is fine.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does the conversion happen on your servers?</summary><p>No. The PNG is decoded and re-encoded inside this browser tab using the Canvas API. You can disconnect from the network after the page loads to verify — conversions still complete.</p></details>
+    <details><summary>Can I convert hundreds of PNGs at once?</summary><p>Yes. Drag them all in and the results come back as a single ZIP. The practical ceiling is your device's RAM; a laptop handles thousands of small PNGs without issue.</p></details>
+    <details><summary>Is the transparency really preserved?</summary><p>Yes. WEBP supports an 8-bit alpha channel like PNG. You get smooth, anti-aliased edges, not just a 1-bit mask.</p></details>
+    <details><summary>What quality setting should I use?</summary><p>Standard (0.85) is right for almost everything. Drop to Compact only for thumbnails or when you specifically need the smallest possible file. High (0.95) is for source-quality assets.</p></details>
+    <details><summary>Does this support animated PNGs?</summary><p>No. Animated PNG (APNG) doesn't round-trip cleanly to animated WEBP in a browser. For animation, keep the APNG or convert with a desktop tool like ffmpeg.</p></details>
+    <details><summary>What about lossless WEBP?</summary><p>This converter uses lossy WEBP for the size win. If you need pixel-perfect output, keep the source PNG — there's no point converting losslessly.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/webp-to-png.html"><h3>WEBP to PNG</h3><p>Go the other way when an editor refuses to open WEBP.</p></a>
+      <a class="card" href="/pages/png-to-jpg.html"><h3>PNG to JPG</h3><p>Drop transparency for the smallest possible file on photographs.</p></a>
+      <a class="card" href="/pages/jpg-to-webp.html"><h3>JPG to WEBP</h3><p>Shrink JPEG photos for the web without re-encoding twice.</p></a>
+      <a class="card" href="/pages/heic-to-png.html"><h3>HEIC to PNG</h3><p>Convert iPhone photos to a lossless format Windows can open.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

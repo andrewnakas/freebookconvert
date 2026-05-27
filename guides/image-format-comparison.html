@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG vs PNG vs WEBP vs HEIC: which to use when | FreeBookConvert Guides</title>
+<meta name="description" content="Which image format to pick: lossy vs lossless, transparency, real file-size comparisons, browser support in 2026, and a decision tree.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/guides/image-format-comparison.html">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="JPG vs PNG vs WEBP vs HEIC: which to use when">
+<meta property="og:description" content="A practical comparison of the four image formats most people deal with in 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://freebookconvert.com/guides/image-format-comparison.html">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JPG vs PNG vs WEBP vs HEIC: which to use when",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {"@type": "Organization", "name": "FreeBookConvert"},
+  "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
+  "mainEntityOfPage": "https://freebookconvert.com/guides/image-format-comparison.html"
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="page-intro">
+    <h1>JPG vs PNG vs WEBP vs HEIC: which to use when</h1>
+    <p>Four formats cover the vast majority of images people deal with. Each one is good at something and bad at something else, and choosing the right one cuts file size without sacrificing visible quality.</p>
+    <p style="font-size:0.9rem;color:#666"><em>Published 2026-05-26 &middot; <a href="/guides/">All guides</a></em></p>
+  </section>
+  <section class="content-section">
+    <h2>Lossy vs lossless: the one distinction that matters most</h2>
+    <p>Image compression splits into two families. <em>Lossy</em> codecs discard information the human visual system is unlikely to notice &mdash; subtle color shifts, high-frequency texture, fine gradations &mdash; in exchange for dramatically smaller files. <em>Lossless</em> codecs preserve every pixel exactly, in exchange for larger files. Both are useful; they're useful for different things.</p>
+    <p>JPEG is lossy. HEIC is lossy. WEBP can be either &mdash; the format supports both modes and the encoder picks. PNG is lossless. AVIF is usually lossy but supports lossless mode. The lossless formats are the safe choice when you can't afford to lose anything: line art, screenshots of text, UI mockups, anything you'll edit further. The lossy formats win for photos by enormous margins, often 10x smaller at quality differences nobody can spot at normal viewing distances.</p>
+
+    <h2>JPEG: the old reliable</h2>
+    <p>The Joint Photographic Experts Group standard was finalized in 1992 and remains the universally-supported lossy format. Every device, every browser, every operating system, every photo viewer made in the last thirty years reads JPEG. The encoding is based on the discrete cosine transform applied to 8&times;8 pixel blocks &mdash; the same math you'll see described in any image-processing textbook.</p>
+    <p>JPEG is excellent at photographs. It's terrible at flat-color graphics, text, and anything with sharp edges, because the block-based compression produces visible ringing around high-contrast transitions. It does not support transparency. It does not support animation. It supports embedded color profiles and EXIF metadata. Quality is set by a single integer (1 to 100); 80&ndash;90 is the sweet spot for web delivery, and the difference between 95 and 100 mostly doubles your file size for invisible gain.</p>
+    <p>A typical sRGB photograph saved as JPEG at quality 85 lands in the range of 0.1&ndash;0.3 bits per pixel. A 12-megapixel iPhone photo (4032&times;3024) saved as JPEG at quality 85 will be roughly 2&ndash;3 MB depending on subject complexity.</p>
+
+    <h2>PNG: lossless and transparent</h2>
+    <p>The Portable Network Graphics format was finalized in 1996 as a free replacement for GIF (whose LZW compression was under patent at the time). PNG uses DEFLATE compression &mdash; the same algorithm as ZIP &mdash; applied to the image after a per-row predictive filter. It is lossless, supports 8-bit alpha transparency, supports indexed color (PNG-8) and full truecolor (PNG-24), and is universally supported.</p>
+    <p>PNG is the right format for screenshots, UI mockups, logos, line art, charts, icons, and anything else with flat colors and sharp edges. It is the wrong format for photographs &mdash; a photo saved as PNG is typically 5&ndash;10x larger than the same photo as a high-quality JPEG, for no visible benefit.</p>
+    <p>That same 12-megapixel iPhone photo, re-saved as PNG, will weigh 20&ndash;30 MB. The same screenshot of a code editor saved as JPEG will be larger than the equivalent PNG and will have ugly compression artifacts around every glyph. Picking the right format here matters.</p>
+
+    <h2>WEBP: the web-tuned compromise</h2>
+    <p>Google released WEBP in 2010, originally as a wrapper around VP8 video frames for still images. Since then it's gained a lossless mode (using a different algorithm derived from WebP-lossless rather than VP8) and an animation mode that's roughly a GIF replacement.</p>
+    <p>In lossy mode, WEBP typically produces files about 25&ndash;35% smaller than JPEG at comparable visual quality, with the gain being larger for photos with smooth gradients and smaller for highly textured photos. In lossless mode, WEBP produces files about 20&ndash;25% smaller than PNG on average. WEBP supports transparency in both modes &mdash; this is the killer feature, because it means you can have small, lossy-compressed images with alpha channels, which JPEG simply cannot do.</p>
+    <p>Browser support is now universal: all current versions of Chrome, Firefox, Safari (since 14, released September 2020), and Edge handle WEBP natively. Native OS support is slower &mdash; Windows 10 didn't display WEBP in the Photos app until a 2018 update, and some older tools and editors still refuse the format. This is why "convert WEBP to JPG" remains a common need: not because WEBP is bad, but because some downstream tool insists on JPEG.</p>
+
+    <h2>HEIC: smaller still, more friction</h2>
+    <p>HEIC is the HEVC-encoded variant of the HEIF container, shipped by default on iPhones since iOS 11 (September 2017). At comparable visual quality, HEIC files are roughly half the size of JPEGs &mdash; a real, repeatable gain that explains why Apple defaulted to it.</p>
+    <p>The catch is licensing. HEVC patent royalties kept the format out of the Windows and Android ecosystems for years. As of 2026, Windows 11 supports HEIC if the user installs the (paid) HEVC Video Extensions from the Microsoft Store. Recent Android versions display HEIC. Most desktop image editors handle it. But you'll still occasionally hit a tool, a webform, or a website that refuses HEIC and demands JPEG, which is why the conversion remains a regular nuisance for iPhone owners sharing photos out of the Apple ecosystem.</p>
+    <p>HEIC supports transparency, multiple images per file (burst sequences, Live Photos), depth maps, and non-destructive edits stored as metadata. None of those features survive conversion to JPEG.</p>
+
+    <h2>AVIF: the format that should win, eventually</h2>
+    <p>AVIF (AV1 Image File Format) is HEIF wrapped around AV1, the royalty-free video codec backed by the Alliance for Open Media (Google, Mozilla, Netflix, Apple, Intel, and others). It hit Recommendation status as a media format in 2019 and got browser support across Chrome (85, August 2020), Firefox (93, October 2021), and Safari (16, September 2022). Edge supports it via the Chromium base.</p>
+    <p>AVIF compresses noticeably better than WEBP and HEIC. Lossy AVIF at similar visual quality typically produces files 20&ndash;30% smaller than WEBP, sometimes more for synthetic content. It supports transparency, animation, HDR, wide color gamut, and 10/12-bit color depth.</p>
+    <p>The reason AVIF isn't yet dominant is encoder speed. AV1 encoding is computationally expensive &mdash; orders of magnitude slower than JPEG encoding &mdash; though decode is fine. For web delivery where you encode once and decode millions of times, this is acceptable. For "save my photo right now" workflows, it's painful. As hardware AV1 encoders proliferate (some recent phone SoCs include them), this will improve.</p>
+
+    <h2>Browser support as of 2026</h2>
+    <p>The picture is much simpler than it was five years ago. JPEG and PNG work everywhere, in every browser, forever. WEBP works in every browser released after 2020. AVIF works in every browser released after late 2022. HEIC is the outlier &mdash; even in 2026, browser support for HEIC is largely absent except where the OS provides a system decoder. Safari on macOS and iOS handles HEIC natively. Chrome and Firefox generally do not. This is why an <code>&lt;img src="cat.heic"&gt;</code> tag fails on most desktops.</p>
+    <p>For web delivery, the practical answer for image-heavy sites is AVIF with a JPEG fallback via the <code>&lt;picture&gt;</code> element, with WEBP optionally in the middle. For images embedded in documents, emails, and one-off shares, JPEG remains the safest default.</p>
+
+    <h2>Color profiles and metadata</h2>
+    <p>All four formats support embedded ICC color profiles. JPEG, PNG, and WEBP also support EXIF metadata. HEIC supports EXIF natively. When you convert between formats, the color profile and metadata travel separately from the pixels, and not every converter preserves them. If you're shooting in Apple's Display P3 wide-gamut color space and converting to sRGB JPEG, a color-space conversion is happening &mdash; pixels that fell outside the sRGB gamut get clipped to its nearest equivalents. For Instagram, this is invisible. For print, it can matter.</p>
+    <p>GPS coordinates in EXIF metadata are a privacy concern most people don't think about. A photo taken with location services on can contain the latitude and longitude of where you stood when you took it, accurate to a few meters. Some converters strip this on output; some don't. Posting an "anonymous" photo with the GPS coordinates of your home in the metadata is a regular mistake.</p>
+
+    <h2>What each format compresses well, in one paragraph each</h2>
+    <p><strong>JPEG</strong> is best at photographs with continuous tone &mdash; landscapes, portraits, skin tones, skies. It's bad at line art, text, and anything with sharp transitions. Around quality 85, the artifacts are usually invisible. Below quality 60, blocking becomes obvious.</p>
+    <p><strong>PNG</strong> is best at flat colors, hard edges, transparency, and any image that will be edited further. It's bad at photos. A screenshot of a webpage is the canonical PNG use case.</p>
+    <p><strong>WEBP lossy</strong> is JPEG with the bugs fixed &mdash; same photo, smaller file. Plus transparency. The compression gain is real but modest (25&ndash;35%); the bigger argument for WEBP is the transparency support.</p>
+    <p><strong>HEIC</strong> is best at iPhone photos that will stay in the Apple ecosystem. The compression is excellent, but the friction outside Apple's walls remains significant.</p>
+
+    <h2>A decision tree</h2>
+    <p>Walking through what to pick, in order:</p>
+    <ol>
+      <li>Is it a photograph (real-world scene, captured with a camera)?
+        <ul>
+          <li>Will it stay in the Apple ecosystem? &rarr; HEIC.</li>
+          <li>Will it go to the web? &rarr; AVIF if you can, WEBP if you must, JPEG as fallback.</li>
+          <li>Will it go to someone over email, in a Word document, on a printer? &rarr; JPEG.</li>
+        </ul>
+      </li>
+      <li>Is it a screenshot, UI mockup, logo, or anything with flat colors and sharp edges?
+        <ul>
+          <li>Does it need transparency? &rarr; PNG, or WEBP lossless if size matters.</li>
+          <li>No transparency? &rarr; PNG.</li>
+        </ul>
+      </li>
+      <li>Is it line art (a chart, an illustration, a diagram)?
+        <ul>
+          <li>Vector source available? &rarr; SVG. (Outside the scope of this guide, but worth mentioning.)</li>
+          <li>Raster only? &rarr; PNG.</li>
+        </ul>
+      </li>
+      <li>Is it a sequence of frames or an animation?
+        <ul>
+          <li>For the web &rarr; WEBP animation, or just use a real video format (MP4, WEBM).</li>
+          <li>For email &rarr; GIF, sadly, still the most compatible.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>Converting between them</h2>
+    <p>The mechanics of converting are simpler than the choice of which to convert to. The image converters on this site (<a href="/pages/heic-to-jpg.html">HEIC&rarr;JPG</a>, <a href="/pages/heic-to-png.html">HEIC&rarr;PNG</a>, <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>, <a href="/pages/jpg-to-webp.html">JPG&rarr;WEBP</a>, <a href="/pages/png-to-jpg.html">PNG&rarr;JPG</a>, <a href="/pages/png-to-webp.html">PNG&rarr;WEBP</a>, <a href="/pages/webp-to-jpg.html">WEBP&rarr;JPG</a>, <a href="/pages/webp-to-png.html">WEBP&rarr;PNG</a>) all run in the browser. Files never leave your machine. The same conversions can be done locally with ImageMagick, Sips on macOS, or any image editor; the browser route is convenient and private.</p>
+    <p>One thing to remember: converting from a lossy format to anything else does not recover quality. JPEG &rarr; PNG gives you a lossless container around already-lossy pixels. The JPEG's compression artifacts are now baked in. If you want a clean copy, you need the original raw file.</p>
+
+    <h2>Where to go from here</h2>
+    <p>The right format depends on what you're doing with the image. For most personal use, JPEG remains the safest universal default. For anything with transparency, PNG. For web delivery where you control both encode and decode, WEBP or AVIF buys you real size savings. HEIC is the iPhone default and worth converting only when you need to leave the Apple ecosystem. When in doubt, JPEG at quality 85 is wrong only rarely &mdash; and small enough to email, print, or post without thinking about it.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>

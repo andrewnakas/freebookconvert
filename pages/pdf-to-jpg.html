@@ -127,13 +127,59 @@
 
     <h2>JPG or PNG?</h2>
     <p>JPG for photos and busy color graphics. PNG for diagrams, screenshots, or anything with text and sharp edges where you don't want compression artifacts. PNG files are usually bigger but lossless.</p>
+
+    <h2>About the PDF format</h2>
+    <p>PDF was created by Adobe co-founder John Warnock in 1993 to make documents look identical everywhere. The format stores text, fonts, vector paths, and embedded images on fixed pages. Adobe controlled the spec until 2008, when it was published as the open ISO 32000-1 standard. The current ISO 32000-2 (PDF 2.0) was finalized in 2017 and revised in 2020. PDF is what governments, lawyers, and academics default to because the layout never shifts. A PDF page is not a single image — it's a layered description that has to be rendered to become one. That's what this converter does.</p>
+
+    <h2>About the JPG format</h2>
+    <p>JPEG (the file extension shortened to .jpg on old Windows) is a lossy image format published in 1992 by the Joint Photographic Experts Group, the ISO/ITU committee it's named after. It uses discrete cosine transform compression, which is great at squeezing photographs and bad at sharp text or solid blocks of color. JPG doesn't support transparency. It's universally supported, which is why it remains the default for cameras, social media, email attachments, and basically anywhere a photo needs to travel.</p>
+
+    <h2>When to use PDF to JPG (and when not to)</h2>
+    <p>Reasonable uses:</p>
+    <ul>
+      <li>Pulling a single chart, table, or diagram out of a paper to drop into a slide.</li>
+      <li>Posting one page of a PDF to a social platform that won't accept PDF uploads.</li>
+      <li>Sending a quick preview to someone without making them download the whole file.</li>
+      <li>Generating thumbnails for an archive.</li>
+    </ul>
+    <p>Skip it if:</p>
+    <ul>
+      <li>You need the text to remain selectable or searchable. Use <a href="/pages/pdf-ocr.html">PDF OCR</a> or keep the PDF.</li>
+      <li>The PDF has a lot of fine print — JPG compression smears small text.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>Text looks fuzzy.</strong> The default render scale is fine for screens but soft when printed. Bump the scale to 2x or 3x for crisper output.</li>
+      <li><strong>JPG files are huge.</strong> At 3x scale, an A4 page is roughly 7000x10000 pixels. Drop the scale or use a quality preset below "High."</li>
+      <li><strong>Colors look washed out.</strong> PDFs sometimes use CMYK color profiles for print. The browser converts to sRGB, which can shift saturation. Hard to fix in a browser tool — open the source in Acrobat if it matters.</li>
+      <li><strong>Diagrams have visible compression artifacts.</strong> JPG eats sharp lines. Switch to PNG output for any page with diagrams, code, or screenshots.</li>
+      <li><strong>Password-protected PDF fails.</strong> pdf.js refuses encrypted PDFs in this tool. Remove the password in your reader's print-to-PDF flow first.</li>
+      <li><strong>Some pages come out rotated.</strong> Pages with embedded rotation metadata don't always render right-side-up. Open the PDF, rotate the pages, save, and re-convert.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is the PDF uploaded?</summary><p>No. pdf.js renders the file inside your browser. The Network tab in DevTools will show no upload happening during a conversion.</p></details>
+    <details><summary>What's the file size cap?</summary><p>RAM determines the limit. A 100-page PDF is fine on most laptops. A 1000-page reference book at 3x scale will likely exhaust browser memory.</p></details>
+    <details><summary>Will it work on a Chromebook or iPad?</summary><p>Yes. Any modern Chrome, Safari, or Firefox works. The zipped results land in your downloads folder.</p></details>
+    <details><summary>Why is one page coming out as a single JPG and not split?</summary><p>This tool produces one image per PDF page. If you want a multi-page sheet, take the JPGs and run them through <a href="/pages/images-to-pdf.html">Images to PDF</a>.</p></details>
+    <details><summary>Can I get just one specific page?</summary><p>This converter does all pages at once. Easiest workaround: extract the page you want in your PDF reader first (print to PDF with a single page range), then convert.</p></details>
+    <details><summary>What other image formats are supported?</summary><p>JPG and PNG here. From there you can convert to WEBP if you need smaller web-friendly files.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/images-to-pdf.html"><h3>Images to PDF</h3><p>Bundle JPGs or PNGs back into a single PDF.</p></a>
+      <a class="card" href="/pages/jpg-to-png.html"><h3>JPG to PNG</h3><p>Convert the resulting JPGs to PNG for editing without further loss.</p></a>
+      <a class="card" href="/pages/pdf-ocr.html"><h3>PDF OCR</h3><p>Get selectable text out of the same PDF instead of just images.</p></a>
+      <a class="card" href="/pages/jpg-to-webp.html"><h3>JPG to WEBP</h3><p>Shrink the page images for web use without losing quality.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

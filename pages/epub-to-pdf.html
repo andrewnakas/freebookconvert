@@ -117,13 +117,58 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>The easiest way to check: load this page, then turn off your Wi-Fi. The conversion still works. <a href="/pages/about.html">More on how that's set up</a>.</p>
+
+    <h2>About the EPUB format</h2>
+    <p>EPUB was finalized by the International Digital Publishing Forum in 2007 as the open replacement for the older Open eBook standard. In 2017 the IDPF merged into the W3C, which now maintains the spec. Under the hood, an EPUB is a ZIP archive containing XHTML files, CSS, images, and an OPF manifest. Because the content is HTML, the text reflows to fit any screen and any font size. Every major reader except Amazon's older Kindles supports EPUB natively, which is why it became the de facto standard for indie publishers, libraries, and platforms like Kobo, Apple Books, and Google Play Books.</p>
+
+    <h2>About the PDF format</h2>
+    <p>Adobe released PDF in 1993 to solve a single problem: making a document look identical on every printer and every screen. The format freezes type, images, and layout into a fixed canvas. Adobe handed the spec to ISO in 2008, so PDF 1.7 became ISO 32000-1 and is now an open international standard. PDF is the lingua franca of legal filings, scientific papers, government forms, and anything that needs to print correctly. It's a worse reading experience than EPUB on a phone, but it's the only format that everyone, on every device, knows how to open.</p>
+
+    <h2>When to use EPUB to PDF (and when not to)</h2>
+    <p>Going from a reflowable ebook to a fixed-page document is a one-way street. Pick it when:</p>
+    <ul>
+      <li>You want to print the book on actual paper.</li>
+      <li>You need to attach the file to a form, court filing, or class assignment that only accepts PDF.</li>
+      <li>You're reading on a device that doesn't have a working EPUB reader (older Kindles, certain locked-down work laptops).</li>
+      <li>You want a single page-numbered file for citations.</li>
+    </ul>
+    <p>Skip the conversion if:</p>
+    <ul>
+      <li>You'll read on a phone or e-reader and want the font size to adjust.</li>
+      <li>You care about accessibility — screen readers handle EPUB structure better than PDF text.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>Output PDF is enormous.</strong> Books with full-page color illustrations balloon when each image is embedded at A4 size. Compress the source images before repacking the EPUB, or accept that an illustrated children's book is going to be 30 MB.</li>
+      <li><strong>Fonts look wrong.</strong> If the EPUB embeds an unusual font, the PDF will fall back to a standard serif. Most readers won't notice, but if it matters, install the font system-wide before opening the EPUB in a desktop tool first.</li>
+      <li><strong>Chapter breaks don't land on a new page.</strong> Some EPUBs use CSS that the converter can't fully replicate. Look for an EPUB with a clean table of contents — those convert cleanest.</li>
+      <li><strong>Text feels cramped.</strong> Default margins favor density. If you're printing the PDF, pop it open in your printer dialog and select "fit to printable area."</li>
+      <li><strong>DRM-protected file fails to load.</strong> EPUBs from Apple Books, Kindle, or library lending services are wrapped in DRM. There's no legitimate way to convert those here. Buy a DRM-free copy from publishers like Standard Ebooks or Tor.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does the EPUB get uploaded to a server?</summary><p>No. The file is read by JavaScript inside your browser tab. You can verify by opening DevTools and watching the Network tab while a conversion runs — there's no upload request.</p></details>
+    <details><summary>Is there a file size limit?</summary><p>The practical ceiling is your device's RAM. A 50 MB EPUB with lots of images is fine on a laptop. On an older phone, the tab may crash above 100 MB.</p></details>
+    <details><summary>Does this work on mobile?</summary><p>Yes, in any modern Safari, Chrome, or Firefox build. The downloaded PDF saves to your default downloads location. On iOS it usually lands in the Files app under "Downloads."</p></details>
+    <details><summary>Will the PDF have a clickable table of contents?</summary><p>Yes, if the EPUB had one. The chapter links survive as PDF outlines that show up in the sidebar of most PDF viewers.</p></details>
+    <details><summary>What if I need pixel-perfect formatting?</summary><p>Use Calibre on the desktop. It has more control over fonts, CSS rules, and page styling than a browser-only tool can offer. The tradeoff is a 200 MB install and a learning curve.</p></details>
+    <details><summary>What other formats can the EPUB go to?</summary><p>Plain text and Kindle-friendly EPUBs from this site. For MOBI or AZW3 specifically, Amazon's Send to Kindle service accepts EPUB directly and does the conversion server-side.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/pdf-to-epub.html"><h3>PDF to EPUB</h3><p>Go the other way: turn a fixed-page PDF into a reflowable ebook.</p></a>
+      <a class="card" href="/pages/epub-to-txt.html"><h3>EPUB to TXT</h3><p>Strip an EPUB down to plain text for scripts, AI tools, or grep.</p></a>
+      <a class="card" href="/pages/pdf-for-kindle-scribe.html"><h3>PDF for Kindle Scribe</h3><p>Reflowable EPUB tuned for Amazon's 10.2-inch e-ink tablet.</p></a>
+      <a class="card" href="/pages/cbz-to-pdf.html"><h3>CBZ to PDF</h3><p>Convert a comic archive into a PDF that any reader can open.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 

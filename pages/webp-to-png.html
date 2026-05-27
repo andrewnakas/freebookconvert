@@ -114,13 +114,58 @@
 
     <h2>Nothing leaves your browser</h2>
     <p>This page works locally. Cut your internet after the page loads and the converter still runs.</p>
+
+    <h2>About the WEBP format</h2>
+    <p>WEBP arrived from Google in 2010, built on the VP8 video codec it had acquired the year before. The pitch was simple: smaller files than JPEG with better-looking results, plus lossless mode, transparency, and animation in one container. It took years to gain traction — Apple didn't ship WEBP support in Safari until 2020, and Microsoft's old Photo Viewer never adopted it. By 2026 every current browser opens WEBP, but a lot of desktop software still doesn't, which is why this conversion exists.</p>
+
+    <h2>About the PNG format</h2>
+    <p>PNG (Portable Network Graphics) was finalized in 1996 by a W3C working group put together specifically to dodge the LZW patent that had made GIF a legal headache. It's a lossless raster format with full alpha transparency, palette and grayscale modes, gamma correction, and ICC color profile support. Because nothing about a PNG is lossy, it's the standard archival format for screenshots, UI assets, logos, and any image that will be edited again later. Every operating system, every editor, and every browser opens PNG without complaint.</p>
+
+    <h2>When to use WEBP to PNG (and when not to)</h2>
+    <p>Pick this conversion when:</p>
+    <ul>
+      <li>A tool you're using (Photoshop CC pre-2022, older Office, some printers) refuses to open WEBP.</li>
+      <li>You're handing the file to a designer who will edit it further.</li>
+      <li>You're attaching the image to a court filing, government portal, or insurance claim that lists PNG and JPG as the only accepted formats.</li>
+      <li>You need to drop the image into a slide deck whose autoformatter chokes on WEBP.</li>
+    </ul>
+    <p>Skip it when:</p>
+    <ul>
+      <li>The image is for the web — bigger PNG files just slow your page down.</li>
+      <li>You're trying to recover original quality. PNG can't add back what WEBP threw away.</li>
+    </ul>
+
+    <h2>Common problems and how to fix them</h2>
+    <ul>
+      <li><strong>The PNG is huge.</strong> Expected. A WEBP with visually similar quality is often a tenth the size. If you don't need lossless, convert the WEBP to JPG instead.</li>
+      <li><strong>Image looks the same blurry as before.</strong> If the source WEBP was already lossy, PNG can't sharpen it. Find a higher-quality source.</li>
+      <li><strong>Transparent areas turned solid.</strong> A handful of WEBP encoders pre-multiply alpha in a way that some browsers flatten on decode. Try a different source or use a desktop tool like ImageMagick.</li>
+      <li><strong>Colors look slightly off.</strong> WEBP can carry an ICC profile that gets dropped on conversion. For color-critical work, embed the profile manually or convert through a color-managed tool.</li>
+      <li><strong>Animated WEBP only produced the first frame.</strong> Browser canvas APIs don't support multi-frame export. Use ffmpeg to break an animated WEBP into individual PNG frames.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does this upload my files to a server?</summary><p>No. The WEBP is decoded and re-encoded entirely inside your browser. Open DevTools and watch the Network tab during a conversion — your file never leaves the page.</p></details>
+    <details><summary>Can I batch convert?</summary><p>Yes. Drag in dozens or hundreds of WEBP files and get a single ZIP back.</p></details>
+    <details><summary>Will the PNG be higher quality than the WEBP?</summary><p>No. Conversion is just a format change. PNG is lossless from that point on, but it can't recover detail the original WEBP already discarded.</p></details>
+    <details><summary>Does this work on mobile?</summary><p>Yes, in any current mobile browser. Large batches are slower than on a laptop because of memory and CPU limits.</p></details>
+    <details><summary>What about animated WEBPs?</summary><p>Only the first frame is exported. For animation, use a desktop tool or convert to GIF instead.</p></details>
+    <details><summary>Do EXIF metadata and color profiles survive?</summary><p>Most basic EXIF (orientation, timestamps) is preserved. ICC color profiles sometimes survive and sometimes get stripped depending on the browser.</p></details>
+
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/png-to-webp.html"><h3>PNG to WEBP</h3><p>Go back the other way for smaller files on the web.</p></a>
+      <a class="card" href="/pages/webp-to-jpg.html"><h3>WEBP to JPG</h3><p>Convert to a more universally supported lossy format.</p></a>
+      <a class="card" href="/pages/jpg-to-png.html"><h3>JPG to PNG</h3><p>Move a JPEG to a lossless format for editing.</p></a>
+      <a class="card" href="/pages/heic-to-png.html"><h3>HEIC to PNG</h3><p>Convert iPhone photos to lossless PNG.</p></a>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
   </div>
 </footer>
 
