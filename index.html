@@ -31,6 +31,11 @@
 <link rel="dns-prefetch" href="https://unpkg.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
+<!-- @pwa -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<!-- /@pwa -->
 <!-- @analytics -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
@@ -135,6 +140,7 @@
       <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
       <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
       <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/#audiobooks">Audiobooks</a>
     </nav>
   </div>
 </header>
@@ -220,7 +226,31 @@
       </a>
     </div>
 
-    <h2 style="margin-top:40px">Images</h2>
+    <h2 style="margin-top:40px" id="audiobooks">Audiobooks &amp; listening</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/epub-to-audiobook">
+        <h3>EPUB &rarr; Audiobook</h3>
+        <p>Natural AI narration to MP3 or M4B, generated on your device.</p>
+      </a>
+      <a class="card" href="/pages/pdf-to-audiobook">
+        <h3>PDF &rarr; Audiobook</h3>
+        <p>Listen to reports, papers, and course readers.</p>
+      </a>
+      <a class="card" href="/pages/read-aloud">
+        <h3>Read Aloud</h3>
+        <p>Instant listening with sentence highlighting. Remembers your place.</p>
+      </a>
+      <a class="card" href="/pages/mp3-to-m4b">
+        <h3>MP3 &rarr; M4B</h3>
+        <p>Join MP3s into one audiobook with chapters and cover.</p>
+      </a>
+      <a class="card" href="/pages/m4b-to-mp3">
+        <h3>M4B &rarr; MP3</h3>
+        <p>Split an audiobook into one MP3 per chapter.</p>
+      </a>
+    </div>
+
+    <h2 style="margin-top:40px" id="images">Images</h2>
     <div class="card-grid">
       <a class="card" href="/pages/heic-to-pdf">
         <h3>HEIC &rarr; PDF</h3>
@@ -358,6 +388,7 @@
     <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
+<script src="/js/pwa.js" defer></script>
 <!-- /@footer -->
 <script src="/js/common.js"></script>
 <script src="/js/universal-entry.js?v=retain1"></script>

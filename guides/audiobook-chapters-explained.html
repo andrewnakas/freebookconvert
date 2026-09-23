@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- @csp -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://www.googletagmanager.com https://static.cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' data: blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; child-src blob:; manifest-src 'self';">
+<!-- /@csp -->
+<title>How Audiobook Chapters Work | FreeBookConvert</title>
+<meta name="description" content="Where audiobook chapter markers live in M4B, MP3, and folders of files, why they drift after conversion, and how to keep them intact.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/guides/audiobook-chapters-explained">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="How Audiobook Chapters Work">
+<meta property="og:description" content="M4B chapter tracks, ID3 CHAP frames, and why chapter marks drift.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://freebookconvert.com/guides/audiobook-chapters-explained">
+<meta property="og:image" content="https://freebookconvert.com/assets/og/guide-audiobook-chapters-explained.png?v=afdfc309">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og/guide-audiobook-chapters-explained.png?v=afdfc309">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Audiobook Chapters Work",
+  "datePublished": "2026-09-23",
+  "dateModified": "2026-09-23",
+  "author": {"@type": "Organization", "name": "FreeBookConvert"},
+  "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
+  "mainEntityOfPage": "https://freebookconvert.com/guides/audiobook-chapters-explained"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://freebookconvert.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://freebookconvert.com/guides/"},
+    {"@type": "ListItem", "position": 3, "name": "How Audiobook Chapters Work", "item": "https://freebookconvert.com/guides/audiobook-chapters-explained"}
+  ]
+}
+</script>
+<!-- @pwa -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<!-- /@pwa -->
+<!-- @analytics -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
+     denied until they pick in the consent banner (js/consent.js); a stored
+     choice from an earlier visit is applied before the first hit. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500,
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH']
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted',
+    analytics_storage: 'granted'
+  });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem('fbc_consent_v1'); } catch (e) {}
+    if (c === 'all') {
+      gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    } else if (c === 'essential') {
+      gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    }
+  })();
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+  // Microsoft Clarity project ID (clarity.microsoft.com). Empty = disabled.
+  // Loaded by js/consent.js only after the visitor accepts all cookies.
+  window.FBC_CLARITY_ID = '';
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- /@analytics -->
+</head>
+<body>
+<!-- @header -->
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/#audiobooks">Audiobooks</a>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="/guides/">Guides</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">How Audiobook Chapters Work</span></nav>
+  <section class="page-intro">
+    <h1>How Audiobook Chapters Work</h1>
+    <p>A chapter is a timestamp with a name. The tricky part is that there are four places to store that list, and every player reads a different mix.</p>
+    <p style="font-size:0.9rem;color:#666"><em>Published 2026-09-23 &middot; <a href="/guides/">All guides</a></em></p>
+  </section>
+  <section class="content-section">
+    <h2>The short answer</h2>
+    <p>A chapter in an audiobook file is just a timestamp with a name: "Chapter 7, starts at 3:12:45". Players read the list and turn it into a chapter menu and skip buttons. The complications come from the fact that there are four different places that list can live, and each player reads a different subset of them.</p>
+
+    <h2>Four ways audiobooks store chapters</h2>
+    <h3>1. One file per chapter</h3>
+    <p>The oldest approach, and still the most common for MP3 audiobooks and CD rips: <code>01 - Opening Credits.mp3</code>, <code>02 - Chapter 1.mp3</code>, and so on. The "chapter list" is the folder listing. It works everywhere, but it depends entirely on the files sorting correctly, which is why the numbers are zero-padded (<code>01</code>, not <code>1</code>; otherwise <code>10</code> sorts before <code>2</code>). It also depends on the player remembering which file you were in.</p>
+    <h3>2. MP4 chapter tracks (M4B, M4A)</h3>
+    <p>MPEG-4 files can carry chapters in two formats. Apple's is a hidden <em>text track</em>: a second track in the file, alongside the audio, whose "samples" are the chapter titles, timed to start at each chapter. The other is a compact list stored in a <code>chpl</code> atom, popularized by Nero, a CD and DVD burning suite. Apple Books and most iOS apps read the text track. Many Android and desktop players read the Nero list. Writing both covers nearly everyone, which is what ffmpeg does by default and what the converters on this site produce.</p>
+    <h3>3. ID3 chapter frames (MP3)</h3>
+    <p>MP3's ID3v2 tagging has a chapter addendum that defines <code>CHAP</code> frames (each with a start time, end time, and title) and a <code>CTOC</code> frame that lists them in order. Podcast apps like Overcast and Pocket Casts support them well. Most music players ignore them completely. Handy for a single-file MP3 audiobook, but don't rely on them for a car stereo.</p>
+    <h3>4. Sidecar files (.cue)</h3>
+    <p>A <code>.cue</code> sheet is a small text file next to the audio that lists track start times. It comes from the CD-ripping world. A few players and audiobook servers read cue sheets, but for audiobooks it's the least portable option.</p>
+
+    <h2>What happens when you convert</h2>
+    <ul>
+      <li><strong>Folder of MP3s &rarr; M4B:</strong> each file becomes one chapter, named after the file. The chapter start is the running total of the previous files' durations. <a href="/pages/mp3-to-m4b">MP3 to M4B</a> strips leading numbers from the names and lets you edit them before encoding.</li>
+      <li><strong>M4B &rarr; MP3s:</strong> the reverse. The chapter table is read, and the audio is cut at each start time. <a href="/pages/m4b-to-mp3">M4B to MP3</a> names each file <code>NN - Title.mp3</code> and tags it with a track number so any player sorts it correctly.</li>
+      <li><strong>M4B &rarr; one MP3:</strong> the chapters can be carried over as ID3 chapter frames, so podcast apps still show them.</li>
+    </ul>
+
+    <h2>Why chapter marks sometimes drift</h2>
+    <p>A chapter start is only as accurate as the durations it's computed from. MP3 files without a proper length header (a "Xing" or "Info" header) force software to <em>estimate</em> duration from the bitrate, and for variable-bitrate files that estimate can be off by seconds. Add up 60 such files and the last chapter can start noticeably early or late. Every MP3 encoder also pads a few milliseconds of silence at the start and end, so joined files accumulate tiny gaps. Most people never notice. If you do, re-exporting the source MP3s from any audio editor writes correct headers and fixes the drift.</p>
+
+    <h2>Chapter names: where they come from</h2>
+    <p>Commercial audiobooks carry real chapter titles ("The Boy Who Lived"). Many rips and self-made files only have "Chapter 1, Chapter 2". Converters can only preserve what's there. If names matter to you, fix them at the M4B stage. It's one file with one chapter list, and every player downstream will pick them up.</p>
+
+    <h2>How long should a chapter be?</h2>
+    <p>For listening, chapters are navigation, not structure. Anything from 5 to 45 minutes works well. Very long chapters (two hours of a single "Part One") make it hard to find your place after losing it. Very short ones, like one per page of a PDF, make the chapter list unusable. When you <a href="/pages/epub-to-audiobook">turn an ebook into an audiobook</a>, the book's own chapters are usually the right size.</p>
+
+    <h2>Common questions</h2>
+    <details><summary>My player shows no chapters in an M4B that definitely has them.</summary><p>It probably reads only one of the two MP4 chapter formats, and the file only has the other. Re-muxing the file with ffmpeg (or running it through MP3 to M4B, then M4B to MP3 and back) writes both.</p></details>
+    <details><summary>Can chapters overlap or have gaps?</summary><p>The formats allow it, but players behave unpredictably. Well-formed files have each chapter end exactly where the next begins.</p></details>
+    <details><summary>Do chapters change the audio?</summary><p>No. Chapters are metadata. Adding, renaming, or removing them doesn't touch the audio data.</p></details>
+
+  </section>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
+  </div>
+</footer>
+<script src="/js/pwa.js" defer></script>
+<!-- /@footer -->
+
+<script src="/js/common.js"></script>
+<script src="/js/consent.js"></script>
+</body>
+</html>

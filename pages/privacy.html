@@ -27,6 +27,11 @@
 <link rel="dns-prefetch" href="https://unpkg.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="../css/style.css">
+<!-- @pwa -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<!-- /@pwa -->
 <!-- @analytics -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
@@ -93,6 +98,7 @@
       <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
       <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
       <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/#audiobooks">Audiobooks</a>
     </nav>
   </div>
 </header>
@@ -102,7 +108,7 @@
   <section class="page-intro">
     <h1>Privacy Policy</h1>
     <p>This policy describes what information FreeBookConvert ("we", "our", "the Service") collects when you use the website at freebookconvert.com, how it is used, and the rights you have over it.</p>
-    <p style="font-size:0.9rem"><em>Last updated: 2026-05-26. Effective date: 2026-05-26.</em></p>
+    <p style="font-size:0.9rem"><em>Last updated: 2026-09-23. Effective date: 2026-09-23. Changes: added on-device storage used by the audiobook and read-aloud tools, the voice-model download, and Microsoft Clarity (section 4, 5, 7).</em></p>
   </section>
 
   <section class="content-section">
@@ -124,6 +130,8 @@
     <h2>4. What we do collect</h2>
     <p><strong>Server access logs.</strong> Our hosting provider (Cloudflare Pages) records standard HTTP request data for every page load: IP address, user agent string, timestamp, the URL requested, and the referring URL. This data is used to operate the service, detect abuse, and diagnose problems. It is retained by Cloudflare per their data retention policy.</p>
     <p><strong>Analytics.</strong> We use Google Analytics 4 (measurement ID G-4LZC9S4SCK) to understand which converters are most useful and where users encounter errors. Google Analytics collects anonymized usage data: pages viewed, approximate location (country and region, derived from IP), device type, browser, and time on page. IP addresses are truncated by Google before storage. Analytics data is retained for 14 months and is not joined with personal identifiers. We have configured Analytics with IP anonymization enabled and Google signals (cross-device tracking) disabled.</p>
+    <p><strong>Session analytics (Microsoft Clarity).</strong> If you choose <em>Accept all</em> in the cookie banner, we may also load Microsoft Clarity, which records how pages are used (clicks, scrolling, and anonymized session replays) so we can find confusing or broken parts of the converters. Clarity masks text input and page content by default and never sees the files you convert, because they never leave your device. It is not loaded if you choose <em>Essential only</em> or ignore the banner. Microsoft's privacy statement: <a href="https://privacy.microsoft.com/privacystatement" rel="noopener">privacy.microsoft.com/privacystatement</a>.</p>
+    <p><strong>Consent Mode.</strong> For visitors in the EEA, UK, and Switzerland, Google Analytics and AdSense storage is denied by default until you choose in the cookie banner.</p>
     <p><strong>Advertising data.</strong> See section 6 below.</p>
 
     <h2>5. Cookies and similar technologies</h2>
@@ -133,7 +141,15 @@
       <li><strong>Analytics.</strong> Google Analytics sets a <code>_ga</code> identifier and per-property <code>_ga_*</code> cookies. These distinguish unique visitors anonymously across sessions. Retention is 24 months.</li>
       <li><strong>Advertising.</strong> Google AdSense and its partners set cookies described in section 6.</li>
     </ul>
-    <p>You can clear or block cookies in your browser settings. Doing so will not affect the file-conversion functionality of the site, which uses no persistent storage.</p>
+    <p>Some tools also keep data <strong>in your own browser</strong>. It is stored on your device, never sent to us, and you can delete it any time by clearing this site's data in your browser settings:</p>
+    <ul>
+      <li><strong>Cookie choice</strong> (<code>fbc_consent_v1</code>, local storage): remembers your answer to the cookie banner.</li>
+      <li><strong>Recently used tools</strong> (<code>fbc_recent</code>, local storage): the names of up to five converters you used, so the homepage can list them first.</li>
+      <li><strong>Read Aloud position</strong> (<code>fbc_readaloud_pos</code>, local storage): for up to 20 books, the file name and size plus the chapter and sentence number where you stopped. Not the book's text.</li>
+      <li><strong>Audiobook chapters in progress</strong> (<code>fbc_tts</code>, IndexedDB): the MP3 audio of chapters you've generated with EPUB/PDF to Audiobook, so you can stop and continue later. Entries unused for 30 days are deleted automatically.</li>
+      <li><strong>Downloaded engines and voice models</strong> (browser cache): the audio engine and the text-to-speech model are cached so they don't download again.</li>
+    </ul>
+    <p>Clearing or blocking cookies and site data won't stop the converters from working. You'll only lose the conveniences above.</p>
 
     <h2>6. Advertising (Google AdSense)</h2>
     <p>This site is supported by display advertising served by Google AdSense, our advertising partner. Google AdSense and its certified partners may use cookies and similar technologies to:</p>
@@ -152,7 +168,9 @@
     <p>Opting out turns off personalized ads but does not remove ads entirely. You will still see contextual (non-personalized) ads.</p>
 
     <h2>7. Third-party libraries and CDNs</h2>
-    <p>Several converter pages load JavaScript libraries from public content delivery networks (jsDelivr, unpkg, cdnjs). These CDNs may log standard HTTP request data (IP, user agent, timestamp) when your browser fetches a library file. They do not receive the contents of your files, only the request for the library. We pin specific library versions and use Subresource Integrity hashes so the code cannot be silently tampered with.</p>
+    <p>Several converter pages load JavaScript libraries from public content delivery networks (jsDelivr, unpkg, cdnjs). These CDNs may log standard HTTP request data (IP, user agent, timestamp) when your browser fetches a library file. They do not receive the contents of your files, only the request for the library. We pin exact library versions, and where the browser allows it we verify integrity hashes so the code cannot be silently tampered with.</p>
+    <p>The audiobook tools download an open-source text-to-speech model (Kokoro, Apache 2.0 license) from Hugging Face (<code>huggingface.co</code>) the first time you use them. Like a CDN, Hugging Face sees a standard request for a public file, not your book. Speech is then generated entirely on your device.</p>
+    <p><strong>Built-in browser voices.</strong> The Read Aloud tool uses your browser's own speech engine. Some browser voices (for example Chrome's "Google" voices and Edge's "Online" voices) are provided by the browser maker's cloud service, which means your browser sends the sentence being spoken to that company, under its privacy policy. Voices without those labels run on your device. We do not receive the text either way.</p>
 
     <h2>8. Your rights under GDPR (EEA/UK)</h2>
     <p>If you are located in the European Economic Area, the United Kingdom, or Switzerland, the General Data Protection Regulation gives you rights over the limited personal data we process (primarily IP addresses in server logs and analytics identifiers):</p>
@@ -206,6 +224,7 @@
     <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
+<script src="/js/pwa.js" defer></script>
 <!-- /@footer -->
 </body>
 </html>

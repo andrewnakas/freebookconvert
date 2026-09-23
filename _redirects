@@ -52,3 +52,10 @@
 
 # 404 fallback
 /*               /404.html                404
+
+# Audiobooks
+/epub-to-audiobook        /pages/epub-to-audiobook.html 200
+/pdf-to-audiobook         /pages/pdf-to-audiobook.html 200
+/read-aloud               /pages/read-aloud.html 200
+/mp3-to-m4b               /pages/mp3-to-m4b.html 200
+/m4b-to-mp3               /pages/m4b-to-mp3.html 200

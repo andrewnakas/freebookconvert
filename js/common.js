@@ -218,16 +218,23 @@
     'images-to-pdf':      ['Images to PDF', 'Bundle these images into a single PDF.'],
     'image-to-text':      ['Image to text', 'Copy the words out of a photo or screenshot.'],
     'cbz-to-pdf':         ['CBZ to PDF', 'Turn a comic archive into a PDF.'],
-    'jpg-to-cbz':         ['Images to CBZ', 'Pack images into a comic archive for a reader app.']
+    'jpg-to-cbz':         ['Images to CBZ', 'Pack images into a comic archive for a reader app.'],
+    'epub-to-audiobook':  ['Make it an audiobook', 'Narrate it with a natural AI voice, saved as MP3.'],
+    'read-aloud':         ['Read it aloud now', 'Listen instantly with your browser\u2019s voices.'],
+    'mp3-to-m4b':         ['MP3s to M4B', 'Join MP3s into one audiobook with chapters.'],
+    'm4b-to-mp3':         ['M4B to MP3', 'Split an audiobook into one MP3 per chapter.']
   };
   var GUIDES = {
-    sideload: ['/guides/sideload-ebooks-to-ereader', 'Put it on your e-reader', 'Kindle, Kobo, Boox, reMarkable: step by step.']
+    sideload: ['/guides/sideload-ebooks-to-ereader', 'Put it on your e-reader', 'Kindle, Kobo, Boox, reMarkable: step by step.'],
+    m4b: ['/guides/what-is-m4b', 'Where M4B files play', 'Apple Books, BookPlayer, Plex, and how chapters work.']
   };
   // Output extension -> follow-ups, best first. The current page is skipped.
   var NEXT = {
     pdf:  ['merge-pdf', 'searchable-pdf', 'pdf-to-epub', 'sideload'],
-    epub: ['sideload', 'epub-to-pdf', 'epub-to-txt'],
-    txt:  ['epub-to-pdf'],
+    epub: ['epub-to-audiobook', 'sideload', 'epub-to-pdf'],
+    txt:  ['read-aloud', 'epub-to-audiobook'],
+    m4b:  ['m4b', 'm4b-to-mp3'],
+    mp3:  ['mp3-to-m4b', 'm4b'],
     jpg:  ['images-to-pdf', 'image-to-text', 'jpg-to-cbz'],
     png:  ['images-to-pdf', 'image-to-text'],
     webp: ['images-to-pdf', 'image-to-text'],
@@ -235,9 +242,17 @@
     cbz:  ['cbz-to-pdf', 'sideload']
   };
 
+  // Where the output extension is ambiguous (a .zip of MP3s is not a .zip of
+  // images), the tool decides.
+  var NEXT_BY_TOOL = {
+    'm4b-to-mp3':        ['mp3-to-m4b', 'epub-to-audiobook'],
+    'epub-to-audiobook': ['m4b', 'm4b-to-mp3', 'read-aloud'],
+    'pdf-to-audiobook':  ['m4b', 'm4b-to-mp3', 'read-aloud']
+  };
+
   function suggestionsFor(outExt) {
     var here = toolName();
-    return (NEXT[outExt] || []).filter(function (k) { return k !== here; }).slice(0, 3).map(function (k) {
+    return (NEXT_BY_TOOL[here] || NEXT[outExt] || []).filter(function (k) { return k !== here; }).slice(0, 3).map(function (k) {
       if (GUIDES[k]) return { key: k, href: GUIDES[k][0], title: GUIDES[k][1], text: GUIDES[k][2] };
       return { key: k, href: '/pages/' + k, title: TOOLS[k][0], text: TOOLS[k][1] };
     });
@@ -312,6 +327,7 @@
     });
     rememberTool();
     showNextSteps(extOf(filename));
+    try { document.dispatchEvent(new CustomEvent('fbc:converted', { detail: { out_ext: extOf(filename) } })); } catch (e) {}
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
