@@ -155,6 +155,43 @@ if (readFileSync(sitemapPath, 'utf8') !== sitemap) {
   if (!CHECK) writeFileSync(sitemapPath, sitemap);
 }
 
+// ---------- llms.txt ---------------------------------------------------------
+// A plain-text map of the site for AI answer engines (llmstxt.org). Built from
+// each page's <title> and meta description so it never drifts from the pages.
+
+function meta(file) {
+  const src = readFileSync(join(ROOT, file), 'utf8');
+  const title = (/<title>([^<]*)<\/title>/.exec(src) || [])[1] || file;
+  const desc = (/<meta name="description" content="([^"]*)"/.exec(src) || [])[1] || '';
+  const clean = (s) => s.replace(/\s*[|—]\s*FreeBookConvert$/, '').replace(/&amp;/g, '&').replace(/&rarr;/g, '→').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"');
+  return { title: clean(title), desc: clean(desc) };
+}
+
+const section = (heading, files) => files.length
+  ? `## ${heading}\n\n` + files.map((f) => {
+      const m = meta(f);
+      return `- [${m.title}](${ORIGIN}${urlPath(f)})${m.desc ? ': ' + m.desc : ''}`;
+    }).join('\n') + '\n\n'
+  : '';
+
+const LEGAL = ['pages/about.html', 'pages/privacy.html', 'pages/terms.html', 'pages/contact.html'];
+const llms =
+  '# FreeBookConvert\n\n' +
+  '> Free file converters for ebooks, PDFs, images, and audiobooks that run entirely in the browser. ' +
+  'Files are never uploaded: conversion happens locally with JavaScript and WebAssembly, and works offline once the page has loaded. ' +
+  'No signup, no watermark, no file size limit beyond device memory.\n\n' +
+  section('Converters', indexable.filter((f) => f.startsWith('pages/') && !LEGAL.includes(f))) +
+  section('Guides', indexable.filter((f) => f.startsWith('guides/'))) +
+  section('About', indexable.filter((f) => LEGAL.includes(f)));
+
+const llmsPath = join(ROOT, 'llms.txt');
+let llmsBefore = '';
+try { llmsBefore = readFileSync(llmsPath, 'utf8'); } catch (e) { /* first run */ }
+if (llmsBefore !== llms.trimEnd() + '\n') {
+  stale.push('llms.txt');
+  if (!CHECK) writeFileSync(llmsPath, llms.trimEnd() + '\n');
+}
+
 if (CHECK && stale.length) {
   console.error('Out of date (run node tools/sync.mjs):\n  ' + stale.join('\n  '));
   process.exit(1);

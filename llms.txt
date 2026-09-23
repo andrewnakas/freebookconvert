@@ -1,0 +1,59 @@
+# FreeBookConvert
+
+> Free file converters for ebooks, PDFs, images, and audiobooks that run entirely in the browser. Files are never uploaded: conversion happens locally with JavaScript and WebAssembly, and works offline once the page has loaded. No signup, no watermark, no file size limit beyond device memory.
+
+## Converters
+
+- [CBZ to PDF Converter (Comic Books)](https://freebookconvert.com/pages/cbz-to-pdf): Turn a CBZ comic archive into a single PDF you can read on any device. Pages stay in the right order. Nothing uploads.
+- [EPUB to PDF Converter (Free, No Upload)](https://freebookconvert.com/pages/epub-to-pdf): Turn an EPUB into a PDF right in your browser. Nothing uploads. Works on Windows, Mac, iPad, and Android phones.
+- [EPUB to TXT (Plain Text From an Ebook)](https://freebookconvert.com/pages/epub-to-txt): Strip an EPUB down to a clean .txt file. Good for grepping, pasting into ChatGPT, or feeding into your notes. Runs in your browser.
+- [HEIC to JPG on Chromebook (No Extension)](https://freebookconvert.com/pages/heic-to-jpg-chromebook): Open iPhone HEIC photos on a Chromebook. No extension, no Google Photos upload, no Linux container. Drag, drop, get JPG. Works offline after the page loads.
+- [HEIC to JPG (Open iPhone Photos Anywhere)](https://freebookconvert.com/pages/heic-to-jpg): Turn HEIC photos from your iPhone into JPGs that open anywhere. Batch works. Nothing uploads.
+- [HEIC to PDF (iPhone Photos Into One PDF)](https://freebookconvert.com/pages/heic-to-pdf): Drop a batch of HEIC photos from your iPhone and get one PDF back. Skips the JPG-first step. Runs in your browser.
+- [HEIC to PNG (Lossless, Free)](https://freebookconvert.com/pages/heic-to-png): Decode HEIC photos from your iPhone into PNG. Lossless, batch-friendly, runs in your browser. Nothing uploads.
+- [Image to Text (Free OCR, No Upload)](https://freebookconvert.com/pages/image-to-text): Drag in a screenshot, a photo of a page, or any JPG/PNG/WEBP. You get the text back as a .txt. Runs in the browser, your image never leaves it.
+- [JPG/PNG to PDF (Combine Into One File)](https://freebookconvert.com/pages/images-to-pdf): Drop a pile of JPG, PNG, or WEBP files and get back one PDF. Pages stay in the order you added them. Runs in your browser.
+- [JPG to CBZ (Make a Comic Archive)](https://freebookconvert.com/pages/jpg-to-cbz): Drop a folder of JPG or PNG pages and get back a single CBZ comic archive. Pages stay in the order you added them. Works on any browser. No upload.
+- [JPG to PDF Converter (Free, No Upload)](https://freebookconvert.com/pages/jpg-to-pdf): Turn one JPG or a whole folder of them into a single PDF. Pages keep the order you added them. Free and runs entirely in your browser.
+- [JPG to PNG for Sublimation (300 DPI)](https://freebookconvert.com/pages/jpg-to-png-sublimation): Convert JPG to PNG for sublimation printing. Free, in your browser, no Photoshop. Keeps full resolution so 300 DPI shirts and tumblers print sharp.
+- [JPG to PNG (Lossless, In Your Browser)](https://freebookconvert.com/pages/jpg-to-png): Re-save JPGs as PNGs without losing more data. Batch works. Nothing leaves the page.
+- [JPG to WEBP (Smaller Web Images)](https://freebookconvert.com/pages/jpg-to-webp): Re-save JPGs as WEBP and shrink the file size by about a third. Batch works. Runs in your browser.
+- [Merge PDF Files (Free, No Upload)](https://freebookconvert.com/pages/merge-pdf): Combine two or more PDFs into one file, in the order you choose. Free, runs in your browser, and the documents never leave your device.
+- [Convert PDF for Boox E-Readers](https://freebookconvert.com/pages/pdf-for-boox): Convert a PDF into a reflowable EPUB tuned for Boox e-readers. Works for Note Air 4, Tab Ultra, Palma 2, Go 10.3. Runs in your browser, no Boox Cloud upload.
+- [Convert PDF for Kindle Scribe](https://freebookconvert.com/pages/pdf-for-kindle-scribe): Turn a PDF into a reflowable EPUB sized for the Kindle Scribe, so text wraps instead of forcing you to pinch and zoom. Free, in your browser.
+- [Convert PDF for Kobo E-Readers](https://freebookconvert.com/pages/pdf-for-kobo): Convert a PDF into a reflowable EPUB for Kobo Sage, Libra Colour, Clara BW, and Elipsa. Free, runs in your browser, nothing uploads.
+- [Convert PDF for reMarkable Tablets](https://freebookconvert.com/pages/pdf-for-remarkable): Turn a PDF into a reflowable EPUB sized for the reMarkable 2 and Paper Pro. Keeps a margin for pen annotations, runs in your browser, no upload to Connect.
+- [PDF OCR (Pull Text Out of a Scanned PDF)](https://freebookconvert.com/pages/pdf-ocr): Run OCR on a scanned PDF and get back either a .txt file or a searchable PDF. English. Runs in your browser.
+- [PDF to EPUB with Chapters & Working TOC](https://freebookconvert.com/pages/pdf-to-epub-with-chapters): Convert a PDF into an EPUB that has real chapters and a working table of contents. Auto-detects headings, splits the book, builds the NCX. In your browser.
+- [PDF to EPUB (Make a Reflowable Ebook)](https://freebookconvert.com/pages/pdf-to-epub): Turn a text-based PDF into a reflowable EPUB ebook your e-reader can resize. Runs in your browser. Won't work on scans.
+- [PDF to JPG (Each Page as an Image)](https://freebookconvert.com/pages/pdf-to-jpg): Turn each page of a PDF into a JPG. Default 2x rendering keeps the text crisp. Runs in your browser.
+- [PDF to PNG Converter (Lossless, Free)](https://freebookconvert.com/pages/pdf-to-png): Turn each page of a PDF into a lossless PNG image. Pick the resolution, get a ZIP for multi-page files. Runs entirely in your browser.
+- [PNG for Cricut Design Space (Free)](https://freebookconvert.com/pages/png-for-cricut): Convert JPG, HEIC, or WEBP into a PNG with transparent background ready for Cricut Design Space. Free, in your browser, no Cricut Access required.
+- [PNG to JPG (Shrink Big PNG Files)](https://freebookconvert.com/pages/png-to-jpg): Re-save PNGs as JPG to cut file size. Transparent areas become white. Batch works. Runs in your browser.
+- [PNG to PDF Converter (Free, No Upload)](https://freebookconvert.com/pages/png-to-pdf): Convert one PNG or a batch of them into a single PDF. Screenshots, diagrams, and exported artwork, all in page order. Runs in your browser.
+- [PNG to WEBP (Keeps Transparency)](https://freebookconvert.com/pages/png-to-webp): Turn PNGs into WEBP for smaller files with transparency still intact. Batch works. Runs in your browser.
+- [Recipe Screenshot to Text (Free OCR)](https://freebookconvert.com/pages/recipe-screenshot-to-text): Pull the recipe text out of a screenshot. Drop the image, get a .txt with ingredients and steps. No app, no upload, no Honeydew subscription.
+- [Scanned PDF to Text (Free OCR)](https://freebookconvert.com/pages/scanned-pdf-to-text): Got a PDF where you can't select the text? It's a scan. This page runs OCR on it and gives you the text back. Free, no signup, no upload.
+- [Android Screenshots to One PDF (No App)](https://freebookconvert.com/pages/screenshots-to-pdf-android): Combine Android screenshots into one PDF in Chrome. No app, no upload, pages stay in the order you picked. Works on Samsung, Pixel, OnePlus.
+- [iPhone Screenshots to One PDF (No App)](https://freebookconvert.com/pages/screenshots-to-pdf-iphone): Combine iPhone screenshots into one PDF in Safari. No app install, no upload, pages stay in order. Works on iPad too.
+- [Make a PDF Searchable (Free OCR)](https://freebookconvert.com/pages/searchable-pdf): Turn a scanned PDF into one you can search and copy from. OCR runs in your browser, the original page images stay intact, and nothing is uploaded.
+- [WEBP to JPG (Free, No Upload)](https://freebookconvert.com/pages/webp-to-jpg): Turn WEBP images into JPG so they open in older apps and tools. Batch works. Runs in your browser.
+- [WEBP to PDF Converter (Free, No Upload)](https://freebookconvert.com/pages/webp-to-pdf): Convert WEBP images saved from the web into a single PDF. Free, runs in your browser, and handles a whole batch at once.
+- [WEBP to PNG (Lossless, Keeps Transparency)](https://freebookconvert.com/pages/webp-to-png): Turn WEBP into PNG when you need lossless quality or transparency in a more compatible format. Batch works. Runs in your browser.
+
+## Guides
+
+- [HEIC Explained: The iPhone Photo Format](https://freebookconvert.com/guides/heic-explained): HEIC is Apple's variant of HEIF, encoded with HEVC. It's half the size of JPEG, and for years HEVC's patent licensing kept it locked out of Windows and Android.
+- [How OCR Works (And Why Scans Fail)](https://freebookconvert.com/guides/how-ocr-works): OCR turns pictures of text into text. A walk through binarization, deskewing, line detection, and the LSTM that made Tesseract 4 finally usable.
+- [JPG vs PNG vs WEBP vs HEIC: Which to Use](https://freebookconvert.com/guides/image-format-comparison): Which image format to pick: lossy vs lossless, transparency, real file-size comparisons, browser support in 2026, and a decision tree.
+- [Guides](https://freebookconvert.com/guides/): Plain explainers about ebook formats, image formats, OCR, sideloading, and why running file conversion in your browser is safer than uploading.
+- [How to Sideload Ebooks to Any E-Reader](https://freebookconvert.com/guides/sideload-ebooks-to-ereader): Step-by-step instructions for sideloading EPUB and PDF files onto every major e-reader: Amazon Kindle, Kobo, Boox, reMarkable, and the Kindle Scribe.
+- [What Is an EPUB? A Practical Explainer](https://freebookconvert.com/guides/what-is-epub): What an EPUB actually is: the zipped XHTML container behind modern ebooks, how EPUB 2 and 3 differ, and why files render differently per reader.
+- [Why Convert Files in Your Browser](https://freebookconvert.com/guides/why-browser-conversion): The privacy and security case for browser-based file conversion, the WebAssembly shift that made it practical, and what kinds of files you should never upload.
+
+## About
+
+- [About](https://freebookconvert.com/pages/about): About FreeBookConvert: who runs it, why it exists, how the browser-based conversion works, and how it stays free.
+- [Contact](https://freebookconvert.com/pages/contact): Get in touch with FreeBookConvert. Email for bug reports, feature requests, privacy questions, DMCA notices, and editorial corrections.
+- [Privacy Policy](https://freebookconvert.com/pages/privacy): FreeBookConvert privacy policy. We never receive the files you convert. Full details on analytics, advertising, cookies, GDPR and CCPA rights.
+- [Terms of Service](https://freebookconvert.com/pages/terms): FreeBookConvert terms of service. Free, browser-based file conversion provided as-is, ad-supported. Acceptable use, intellectual property, and liability.
