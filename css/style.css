@@ -553,3 +553,31 @@ select:focus-visible,
     justify-content: center;
   }
 }
+
+/* ---------- retention: post-convert suggestions + returning-visitor row ---- */
+.next-steps {
+  margin: 24px 0 8px;
+  animation: next-steps-in 0.25s ease-out;
+}
+.next-steps h2 { margin: 0 0 4px; font-size: 1.2rem; }
+.next-steps .card-grid { margin-top: 12px; }
+@keyframes next-steps-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .next-steps { animation: none; } }
+
+.recent { margin: 8px 0 24px; }
+.recent h2 { font-size: 1rem; margin: 0 0 8px; color: var(--muted); font-weight: 600; }
+.recent-tools { display: flex; flex-wrap: wrap; gap: 8px; }
+.recent-tool {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.recent-tool:hover, .recent-tool:focus-visible { border-color: var(--accent); color: var(--accent); }

@@ -152,6 +152,7 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
   </div>
 
+  <section id="recentTools" class="recent" aria-label="Tools you used before" hidden></section>
   <section id="universalEntry" aria-label="Quick file converter"></section>
 
   <section class="converters">
@@ -359,8 +360,11 @@
 </footer>
 <!-- /@footer -->
 <script src="/js/common.js"></script>
-<script src="/js/universal-entry.js?v=multi1"></script>
-<script>UniversalEntry.init(document.getElementById('universalEntry'));</script>
+<script src="/js/universal-entry.js?v=retain1"></script>
+<script>
+  UniversalEntry.init(document.getElementById('universalEntry'));
+  if (CV.renderRecentTools) CV.renderRecentTools(document.getElementById('recentTools'));
+</script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

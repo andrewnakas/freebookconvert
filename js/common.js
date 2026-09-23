@@ -202,12 +202,116 @@
     return m ? m[1].toLowerCase() : 'none';
   }
 
+  // ---------- retention: "what next" + recently used tools --------------------
+  // A finished conversion is the moment a visitor is most likely to do a second
+  // thing, and before this they just left. Suggest the natural follow-up for the
+  // file they now hold, and remember which tools they use so the homepage can
+  // put those first on the next visit.
+
+  var TOOLS = {
+    'merge-pdf':          ['Merge PDFs', 'Combine this with other PDFs into one file.'],
+    'searchable-pdf':     ['Make it searchable', 'Add an invisible OCR text layer to a scanned PDF.'],
+    'pdf-to-epub':        ['PDF to EPUB', 'Reflow it into an ebook for your phone or e-reader.'],
+    'pdf-to-jpg':         ['PDF to JPG', 'Pull every page out as an image.'],
+    'epub-to-pdf':        ['EPUB to PDF', 'Fixed pages for printing or forms.'],
+    'epub-to-txt':        ['EPUB to TXT', 'Plain text for scripts, notes, or AI tools.'],
+    'images-to-pdf':      ['Images to PDF', 'Bundle these images into a single PDF.'],
+    'image-to-text':      ['Image to text', 'Copy the words out of a photo or screenshot.'],
+    'cbz-to-pdf':         ['CBZ to PDF', 'Turn a comic archive into a PDF.'],
+    'jpg-to-cbz':         ['Images to CBZ', 'Pack images into a comic archive for a reader app.']
+  };
+  var GUIDES = {
+    sideload: ['/guides/sideload-ebooks-to-ereader', 'Put it on your e-reader', 'Kindle, Kobo, Boox, reMarkable: step by step.']
+  };
+  // Output extension -> follow-ups, best first. The current page is skipped.
+  var NEXT = {
+    pdf:  ['merge-pdf', 'searchable-pdf', 'pdf-to-epub', 'sideload'],
+    epub: ['sideload', 'epub-to-pdf', 'epub-to-txt'],
+    txt:  ['epub-to-pdf'],
+    jpg:  ['images-to-pdf', 'image-to-text', 'jpg-to-cbz'],
+    png:  ['images-to-pdf', 'image-to-text'],
+    webp: ['images-to-pdf', 'image-to-text'],
+    zip:  ['images-to-pdf', 'jpg-to-cbz'],
+    cbz:  ['cbz-to-pdf', 'sideload']
+  };
+
+  function suggestionsFor(outExt) {
+    var here = toolName();
+    return (NEXT[outExt] || []).filter(function (k) { return k !== here; }).slice(0, 3).map(function (k) {
+      if (GUIDES[k]) return { key: k, href: GUIDES[k][0], title: GUIDES[k][1], text: GUIDES[k][2] };
+      return { key: k, href: '/pages/' + k, title: TOOLS[k][0], text: TOOLS[k][1] };
+    });
+  }
+
+  // Renders below `anchor` (default: the page's converter box). Replaces any
+  // earlier panel so a batch of downloads shows one panel, not five.
+  function showNextSteps(outExt, anchor) {
+    anchor = anchor || $('.converter-app');
+    if (!anchor || !anchor.parentNode) return;
+    var items = suggestionsFor(outExt);
+    var old = $('#nextSteps');
+    if (old) old.remove();
+    if (!items.length) return;
+    var sec = document.createElement('section');
+    sec.id = 'nextSteps';
+    sec.className = 'next-steps';
+    sec.setAttribute('aria-label', 'What to do next');
+    sec.innerHTML = '<h2>What next?</h2><div class="card-grid"></div>';
+    var grid = sec.querySelector('.card-grid');
+    items.forEach(function (it) {
+      var a = document.createElement('a');
+      a.className = 'card';
+      a.href = it.href;
+      a.innerHTML = '<h3></h3><p></p>';
+      a.querySelector('h3').textContent = it.title;
+      a.querySelector('p').textContent = it.text;
+      a.addEventListener('click', function () { track('next_step_click', { target: it.key, out_ext: outExt }); });
+      grid.appendChild(a);
+    });
+    anchor.parentNode.insertBefore(sec, anchor.nextSibling);
+  }
+
+  var RECENT_KEY = 'fbc_recent';
+
+  function readRecent() {
+    try { return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; } catch (e) { return []; }
+  }
+
+  function rememberTool() {
+    if (!/^\/pages\//.test(location.pathname)) return;
+    var slug = toolName();
+    var h1 = $('h1');
+    var title = (h1 && h1.textContent.trim()) || slug;
+    var list = readRecent().filter(function (r) { return r.slug !== slug; });
+    list.unshift({ slug: slug, title: title.slice(0, 60), t: Date.now() });
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(list.slice(0, 5))); } catch (e) { /* private mode */ }
+  }
+
+  // Homepage: fill <section id="recentTools" hidden> for returning visitors.
+  function renderRecentTools(el) {
+    var list = readRecent();
+    if (!el || !list.length) return;
+    el.innerHTML = '<h2>Your tools</h2><div class="recent-tools"></div>';
+    var row = el.querySelector('.recent-tools');
+    list.forEach(function (r) {
+      var a = document.createElement('a');
+      a.className = 'recent-tool';
+      a.href = '/pages/' + encodeURIComponent(r.slug);
+      a.textContent = r.title;
+      a.addEventListener('click', function () { track('return_visit_tool', { target: r.slug }); });
+      row.appendChild(a);
+    });
+    el.hidden = false;
+  }
+
   function downloadBlob(blob, filename) {
     // Every page funnels a finished conversion through here.
     track('conversion_complete', {
       out_ext: extOf(filename),
       out_bytes: blob && blob.size || 0
     });
+    rememberTool();
+    showNextSteps(extOf(filename));
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
@@ -253,6 +357,8 @@
     clearStatus: clearStatus,
     setProgress: setProgress,
     downloadBlob: downloadBlob,
-    renderFileList: renderFileList
+    renderFileList: renderFileList,
+    showNextSteps: showNextSteps,
+    renderRecentTools: renderRecentTools
   };
 })(window);

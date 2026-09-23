@@ -439,6 +439,8 @@
           count: files.length, out_bytes: result.blob.size, ms: Date.now() - startedAt
         });
         setStatus('success', 'Done! Downloaded ' + result.filename);
+        var outExt = (/\.([a-z0-9]+)$/i.exec(result.filename) || [])[1];
+        if (CV.showNextSteps) CV.showNextSteps((outExt || '').toLowerCase(), container);
         goBtn.textContent = 'Convert another';
         goBtn.disabled = false;
         done = true;
