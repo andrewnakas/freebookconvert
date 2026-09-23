@@ -615,3 +615,17 @@ select:focus-visible,
 .chapter-preview { margin: 12px 0; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); max-height: 16em; overflow: auto; }
 .chapter-preview p { margin: 0 0 6px; }
 .chapter-preview ol { margin: 0; padding-left: 1.6em; font-size: 0.92rem; color: var(--muted); }
+
+/* ---------- read aloud ---------------------------------------------------- */
+.book-meta { font-weight: 600; margin: 16px 0 0; }
+.read-where { color: var(--muted); font-size: 0.9rem; margin: 10px 0 6px; font-variant-numeric: tabular-nums; }
+.read-text {
+  max-height: 22em; overflow: auto; padding: 16px 20px;
+  border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg);
+  line-height: 1.75; font-size: 1.05rem; text-align: left;
+}
+.read-text h2 { margin-top: 0; font-size: 1.2rem; }
+.read-text .sent { cursor: pointer; border-radius: 3px; }
+.read-text .sent:hover { background: rgba(37, 99, 235, 0.06); }
+.read-text .sent.reading { background: #fde68a; }
+.read-hint { font-size: 0.9rem; color: var(--muted); }

@@ -1,14 +1,12 @@
 // PDF → EPUB. Extract per-page text with pdf.js, group into chapters by
 // detected heading-ish lines, then pack into a minimal EPUB 3 zip.
 (function () {
-  async function convert(file, options, onProgress) {
+  // Text + chapter structure only, shared with the audiobook tools.
+  // onProgress receives 0-100 for the reading phase.
+  async function extractChapters(file, options, onProgress) {
     options = options || {};
-    var chaptersPerSplit = options.pagesPerChapter || 0; // 0 = auto
-
-    onProgress && onProgress(1, 'Loading converter…');
-    await CV.load('pdfjs', 'jszip');
-
-    onProgress && onProgress(2, 'Loading PDF…');
+    var pagesPerChapter = options.pagesPerChapter || 0; // 0 = auto
+    await CV.load('pdfjs');
     var data = new Uint8Array(await file.arrayBuffer());
     var pdf = await pdfjsLib.getDocument({ data: data }).promise;
 
@@ -19,27 +17,28 @@
     var totalPages = pdf.numPages;
     var pages = [];
     for (var p = 1; p <= totalPages; p++) {
-      onProgress && onProgress(2 + Math.floor(70 * (p / totalPages)), 'Reading page ' + p + '/' + totalPages);
+      onProgress && onProgress(Math.floor(100 * (p / totalPages)), 'Reading page ' + p + '/' + totalPages);
       var page = await pdf.getPage(p);
       var tc = await page.getTextContent();
       pages.push(joinTextItems(tc.items));
       await yieldFrame();
     }
 
-    onProgress && onProgress(75, 'Splitting into chapters…');
-    var chapters;
-    if (chaptersPerSplit > 0) {
-      chapters = groupByCount(pages, chaptersPerSplit);
-    } else {
-      chapters = groupByHeadings(pages);
-    }
+    var chapters = pagesPerChapter > 0 ? groupByCount(pages, pagesPerChapter) : groupByHeadings(pages);
+    return { title: title, author: author, chapters: chapters };
+  }
+
+  async function convert(file, options, onProgress) {
+    options = options || {};
+    onProgress && onProgress(1, 'Loading converter…');
+    await CV.load('jszip');
+    onProgress && onProgress(2, 'Loading PDF…');
+    var book = await extractChapters(file, options, function (pct, msg) {
+      onProgress && onProgress(2 + Math.floor(0.7 * pct), msg);
+    });
 
     onProgress && onProgress(85, 'Building EPUB…');
-    var blob = await buildEpub({
-      title: title,
-      author: author,
-      chapters: chapters
-    });
+    var blob = await buildEpub(book);
     onProgress && onProgress(100, 'Done.');
     return blob;
   }
@@ -200,5 +199,5 @@
     return new Promise(function (r) { setTimeout(r, 0); });
   }
 
-  window.PdfToEpub = { convert: convert };
+  window.PdfToEpub = { convert: convert, extractChapters: extractChapters };
 })();

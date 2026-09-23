@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- @csp -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://www.googletagmanager.com https://static.cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' data: blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; child-src blob:; manifest-src 'self';">
+<!-- /@csp -->
+<title>Read EPUB or PDF Aloud Online (Free Text to Speech) | FreeBookConvert</title>
+<meta name="description" content="Have any EPUB, PDF, or TXT read aloud in your browser, with the sentence highlighted as it goes. Remembers your place. Free, instant, nothing uploaded.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/pages/read-aloud">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Read Any Ebook Aloud — Free, In Your Browser">
+<meta property="og:description" content="EPUB, PDF, or TXT read aloud with highlighting. Nothing uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/read-aloud">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta property="og:site_name" content="FreeBookConvert">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Read Any Ebook Aloud">
+<meta name="twitter:description" content="EPUB, PDF, or TXT read aloud with highlighting, in your browser.">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Read Aloud: EPUB, PDF and TXT",
+  "url": "https://freebookconvert.com/pages/read-aloud",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://freebookconvert.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Read Aloud", "item": "https://freebookconvert.com/pages/read-aloud"}
+  ]
+}
+</script>
+<!-- @analytics -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
+     denied until they pick in the consent banner (js/consent.js); a stored
+     choice from an earlier visit is applied before the first hit. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500,
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH']
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted',
+    analytics_storage: 'granted'
+  });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem('fbc_consent_v1'); } catch (e) {}
+    if (c === 'all') {
+      gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    } else if (c === 'essential') {
+      gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    }
+  })();
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+  // Microsoft Clarity project ID (clarity.microsoft.com). Empty = disabled.
+  // Loaded by js/consent.js only after the visitor accepts all cookies.
+  window.FBC_CLARITY_ID = '';
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- /@analytics -->
+</head>
+<body>
+<!-- @header -->
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Read Aloud</span></nav>
+  <section class="page-intro">
+    <h1>Read Any Ebook Aloud</h1>
+    <p>Open an EPUB, PDF, or text file and press Play. It reads out loud with your device's voices, highlights each sentence as it goes, and remembers where you stopped. There's nothing to download or install, and the book never leaves your device.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This tool needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <div class="ad-slot ad-slot-top">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop an EPUB, PDF, or TXT here</p>
+      <p>or <strong>click to browse</strong></p>
+      <p style="font-size:0.85rem">Accepts: .epub, .pdf (with a text layer), .txt</p>
+      <input type="file" id="fileInput" accept=".epub,.pdf,.txt">
+    </div>
+    <div class="status hidden" id="status"></div>
+
+    <div id="player" hidden>
+      <p class="book-meta" id="bookMeta"></p>
+      <div class="controls">
+        <label>Chapter <select id="chapterSel"></select></label>
+        <label>Voice <select id="voiceSel"></select></label>
+        <label>Speed
+          <select id="rateSel">
+            <option value="0.8">0.8&times;</option>
+            <option value="1" selected>1&times;</option>
+            <option value="1.2">1.2&times;</option>
+            <option value="1.4">1.4&times;</option>
+            <option value="1.7">1.7&times;</option>
+            <option value="2">2&times;</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary" id="prevBtn" aria-label="Previous sentence">&larr;</button>
+        <button class="btn" id="playBtn" aria-pressed="false">Play</button>
+        <button class="btn btn-secondary" id="nextBtn" aria-label="Next sentence">&rarr;</button>
+      </div>
+      <p class="read-where" id="where" aria-live="off"></p>
+      <div class="read-text" id="readText" tabindex="0" aria-label="Book text. Click a sentence to read from there."></div>
+      <p class="read-hint">Want an MP3 you can take with you? <a href="/pages/epub-to-audiobook">Turn this book into an audiobook file</a>.</p>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-slot-mid ad-slot-post" id="adSlotPost">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="content-section">
+    <h2>How to use it</h2>
+    <ol>
+      <li>Drop an ebook or PDF on the box above.</li>
+      <li>Pick a voice and speed, then press <strong>Play</strong>.</li>
+      <li>Click any sentence to jump there. Close the tab whenever you like; next time you open the same file, it picks up where you stopped.</li>
+    </ol>
+
+    <h2>Which voices you get</h2>
+    <p>This page uses the speech engine built into your browser and operating system, so the voice list depends on your device. The best ones by platform:</p>
+    <ul>
+      <li><strong>Microsoft Edge</strong> on any platform lists dozens of "Online (Natural)" neural voices. These are the most natural-sounding free voices available in a browser.</li>
+      <li><strong>Chrome</strong> on desktop includes several "Google" voices. They're good quality, but they need an internet connection.</li>
+      <li><strong>Safari on iPhone, iPad, and Mac</strong> uses the system voices. Download the "Enhanced" or "Premium" versions under Settings &rarr; Accessibility &rarr; Spoken Content &rarr; Voices, then reload this page.</li>
+      <li><strong>Android</strong> uses Google's speech engine. Higher-quality voices can be installed in Settings &rarr; Accessibility &rarr; Text-to-speech.</li>
+    </ul>
+    <p>Voices that match the book's language are listed first, with the natural-sounding ones at the top.</p>
+
+    <h2>Read aloud vs. making an audiobook file</h2>
+    <p>This page speaks live. It starts instantly and costs nothing to download, but there's no file at the end: browsers don't let web pages record their built-in voices. If you want MP3s to put on a phone, play in the car, or listen to offline, use <a href="/pages/epub-to-audiobook">EPUB to Audiobook</a>. It runs a neural voice model on your device and saves each chapter as an MP3. It takes longer and needs a one-time model download, but you keep the result.</p>
+
+    <h2>Who this is for</h2>
+    <ul>
+      <li><strong>Dyslexic readers and people with low vision.</strong> Hearing the text while following the highlighted sentence is a proven reading aid, and it works on any DRM-free book.</li>
+      <li><strong>Language learners.</strong> Slow the speed down and click back a sentence as many times as you need.</li>
+      <li><strong>Proofreading your own writing.</strong> Hearing a manuscript read back catches repeated words and clumsy sentences your eyes skip over.</li>
+      <li><strong>Long PDFs you don't have time to sit and read:</strong> reports, papers, and course readers, while you do something else.</li>
+    </ul>
+
+    <h2>Private by design</h2>
+    <p>The file is opened inside this tab and never uploaded. The only thing stored is your reading position (chapter and sentence number) in this browser's local storage, so the page can resume. The book's text is not stored. One caveat: some cloud voices (Chrome's "Google" voices and Edge's "Online" voices) send each sentence to the browser maker's speech service to be spoken. If that matters for a document, choose a voice without "Google" or "Online" in its name. Those run entirely on your device.</p>
+
+    <h2>Common problems</h2>
+    <ul>
+      <li><strong>It reads nothing from my PDF.</strong> Scanned PDFs are pictures of text. Run the file through <a href="/pages/searchable-pdf">Searchable PDF</a> first to add a text layer, then open it here.</li>
+      <li><strong>It stops when I lock my phone.</strong> Mobile browsers pause web speech in the background. Keep the screen on, or make an <a href="/pages/epub-to-audiobook">audiobook file</a>, which plays normally with the screen off.</li>
+      <li><strong>Page numbers or headers are read out in a PDF.</strong> PDFs store running headers as ordinary text. Skip them with the &rarr; button, or convert the PDF with <a href="/pages/pdf-to-epub">PDF to EPUB</a> first for a cleaner text flow.</li>
+      <li><strong>The voice list is empty.</strong> Some Linux browsers ship without a speech engine. Install <code>speech-dispatcher</code>, or use Chrome or Edge.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is it really free?</summary><p>Yes. The speech comes from your browser, so it costs nothing to run. The site is supported by ads.</p></details>
+    <details><summary>Can it read DRM-protected Kindle or Apple Books titles?</summary><p>No. Those files are encrypted. Use a DRM-free EPUB (Standard Ebooks, Project Gutenberg, Tor, many indie publishers) or your own documents.</p></details>
+    <details><summary>Does it remember where I stopped?</summary><p>Yes, per file, in this browser. Open the same file again and it jumps to the chapter and sentence where you left off.</p></details>
+    <details><summary>Does it work offline?</summary><p>With an on-device voice, yes. Once the page has loaded you can go offline and keep listening.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related tools</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/epub-to-audiobook"><h3>EPUB to Audiobook</h3><p>Save the narration as MP3s with a natural AI voice.</p></a>
+      <a class="card" href="/pages/epub-to-txt"><h3>EPUB to TXT</h3><p>Pull the plain text out of an ebook.</p></a>
+      <a class="card" href="/pages/searchable-pdf"><h3>Searchable PDF</h3><p>Add a text layer to a scanned PDF so it can be read aloud.</p></a>
+    </div>
+  </section>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
+  </div>
+</footer>
+<!-- /@footer -->
+
+<script src="/js/common.js"></script>
+<script src="/js/epub-parser.js"></script>
+<script src="/js/pdf-to-epub.js"></script>
+<script src="/js/book-text.js"></script>
+<script src="/js/read-aloud.js"></script>
+<script>
+(function () {
+  var statusEl = CV.$('#status'), player = CV.$('#player'), metaEl = CV.$('#bookMeta');
+  var reader = ReadAloud.Reader({
+    text: CV.$('#readText'), chapterSel: CV.$('#chapterSel'), voiceSel: CV.$('#voiceSel'),
+    rateSel: CV.$('#rateSel'), playBtn: CV.$('#playBtn'), prevBtn: CV.$('#prevBtn'),
+    nextBtn: CV.$('#nextBtn'), where: CV.$('#where')
+  });
+  if (!reader.supported) {
+    CV.setStatus(statusEl, 'error', 'This browser has no built-in speech engine. Try Chrome, Edge, or Safari.');
+  }
+
+  CV.bindDropzone(CV.$('#dropzone'), CV.$('#fileInput'), async function (files) {
+    if (!files.length) return;
+    var file = files[0];
+    reader.stop();
+    CV.setStatus(statusEl, 'info', 'Opening ' + file.name + '…');
+    try {
+      var book = await BookText.load(file, function (p, m) { CV.setStatus(statusEl, 'info', m); });
+      var resumed = reader.open(book, BookText.bookKey(file));
+      metaEl.textContent = book.title + (book.author ? ' · ' + book.author : '') + ' · ' +
+        book.chapters.length + ' chapters';
+      player.hidden = false;
+      CV.setStatus(statusEl, 'success', resumed ? 'Welcome back. Picking up where you left off.' : 'Ready. Press Play.');
+      CV.$('#playBtn').focus();
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Could not open this file: ' + (e.message || e));
+    }
+  }, ['.epub', '.pdf', '.txt']);
+})();
+</script>
+<script src="/js/consent.js"></script>
+</body>
+</html>
