@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- @csp -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://www.googletagmanager.com https://static.cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' data: blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:; manifest-src 'self';">
+<!-- /@csp -->
 <title>Contact — FreeBookConvert</title>
 <meta name="description" content="Get in touch with FreeBookConvert. Email for bug reports, feature requests, privacy questions, DMCA notices, and editorial corrections.">
 <meta name="robots" content="index,follow">
@@ -24,14 +27,40 @@
 <link rel="dns-prefetch" href="https://unpkg.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="../css/style.css">
+<!-- @analytics -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
+     denied until they pick in the consent banner (js/consent.js); a stored
+     choice from an earlier visit is applied before the first hit. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500,
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH']
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted',
+    analytics_storage: 'granted'
+  });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem('fbc_consent_v1'); } catch (e) {}
+    if (c === 'all') {
+      gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    } else if (c === 'essential') {
+      gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    }
+  })();
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
+  // Microsoft Clarity project ID (clarity.microsoft.com). Empty = disabled.
+  // Loaded by js/consent.js only after the visitor accepts all cookies.
+  window.FBC_CLARITY_ID = '';
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- /@analytics -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -54,6 +83,7 @@
 </script>
 </head>
 <body>
+<!-- @header -->
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
@@ -66,6 +96,7 @@
     </nav>
   </div>
 </header>
+<!-- /@header -->
 <main class="container">
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Contact</span></nav>
   <section class="page-intro">
@@ -105,11 +136,13 @@
     <p>For postal correspondence (rarely needed; email is faster), contact us first by email and we will provide an appropriate address for the matter at hand.</p>
   </section>
 </main>
+<!-- @footer -->
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; 2026 FreeBookConvert</p>
+    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
     <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
+<!-- /@footer -->
 </body>
 </html>

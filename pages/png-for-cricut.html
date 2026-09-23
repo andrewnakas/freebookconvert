@@ -6,7 +6,9 @@
 <title>PNG for Cricut Design Space (Free) | FreeBookConvert</title>
 <meta name="description" content="Convert JPG, HEIC, or WEBP into a PNG with transparent background ready for Cricut Design Space. Free, in your browser, no Cricut Access required.">
 <meta name="robots" content="index,follow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
+<!-- @csp -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://www.googletagmanager.com https://static.cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' data: blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:; manifest-src 'self';">
+<!-- /@csp -->
 <link rel="canonical" href="https://freebookconvert.com/pages/png-for-cricut">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="PNG for Cricut Design Space">
@@ -45,15 +47,40 @@
   ]
 }
 </script>
+<!-- @analytics -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
+     denied until they pick in the consent banner (js/consent.js); a stored
+     choice from an earlier visit is applied before the first hit. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500,
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH']
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted',
+    analytics_storage: 'granted'
+  });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem('fbc_consent_v1'); } catch (e) {}
+    if (c === 'all') {
+      gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    } else if (c === 'essential') {
+      gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    }
+  })();
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
+  // Microsoft Clarity project ID (clarity.microsoft.com). Empty = disabled.
+  // Loaded by js/consent.js only after the visitor accepts all cookies.
+  window.FBC_CLARITY_ID = '';
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- /@analytics -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -76,19 +103,20 @@
 </script>
 </head>
 <body>
+<!-- @header -->
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
       <a href="/guides/">Guides</a>
-      <a href="/pages/jpg-to-png">JPG&rarr;PNG</a>
-      <a href="/pages/png-to-jpg">PNG&rarr;JPG</a>
-      <a href="/pages/heic-to-png">HEIC&rarr;PNG</a>
-      <a href="/pages/webp-to-png">WEBP&rarr;PNG</a>
-      <a href="/pages/jpg-to-png-sublimation">For Sublimation</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
+<!-- /@header -->
 
 <main class="container">
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">PNG for Cricut Design Space</span></nav>
@@ -170,12 +198,14 @@
   </section>
 </main>
 
+<!-- @footer -->
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; 2026 FreeBookConvert</p>
+    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
     <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
+<!-- /@footer -->
 
 <script src="/js/common.js"></script>
 <script src="/js/image-convert.js"></script>

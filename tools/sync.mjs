@@ -1,0 +1,163 @@
+#!/usr/bin/env node
+// Rewrites the blocks every page shares (CSP, analytics, header, footer) from
+// tools/partials/ and regenerates sitemap.xml. Zero dependencies.
+//
+//   node tools/sync.mjs          write changes
+//   node tools/sync.mjs --check  exit 1 if anything is out of date (for CI)
+//
+// Each shared block sits between marker comments, e.g.
+//   <!-- @header -->…<!-- /@header -->
+// Pages that predate the markers are migrated on first run: the legacy block is
+// found by pattern and replaced with the marked version.
+
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { join, dirname, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const ORIGIN = 'https://freebookconvert.com';
+const CHECK = process.argv.includes('--check');
+
+const partial = (name) => readFileSync(join(ROOT, 'tools/partials', name + '.html'), 'utf8').trimEnd();
+
+function listPages() {
+  const html = (dir) => readdirSync(join(ROOT, dir))
+    .filter((f) => f.endsWith('.html'))
+    .sort()
+    .map((f) => (dir === '.' ? f : dir + '/' + f));
+  return [...html('.'), ...html('pages'), ...html('guides')];
+}
+
+// '/pages/epub-to-pdf', '/guides/', '/'
+function urlPath(file) {
+  if (file === 'index.html') return '/';
+  if (file.endsWith('/index.html')) return '/' + file.slice(0, -'index.html'.length);
+  return '/' + file.replace(/\.html$/, '');
+}
+
+const isNoindex = (src) => /<meta name="robots" content="noindex/i.test(src);
+
+// ---------- block definitions ------------------------------------------------
+// legacy: regexes removed on migration (the first match marks where the block
+// goes). anchor: fallback insertion point when no legacy block exists.
+
+const BLOCKS = [
+  {
+    name: 'csp',
+    render: () => partial('csp'),
+    legacy: [/<meta http-equiv="Content-Security-Policy"[^>]*>\n/],
+    anchor: { re: /<meta name="viewport"[^>]*>\n/, after: true }
+  },
+  {
+    name: 'analytics',
+    // No ads on noindex pages (404): AdSense disallows ads on pages without
+    // publisher content.
+    render: (ctx) => (ctx.noindex ? '' : partial('adsense') + '\n') + partial('analytics'),
+    legacy: [
+      /<!-- Google tag \(gtag\.js\) -->\n/,
+      /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js[^"]*"><\/script>\n<script>[\s\S]*?gtag\('config'[^\n]*\n<\/script>\n/,
+      /<script async src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^"]*" crossorigin="anonymous"><\/script>\n/
+    ],
+    anchor: { re: /<\/head>/, after: false }
+  },
+  {
+    name: 'header',
+    render: (ctx) => markCurrent(partial('header'), ctx.path),
+    legacy: [/<header class="site-header">[\s\S]*?<\/header>\n/],
+    anchor: { re: /<body[^>]*>\n/, after: true }
+  },
+  {
+    name: 'footer',
+    render: () => partial('footer'),
+    legacy: [/<footer class="site-footer">[\s\S]*?<\/footer>\n/],
+    anchor: { re: /<script /, after: false }
+  }
+];
+
+function markCurrent(html, path) {
+  return html.replace(/<a href="([^"]+)">/g, (m, href) =>
+    href === path ? `<a href="${href}" aria-current="page">` : m);
+}
+
+function applyBlock(src, block, ctx, file) {
+  const open = `<!-- @${block.name} -->`;
+  const close = `<!-- /@${block.name} -->`;
+  const body = block.render(ctx);
+  const wrapped = `${open}\n${body ? body + '\n' : ''}${close}\n`;
+
+  const start = src.indexOf(open);
+  if (start !== -1) {
+    const end = src.indexOf(close, start);
+    if (end === -1) throw new Error(`${file}: ${open} has no closing ${close}`);
+    let after = end + close.length;
+    if (src[after] === '\n') after++;
+    return src.slice(0, start) + wrapped + src.slice(after);
+  }
+
+  // Migration: strip every legacy fragment, remembering where the first was.
+  let at = -1;
+  for (const re of block.legacy) {
+    const m = re.exec(src);
+    if (!m) continue;
+    if (at === -1 || m.index < at) at = m.index;
+    src = src.slice(0, m.index) + src.slice(m.index + m[0].length);
+  }
+  if (at === -1) {
+    const m = block.anchor.re.exec(src);
+    if (!m) throw new Error(`${file}: no place to insert @${block.name}`);
+    at = block.anchor.after ? m.index + m[0].length : m.index;
+  }
+  return src.slice(0, at) + wrapped + src.slice(at);
+}
+
+// ---------- pages ------------------------------------------------------------
+
+const pages = listPages();
+const stale = [];
+
+for (const file of pages) {
+  const abs = join(ROOT, file);
+  const before = readFileSync(abs, 'utf8');
+  const ctx = { path: urlPath(file), noindex: isNoindex(before) };
+  let src = before;
+  for (const block of BLOCKS) src = applyBlock(src, block, ctx, file);
+  if (src !== before) {
+    stale.push(file);
+    if (!CHECK) writeFileSync(abs, src);
+  }
+}
+
+// ---------- sitemap ----------------------------------------------------------
+// Only indexable pages. lastmod comes from the last commit that touched the
+// file, so it moves only when the page really changed (Bing weighs it; Google
+// uses it when it is consistently accurate). Uncommitted files get today.
+
+function lastmod(file) {
+  try {
+    const d = execFileSync('git', ['log', '-1', '--format=%cs', '--', file], { cwd: ROOT, encoding: 'utf8' }).trim();
+    if (d) return d;
+  } catch (e) { /* not a git checkout */ }
+  return new Date().toISOString().slice(0, 10);
+}
+
+const indexable = pages.filter((f) => !isNoindex(readFileSync(join(ROOT, f), 'utf8')));
+const sitemap =
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<!-- Generated by tools/sync.mjs; do not edit by hand. -->\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  indexable.map((f) => `  <url><loc>${ORIGIN}${urlPath(f)}</loc><lastmod>${lastmod(f)}</lastmod></url>\n`).join('') +
+  '</urlset>\n';
+
+const sitemapPath = join(ROOT, 'sitemap.xml');
+if (readFileSync(sitemapPath, 'utf8') !== sitemap) {
+  stale.push('sitemap.xml');
+  if (!CHECK) writeFileSync(sitemapPath, sitemap);
+}
+
+if (CHECK && stale.length) {
+  console.error('Out of date (run node tools/sync.mjs):\n  ' + stale.join('\n  '));
+  process.exit(1);
+}
+console.log(stale.length ? `${CHECK ? 'Stale' : 'Updated'} ${stale.length} file(s): ${stale.join(', ')}` : 'Everything up to date.');
+console.log(`${pages.length} pages, ${indexable.length} in sitemap.`);

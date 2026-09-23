@@ -39,6 +39,23 @@ This is a fully static site. To deploy:
    - `sitemap.xml`
 3. Upload the entire `ebook-converter/` directory contents to your static host.
 
+## Shared blocks and the sitemap
+
+The CSP, analytics/consent, header, and footer are identical on every page and
+live in `tools/partials/`. Each page holds a copy between marker comments
+(`<!-- @header -->` … `<!-- /@header -->`). To change one site-wide:
+
+```sh
+# edit tools/partials/<block>.html, then
+node tools/sync.mjs          # rewrites every page + regenerates sitemap.xml
+node tools/sync.mjs --check  # exits 1 if anything is out of date
+```
+
+`sitemap.xml` is generated: every page without `noindex`, with `lastmod` from
+the last git commit touching the file. Commit page edits *before* running sync
+if you want their `lastmod` to move. Adding a page = create the HTML file, run
+sync, add a short URL to `_redirects`.
+
 ## Local preview
 
 ```sh
