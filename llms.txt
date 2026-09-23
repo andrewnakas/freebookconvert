@@ -5,6 +5,7 @@
 ## Converters
 
 - [CBZ to PDF Converter (Comic Books)](https://freebookconvert.com/pages/cbz-to-pdf): Turn a CBZ comic archive into a single PDF you can read on any device. Pages stay in the right order. Nothing uploads.
+- [EPUB to Audiobook: Free AI Voice, MP3 or M4B, No Upload](https://freebookconvert.com/pages/epub-to-audiobook): Turn an EPUB, PDF, or TXT into an audiobook with a natural AI voice. Saves MP3 per chapter or one M4B. Runs on your device. Free, no signup, nothing uploaded.
 - [EPUB to PDF Converter (Free, No Upload)](https://freebookconvert.com/pages/epub-to-pdf): Turn an EPUB into a PDF right in your browser. Nothing uploads. Works on Windows, Mac, iPad, and Android phones.
 - [EPUB to TXT (Plain Text From an Ebook)](https://freebookconvert.com/pages/epub-to-txt): Strip an EPUB down to a clean .txt file. Good for grepping, pasting into ChatGPT, or feeding into your notes. Runs in your browser.
 - [HEIC to JPG on Chromebook (No Extension)](https://freebookconvert.com/pages/heic-to-jpg-chromebook): Open iPhone HEIC photos on a Chromebook. No extension, no Google Photos upload, no Linux container. Drag, drop, get JPG. Works offline after the page loads.
@@ -26,6 +27,7 @@
 - [Convert PDF for Kobo E-Readers](https://freebookconvert.com/pages/pdf-for-kobo): Convert a PDF into a reflowable EPUB for Kobo Sage, Libra Colour, Clara BW, and Elipsa. Free, runs in your browser, nothing uploads.
 - [Convert PDF for reMarkable Tablets](https://freebookconvert.com/pages/pdf-for-remarkable): Turn a PDF into a reflowable EPUB sized for the reMarkable 2 and Paper Pro. Keeps a margin for pen annotations, runs in your browser, no upload to Connect.
 - [PDF OCR (Pull Text Out of a Scanned PDF)](https://freebookconvert.com/pages/pdf-ocr): Run OCR on a scanned PDF and get back either a .txt file or a searchable PDF. English. Runs in your browser.
+- [PDF to Audiobook: Free AI Narration to MP3, No Upload](https://freebookconvert.com/pages/pdf-to-audiobook): Listen to any PDF: reports, papers, course readers, manuscripts. A natural AI voice turns the text into MP3s on your own device. Free, no signup, nothing uploaded.
 - [PDF to EPUB with Chapters & Working TOC](https://freebookconvert.com/pages/pdf-to-epub-with-chapters): Convert a PDF into an EPUB that has real chapters and a working table of contents. Auto-detects headings, splits the book, builds the NCX. In your browser.
 - [PDF to EPUB (Make a Reflowable Ebook)](https://freebookconvert.com/pages/pdf-to-epub): Turn a text-based PDF into a reflowable EPUB ebook your e-reader can resize. Runs in your browser. Won't work on scans.
 - [PDF to JPG (Each Page as an Image)](https://freebookconvert.com/pages/pdf-to-jpg): Turn each page of a PDF into a JPG. Default 2x rendering keeps the text crisp. Runs in your browser.
@@ -46,12 +48,15 @@
 
 ## Guides
 
+- [How Audiobook Chapters Work](https://freebookconvert.com/guides/audiobook-chapters-explained): Where audiobook chapter markers live in M4B, MP3, and folders of files, why they drift after conversion, and how to keep them intact.
 - [HEIC Explained: The iPhone Photo Format](https://freebookconvert.com/guides/heic-explained): HEIC is Apple's variant of HEIF, encoded with HEVC. It's half the size of JPEG, and for years HEVC's patent licensing kept it locked out of Windows and Android.
 - [How OCR Works (And Why Scans Fail)](https://freebookconvert.com/guides/how-ocr-works): OCR turns pictures of text into text. A walk through binarization, deskewing, line detection, and the LSTM that made Tesseract 4 finally usable.
 - [JPG vs PNG vs WEBP vs HEIC: Which to Use](https://freebookconvert.com/guides/image-format-comparison): Which image format to pick: lossy vs lossless, transparency, real file-size comparisons, browser support in 2026, and a decision tree.
 - [Guides](https://freebookconvert.com/guides/): Plain explainers about ebook formats, image formats, OCR, sideloading, and why running file conversion in your browser is safer than uploading.
+- [How to Turn an Ebook into an Audiobook](https://freebookconvert.com/guides/make-audiobook-from-ebook): Every practical way to turn an EPUB or PDF into an audiobook: built-in voices, free on-device AI narration, and paid cloud TTS, compared on cost, quality, and privacy.
 - [How to Sideload Ebooks to Any E-Reader](https://freebookconvert.com/guides/sideload-ebooks-to-ereader): Step-by-step instructions for sideloading EPUB and PDF files onto every major e-reader: Amazon Kindle, Kobo, Boox, reMarkable, and the Kindle Scribe.
 - [What Is an EPUB? A Practical Explainer](https://freebookconvert.com/guides/what-is-epub): What an EPUB actually is: the zipped XHTML container behind modern ebooks, how EPUB 2 and 3 differ, and why files render differently per reader.
+- [What Is an M4B File? Audiobook Format Explained](https://freebookconvert.com/guides/what-is-m4b): What an M4B audiobook file is, how it stores chapters and cover art, how it differs from MP3 and Audible AAX, and which apps play it.
 - [Why Convert Files in Your Browser](https://freebookconvert.com/guides/why-browser-conversion): The privacy and security case for browser-based file conversion, the WebAssembly shift that made it practical, and what kinds of files you should never upload.
 
 ## About

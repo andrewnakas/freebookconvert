@@ -14,6 +14,10 @@ Netlify, S3 + CloudFront). Revenue model: Google AdSense.
 | `pages/cbz-to-pdf.html`       | CBZ (or ZIP of images) → PDF                  | JSZip, pdf-lib               |
 | `pages/epub-to-txt.html`      | EPUB → plain text                             | JSZip                        |
 | `pages/heic-to-pdf.html`      | HEIC/JPG/PNG → single combined PDF            | heic-to (libheif), pdf-lib   |
+| `pages/mp3-to-m4b.html`       | MP3s → one M4B with chapters + cover          | ffmpeg.wasm (single-thread)  |
+| `pages/m4b-to-mp3.html`       | M4B → MP3/M4A per chapter, or one MP3         | ffmpeg.wasm, JSZip           |
+| `pages/read-aloud.html`       | EPUB/PDF/TXT read aloud, highlighted, resumes | Web Speech API               |
+| `pages/epub-to-audiobook.html` (+ `pdf-to-audiobook`) | Ebook → narrated MP3s / M4B | kokoro-js (Kokoro-82M q8, WASM), LAME |
 
 ## Why these formats?
 
@@ -55,6 +59,37 @@ node tools/sync.mjs --check  # exits 1 if anything is out of date
 the last git commit touching the file. Commit page edits *before* running sync
 if you want their `lastmod` to move. Adding a page = create the HTML file, run
 sync, add a short URL to `_redirects`.
+
+## Audio architecture
+
+- **ffmpeg** (`js/audio-core.js`, `js/ffmpeg-worker.js`): the core JS and wasm
+  are fetched from jsDelivr, checked against pinned SHA-384 hashes, and handed
+  to a same-origin worker as blob URLs. @ffmpeg/ffmpeg's own wrapper can't be
+  used: it spawns a cross-origin worker. It's single-thread on purpose, because
+  multi-thread needs COOP/COEP headers, which would break AdSense.
+- **TTS** (`js/tts-worker.js`): a module worker that loads kokoro-js and
+  lamejs with dynamic `import()`. Static imports in a module worker are checked
+  against the page's `worker-src` (`'self' blob:`) and fail.
+- **CPU only, deliberately.** Tested 2026-09 with kokoro-js 1.2.1: WebGPU fp32
+  wouldn't download, fp16 crashed the tab, and q4f16 produced unintelligible
+  audio (checked by Whisper transcription). WASM q8 is correct. Don't
+  re-enable WebGPU without transcribing the output.
+- Finished TTS chapters persist in IndexedDB (`fbc_tts`, 30-day expiry);
+  Read Aloud positions in localStorage. Both are listed in the privacy policy.
+
+## Other tools in `tools/`
+
+```sh
+node tools/indexnow.mjs            # ping Bing/IndexNow with pages changed in the last commit
+npx -y -p playwright@1 node tools/og.mjs   # re-render assets/og/*.png social cards (needs local Chrome)
+```
+
+## Installable app (PWA)
+
+`manifest.webmanifest`, `sw.js` (network-first HTML, cached code, cache-first
+pinned CDN libs), and `js/pwa.js` (install prompt after a successful conversion,
+and "Open with" file handling). If `sw.js` changes in a way that must evict old
+caches, bump `VERSION` in it.
 
 ## Local preview
 

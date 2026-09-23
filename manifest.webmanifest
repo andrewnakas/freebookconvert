@@ -1,0 +1,46 @@
+{
+  "name": "FreeBookConvert",
+  "short_name": "BookConvert",
+  "description": "Convert ebooks, PDFs, images, and audiobooks in your browser. Files never leave your device, and it works offline.",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fafbfc",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "categories": ["productivity", "utilities", "books"],
+  "launch_handler": { "client_mode": "focus-existing" },
+  "file_handlers": [
+    {
+      "action": "/pages/mp3-to-m4b",
+      "accept": { "audio/mpeg": [".mp3"] }
+    },
+    {
+      "action": "/pages/m4b-to-mp3",
+      "accept": { "audio/x-m4b": [".m4b"] }
+    },
+    {
+      "action": "/",
+      "accept": {
+        "application/epub+zip": [".epub"],
+        "application/pdf": [".pdf"],
+        "application/vnd.comicbook+zip": [".cbz"],
+        "image/heic": [".heic", ".heif"],
+        "image/jpeg": [".jpg", ".jpeg"],
+        "image/png": [".png"],
+        "image/webp": [".webp"]
+      }
+    }
+  ],
+  "shortcuts": [
+    { "name": "EPUB to PDF", "url": "/pages/epub-to-pdf", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Ebook to Audiobook", "url": "/pages/epub-to-audiobook", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "HEIC to JPG", "url": "/pages/heic-to-jpg", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Merge PDF", "url": "/pages/merge-pdf", "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

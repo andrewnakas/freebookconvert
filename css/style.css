@@ -629,3 +629,28 @@ select:focus-visible,
 .read-text .sent:hover { background: rgba(37, 99, 235, 0.06); }
 .read-text .sent.reading { background: #fde68a; }
 .read-hint { font-size: 0.9rem; color: var(--muted); }
+
+/* ---------- ebook to audiobook -------------------------------------------- */
+.tts-list { list-style: none; padding: 0; margin: 12px 0; max-height: 24em; overflow: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); }
+.tts-row { display: grid; grid-template-columns: 1fr auto 6.5em 2.4em; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.tts-row:last-child { border-bottom: 0; }
+.tts-row label { display: flex; gap: 8px; align-items: baseline; min-width: 0; cursor: pointer; }
+.tts-row .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tts-row .w { font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
+.tts-row .st { font-size: 0.85rem; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tts-row.active { background: rgba(37, 99, 235, 0.06); }
+.tts-row.done .st { color: var(--success); }
+#player { width: 100%; margin: 8px 0; }
+@media (max-width: 560px) {
+  .tts-row { grid-template-columns: 1fr 5em 2.4em; }
+  .tts-row .w { display: none; }
+}
+
+/* ---------- tables in guides --------------------------------------------- */
+.content-section table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 0.95rem; }
+.content-section th, .content-section td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+.content-section thead th { background: var(--card-bg); }
+.content-section tbody td:first-child { font-weight: 600; }
+
+/* Trust line under each converter's intro: the site's one differentiator. */
+.page-intro .trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: 0.88rem; color: var(--success); font-weight: 600; margin-top: 4px; }

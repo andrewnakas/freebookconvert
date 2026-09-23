@@ -12,7 +12,8 @@
 
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { join, dirname, relative } from 'node:path';
+import { createHash } from 'node:crypto';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -48,6 +49,12 @@ const BLOCKS = [
     render: () => partial('csp'),
     legacy: [/<meta http-equiv="Content-Security-Policy"[^>]*>\n/],
     anchor: { re: /<meta name="viewport"[^>]*>\n/, after: true }
+  },
+  {
+    name: 'pwa',
+    render: () => partial('pwa'),
+    legacy: [],
+    anchor: { re: /<!-- @analytics -->/, after: false }
   },
   {
     name: 'analytics',
@@ -111,6 +118,22 @@ function applyBlock(src, block, ctx, file) {
   return src.slice(0, at) + wrapped + src.slice(at);
 }
 
+// ---------- per-page social images -------------------------------------------
+// tools/og.mjs renders assets/og/<slug>.png. When one exists, point og:image
+// and twitter:image at it. The ?v= content hash busts the year-long immutable
+// cache on /assets/* whenever the image is re-rendered.
+
+function applyOgImage(src, file) {
+  const m = /^(pages|guides)\/(.+)\.html$/.exec(file);
+  if (!m || m[2] === 'index') return src;
+  const slug = (m[1] === 'guides' ? 'guide-' : '') + m[2];
+  let bytes;
+  try { bytes = readFileSync(join(ROOT, 'assets/og', slug + '.png')); } catch (e) { return src; }
+  const v = createHash('sha1').update(bytes).digest('hex').slice(0, 8);
+  const url = `${ORIGIN}/assets/og/${slug}.png?v=${v}`;
+  return src.replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")/g, `$1${url}$2`);
+}
+
 // ---------- pages ------------------------------------------------------------
 
 const pages = listPages();
@@ -122,6 +145,7 @@ for (const file of pages) {
   const ctx = { path: urlPath(file), noindex: isNoindex(before) };
   let src = before;
   for (const block of BLOCKS) src = applyBlock(src, block, ctx, file);
+  src = applyOgImage(src, file);
   if (src !== before) {
     stale.push(file);
     if (!CHECK) writeFileSync(abs, src);
