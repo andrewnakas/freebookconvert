@@ -3,34 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scanned PDF to Text (Free OCR, Runs Locally) | FreeBookConvert</title>
+<title>Scanned PDF to Text (Free OCR) | FreeBookConvert</title>
 <meta name="description" content="Got a PDF where you can't select the text? It's a scan. This page runs OCR on it and gives you the text back. Free, no signup, no upload.">
 <meta name="keywords" content="scanned pdf to text, ocr scanned pdf, extract text from scanned pdf, pdf ocr free, image pdf to text, convert scanned pdf to editable text">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/scanned-pdf-to-text.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/scanned-pdf-to-text">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="Scanned PDF to Text (Free OCR, Runs Locally)">
 <meta property="og:description" content="OCR a scanned PDF to plain text in your browser. Nothing uploaded.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/scanned-pdf-to-text.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/scanned-pdf-to-text">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script type="module">
-  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-  window.pdfjsLib = pdfjsLib;
-  window.__pdfjsReady = true;
-  document.dispatchEvent(new Event('pdfjsReady'));
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Scanned PDF to Text Converter",
-  "url": "https://freebookconvert.com/pages/scanned-pdf-to-text.html",
+  "url": "https://freebookconvert.com/pages/scanned-pdf-to-text",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -57,22 +55,44 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Scanned PDF to Text",
+      "item": "https://freebookconvert.com/pages/scanned-pdf-to-text"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/pdf-ocr.html">PDF OCR</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/image-to-text.html">Image&rarr;Text</a>
-      <a href="/pages/searchable-pdf.html">Searchable PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/pdf-ocr">PDF OCR</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/pages/image-to-text">Image&rarr;Text</a>
+      <a href="/pages/searchable-pdf">Searchable PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Scanned PDF to Text</span></nav>
   <section class="page-intro">
     <h1>Scanned PDF to Text</h1>
     <p>You opened a PDF. You tried to copy a sentence. Nothing happened. That's a scanned PDF: the pages are images, so there is no text to copy. OCR reads the pixels and writes the words back out. Drop the file below and you'll get a <code>.txt</code> you can edit, search, or paste anywhere. The file stays on your machine the whole time.</p>
@@ -130,7 +150,7 @@
     </ul>
 
     <h2>Want a searchable PDF instead of a .txt?</h2>
-    <p>Same engine, different output: <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> keeps the original page images and tucks the OCR text underneath as an invisible layer. Highlighting and Cmd-F start working, and the file still looks like the scan you started with.</p>
+    <p>Same engine, different output: <a href="/pages/searchable-pdf">Make PDF Searchable</a> keeps the original page images and tucks the OCR text underneath as an invisible layer. Highlighting and Cmd-F start working, and the file still looks like the scan you started with.</p>
 
     <h2>A few things people ask</h2>
     <details><summary>What about non-English documents?</summary><p>This page only loads English. Mixed-language pages will get the English right and turn other scripts into garbage. More languages may show up later.</p></details>
@@ -138,12 +158,30 @@
     <details><summary>Does it keep formatting?</summary><p>No. Bold, italic, columns, fonts: gone. You get raw text with line breaks in reading order. If you want the original look kept, use the searchable PDF tool.</p></details>
     <details><summary>Why is the first page slow?</summary><p>That's the engine and language data downloading. After the first page, the rest run at the normal speed. Future PDFs reuse the cache.</p></details>
   </section>
+
+  <section class="faq">
+    <h2>Questions people actually ask</h2>
+    <details><summary>Why can't I select the text in my PDF?</summary><p>Because the PDF is a stack of page images, not text. Someone scanned paper, or a phone app took photos and wrapped them in a .pdf. OCR is what turns the pixels back into characters.</p></details>
+    <details><summary>Is my PDF uploaded?</summary><p>No. OCR runs in your browser using WebAssembly. Pull up DevTools and watch the Network tab: you'll see the engine download, then nothing during the actual conversion.</p></details>
+    <details><summary>How accurate is it?</summary><p>A clean 300 DPI English scan usually lands at 95-99%. Faded photocopies, phone snaps of curved book pages, and low-resolution faxes do worse.</p></details>
+    <details><summary>How long does it take?</summary><p>On a laptop, 3-10 seconds per page. On a phone, more like 20-40 seconds per page. A 50-page document finishes in a few minutes either way.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/pdf-ocr"><h3>PDF OCR</h3><p>Pull the text out of a scanned PDF.</p></a>
+      <a class="card" href="/pages/searchable-pdf"><h3>Make a PDF searchable</h3><p>Keep the look, add a hidden text layer so search works.</p></a>
+      <a class="card" href="/pages/image-to-text"><h3>Image to text</h3><p>OCR a JPG, PNG, or screenshot.</p></a>
+      <a class="card" href="/guides/how-ocr-works"><h3>How OCR works</h3><p>Why a scan that looks fine can convert badly.</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -158,27 +196,11 @@
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
       scaleEl = CV.$('#scale');
 
-  function waitForPdfjs() {
-    return new Promise(function (resolve) {
-      if (window.__pdfjsReady) return resolve();
-      document.addEventListener('pdfjsReady', resolve, { once: true });
-    });
-  }
-  var _sc = {};
-  function loadScript(url) {
-    if (_sc[url]) return _sc[url];
-    _sc[url] = new Promise(function (resolve, reject) {
-      var s = document.createElement('script');
-      s.src = url;
-      s.onload = function () { resolve(); };
-      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
-      document.head.appendChild(s);
-    });
-    return _sc[url];
-  }
-  function loadTesseract() {
-    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
-  }
+  // pdf.js is ~380 KB over the wire; fetch it on first convert, not page load.
+  function waitForPdfjs() { return CV.load('pdfjs'); }
+  // Tesseract (~10 MB) and pdf-lib are only fetched when the user actually
+  // clicks convert. CV.load owns the URL + SRI table and dedupes.
+  function loadTesseract() { return CV.load('tesseract'); }
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
@@ -186,9 +208,6 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -217,7 +236,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

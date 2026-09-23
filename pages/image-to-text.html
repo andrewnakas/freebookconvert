@@ -3,27 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to Text (OCR for JPG, PNG, WEBP, Screenshots) | FreeBookConvert</title>
+<title>Image to Text (Free OCR, No Upload) | FreeBookConvert</title>
 <meta name="description" content="Drag in a screenshot, a photo of a page, or any JPG/PNG/WEBP. You get the text back as a .txt. Runs in the browser, your image never leaves it.">
 <meta name="keywords" content="image to text, jpg to text, png to text ocr, photo to text, picture to text, free ocr, extract text from image, image ocr online">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' data: blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/image-to-text.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/image-to-text">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="Image to Text (Free OCR)">
 <meta property="og:description" content="Extract text from a JPG, PNG, or WEBP in your browser. No upload.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/image-to-text.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/image-to-text">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Image to Text OCR",
-  "url": "https://freebookconvert.com/pages/image-to-text.html",
+  "url": "https://freebookconvert.com/pages/image-to-text",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -50,22 +55,44 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Image to Text",
+      "item": "https://freebookconvert.com/pages/image-to-text"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/pdf-ocr.html">PDF OCR</a>
-      <a href="/pages/scanned-pdf-to-text.html">Scanned PDF</a>
-      <a href="/pages/image-to-text.html">Image&rarr;Text</a>
-      <a href="/pages/searchable-pdf.html">Searchable PDF</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/pdf-ocr">PDF OCR</a>
+      <a href="/pages/scanned-pdf-to-text">Scanned PDF</a>
+      <a href="/pages/image-to-text">Image&rarr;Text</a>
+      <a href="/pages/searchable-pdf">Searchable PDF</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Image to Text</span></nav>
   <section class="page-intro">
     <h1>Image to Text</h1>
     <p>Drop in a screenshot, a phone photo of a page, a JPG of a receipt. Out comes a <code>.txt</code> with the text from the image. The OCR engine (Tesseract, compiled to WebAssembly) runs in this tab. Your image never goes to a server. English, printed type.</p>
@@ -108,7 +135,7 @@
     </ul>
 
     <h2>Other pages on this site</h2>
-    <p>For a multi-page PDF, <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> does the same OCR per page and concatenates. For an iPhone HEIC, drop it here if your browser handles HEIC, otherwise run it through <a href="/pages/heic-to-jpg.html">HEIC to JPG</a> first.</p>
+    <p>For a multi-page PDF, <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> does the same OCR per page and concatenates. For an iPhone HEIC, drop it here if your browser handles HEIC, otherwise run it through <a href="/pages/heic-to-jpg">HEIC to JPG</a> first.</p>
 
     <h2>Nothing leaves your browser</h2>
     <p>The image gets read into a canvas, the pixels get handed to the OCR worker that's running in this tab, the text comes back. There is no point in the pipeline where your file gets sent anywhere. To check, load the page on wifi, turn the wifi off, then OCR something. It keeps working because the engine is cached locally.</p>
@@ -118,12 +145,30 @@
     <details><summary>Can I OCR a whole folder at once?</summary><p>Not from this page. For batch jobs, use the <code>tesseract.js</code> npm package directly.</p></details>
     <details><summary>Will it auto-detect the language?</summary><p>No. The language data on this page is English. Other scripts come out as garbage. Other languages may come later.</p></details>
   </section>
+
+  <section class="faq">
+    <h2>Questions people actually ask</h2>
+    <details><summary>Which formats work?</summary><p>JPG, PNG, WEBP, BMP, the first frame of a GIF, and HEIC if your browser can decode it. If the browser can draw it to a canvas, OCR can read it.</p></details>
+    <details><summary>Does my image get uploaded?</summary><p>No. The pixels go into a canvas in your tab and straight into the OCR worker. Watch the Network tab if you want to confirm.</p></details>
+    <details><summary>Are screenshots good input?</summary><p>The best, actually. They're high-resolution, sharp, and high-contrast, which is exactly what OCR wants.</p></details>
+    <details><summary>What about handwriting?</summary><p>Not supported. Tesseract is trained on printed text. Cursive in particular comes out as nonsense.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/scanned-pdf-to-text"><h3>Scanned PDF to text</h3><p>Image-only PDF in, editable .txt out.</p></a>
+      <a class="card" href="/pages/searchable-pdf"><h3>Make a PDF searchable</h3><p>Keep the look, add a hidden text layer so search works.</p></a>
+      <a class="card" href="/pages/recipe-screenshot-to-text"><h3>Recipe screenshot to text</h3><p>Pull ingredients and steps out of a screenshot.</p></a>
+      <a class="card" href="/guides/how-ocr-works"><h3>How OCR works</h3><p>Why a scan that looks fine can convert badly.</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -137,21 +182,9 @@
       convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
       progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar');
 
-  var _sc = {};
-  function loadScript(url) {
-    if (_sc[url]) return _sc[url];
-    _sc[url] = new Promise(function (resolve, reject) {
-      var s = document.createElement('script');
-      s.src = url;
-      s.onload = function () { resolve(); };
-      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
-      document.head.appendChild(s);
-    });
-    return _sc[url];
-  }
-  function loadTesseract() {
-    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
-  }
+  // Tesseract (~10 MB) and pdf-lib are only fetched when the user actually
+  // clicks convert. CV.load owns the URL + SRI table and dedupes.
+  function loadTesseract() { return CV.load('tesseract'); }
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
@@ -183,7 +216,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

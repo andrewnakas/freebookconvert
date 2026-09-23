@@ -3,27 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EPUB to TXT (Pull Plain Text Out of an Ebook) | FreeBookConvert</title>
+<title>EPUB to TXT (Plain Text From an Ebook) | FreeBookConvert</title>
 <meta name="description" content="Strip an EPUB down to a clean .txt file. Good for grepping, pasting into ChatGPT, or feeding into your notes. Runs in your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/epub-to-txt.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/epub-to-txt">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="EPUB to TXT Converter">
 <meta property="og:description" content="Pull plain text out of an EPUB, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/epub-to-txt.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/epub-to-txt">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "EPUB to TXT Converter",
-  "url": "https://freebookconvert.com/pages/epub-to-txt.html",
+  "url": "https://freebookconvert.com/pages/epub-to-txt",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -38,22 +42,44 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "EPUB to TXT Converter",
+      "item": "https://freebookconvert.com/pages/epub-to-txt"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
-      <a href="/pages/epub-to-txt.html">EPUB&rarr;TXT</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/cbz-to-pdf">CBZ&rarr;PDF</a>
+      <a href="/pages/epub-to-txt">EPUB&rarr;TXT</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">EPUB to TXT Converter</span></nav>
   <section class="page-intro">
     <h1>EPUB to TXT Converter</h1>
     <p>Pull the raw text out of an EPUB. Useful for notes, search, or pasting into an AI tool. The file stays on your machine.</p>
@@ -138,10 +164,10 @@
 
     <h2>Related converters</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/epub-to-pdf.html"><h3>EPUB to PDF</h3><p>Same source, fixed-page output. Good for printing or sharing.</p></a>
-      <a class="card" href="/pages/pdf-to-epub.html"><h3>PDF to EPUB</h3><p>Reverse direction: a fixed PDF into a reflowable ebook.</p></a>
-      <a class="card" href="/pages/image-to-text.html"><h3>Image to Text</h3><p>OCR a photo or screenshot into plain text.</p></a>
-      <a class="card" href="/pages/scanned-pdf-to-text.html"><h3>Scanned PDF to Text</h3><p>Extract text from PDF scans where the words are pixels, not characters.</p></a>
+      <a class="card" href="/pages/epub-to-pdf"><h3>EPUB to PDF</h3><p>Same source, fixed-page output. Good for printing or sharing.</p></a>
+      <a class="card" href="/pages/pdf-to-epub"><h3>PDF to EPUB</h3><p>Reverse direction: a fixed PDF into a reflowable ebook.</p></a>
+      <a class="card" href="/pages/image-to-text"><h3>Image to Text</h3><p>OCR a photo or screenshot into plain text.</p></a>
+      <a class="card" href="/pages/scanned-pdf-to-text"><h3>Scanned PDF to Text</h3><p>Extract text from PDF scans where the words are pixels, not characters.</p></a>
     </div>
   </section>
 </main>
@@ -149,7 +175,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -171,9 +197,6 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.epub']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.epub'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -199,7 +222,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

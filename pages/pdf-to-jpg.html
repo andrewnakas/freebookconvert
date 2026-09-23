@@ -7,30 +7,27 @@
 <meta name="description" content="Turn each page of a PDF into a JPG. Default 2x rendering keeps the text crisp. Runs in your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-jpg">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="PDF to JPG Converter">
 <meta property="og:description" content="Turn each PDF page into a JPG, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-jpg.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-jpg">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-<script type="module">
-  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-  window.pdfjsLib = pdfjsLib;
-  window.__pdfjsReady = true;
-  document.dispatchEvent(new Event('pdfjsReady'));
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF to JPG Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-jpg.html",
+  "url": "https://freebookconvert.com/pages/pdf-to-jpg",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -45,27 +42,49 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF to JPG Converter",
+      "item": "https://freebookconvert.com/pages/pdf-to-jpg"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/pages/images-to-pdf">Images&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">PDF to JPG Converter</span></nav>
   <section class="page-intro">
     <h1>PDF to JPG Converter</h1>
     <p>Each page of your PDF becomes its own JPG. Default render is 2x, which keeps text sharp on screen and at print sizes. If the PDF has more than one page, you get the images back as a zip.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#e8f4fd;padding:10px 14px;border-radius:6px;border-left:3px solid #2b7cd3">
-      <strong>You actually want the text?</strong> <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> gives you an editable <code>.txt</code>. <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> keeps the original look but adds a copyable text layer.
+      <strong>You actually want the text?</strong> <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> gives you an editable <code>.txt</code>. <a href="/pages/searchable-pdf">Make PDF Searchable</a> keeps the original look but adds a copyable text layer.
     </p>
   </section>
 
@@ -144,7 +163,7 @@
     </ul>
     <p>Skip it if:</p>
     <ul>
-      <li>You need the text to remain selectable or searchable. Use <a href="/pages/pdf-ocr.html">PDF OCR</a> or keep the PDF.</li>
+      <li>You need the text to remain selectable or searchable. Use <a href="/pages/pdf-ocr">PDF OCR</a> or keep the PDF.</li>
       <li>The PDF has a lot of fine print — JPG compression smears small text.</li>
     </ul>
 
@@ -162,16 +181,16 @@
     <details><summary>Is the PDF uploaded?</summary><p>No. pdf.js renders the file inside your browser. The Network tab in DevTools will show no upload happening during a conversion.</p></details>
     <details><summary>What's the file size cap?</summary><p>RAM determines the limit. A 100-page PDF is fine on most laptops. A 1000-page reference book at 3x scale will likely exhaust browser memory.</p></details>
     <details><summary>Will it work on a Chromebook or iPad?</summary><p>Yes. Any modern Chrome, Safari, or Firefox works. The zipped results land in your downloads folder.</p></details>
-    <details><summary>Why is one page coming out as a single JPG and not split?</summary><p>This tool produces one image per PDF page. If you want a multi-page sheet, take the JPGs and run them through <a href="/pages/images-to-pdf.html">Images to PDF</a>.</p></details>
+    <details><summary>Why is one page coming out as a single JPG and not split?</summary><p>This tool produces one image per PDF page. If you want a multi-page sheet, take the JPGs and run them through <a href="/pages/images-to-pdf">Images to PDF</a>.</p></details>
     <details><summary>Can I get just one specific page?</summary><p>This converter does all pages at once. Easiest workaround: extract the page you want in your PDF reader first (print to PDF with a single page range), then convert.</p></details>
     <details><summary>What other image formats are supported?</summary><p>JPG and PNG here. From there you can convert to WEBP if you need smaller web-friendly files.</p></details>
 
     <h2>Related converters</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/images-to-pdf.html"><h3>Images to PDF</h3><p>Bundle JPGs or PNGs back into a single PDF.</p></a>
-      <a class="card" href="/pages/jpg-to-png.html"><h3>JPG to PNG</h3><p>Convert the resulting JPGs to PNG for editing without further loss.</p></a>
-      <a class="card" href="/pages/pdf-ocr.html"><h3>PDF OCR</h3><p>Get selectable text out of the same PDF instead of just images.</p></a>
-      <a class="card" href="/pages/jpg-to-webp.html"><h3>JPG to WEBP</h3><p>Shrink the page images for web use without losing quality.</p></a>
+      <a class="card" href="/pages/images-to-pdf"><h3>Images to PDF</h3><p>Bundle JPGs or PNGs back into a single PDF.</p></a>
+      <a class="card" href="/pages/jpg-to-png"><h3>JPG to PNG</h3><p>Convert the resulting JPGs to PNG for editing without further loss.</p></a>
+      <a class="card" href="/pages/pdf-ocr"><h3>PDF OCR</h3><p>Get selectable text out of the same PDF instead of just images.</p></a>
+      <a class="card" href="/pages/jpg-to-webp"><h3>JPG to WEBP</h3><p>Shrink the page images for web use without losing quality.</p></a>
     </div>
   </section>
 </main>
@@ -179,7 +198,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -195,12 +214,8 @@
       formatEl = CV.$('#format'), scaleEl = CV.$('#scale'),
       adPost = CV.$('#adSlotPost');
 
-  function waitForPdfjs() {
-    return new Promise(function (resolve) {
-      if (window.__pdfjsReady) return resolve();
-      document.addEventListener('pdfjsReady', resolve, { once: true });
-    });
-  }
+  // pdf.js is ~380 KB over the wire; fetch it on first convert, not page load.
+  function waitForPdfjs() { return CV.load('pdfjs'); }
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
@@ -208,9 +223,6 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -240,7 +252,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

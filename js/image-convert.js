@@ -24,10 +24,15 @@
   }
 
   // Returns an HTMLImageElement for any supported input (HEIC decoded to JPEG first).
-  async function decodeImage(file) {
+  function isHeic(file) {
     var lower = file.name.toLowerCase();
-    if (lower.endsWith('.heic') || lower.endsWith('.heif') || file.type === 'image/heic' || file.type === 'image/heif') {
-      if (!global.HeicTo) throw new Error('HEIC decoder not loaded');
+    return lower.endsWith('.heic') || lower.endsWith('.heif') ||
+           file.type === 'image/heic' || file.type === 'image/heif';
+  }
+
+  async function decodeImage(file) {
+    if (isHeic(file)) {
+      await CV.load('heicto');
       var jpegBlob = await global.HeicTo({ blob: file, type: 'image/jpeg', quality: 0.95 });
       return loadImageFromBlob(jpegBlob);
     }
@@ -81,7 +86,8 @@
       return { blob: blob, filename: replaceExt(files[0].name, targetExt), isZip: false };
     }
 
-    if (!global.JSZip) throw new Error('JSZip not loaded (needed for batch)');
+    onProgress(2, 'Loading converter\u2026');
+    await CV.load('jszip');
     var zip = new global.JSZip();
     var total = files.length;
     for (var i = 0; i < total; i++) {

@@ -3,34 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convert PDF for Kobo (Sage, Libra Colour, Clara BW, Elipsa) | FreeBookConvert</title>
-<meta name="description" content="Turn a PDF into a reflowable EPUB that Kobo opens cleanly. Works with Sage, Libra Colour, Clara BW, Clara Colour, and Elipsa. No Kobo Cloud upload, runs in your browser.">
+<title>Convert PDF for Kobo E-Readers | FreeBookConvert</title>
+<meta name="description" content="Convert a PDF into a reflowable EPUB for Kobo Sage, Libra Colour, Clara BW, and Elipsa. Free, runs in your browser, nothing uploads.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-for-kobo.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-for-kobo">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="Convert PDF for Kobo">
 <meta property="og:description" content="Reflowable EPUB sized for Kobo e-readers, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-for-kobo.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-for-kobo">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-<script type="module">
-  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-  window.pdfjsLib = pdfjsLib;
-  window.__pdfjsReady = true;
-  document.dispatchEvent(new Event('pdfjsReady'));
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF for Kobo Converter",
-  "url": "https://freebookconvert.com/pages/pdf-for-kobo.html",
+  "url": "https://freebookconvert.com/pages/pdf-for-kobo",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -57,27 +54,49 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Convert PDF for Kobo",
+      "item": "https://freebookconvert.com/pages/pdf-for-kobo"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/pdf-for-kindle-scribe.html">For Scribe</a>
-      <a href="/pages/pdf-for-remarkable.html">For reMarkable</a>
-      <a href="/pages/pdf-for-boox.html">For Boox</a>
-      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/pdf-for-kindle-scribe">For Scribe</a>
+      <a href="/pages/pdf-for-remarkable">For reMarkable</a>
+      <a href="/pages/pdf-for-boox">For Boox</a>
+      <a href="/pages/cbz-to-pdf">CBZ&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">Convert PDF for Kobo</span></nav>
   <section class="page-intro">
     <h1>Convert PDF for Kobo</h1>
     <p>Drop a PDF and get back an EPUB sized for Kobo. The text reflows on Sage (8&Prime;), Libra Colour (7&Prime;), Clara BW / Colour (6&Prime;), and Elipsa (10.3&Prime;) — pick your font size like with any Kobo book instead of pinch-zooming a fixed page.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
-      <strong>Scanned PDF?</strong> Image-only PDFs have no extractable text. Try <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> first.
+      <strong>Scanned PDF?</strong> Image-only PDFs have no extractable text. Try <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> first.
     </p>
   </section>
 
@@ -145,12 +164,30 @@
     <h2>Nothing uploads</h2>
     <p>The PDF is parsed in this browser tab, the EPUB is built here, you download it, then you choose to plug in your Kobo. At no point does the file go through any cloud — not ours, not Kobo's.</p>
   </section>
+
+  <section class="faq">
+    <h2>Questions people actually ask</h2>
+    <details><summary>Doesn't Kobo open PDFs already?</summary><p>Yes, but the text on a PDF doesn't reflow on a 6 or 7-inch screen and the body text comes out tiny. Converting to EPUB gives you the same font-size and margins controls you'd use on a regular Kobo book.</p></details>
+    <details><summary>Will I lose my Kobo annotations?</summary><p>PDF annotations don't carry into EPUB (they're stored against fixed pages). After conversion the EPUB is fresh; the Sage and Elipsa pen still works on the new file.</p></details>
+    <details><summary>How do I get the EPUB onto my Kobo?</summary><p>Plug the Kobo into your computer via USB, drag the .epub into the “Kobo eReader” drive, eject. The book appears on the device after the next sync. You can also use Calibre's Kobo plugin or send via email-to-Pocket, though sideloading is fastest.</p></details>
+    <details><summary>Is the PDF uploaded?</summary><p>No. The conversion is local in this browser tab. Kobo's cloud is never touched.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/pdf-to-epub"><h3>PDF to EPUB</h3><p>Reflowable text that resizes on a phone or e-reader.</p></a>
+      <a class="card" href="/pages/pdf-to-epub-with-chapters"><h3>PDF to EPUB with chapters</h3><p>Auto-detect headings and build a working table of contents.</p></a>
+      <a class="card" href="/pages/pdf-for-boox"><h3>PDF for Boox</h3><p>Note Air, Tab Ultra, Palma.</p></a>
+      <a class="card" href="/guides/sideload-ebooks-to-ereader"><h3>Sideload to your e-reader</h3><p>Kindle, Kobo, Boox, reMarkable, step by step.</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -166,12 +203,8 @@
       splitEl = CV.$('#splitMode'),
       adPost = CV.$('#adSlotPost');
 
-  function waitForPdfjs() {
-    return new Promise(function (resolve) {
-      if (window.__pdfjsReady) return resolve();
-      document.addEventListener('pdfjsReady', resolve, { once: true });
-    });
-  }
+  // pdf.js is ~380 KB over the wire; fetch it on first convert, not page load.
+  function waitForPdfjs() { return CV.load('pdfjs'); }
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
@@ -179,9 +212,6 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -210,7 +240,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

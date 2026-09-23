@@ -3,18 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEIC explained: why your iPhone photos won't open on Windows | FreeBookConvert Guides</title>
+<title>HEIC Explained: The iPhone Photo Format | FreeBookConvert</title>
 <meta name="description" content="HEIC is Apple's variant of HEIF, encoded with HEVC. It's half the size of JPEG, and for years HEVC's patent licensing kept it locked out of Windows and Android.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://freebookconvert.com/guides/heic-explained.html">
+<link rel="canonical" href="https://freebookconvert.com/guides/heic-explained">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="HEIC explained: why your iPhone photos won't open on Windows">
 <meta property="og:description" content="Why Apple's iPhone-default photo format gives the rest of the world such a hard time.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://freebookconvert.com/guides/heic-explained.html">
+<meta property="og:url" content="https://freebookconvert.com/guides/heic-explained">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
 {
@@ -25,7 +30,7 @@
   "dateModified": "2026-05-26",
   "author": {"@type": "Organization", "name": "FreeBookConvert"},
   "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
-  "mainEntityOfPage": "https://freebookconvert.com/guides/heic-explained.html"
+  "mainEntityOfPage": "https://freebookconvert.com/guides/heic-explained"
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -36,6 +41,32 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://freebookconvert.com/guides/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "HEIC explained: why your iPhone photos won't open on Windows",
+      "item": "https://freebookconvert.com/guides/heic-explained"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -43,14 +74,15 @@
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
       <a href="/guides/">Guides</a>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="/guides/">Guides</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">HEIC explained: why your iPhone photos won't open on Windows</span></nav>
   <section class="page-intro">
     <h1>HEIC explained: why your iPhone photos won't open on Windows</h1>
     <p>The short version: Apple picked a smarter image codec than JPEG, and the smart codec came with a patent bill that everyone else didn't want to pay.</p>
@@ -78,7 +110,7 @@
     <p>If you've already accumulated a few thousand HEICs and want them as JPEGs or PNGs, the options break down roughly as follows.</p>
     <p>On a Mac, the built-in Preview app can convert: open the files, File &rarr; Export, pick JPEG or PNG. For batches, the Photos app's Export menu (File &rarr; Export &rarr; "Export Unmodified Originals" vs "Export 1 Photo") handles bulk conversion to JPEG. Automator and Shortcuts can build a folder action that converts on drop.</p>
     <p>On Windows, with the HEVC extensions installed, the Photos app will open HEICs but won't bulk-convert. Third-party tools (IrfanView with the HEIC plugin, XnConvert, ImageMagick from the command line if you're comfortable with it) handle batches. Some image hosts and cloud services convert on upload, which is convenient but means uploading your photo library to a stranger.</p>
-    <p>If you'd rather convert without uploading anything, the in-browser converters here &mdash; <a href="/pages/heic-to-jpg.html">HEIC to JPG</a>, <a href="/pages/heic-to-png.html">HEIC to PNG</a>, and <a href="/pages/heic-to-pdf.html">HEIC to PDF</a> &mdash; do the decode and re-encode locally with WebAssembly. Useful when the photos in question are passports, IDs, medical records, or anything else you'd rather not send to a server.</p>
+    <p>If you'd rather convert without uploading anything, the in-browser converters here &mdash; <a href="/pages/heic-to-jpg">HEIC to JPG</a>, <a href="/pages/heic-to-png">HEIC to PNG</a>, and <a href="/pages/heic-to-pdf">HEIC to PDF</a> &mdash; do the decode and re-encode locally with WebAssembly. Useful when the photos in question are passports, IDs, medical records, or anything else you'd rather not send to a server.</p>
 
     <h2>What metadata survives the trip</h2>
     <p>A HEIC file holds quite a lot of metadata: capture date, GPS coordinates, lens model, exposure settings, depth-map data, image edits, the original orientation, color profile information. When you convert to JPEG or PNG, some of this transfers cleanly and some doesn't.</p>
@@ -98,7 +130,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 </body>

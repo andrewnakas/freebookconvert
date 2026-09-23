@@ -6,8 +6,23 @@
 <title>About — FreeBookConvert</title>
 <meta name="description" content="About FreeBookConvert: who runs it, why it exists, how the browser-based conversion works, and how it stays free.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://freebookconvert.com/pages/about.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/about">
 <link rel="icon" href="../favicon.ico">
+<meta property="og:title" content="About FreeBookConvert">
+<meta property="og:description" content="About FreeBookConvert: who runs it, why it exists, how the browser-based conversion works, and how it stays free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/about">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta property="og:site_name" content="FreeBookConvert">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About FreeBookConvert">
+<meta name="twitter:description" content="About FreeBookConvert: who runs it, why it exists, how the browser-based conversion works, and how it stays free.">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="../css/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
@@ -17,21 +32,42 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About FreeBookConvert",
+      "item": "https://freebookconvert.com/pages/about"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
-    <a href="../index.html" class="logo">FreeBookConvert</a>
+    <a href="/" class="logo">FreeBookConvert</a>
     <nav>
       <a href="/guides/">Guides</a>
-      <a href="epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">About FreeBookConvert</span></nav>
   <section class="page-intro">
     <h1>About FreeBookConvert</h1>
     <p>Online file converters built on a simple principle: your files belong on your device.</p>
@@ -67,7 +103,7 @@
     <p>No upload, no server. You can disconnect from the internet after the page loads and the conversions keep working. We encourage you to verify this — open DevTools, switch to the Network tab, and watch the requests during a conversion.</p>
 
     <h2>How it stays free</h2>
-    <p>FreeBookConvert is funded by unobtrusive display advertising served by Google AdSense. Since there are no per-conversion server costs (no compute, no storage, no bandwidth for the files themselves), ads alone are enough to cover the hosting bill without paywalls, signup forms, watermarks, file-size limits, or "premium" tiers. If you'd rather not see ads, browser ad blockers work normally on this site; please consider <a href="contact.html">contacting us</a> with feedback instead of just blocking, especially if you encounter an ad you found inappropriate.</p>
+    <p>FreeBookConvert is funded by unobtrusive display advertising served by Google AdSense. Since there are no per-conversion server costs (no compute, no storage, no bandwidth for the files themselves), ads alone are enough to cover the hosting bill without paywalls, signup forms, watermarks, file-size limits, or "premium" tiers. If you'd rather not see ads, browser ad blockers work normally on this site; please consider <a href="/pages/contact">contacting us</a> with feedback instead of just blocking, especially if you encounter an ad you found inappropriate.</p>
 
     <h2>Editorial policy</h2>
     <p>The content on this site (the converter pages and the <a href="/guides/">guides</a>) is written and reviewed by the operator. We don't republish content from elsewhere, we don't use AI-generated marketing copy for the explainer text, and we don't accept paid placements or sponsored articles. Where we cite a fact — a format's history, a library's behavior, a regulator's warning — we link to the primary source where one exists.</p>
@@ -77,20 +113,20 @@
     <ul>
       <li>It doesn't strip DRM. EPUBs from Apple Books, Kindle, library lending services, and similar sources cannot be converted here. Stripping DRM is a copyright violation in most jurisdictions and we don't enable it.</li>
       <li>It doesn't store or distribute copyrighted content. Nothing you convert is uploaded to us; we have no library of files.</li>
-      <li>It doesn't track you across the web. Standard Google Analytics with anonymization is the only third-party analytics; there is no advertising profiler beyond Google AdSense, which you can opt out of (<a href="privacy.html">privacy policy section 6</a>).</li>
+      <li>It doesn't track you across the web. Standard Google Analytics with anonymization is the only third-party analytics; there is no advertising profiler beyond Google AdSense, which you can opt out of (<a href="/pages/privacy">privacy policy section 6</a>).</li>
     </ul>
 
     <h2>Stack and infrastructure</h2>
     <p>The site is static HTML, CSS, and JavaScript served from Cloudflare Pages. There is no backend application, no database of users, no server-side rendering, and no per-user state stored anywhere. The strict Content Security Policy on each converter page limits the network destinations any script can reach, which is structural evidence that a page cannot exfiltrate your file even if it wanted to. Source is hosted in a private repository; we plan to open-source individual converters as they mature.</p>
 
     <h2>Contact</h2>
-    <p>Bugs, feature requests, factual corrections, privacy questions, press inquiries, and DMCA notices all go to <a href="mailto:contact@freebookconvert.com">contact@freebookconvert.com</a>. See the <a href="contact.html">Contact page</a> for what to include in each case.</p>
+    <p>Bugs, feature requests, factual corrections, privacy questions, press inquiries, and DMCA notices all go to <a href="mailto:contact@freebookconvert.com">contact@freebookconvert.com</a>. See the <a href="/pages/contact">Contact page</a> for what to include in each case.</p>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="about.html">About</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 </body>

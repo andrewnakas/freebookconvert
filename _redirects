@@ -27,5 +27,28 @@
 /terms           /pages/terms.html        200
 /contact         /pages/contact.html      200
 
+# Added so every converter also answers at a short URL
+/heic-to-jpg-chromebook   /pages/heic-to-jpg-chromebook.html 200
+/image-to-text            /pages/image-to-text.html 200
+/jpg-to-cbz               /pages/jpg-to-cbz.html 200
+/jpg-to-pdf               /pages/jpg-to-pdf.html 200
+/jpg-to-png-sublimation   /pages/jpg-to-png-sublimation.html 200
+/merge-pdf                /pages/merge-pdf.html 200
+/pdf-for-boox             /pages/pdf-for-boox.html 200
+/pdf-for-kindle-scribe    /pages/pdf-for-kindle-scribe.html 200
+/pdf-for-kobo             /pages/pdf-for-kobo.html 200
+/pdf-for-remarkable       /pages/pdf-for-remarkable.html 200
+/pdf-ocr                  /pages/pdf-ocr.html 200
+/pdf-to-epub-with-chapters /pages/pdf-to-epub-with-chapters.html 200
+/pdf-to-png               /pages/pdf-to-png.html 200
+/png-for-cricut           /pages/png-for-cricut.html 200
+/png-to-pdf               /pages/png-to-pdf.html 200
+/recipe-screenshot-to-text /pages/recipe-screenshot-to-text.html 200
+/scanned-pdf-to-text      /pages/scanned-pdf-to-text.html 200
+/screenshots-to-pdf-android /pages/screenshots-to-pdf-android.html 200
+/screenshots-to-pdf-iphone /pages/screenshots-to-pdf-iphone.html 200
+/searchable-pdf           /pages/searchable-pdf.html 200
+/webp-to-pdf              /pages/webp-to-pdf.html 200
+
 # 404 fallback
 /*               /404.html                404

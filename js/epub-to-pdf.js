@@ -16,6 +16,9 @@
   var H_SIZE = 14;
 
   async function convertEpubToPdf(file, onProgress) {
+    onProgress && onProgress(1, 'Loading converter…');
+    await CV.load('jszip', 'pdflib');
+
     onProgress && onProgress(2, 'Reading EPUB…');
     var epub = await EpubParser.parseEpub(file);
 

@@ -3,34 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF to EPUB with Chapters & Working Table of Contents | FreeBookConvert</title>
+<title>PDF to EPUB with Chapters &amp; Working TOC | FreeBookConvert</title>
 <meta name="description" content="Convert a PDF into an EPUB that has real chapters and a working table of contents. Auto-detects headings, splits the book, builds the NCX. In your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub-with-chapters">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="PDF to EPUB with Chapters">
 <meta property="og:description" content="EPUB with a working table of contents, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub-with-chapters">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-<script type="module">
-  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-  window.pdfjsLib = pdfjsLib;
-  window.__pdfjsReady = true;
-  document.dispatchEvent(new Event('pdfjsReady'));
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF to EPUB with Chapters",
-  "url": "https://freebookconvert.com/pages/pdf-to-epub-with-chapters.html",
+  "url": "https://freebookconvert.com/pages/pdf-to-epub-with-chapters",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -57,27 +54,49 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF to EPUB with Real Chapters & a Working TOC",
+      "item": "https://freebookconvert.com/pages/pdf-to-epub-with-chapters"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/pdf-for-kindle-scribe.html">For Scribe</a>
-      <a href="/pages/pdf-for-remarkable.html">For reMarkable</a>
-      <a href="/pages/pdf-for-boox.html">For Boox</a>
-      <a href="/pages/pdf-for-kobo.html">For Kobo</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/pdf-for-kindle-scribe">For Scribe</a>
+      <a href="/pages/pdf-for-remarkable">For reMarkable</a>
+      <a href="/pages/pdf-for-boox">For Boox</a>
+      <a href="/pages/pdf-for-kobo">For Kobo</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">PDF to EPUB with Real Chapters &amp; a Working TOC</span></nav>
   <section class="page-intro">
     <h1>PDF to EPUB with Real Chapters &amp; a Working TOC</h1>
     <p>Most PDF-to-EPUB tools dump the whole book into a single file and call it a day — the reader's table of contents shows one entry. This page auto-detects chapter headings, splits the book at those boundaries, and builds the NCX so your e-reader's TOC sidebar actually navigates. If auto-detect misses, the manual fallback splits every N pages so you still get jump points.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
-      <strong>Scanned PDF?</strong> Headings can't be detected in image-only PDFs. Run <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> first.
+      <strong>Scanned PDF?</strong> Headings can't be detected in image-only PDFs. Run <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf">Make PDF Searchable</a> first.
     </p>
   </section>
 
@@ -153,12 +172,30 @@
     <h2>Privacy</h2>
     <p>The PDF is parsed locally; the EPUB is built locally. The book itself never leaves the tab. Open DevTools' Network panel during conversion to confirm.</p>
   </section>
+
+  <section class="faq">
+    <h2>Questions people actually ask</h2>
+    <details><summary>What counts as a chapter?</summary><p>The auto-detector looks for lines that match common chapter heading patterns — ‘Chapter 1’, ‘Chapter One’, Roman-numeral headings, all-caps title lines on their own, numbered section headings. When it finds one it makes a new chapter and adds it to the EPUB's NCX (the file readers use to draw the table of contents).</p></details>
+    <details><summary>What if the auto-detector misses some chapters?</summary><p>Use the manual fallback — split every N pages. For a 300-page novel where the auto-detector misses the prologue, picking 'every 20 pages' gives you a chapter list you can navigate while keeping reasonable section length.</p></details>
+    <details><summary>Do PDF bookmarks become EPUB chapters?</summary><p>If the PDF has an outline (the bookmark tree you see in Acrobat's sidebar), this converter reads those entries and uses them as chapter boundaries when available. That's the most reliable input — a PDF made from a Word doc with proper Heading 1 styles converts cleanly.</p></details>
+    <details><summary>Will my file be uploaded?</summary><p>No. The PDF is parsed locally with pdf.js, the EPUB is assembled locally with JSZip, both running in this tab.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/pdf-to-epub"><h3>PDF to EPUB</h3><p>Reflowable text that resizes on a phone or e-reader.</p></a>
+      <a class="card" href="/pages/pdf-for-kindle-scribe"><h3>PDF for Kindle Scribe</h3><p>Reflowable EPUB sized for the Scribe.</p></a>
+      <a class="card" href="/pages/pdf-for-kobo"><h3>PDF for Kobo</h3><p>Sage, Libra Colour, Clara BW, Elipsa.</p></a>
+      <a class="card" href="/guides/what-is-epub"><h3>What is an EPUB?</h3><p>The zipped XHTML container behind every modern ebook.</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -174,12 +211,8 @@
       splitEl = CV.$('#splitMode'),
       adPost = CV.$('#adSlotPost');
 
-  function waitForPdfjs() {
-    return new Promise(function (resolve) {
-      if (window.__pdfjsReady) return resolve();
-      document.addEventListener('pdfjsReady', resolve, { once: true });
-    });
-  }
+  // pdf.js is ~380 KB over the wire; fetch it on first convert, not page load.
+  function waitForPdfjs() { return CV.load('pdfjs'); }
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
@@ -187,9 +220,6 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -218,7 +248,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

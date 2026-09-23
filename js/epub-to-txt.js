@@ -1,6 +1,9 @@
 // EPUB → plain text. Concatenates all chapters with chapter title separators.
 (function () {
   async function convert(file, onProgress) {
+    onProgress && onProgress(1, 'Loading converter…');
+    await CV.load('jszip');
+
     onProgress && onProgress(5, 'Reading EPUB…');
     var epub = await EpubParser.parseEpub(file);
 

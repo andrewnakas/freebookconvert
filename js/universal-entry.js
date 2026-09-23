@@ -7,48 +7,32 @@
 (function (global) {
   // ---------- lazy-loader -----------------------------------------------------
 
-  var loaded = Object.create(null);          // url -> Promise<void>
-  var SRI = {
-    'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js':
-      'sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG',
-    'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js':
-      'sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI',
-    'https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.js':
-      'sha384-+TuTeQmUT7gbjDeK1kc34Ku+i44JqHZ6S/cgqVKf4gLclXpJJOrx9T6gxzDeTln5'
-  };
+  // Third-party libraries come from CV.load (js/common.js), which owns the URL
+  // and SRI table and dedupes concurrent requests. The landing pages use the
+  // same cache, so a library is fetched at most once per session either way.
+  var loaded = Object.create(null);          // local module path -> Promise<void>
 
-  function loadScript(url) {
-    if (loaded[url]) return loaded[url];
-    loaded[url] = new Promise(function (resolve, reject) {
-      var s = document.createElement('script');
-      s.src = url;
-      if (SRI[url]) { s.integrity = SRI[url]; s.crossOrigin = 'anonymous'; }
-      s.onload = function () { resolve(); };
-      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
-      document.head.appendChild(s);
-    });
-    return loaded[url];
-  }
-
-  // pdf.js is an ES module; load it once and stash on window.pdfjsLib.
-  function loadPdfJs() {
-    var KEY = 'pdfjs-esm';
-    if (loaded[KEY]) return loaded[KEY];
-    loaded[KEY] = (async function () {
-      var mod = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
-      mod.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-      global.pdfjsLib = mod;
-    })();
-    return loaded[KEY];
-  }
-
-  function loadJsZip()  { return loadScript('https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js'); }
-  function loadPdfLib() { return loadScript('https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js'); }
-  function loadHeicTo() { return loadScript('https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.js'); }
-  function loadTesseract() { return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'); }
+  function loadPdfJs()     { return CV.load('pdfjs'); }
+  function loadJsZip()     { return CV.load('jszip'); }
+  function loadPdfLib()    { return CV.load('pdflib'); }
+  function loadHeicTo()    { return CV.load('heicto'); }
+  function loadTesseract() { return CV.load('tesseract'); }
 
   // Local converter modules already live in /js/. Load on demand.
-  function loadModule(path) { return loadScript(path); }
+  function loadModule(path) {
+    if (loaded[path]) return loaded[path];
+    loaded[path] = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = path;
+      s.onload = function () { resolve(); };
+      s.onerror = function () {
+        delete loaded[path];
+        reject(new Error('Failed to load ' + path));
+      };
+      document.head.appendChild(s);
+    });
+    return loaded[path];
+  }
 
   // ---------- runners ---------------------------------------------------------
   // Each runner takes (file, onProgress) and returns { blob, filename }.
@@ -434,6 +418,10 @@
       progWrap.style.display = 'block';
       setProgress(2);
       setStatus('info', 'Loading converter\u2026');
+      var startedAt = Date.now();
+      CV.track('conversion_start', {
+        widget: 'homepage', in_ext: bucket, target: route.label || '', count: files.length
+      });
       try {
         var result;
         var onProg = function (p, m) { setProgress(p); if (m) setStatus('info', m); };
@@ -446,12 +434,20 @@
           result = await runEachZipped(route.run)(files, onProg);
         }
         downloadBlob(result.blob, result.filename);
+        CV.track('conversion_complete', {
+          widget: 'homepage', in_ext: bucket, target: route.label || '',
+          count: files.length, out_bytes: result.blob.size, ms: Date.now() - startedAt
+        });
         setStatus('success', 'Done! Downloaded ' + result.filename);
         goBtn.textContent = 'Convert another';
         goBtn.disabled = false;
         done = true;
       } catch (e) {
         console.error(e);
+        CV.track('conversion_error', {
+          widget: 'homepage', in_ext: bucket, target: route.label || '',
+          message: String(e && e.message || e).slice(0, 100)
+        });
         setStatus('error', 'Failed: ' + (e && e.message ? e.message : String(e)));
         goBtn.disabled = false;
         goBtn.textContent = 'Convert';

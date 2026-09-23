@@ -29,13 +29,17 @@
     bar.innerHTML =
       '<div class="fbc-consent-inner">' +
         '<p>We use cookies for basic analytics and to serve ads that keep this site free. ' +
-        'Your files never leave your device &mdash; see our <a href="/pages/privacy.html">Privacy Policy</a>.</p>' +
+        'Your files never leave your device &mdash; see our <a href="/pages/privacy">Privacy Policy</a>.</p>' +
         '<div class="fbc-consent-actions">' +
           '<button type="button" class="btn btn-secondary" data-c="essential">Essential only</button>' +
           '<button type="button" class="btn" data-c="all">Accept all</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(bar);
+    // The banner is position:fixed over the bottom of the viewport, which on a
+    // phone sits right on top of the Convert button. Pad the page while it
+    // is up so nothing important is unreachable behind it.
+    document.body.classList.add('fbc-consent-open');
 
     bar.addEventListener('click', function (e) {
       var choice = e.target && e.target.getAttribute('data-c');
@@ -46,6 +50,7 @@
         window.adsbygoogle.requestNonPersonalizedAds = 0;
       }
       bar.parentNode.removeChild(bar);
+      document.body.classList.remove('fbc-consent-open');
     });
   }
 

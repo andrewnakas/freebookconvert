@@ -3,27 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPG to CBZ (Bundle Manga Pages Into a Comic Archive) | FreeBookConvert</title>
+<title>JPG to CBZ (Make a Comic Archive) | FreeBookConvert</title>
 <meta name="description" content="Drop a folder of JPG or PNG pages and get back a single CBZ comic archive. Pages stay in the order you added them. Works on any browser. No upload.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/jpg-to-cbz.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/jpg-to-cbz">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="JPG to CBZ Converter">
 <meta property="og:description" content="Bundle JPG or PNG pages into a CBZ comic archive, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/jpg-to-cbz.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/jpg-to-cbz">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "JPG to CBZ Converter",
-  "url": "https://freebookconvert.com/pages/jpg-to-cbz.html",
+  "url": "https://freebookconvert.com/pages/jpg-to-cbz",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -50,22 +54,44 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "JPG to CBZ Converter",
+      "item": "https://freebookconvert.com/pages/jpg-to-cbz"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
-      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/jpg-to-png.html">JPG&rarr;PNG</a>
-      <a href="/pages/png-to-jpg.html">PNG&rarr;JPG</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/cbz-to-pdf">CBZ&rarr;PDF</a>
+      <a href="/pages/images-to-pdf">Images&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/pages/jpg-to-png">JPG&rarr;PNG</a>
+      <a href="/pages/png-to-jpg">PNG&rarr;JPG</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">JPG to CBZ Converter</span></nav>
   <section class="page-intro">
     <h1>JPG to CBZ Converter</h1>
     <p>Take a stack of JPG, PNG, or WEBP pages — manga scans, scanned comics, a series of photographed pages — and bundle them into a single CBZ. The pages are renumbered in the order you add them, so every comic reader (KOReader, ComicRack, YACReader, Calibre, CDisplay) displays them correctly.</p>
@@ -136,12 +162,30 @@
     <h2>Nothing leaves the tab</h2>
     <p>The files are read into memory, fed into JSZip in this tab, the resulting blob downloads. No upload, no server, no Discord webhook, no analytics about your reading habits.</p>
   </section>
+
+  <section class="faq">
+    <h2>Questions people actually ask</h2>
+    <details><summary>What is a CBZ file, exactly?</summary><p>A CBZ is a regular ZIP file containing image files, one per page, renamed with a .cbz extension. Comic readers like CDisplay, ComicRack, YACReader, KOReader, and Calibre's e-book viewer use the alphabetical order of the files inside to determine page order.</p></details>
+    <details><summary>How does this preserve page order?</summary><p>Each file is renamed to a zero-padded sequence number (001.jpg, 002.jpg, ...) based on the order you added it. That means it sorts correctly even at 9999 pages and every reader will display them in the same order.</p></details>
+    <details><summary>Can I use it for manga that reads right-to-left?</summary><p>The CBZ itself doesn't carry a reading-direction flag — it's the reader that decides. Most comic readers have a toggle for right-to-left or 'Manga mode.' Set that on your device after sideloading.</p></details>
+    <details><summary>Will this upload my pages?</summary><p>No. JSZip runs in the browser; the CBZ is assembled locally.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related converters</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/cbz-to-pdf"><h3>CBZ to PDF</h3><p>Comic archives, pages in the right order.</p></a>
+      <a class="card" href="/pages/images-to-pdf"><h3>Images to PDF</h3><p>Bundle JPG, PNG, or WEBP into one PDF.</p></a>
+      <a class="card" href="/pages/jpg-to-png"><h3>JPG to PNG</h3><p>Lossless PNG when you need it.</p></a>
+      <a class="card" href="/pages/pdf-to-epub"><h3>PDF to EPUB</h3><p>Reflowable text that resizes on a phone or e-reader.</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -214,7 +258,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

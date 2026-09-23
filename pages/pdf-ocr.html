@@ -7,29 +7,27 @@
 <meta name="description" content="Run OCR on a scanned PDF and get back either a .txt file or a searchable PDF. English. Runs in your browser.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https: https://tessdata.projectnaptha.com; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-ocr.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-ocr">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="PDF OCR (Pull Text Out of a Scanned PDF)">
 <meta property="og:description" content="Run OCR on scanned PDFs and get back text or a searchable PDF. Runs in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-ocr.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-ocr">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script type="module">
-  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-  window.pdfjsLib = pdfjsLib;
-  window.__pdfjsReady = true;
-  document.dispatchEvent(new Event('pdfjsReady'));
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF OCR",
-  "url": "https://freebookconvert.com/pages/pdf-ocr.html",
+  "url": "https://freebookconvert.com/pages/pdf-ocr",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -44,22 +42,44 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF OCR (Scanned PDF → Text)",
+      "item": "https://freebookconvert.com/pages/pdf-ocr"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
-      <a href="/pages/pdf-ocr.html">PDF OCR</a>
-      <a href="/pages/images-to-pdf.html">Images&rarr;PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+      <a href="/pages/pdf-ocr">PDF OCR</a>
+      <a href="/pages/images-to-pdf">Images&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">PDF OCR (Scanned PDF &rarr; Text)</span></nav>
   <section class="page-intro">
     <h1>PDF OCR (Scanned PDF &rarr; Text)</h1>
     <p>Got a scanned PDF where the words are just pixels? Run OCR on it here. You can either get a plain <code>.txt</code> of the recognized text, or a searchable PDF that looks the same as the original but lets you select and copy. English only.</p>
@@ -157,10 +177,10 @@
 
     <h2>Related converters</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/scanned-pdf-to-text.html"><h3>Scanned PDF to Text</h3><p>Just the words, no PDF wrapper, for scripts or AI tools.</p></a>
-      <a class="card" href="/pages/searchable-pdf.html"><h3>Make PDF Searchable</h3><p>Add a hidden text layer to a scan so Ctrl-F works.</p></a>
-      <a class="card" href="/pages/image-to-text.html"><h3>Image to Text (OCR)</h3><p>OCR a single screenshot or photo instead of a PDF.</p></a>
-      <a class="card" href="/pages/recipe-screenshot-to-text.html"><h3>Recipe Screenshot to Text</h3><p>Pull a recipe out of a screenshot.</p></a>
+      <a class="card" href="/pages/scanned-pdf-to-text"><h3>Scanned PDF to Text</h3><p>Just the words, no PDF wrapper, for scripts or AI tools.</p></a>
+      <a class="card" href="/pages/searchable-pdf"><h3>Make PDF Searchable</h3><p>Add a hidden text layer to a scan so Ctrl-F works.</p></a>
+      <a class="card" href="/pages/image-to-text"><h3>Image to Text (OCR)</h3><p>OCR a single screenshot or photo instead of a PDF.</p></a>
+      <a class="card" href="/pages/recipe-screenshot-to-text"><h3>Recipe Screenshot to Text</h3><p>Pull a recipe out of a screenshot.</p></a>
     </div>
   </section>
 </main>
@@ -168,7 +188,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -184,46 +204,19 @@
       formatEl = CV.$('#format'), scaleEl = CV.$('#scale'),
       adPost = CV.$('#adSlotPost');
 
-  function waitForPdfjs() {
-    return new Promise(function (resolve) {
-      if (window.__pdfjsReady) return resolve();
-      document.addEventListener('pdfjsReady', resolve, { once: true });
-    });
-  }
+  // pdf.js is ~380 KB over the wire; fetch it on first convert, not page load.
+  function waitForPdfjs() { return CV.load('pdfjs'); }
 
-  // Lazy CDN loaders. Tesseract (~10 MB) and pdf-lib are only fetched when
-  // the user actually clicks "Run OCR".
-  var _scriptCache = {};
-  function loadScript(url, integrity) {
-    if (_scriptCache[url]) return _scriptCache[url];
-    _scriptCache[url] = new Promise(function (resolve, reject) {
-      var s = document.createElement('script');
-      s.src = url;
-      if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }
-      s.onload = function () { resolve(); };
-      s.onerror = function () { reject(new Error('Failed to load ' + url)); };
-      document.head.appendChild(s);
-    });
-    return _scriptCache[url];
-  }
-  function loadTesseract() {
-    return loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
-  }
-  function loadPdfLib() {
-    return loadScript(
-      'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js',
-      'sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI'
-    );
-  }
+  // Tesseract (~10 MB) and pdf-lib are only fetched when the user actually
+  // clicks convert. CV.load owns the URL + SRI table and dedupes.
+  function loadTesseract() { return CV.load('tesseract'); }
+  function loadPdfLib()    { return CV.load('pdflib'); }
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -257,7 +250,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

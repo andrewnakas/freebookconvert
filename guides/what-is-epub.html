@@ -3,18 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What is an EPUB? A practical explainer | FreeBookConvert Guides</title>
-<meta name="description" content="EPUB is a zipped folder of XHTML and CSS that e-readers render like tiny websites. Here's what's actually inside, how versions differ, and what to do about DRM and validation.">
+<title>What Is an EPUB? A Practical Explainer | FreeBookConvert</title>
+<meta name="description" content="What an EPUB actually is: the zipped XHTML container behind modern ebooks, how EPUB 2 and 3 differ, and why files render differently per reader.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://freebookconvert.com/guides/what-is-epub.html">
+<link rel="canonical" href="https://freebookconvert.com/guides/what-is-epub">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="What is an EPUB? A practical explainer">
 <meta property="og:description" content="The zipped XHTML container behind every modern ebook, explained without jargon.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://freebookconvert.com/guides/what-is-epub.html">
+<meta property="og:url" content="https://freebookconvert.com/guides/what-is-epub">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
 {
@@ -25,7 +30,7 @@
   "dateModified": "2026-05-26",
   "author": {"@type": "Organization", "name": "FreeBookConvert"},
   "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
-  "mainEntityOfPage": "https://freebookconvert.com/guides/what-is-epub.html"
+  "mainEntityOfPage": "https://freebookconvert.com/guides/what-is-epub"
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -36,6 +41,32 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://freebookconvert.com/guides/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "What is an EPUB? A practical explainer",
+      "item": "https://freebookconvert.com/guides/what-is-epub"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -43,14 +74,15 @@
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
       <a href="/guides/">Guides</a>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="/guides/">Guides</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">What is an EPUB? A practical explainer</span></nav>
   <section class="page-intro">
     <h1>What is an EPUB? A practical explainer</h1>
     <p>An EPUB is a small website in a zip file. That's almost the entire explanation; the rest is detail.</p>
@@ -80,7 +112,7 @@
     <h2>How readers render EPUBs (and why your Kindle is weird)</h2>
     <p>Apple Books, Kobo, Google Play Books, Adobe Digital Editions, Calibre's viewer, and most third-party readers render EPUB natively. They parse the XHTML, apply the CSS, and lay it out using a stripped-down web engine. The user-visible difference between readers is mostly typography and how they handle edge cases (drop caps, custom fonts, embedded video).</p>
     <p>Kindle is the conspicuous exception. Amazon's native formats are MOBI (legacy, retired in 2022) and AZW3 / KF8 (current), and the very latest Kindles use a format called KFX. None of them are EPUB. When you send an EPUB to your Kindle &mdash; via the Send to Kindle email address or the web uploader &mdash; Amazon's servers convert it to AZW3 or KFX before delivering it to the device. As of late 2022, Amazon's Send to Kindle accepts EPUB directly; before that you had to convert to MOBI first. The conversion is mostly lossless for prose, but heavy CSS, custom fonts, and complex fixed layouts can come out looking different than they did in iBooks.</p>
-    <p>If you want a PDF version of an EPUB &mdash; for printing, for a non-EPUB reader, for sending to someone who insists on PDFs &mdash; the <a href="/pages/epub-to-pdf.html">EPUB to PDF converter</a> here renders the book in your browser and gives you back a PDF. The reverse trip, PDF to EPUB, is harder because PDFs don't have semantic structure; <a href="/pages/pdf-to-epub.html">that converter</a> does its best to recover chapter breaks and text flow from the PDF's positioned text runs.</p>
+    <p>If you want a PDF version of an EPUB &mdash; for printing, for a non-EPUB reader, for sending to someone who insists on PDFs &mdash; the <a href="/pages/epub-to-pdf">EPUB to PDF converter</a> here renders the book in your browser and gives you back a PDF. The reverse trip, PDF to EPUB, is harder because PDFs don't have semantic structure; <a href="/pages/pdf-to-epub">that converter</a> does its best to recover chapter breaks and text flow from the PDF's positioned text runs.</p>
 
     <h2>DRM and what you can't legally do about it</h2>
     <p>Many EPUBs sold by retailers ship with Digital Rights Management. Adobe ADEPT is the most common scheme &mdash; it's what Kobo, Google Play Books, and most public libraries (via OverDrive / Libby) used historically. B&amp;N had its own variant. The DRM wraps the EPUB's content in encryption, and only a reader application authorized for your account can decrypt it.</p>
@@ -92,13 +124,13 @@
 
     <h2>Where to go from here</h2>
     <p>If you want to look inside an EPUB, the cheapest tool is your file manager: rename the file's <code>.epub</code> extension to <code>.zip</code> and double-click. You'll see the structure laid out exactly as described above. To edit one, Sigil is the free, open-source standard &mdash; it understands the package document and can keep the manifest in sync as you add or remove files. Calibre is the all-purpose Swiss Army knife: it'll convert, edit, and manage a library, though its conversion output is sometimes more aggressive about CSS rewriting than you'd want.</p>
-    <p>If you just need to get an EPUB into another format quickly, the <a href="/pages/epub-to-pdf.html">EPUB to PDF</a> and <a href="/pages/pdf-to-epub.html">PDF to EPUB</a> tools on this site do the round trip in the browser. And if you're trying to read EPUBs you already own on a Kindle, the situation got considerably better in late 2022 &mdash; just email the file to your @kindle.com address and Amazon handles the rest.</p>
+    <p>If you just need to get an EPUB into another format quickly, the <a href="/pages/epub-to-pdf">EPUB to PDF</a> and <a href="/pages/pdf-to-epub">PDF to EPUB</a> tools on this site do the round trip in the browser. And if you're trying to read EPUBs you already own on a Kindle, the situation got considerably better in late 2022 &mdash; just email the file to your @kindle.com address and Amazon handles the rest.</p>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 </body>

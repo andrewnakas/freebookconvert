@@ -3,18 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How OCR actually works (and why your scan looks fine but converts badly) | FreeBookConvert Guides</title>
+<title>How OCR Works (And Why Scans Fail) | FreeBookConvert</title>
 <meta name="description" content="OCR turns pictures of text into text. A walk through binarization, deskewing, line detection, and the LSTM that made Tesseract 4 finally usable.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://freebookconvert.com/guides/how-ocr-works.html">
+<link rel="canonical" href="https://freebookconvert.com/guides/how-ocr-works">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="How OCR actually works">
 <meta property="og:description" content="The pipeline behind optical character recognition, and why DPI and lighting matter more than your CPU.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://freebookconvert.com/guides/how-ocr-works.html">
+<meta property="og:url" content="https://freebookconvert.com/guides/how-ocr-works">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
 {
@@ -25,7 +30,7 @@
   "dateModified": "2026-05-26",
   "author": {"@type": "Organization", "name": "FreeBookConvert"},
   "publisher": {"@type": "Organization", "name": "FreeBookConvert"},
-  "mainEntityOfPage": "https://freebookconvert.com/guides/how-ocr-works.html"
+  "mainEntityOfPage": "https://freebookconvert.com/guides/how-ocr-works"
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
@@ -36,6 +41,32 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://freebookconvert.com/guides/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How OCR actually works (and why your scan looks fine but converts badly)",
+      "item": "https://freebookconvert.com/guides/how-ocr-works"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -43,14 +74,15 @@
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
       <a href="/guides/">Guides</a>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="/guides/">Guides</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">How OCR actually works (and why your scan looks fine but converts badly)</span></nav>
   <section class="page-intro">
     <h1>How OCR actually works (and why your scan looks fine but converts badly)</h1>
     <p>OCR is the process of turning a picture of text back into text. To a human it looks trivial; to a computer it's a stack of stages where any one of them can ruin the answer.</p>
@@ -106,7 +138,7 @@
     <h2>Output as text vs as a PDF text layer</h2>
     <p>OCR engines can emit results in two practically different forms. The first is plain text or formatted text &mdash; you get a <code>.txt</code> or <code>.docx</code> or Markdown file containing the recognized words. The original image is gone; what's left is the engine's best guess at the words.</p>
     <p>The second form is a <em>searchable PDF</em>. Here the original page image is preserved, and the OCR engine adds an invisible text layer positioned exactly over the visible glyphs. To the eye, the PDF looks identical to the scan. To Cmd-F (or Ctrl-F), the text is suddenly there. Copy a sentence out and you'll paste the OCR engine's interpretation, not the image. This is the right output when you want to keep the original document but be able to search it &mdash; archived books, legal exhibits, anything where the visual artifact matters.</p>
-    <p>If you want just the text, the <a href="/pages/pdf-ocr.html">PDF OCR</a> and <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> converters here output plain text. For the searchable-PDF flavor, <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> preserves the image and adds the invisible layer. For OCRing a single image (a photo of a sign, a screenshot of a recipe), <a href="/pages/image-to-text.html">Image to Text</a> is the entry point. All of them run Tesseract in WebAssembly inside the browser, so the page stays on your machine.</p>
+    <p>If you want just the text, the <a href="/pages/pdf-ocr">PDF OCR</a> and <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> converters here output plain text. For the searchable-PDF flavor, <a href="/pages/searchable-pdf">Make PDF Searchable</a> preserves the image and adds the invisible layer. For OCRing a single image (a photo of a sign, a screenshot of a recipe), <a href="/pages/image-to-text">Image to Text</a> is the entry point. All of them run Tesseract in WebAssembly inside the browser, so the page stays on your machine.</p>
 
     <h2>Languages and scripts</h2>
     <p>Tesseract ships trained data for about 100 languages, with quality varying widely. Latin-script European languages are well-covered. Cyrillic is good. Arabic and Hebrew are supported but right-to-left handling adds complexity. CJK (Chinese, Japanese, Korean) requires special data files because the character set is huge &mdash; a typical Chinese OCR data file is hundreds of megabytes against the few megabytes for English &mdash; and recognition accuracy on these scripts depends heavily on font and clarity. Devanagari, Thai, and other complex scripts have their own engines and tend to be where the modern transformer-based approaches significantly outperform the LSTM.</p>
@@ -120,7 +152,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 </body>

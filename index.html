@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FreeBookConvert: File Converters That Don't Upload Your Files</title>
+<title>Free File Converter — Nothing Uploads | FreeBookConvert</title>
 <meta name="description" content="Free file converters that run in your browser. EPUB, PDF, CBZ, HEIC, JPG, PNG, WEBP. Nothing is uploaded, no signup, no watermarks.">
 <meta name="keywords" content="epub to pdf, pdf to epub, cbz to pdf, epub to txt, heic to pdf, pdf to jpg, jpg to png, png to jpg, jpg to webp, webp to jpg, heic to jpg, free converter, browser converter, private converter">
 <meta name="robots" content="index,follow">
@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
 <link rel="canonical" href="https://freebookconvert.com/">
 <link rel="icon" href="/favicon.ico">
-<meta property="og:title" content="FreeBookConvert: Browser-Based File Converters">
+<meta property="og:title" content="Free File Converter — Nothing Uploads">
 <meta property="og:description" content="Convert ebooks and images without uploading. Everything runs in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freebookconvert.com/">
@@ -20,9 +20,14 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="FreeBookConvert">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FreeBookConvert: Browser-Based File Converters">
+<meta name="twitter:title" content="Free File Converter — Nothing Uploads">
 <meta name="twitter:description" content="Convert ebooks and images without uploading. Everything runs in your browser.">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
 <script type="application/ld+json">
@@ -33,6 +38,15 @@
   "url": "https://freebookconvert.com/",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any (Browser)",
+  "description": "Free browser-based converters for ebooks, PDFs, and images. Files are processed locally with JavaScript and WebAssembly and are never uploaded to a server.",
+  "featureList": [
+    "EPUB to PDF and PDF to EPUB",
+    "PDF to JPG or PNG, and images to PDF",
+    "HEIC to JPG, PNG, or PDF",
+    "JPG, PNG, and WEBP interconversion",
+    "OCR for scanned PDFs and images",
+    "CBZ comic archives to PDF"
+  ],
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
 }
 </script>
@@ -41,11 +55,37 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Are my files really not uploaded?","acceptedAnswer":{"@type":"Answer","text":"Correct. All conversion happens with JavaScript and WebAssembly running locally in your browser. You can verify by disconnecting from the internet after the page loads - conversions still work."}},
-    {"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"The only limit is your device's memory. Files up to a few hundred MB typically work fine on modern computers."}},
-    {"@type":"Question","name":"Why is this free?","acceptedAnswer":{"@type":"Answer","text":"The site is supported by unobtrusive ads. We don't need servers to process your files, so costs are minimal."}},
-    {"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, but larger files convert faster on a desktop or laptop."}}
+    {"@type":"Question","name":"Are my files really not uploaded?","acceptedAnswer":{"@type":"Answer","text":"Yes. The proof: open DevTools, watch the Network tab, then convert a file. You'll see requests for the page and the library code, not for your file. Or just turn off Wi-Fi after the page loads. Conversions keep working."}},
+    {"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"Whatever your device can hold in memory. A modern laptop handles a few hundred MB without complaining. Phones struggle past 50 MB."}},
+    {"@type":"Question","name":"Why is this free?","acceptedAnswer":{"@type":"Answer","text":"There are display ads on some pages. That's it. No upsell, no premium tier."}},
+    {"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Slower than a laptop on big files, but it works. iOS Safari, Chrome on Android, both fine."}}
   ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://freebookconvert.com/#organization",
+  "name": "FreeBookConvert",
+  "url": "https://freebookconvert.com/",
+  "logo": "https://freebookconvert.com/assets/og-image.png",
+  "description": "Browser-based file converters that process files locally and never upload them.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "contact@freebookconvert.com",
+    "contactType": "customer support"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://freebookconvert.com/#website",
+  "name": "FreeBookConvert",
+  "url": "https://freebookconvert.com/",
+  "publisher": {"@id": "https://freebookconvert.com/#organization"}
 }
 </script>
 <!-- Google tag (gtag.js) -->
@@ -63,17 +103,17 @@
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
       <a href="/guides/">Guides</a>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
-      <a href="/pages/pdf-to-jpg.html">PDF&rarr;JPG</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <section class="hero">
-    <h1>File converters that don't upload your files</h1>
+    <h1>Free file converters that don't upload your files</h1>
     <p class="lead">Drop an EPUB, PDF, HEIC, or any image. The conversion happens on your own machine. Nothing gets sent to a server, so there's no signup, no waiting in a queue, and no upload progress bar. Close the tab and the file is gone from our side because it was never on our side.</p>
   </section>
 
@@ -88,43 +128,63 @@
   <section class="converters">
     <h2>Books &amp; Documents</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/epub-to-pdf.html">
+      <a class="card" href="/pages/epub-to-pdf">
         <h3>EPUB &rarr; PDF</h3>
         <p>For sending to a Kindle or printing a book.</p>
       </a>
-      <a class="card" href="/pages/pdf-to-epub.html">
+      <a class="card" href="/pages/pdf-to-epub">
         <h3>PDF &rarr; EPUB</h3>
         <p>Reflowable text for a phone or e-reader.</p>
       </a>
-      <a class="card" href="/pages/cbz-to-pdf.html">
+      <a class="card" href="/pages/cbz-to-pdf">
         <h3>CBZ &rarr; PDF</h3>
         <p>Comic archives, pages in the right order.</p>
       </a>
-      <a class="card" href="/pages/epub-to-txt.html">
+      <a class="card" href="/pages/epub-to-txt">
         <h3>EPUB &rarr; TXT</h3>
         <p>Plain text, no formatting.</p>
       </a>
-      <a class="card" href="/pages/pdf-to-jpg.html">
+      <a class="card" href="/pages/pdf-to-jpg">
         <h3>PDF &rarr; JPG</h3>
         <p>One image per page, sharp at 2x.</p>
       </a>
-      <a class="card" href="/pages/images-to-pdf.html">
+      <a class="card" href="/pages/images-to-pdf">
         <h3>Images &rarr; PDF</h3>
         <p>Bundle JPG, PNG, or WEBP into one PDF.</p>
       </a>
-      <a class="card" href="/pages/pdf-ocr.html">
+      <a class="card" href="/pages/merge-pdf">
+        <h3>Merge PDF</h3>
+        <p>Join several PDFs into one, in order.</p>
+      </a>
+      <a class="card" href="/pages/pdf-to-png">
+        <h3>PDF &rarr; PNG</h3>
+        <p>Lossless pages, best for text and diagrams.</p>
+      </a>
+      <a class="card" href="/pages/jpg-to-pdf">
+        <h3>JPG &rarr; PDF</h3>
+        <p>Photos and phone scans into one document.</p>
+      </a>
+      <a class="card" href="/pages/png-to-pdf">
+        <h3>PNG &rarr; PDF</h3>
+        <p>Screenshots and diagrams, page by page.</p>
+      </a>
+      <a class="card" href="/pages/webp-to-pdf">
+        <h3>WEBP &rarr; PDF</h3>
+        <p>For images saved off modern websites.</p>
+      </a>
+      <a class="card" href="/pages/pdf-ocr">
         <h3>PDF OCR &rarr; Text</h3>
         <p>Read text out of scanned PDFs.</p>
       </a>
-      <a class="card" href="/pages/scanned-pdf-to-text.html">
+      <a class="card" href="/pages/scanned-pdf-to-text">
         <h3>Scanned PDF &rarr; Text</h3>
         <p>Image-only PDF? Get the text back.</p>
       </a>
-      <a class="card" href="/pages/searchable-pdf.html">
+      <a class="card" href="/pages/searchable-pdf">
         <h3>Make PDF Searchable</h3>
         <p>Add a hidden text layer so Cmd-F works.</p>
       </a>
-      <a class="card" href="/pages/image-to-text.html">
+      <a class="card" href="/pages/image-to-text">
         <h3>Image &rarr; Text (OCR)</h3>
         <p>JPG, PNG, screenshot. Out comes the text.</p>
       </a>
@@ -132,39 +192,39 @@
 
     <h2 style="margin-top:40px">Images</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/heic-to-pdf.html">
+      <a class="card" href="/pages/heic-to-pdf">
         <h3>HEIC &rarr; PDF</h3>
         <p>iPhone photos bundled as one PDF.</p>
       </a>
-      <a class="card" href="/pages/heic-to-jpg.html">
+      <a class="card" href="/pages/heic-to-jpg">
         <h3>HEIC &rarr; JPG</h3>
         <p>iPhone photos that open on any computer.</p>
       </a>
-      <a class="card" href="/pages/heic-to-png.html">
+      <a class="card" href="/pages/heic-to-png">
         <h3>HEIC &rarr; PNG</h3>
         <p>Same, but lossless.</p>
       </a>
-      <a class="card" href="/pages/jpg-to-png.html">
+      <a class="card" href="/pages/jpg-to-png">
         <h3>JPG &rarr; PNG</h3>
         <p>When you need PNG.</p>
       </a>
-      <a class="card" href="/pages/jpg-to-webp.html">
+      <a class="card" href="/pages/jpg-to-webp">
         <h3>JPG &rarr; WEBP</h3>
         <p>Smaller file, same visible quality.</p>
       </a>
-      <a class="card" href="/pages/png-to-jpg.html">
+      <a class="card" href="/pages/png-to-jpg">
         <h3>PNG &rarr; JPG</h3>
         <p>Trade transparency for a smaller file.</p>
       </a>
-      <a class="card" href="/pages/png-to-webp.html">
+      <a class="card" href="/pages/png-to-webp">
         <h3>PNG &rarr; WEBP</h3>
         <p>Keep transparency, shrink the file.</p>
       </a>
-      <a class="card" href="/pages/webp-to-jpg.html">
+      <a class="card" href="/pages/webp-to-jpg">
         <h3>WEBP &rarr; JPG</h3>
         <p>For tools that still refuse WEBP.</p>
       </a>
-      <a class="card" href="/pages/webp-to-png.html">
+      <a class="card" href="/pages/webp-to-png">
         <h3>WEBP &rarr; PNG</h3>
         <p>WEBP into PNG for editing.</p>
       </a>
@@ -172,47 +232,51 @@
 
     <h2 style="margin-top:40px">For a specific device or use case</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/heic-to-jpg-chromebook.html">
+      <a class="card" href="/pages/heic-to-jpg-chromebook">
         <h3>HEIC to JPG on Chromebook</h3>
         <p>iPhone photos opened on ChromeOS without an extension.</p>
       </a>
-      <a class="card" href="/pages/screenshots-to-pdf-iphone.html">
+      <a class="card" href="/pages/screenshots-to-pdf-iphone">
         <h3>Screenshots &rarr; PDF on iPhone</h3>
         <p>Combine iPhone screenshots into one PDF. No app.</p>
       </a>
-      <a class="card" href="/pages/pdf-for-kindle-scribe.html">
+      <a class="card" href="/pages/screenshots-to-pdf-android">
+        <h3>Screenshots &rarr; PDF on Android</h3>
+        <p>Combine Android screenshots into one PDF. No app.</p>
+      </a>
+      <a class="card" href="/pages/pdf-for-kindle-scribe">
         <h3>PDF for Kindle Scribe</h3>
         <p>Reflowable EPUB sized for the Scribe's 10.2&Prime; screen.</p>
       </a>
-      <a class="card" href="/pages/pdf-for-remarkable.html">
+      <a class="card" href="/pages/pdf-for-remarkable">
         <h3>PDF for reMarkable</h3>
         <p>EPUB with annotation-friendly margins. No Connect needed.</p>
       </a>
-      <a class="card" href="/pages/pdf-for-boox.html">
+      <a class="card" href="/pages/pdf-for-boox">
         <h3>PDF for Boox</h3>
         <p>Note Air, Tab Ultra, Palma — reflowable EPUB sized to fit.</p>
       </a>
-      <a class="card" href="/pages/pdf-for-kobo.html">
+      <a class="card" href="/pages/pdf-for-kobo">
         <h3>PDF for Kobo</h3>
         <p>EPUB for Sage, Libra Colour, Clara BW, and Elipsa.</p>
       </a>
-      <a class="card" href="/pages/pdf-to-epub-with-chapters.html">
+      <a class="card" href="/pages/pdf-to-epub-with-chapters">
         <h3>PDF &rarr; EPUB (with TOC)</h3>
         <p>Auto-detects chapters, builds a working table of contents.</p>
       </a>
-      <a class="card" href="/pages/jpg-to-cbz.html">
+      <a class="card" href="/pages/jpg-to-cbz">
         <h3>JPG &rarr; CBZ</h3>
         <p>Bundle manga or comic pages into one archive.</p>
       </a>
-      <a class="card" href="/pages/png-for-cricut.html">
+      <a class="card" href="/pages/png-for-cricut">
         <h3>PNG for Cricut</h3>
         <p>JPG/HEIC/WEBP to PNG for Design Space.</p>
       </a>
-      <a class="card" href="/pages/jpg-to-png-sublimation.html">
+      <a class="card" href="/pages/jpg-to-png-sublimation">
         <h3>JPG &rarr; PNG for Sublimation</h3>
         <p>Full-resolution PNGs for 300 DPI sublimation prints.</p>
       </a>
-      <a class="card" href="/pages/recipe-screenshot-to-text.html">
+      <a class="card" href="/pages/recipe-screenshot-to-text">
         <h3>Recipe Screenshot &rarr; Text</h3>
         <p>Pull ingredients and steps out of a screenshot.</p>
       </a>
@@ -223,12 +287,12 @@
     <h2 style="margin-top:40px">Read the guides</h2>
     <p style="color:#555">Short explainers for people who want to understand what's actually going on, not just push a button.</p>
     <div class="card-grid">
-      <a class="card" href="/guides/what-is-epub.html"><h3>What is an EPUB?</h3><p>The zipped XHTML container behind every modern ebook.</p></a>
-      <a class="card" href="/guides/heic-explained.html"><h3>HEIC explained</h3><p>Why iPhone photos won't open on Windows, and the licensing reason.</p></a>
-      <a class="card" href="/guides/how-ocr-works.html"><h3>How OCR works</h3><p>Binarization, deskew, line detection, and the LSTM that made it good.</p></a>
-      <a class="card" href="/guides/image-format-comparison.html"><h3>JPG vs PNG vs WEBP vs HEIC</h3><p>A real comparison with file-size numbers and a decision tree.</p></a>
-      <a class="card" href="/guides/sideload-ebooks-to-ereader.html"><h3>Sideload to your e-reader</h3><p>Kindle, Kobo, Boox, reMarkable &mdash; step by step.</p></a>
-      <a class="card" href="/guides/why-browser-conversion.html"><h3>Why convert in your browser</h3><p>The privacy case for not uploading, and how Wasm made it possible.</p></a>
+      <a class="card" href="/guides/what-is-epub"><h3>What is an EPUB?</h3><p>The zipped XHTML container behind every modern ebook.</p></a>
+      <a class="card" href="/guides/heic-explained"><h3>HEIC explained</h3><p>Why iPhone photos won't open on Windows, and the licensing reason.</p></a>
+      <a class="card" href="/guides/how-ocr-works"><h3>How OCR works</h3><p>Binarization, deskew, line detection, and the LSTM that made it good.</p></a>
+      <a class="card" href="/guides/image-format-comparison"><h3>JPG vs PNG vs WEBP vs HEIC</h3><p>A real comparison with file-size numbers and a decision tree.</p></a>
+      <a class="card" href="/guides/sideload-ebooks-to-ereader"><h3>Sideload to your e-reader</h3><p>Kindle, Kobo, Boox, reMarkable &mdash; step by step.</p></a>
+      <a class="card" href="/guides/why-browser-conversion"><h3>Why convert in your browser</h3><p>The privacy case for not uploading, and how Wasm made it possible.</p></a>
     </div>
   </section>
 
@@ -260,9 +324,10 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
+<script src="/js/common.js"></script>
 <script src="/js/universal-entry.js?v=multi1"></script>
 <script>UniversalEntry.init(document.getElementById('universalEntry'));</script>
 <script src="/js/consent.js"></script>

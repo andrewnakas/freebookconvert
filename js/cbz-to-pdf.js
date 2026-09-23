@@ -7,6 +7,9 @@
     options = options || {};
     var fitMode = options.fitMode || 'fit'; // fit | width | original
 
+    onProgress && onProgress(1, 'Loading converter…');
+    await CV.load('jszip', 'pdflib');
+
     onProgress && onProgress(2, 'Reading archive…');
     var zip = await JSZip.loadAsync(file);
 

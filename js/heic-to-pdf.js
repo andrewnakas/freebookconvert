@@ -5,6 +5,12 @@
     options = options || {};
     var quality = options.quality || 0.85;
 
+    onProgress && onProgress(1, 'Loading converter…');
+    var needsHeic = Array.prototype.some.call(files, function (f) {
+      return /\.(heic|heif)$/i.test(f.name);
+    });
+    await (needsHeic ? CV.load('pdflib', 'heicto') : CV.load('pdflib'));
+
     onProgress && onProgress(2, 'Initializing…');
     var pdfDoc = await PDFLib.PDFDocument.create();
     pdfDoc.setTitle('HEIC Images');

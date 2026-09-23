@@ -7,30 +7,27 @@
 <meta name="description" content="Turn a text-based PDF into a reflowable EPUB ebook your e-reader can resize. Runs in your browser. Won't work on scans.">
 <meta name="robots" content="index,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com; worker-src 'self' blob:; child-src blob:;">
-<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub.html">
+<link rel="canonical" href="https://freebookconvert.com/pages/pdf-to-epub">
 <link rel="icon" href="/favicon.ico">
 <meta property="og:title" content="PDF to EPUB Converter">
 <meta property="og:description" content="Turn a text-based PDF into a reflowable EPUB, in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub.html">
+<meta property="og:url" content="https://freebookconvert.com/pages/pdf-to-epub">
 <meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-<script type="module">
-  import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-  window.pdfjsLib = pdfjsLib;
-  window.__pdfjsReady = true;
-  document.dispatchEvent(new Event('pdfjsReady'));
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF to EPUB Converter",
-  "url": "https://freebookconvert.com/pages/pdf-to-epub.html",
+  "url": "https://freebookconvert.com/pages/pdf-to-epub",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Browser",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
@@ -45,27 +42,49 @@
   gtag('js', new Date());
   gtag('config', 'G-4LZC9S4SCK');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebookconvert.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF to EPUB Converter",
+      "item": "https://freebookconvert.com/pages/pdf-to-epub"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">FreeBookConvert</a>
     <nav>
-      <a href="/pages/epub-to-pdf.html">EPUB&rarr;PDF</a>
-      <a href="/pages/pdf-to-epub.html">PDF&rarr;EPUB</a>
-      <a href="/pages/cbz-to-pdf.html">CBZ&rarr;PDF</a>
-      <a href="/pages/epub-to-txt.html">EPUB&rarr;TXT</a>
-      <a href="/pages/heic-to-pdf.html">HEIC&rarr;PDF</a>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/cbz-to-pdf">CBZ&rarr;PDF</a>
+      <a href="/pages/epub-to-txt">EPUB&rarr;TXT</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">PDF to EPUB Converter</span></nav>
   <section class="page-intro">
     <h1>PDF to EPUB Converter</h1>
     <p>Turn a fixed-page PDF into a reflowable EPUB your e-reader can resize. The whole thing runs in your browser.</p>
     <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
-      <strong>Got a scan?</strong> If you can't select the text inside the PDF, there's no text to extract. The EPUB will come out empty. Try <a href="/pages/scanned-pdf-to-text.html">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf.html">Make PDF Searchable</a> instead.
+      <strong>Got a scan?</strong> If you can't select the text inside the PDF, there's no text to extract. The EPUB will come out empty. Try <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> or <a href="/pages/searchable-pdf">Make PDF Searchable</a> instead.
     </p>
   </section>
 
@@ -146,7 +165,7 @@
     <p>Stay with the PDF if:</p>
     <ul>
       <li>The document is a form, contract, or anything where layout has legal meaning.</li>
-      <li>The PDF is a scan with no embedded text. Run <a href="/pages/pdf-ocr.html">OCR</a> first.</li>
+      <li>The PDF is a scan with no embedded text. Run <a href="/pages/pdf-ocr">OCR</a> first.</li>
       <li>The content is heavily visual — atlases, art books, technical diagrams.</li>
     </ul>
 
@@ -170,10 +189,10 @@
 
     <h2>Related converters</h2>
     <div class="card-grid">
-      <a class="card" href="/pages/epub-to-pdf.html"><h3>EPUB to PDF</h3><p>Send the other direction when you need a fixed-page printable file.</p></a>
-      <a class="card" href="/pages/pdf-to-epub-with-chapters.html"><h3>PDF to EPUB with Chapters</h3><p>The same conversion with finer control over chapter detection.</p></a>
-      <a class="card" href="/pages/pdf-ocr.html"><h3>PDF OCR</h3><p>Pull text out of a scanned PDF before you try to convert it.</p></a>
-      <a class="card" href="/pages/pdf-for-kindle-scribe.html"><h3>PDF for Kindle Scribe</h3><p>EPUB tuned for the 10.2-inch Scribe screen and Send to Kindle.</p></a>
+      <a class="card" href="/pages/epub-to-pdf"><h3>EPUB to PDF</h3><p>Send the other direction when you need a fixed-page printable file.</p></a>
+      <a class="card" href="/pages/pdf-to-epub-with-chapters"><h3>PDF to EPUB with Chapters</h3><p>The same conversion with finer control over chapter detection.</p></a>
+      <a class="card" href="/pages/pdf-ocr"><h3>PDF OCR</h3><p>Pull text out of a scanned PDF before you try to convert it.</p></a>
+      <a class="card" href="/pages/pdf-for-kindle-scribe"><h3>PDF for Kindle Scribe</h3><p>EPUB tuned for the 10.2-inch Scribe screen and Send to Kindle.</p></a>
     </div>
   </section>
 </main>
@@ -181,7 +200,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about.html">About</a> &middot; <a href="/pages/privacy.html">Privacy</a> &middot; <a href="/pages/terms.html">Terms</a> &middot; <a href="/pages/contact.html">Contact</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
   </div>
 </footer>
 
@@ -197,12 +216,8 @@
       splitEl = CV.$('#splitMode'),
       adPost = CV.$('#adSlotPost');
 
-  function waitForPdfjs() {
-    return new Promise(function (resolve) {
-      if (window.__pdfjsReady) return resolve();
-      document.addEventListener('pdfjsReady', resolve, { once: true });
-    });
-  }
+  // pdf.js is ~380 KB over the wire; fetch it on first convert, not page load.
+  function waitForPdfjs() { return CV.load('pdfjs'); }
 
   function refresh() {
     CV.renderFileList(listEl, files, function (i) { files.splice(i, 1); refresh(); });
@@ -210,9 +225,6 @@
     resetBtn.disabled = files.length === 0;
   }
   CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
-  if (CV.handoff && CV.handoff.receive) {
-    CV.handoff.receive(['.pdf'], function (f) { files = [f]; refresh(); CV.clearStatus(statusEl); });
-  }
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -241,7 +253,6 @@
   });
 })();
 </script>
-<script src="/js/handoff-receiver.js"></script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

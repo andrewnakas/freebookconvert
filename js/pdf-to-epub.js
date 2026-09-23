@@ -5,6 +5,9 @@
     options = options || {};
     var chaptersPerSplit = options.pagesPerChapter || 0; // 0 = auto
 
+    onProgress && onProgress(1, 'Loading converter…');
+    await CV.load('pdfjs', 'jszip');
+
     onProgress && onProgress(2, 'Loading PDF…');
     var data = new Uint8Array(await file.arrayBuffer());
     var pdf = await pdfjsLib.getDocument({ data: data }).promise;

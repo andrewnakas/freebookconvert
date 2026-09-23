@@ -11,8 +11,8 @@
     var quality = options.quality != null ? options.quality : 0.92;
     var scale = options.scale || 2; // 2x for sharp output
 
-    if (!global.pdfjsLib) throw new Error('PDF engine not loaded');
-    if (!global.JSZip) throw new Error('JSZip not loaded');
+    onProgress(1, 'Loading converter…');
+    await CV.load('pdfjs', 'jszip');
 
     onProgress(2, 'Reading PDF\u2026');
     var buf = await file.arrayBuffer();
