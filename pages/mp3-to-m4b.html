@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- @csp -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://www.googletagmanager.com https://static.cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' data: blob: https:; frame-src https://googleads.g.doubleclick.net https://*.google.com https://*.adtrafficquality.google; worker-src 'self' blob:; child-src blob:; manifest-src 'self';">
+<!-- /@csp -->
+<title>MP3 to M4B Audiobook Maker (Chapters, No Upload) | FreeBookConvert</title>
+<meta name="description" content="Combine MP3 files into one M4B audiobook with a chapter per file, cover art, and title. Free, runs in your browser, nothing is uploaded.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freebookconvert.com/pages/mp3-to-m4b">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="MP3 to M4B Audiobook Maker — Chapters, No Upload">
+<meta property="og:description" content="Merge a folder of MP3s into one chaptered M4B audiobook, in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freebookconvert.com/pages/mp3-to-m4b">
+<meta property="og:image" content="https://freebookconvert.com/assets/og-image.png">
+<meta property="og:site_name" content="FreeBookConvert">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MP3 to M4B Audiobook Maker">
+<meta name="twitter:description" content="Merge MP3s into one chaptered M4B audiobook, in your browser.">
+<meta name="twitter:image" content="https://freebookconvert.com/assets/og-image.png">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MP3 to M4B Audiobook Maker",
+  "url": "https://freebookconvert.com/pages/mp3-to-m4b",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://freebookconvert.com/"},
+    {"@type": "ListItem", "position": 2, "name": "MP3 to M4B", "item": "https://freebookconvert.com/pages/mp3-to-m4b"}
+  ]
+}
+</script>
+<!-- @analytics -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3593636324187853" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) with Consent Mode v2. EEA/UK/CH visitors start
+     denied until they pick in the consent banner (js/consent.js); a stored
+     choice from an earlier visit is applied before the first hit. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500,
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH']
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted',
+    analytics_storage: 'granted'
+  });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem('fbc_consent_v1'); } catch (e) {}
+    if (c === 'all') {
+      gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    } else if (c === 'essential') {
+      gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    }
+  })();
+  gtag('js', new Date());
+  gtag('config', 'G-4LZC9S4SCK');
+  // Microsoft Clarity project ID (clarity.microsoft.com). Empty = disabled.
+  // Loaded by js/consent.js only after the visitor accepts all cookies.
+  window.FBC_CLARITY_ID = '';
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZC9S4SCK"></script>
+<!-- /@analytics -->
+</head>
+<body>
+<!-- @header -->
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">FreeBookConvert</a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <a href="/pages/epub-to-pdf">EPUB&rarr;PDF</a>
+      <a href="/pages/pdf-to-epub">PDF&rarr;EPUB</a>
+      <a href="/pages/heic-to-pdf">HEIC&rarr;PDF</a>
+      <a href="/pages/pdf-to-jpg">PDF&rarr;JPG</a>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">&rsaquo;</span> <span aria-current="page">MP3 to M4B</span></nav>
+  <section class="page-intro">
+    <h1>MP3 to M4B Audiobook Maker</h1>
+    <p>Drop in the MP3s of an audiobook. You get back one M4B file with a chapter for every track, plus your cover and title. Apple Books, BookPlayer, Smart AudioBook Player, and Plex all read it. Your files never leave this tab.</p>
+  </section>
+
+  <noscript><div class="noscript-banner">This converter needs JavaScript to run. Please enable JavaScript and reload the page.</div></noscript>
+
+  <div class="ad-slot ad-slot-top">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="converter-app">
+    <div class="dropzone" id="dropzone">
+      <p class="big">Drop your MP3 files here</p>
+      <p>or <strong>click to browse</strong>. Select the whole folder's worth at once.</p>
+      <p style="font-size:0.85rem">Accepts: .mp3, .m4a, .aac, .ogg, .opus, .wav, .flac</p>
+      <input type="file" id="fileInput" accept=".mp3,.m4a,.aac,.ogg,.opus,.wav,.flac,audio/*" multiple>
+    </div>
+
+    <ol class="chapter-list" id="chapterList" aria-label="Chapters, in playback order"></ol>
+
+    <div class="controls">
+      <label>Book title
+        <input type="text" id="bookTitle" placeholder="From the first file name" maxlength="200">
+      </label>
+      <label>Author
+        <input type="text" id="bookAuthor" placeholder="Optional" maxlength="200">
+      </label>
+      <label>Quality
+        <select id="quality">
+          <option value="voice" selected>Spoken word: 64 kbps mono (smallest)</option>
+          <option value="music">Music or drama: 128 kbps stereo</option>
+        </select>
+      </label>
+      <label>Cover image (optional)
+        <input type="file" id="coverInput" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+      </label>
+    </div>
+
+    <div class="status hidden" id="status"></div>
+    <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="actions">
+      <button class="btn" id="convertBtn" disabled>Make M4B audiobook</button>
+      <button class="btn btn-secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-slot-mid ad-slot-post" id="adSlotPost">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3593636324187853" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  </div>
+
+  <section class="content-section">
+    <h2>Three steps</h2>
+    <ol>
+      <li>Drop all the MP3s for one book. They're sorted by file name, so <code>Track 2</code> comes before <code>Track 10</code>.</li>
+      <li>Check the chapter list. Use the arrows to fix the order and type over any chapter name.</li>
+      <li>Hit <strong>Make M4B audiobook</strong>. The first run downloads the audio engine (31&nbsp;MB, one time). After that, encoding runs on your device.</li>
+    </ol>
+
+    <h2>Why M4B instead of a folder of MP3s</h2>
+    <p>A folder of 40 MP3s works, but every player treats it as 40 songs. Shuffle mixes up the chapters. Your place is saved per track, not per book. The playback speed setting often resets between files. M4B fixes all of that. It's a single MP4 audio file flagged as an audiobook, with a chapter table inside it. Audiobook players remember your position to the second, show a chapter list you can jump around in, and keep your speed setting. On an iPhone, an M4B added through the Files app or synced from a Mac shows up in Apple Books under Audiobooks, not in Music.</p>
+
+    <h2>What this tool does to your audio</h2>
+    <p>Every file is decoded, resampled to a common format, and joined end to end. The result is encoded once as AAC, the codec M4B players expect. Each input file becomes one chapter. The chapter starts exactly where that file started in the joined audio, and its name comes from the file name, minus leading track numbers like <code>01 -</code>. The title, author, and cover go into the file's metadata, so players show the right artwork and book name.</p>
+    <p>The <strong>spoken word</strong> setting (64&nbsp;kbps mono) is what Audible and most audiobook stores use for narration. It sounds the same as a 128&nbsp;kbps stereo MP3 of a single voice, at half the size. A 10-hour book comes out around 290&nbsp;MB. Pick <strong>music or drama</strong> for full-cast productions, sound effects, or anything where stereo matters.</p>
+
+    <h2>How long it takes</h2>
+    <p>Encoding runs on one CPU core inside the browser. On a recent laptop, expect roughly 30 to 60 times real time. A 1-hour book takes 1 to 2 minutes, and a 10-hour book takes 10 to 20 minutes. Phones are slower. Keep the tab in the foreground on a phone, because mobile browsers pause background tabs. The progress bar shows how much of the book has been encoded.</p>
+
+    <h2>Why it runs in your browser</h2>
+    <p>Audiobook files are big, often several hundred megabytes. Upload-based converters make you wait for the upload, cap the file size, or charge for anything over an hour. Here the files are read straight from your disk into this tab, so a 500&nbsp;MB book is ready to encode the moment you drop it in. It's also private. Recordings of your own voice, a family member reading, or an unreleased narration never touch a server. You can check this: load the page, turn off Wi-Fi after the audio engine has downloaded, and the conversion still works.</p>
+
+    <h2>Common problems and fixes</h2>
+    <ul>
+      <li><strong>Chapters are in the wrong order.</strong> Files are sorted naturally by name. If the names don't carry the order (like <code>intro.mp3</code>, <code>part-a.mp3</code>), use the arrows to reorder before converting.</li>
+      <li><strong>The tab crashed on a very long book.</strong> The whole book is held in memory while encoding. Most laptops handle 1&nbsp;GB of input without trouble; phones start failing at a few hundred MB. Split the book in two and make two M4Bs, or use a desktop browser.</li>
+      <li><strong>Chapter marks drift by a second or two.</strong> Some MP3s have no length header, so their duration is estimated from the bitrate. Re-exporting those files from any audio editor fixes it.</li>
+      <li><strong>The cover doesn't show.</strong> Use a square JPG or PNG. WEBP and HEIC can't be embedded in M4B. A 600&times;600 to 1400&times;1400 image is ideal.</li>
+      <li><strong>Apple Books files it under Music.</strong> Add it through the Books app (Share &rarr; Books) or the Files app, not the Music app. The file is marked as an audiobook, but the Music app ignores that flag.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are my audio files uploaded?</summary><p>No. The audio engine (a WebAssembly build of FFmpeg) is downloaded to your browser once, and all the work happens on your device. Watch the Network tab in DevTools while it runs: the only traffic is that one-time engine download.</p></details>
+    <details><summary>Is there a size or length limit?</summary><p>No fixed limit. The real ceiling is your device's memory. As a rule of thumb, a laptop handles books up to about 20 hours; a phone is happiest under 5.</p></details>
+    <details><summary>Can I use M4A or WAV files instead of MP3?</summary><p>Yes. Any mix of MP3, M4A, AAC, OGG, Opus, WAV, and FLAC works. They're all converted to one common format before joining.</p></details>
+    <details><summary>Will this work with Audible downloads?</summary><p>No. Audible's AAX and AAXC files are DRM-protected, and this tool doesn't remove DRM. It's meant for audio you own outright: CD rips, DRM-free purchases (Libro.fm, Downpour, author-direct), public-domain LibriVox recordings, and your own recordings.</p></details>
+    <details><summary>Which players support M4B chapters?</summary><p>Apple Books, BookPlayer, and Prologue on iPhone; Smart AudioBook Player, Voice, and Listen on Android; VLC and foobar2000 on desktop; and audiobook servers like Plex, Audiobookshelf, and Jellyfin.</p></details>
+    <details><summary>Can I go the other way?</summary><p>Yes. <a href="/pages/m4b-to-mp3">M4B to MP3</a> splits an audiobook back into one MP3 per chapter.</p></details>
+  </section>
+
+  <section class="converters">
+    <h2>Related tools</h2>
+    <div class="card-grid">
+      <a class="card" href="/pages/m4b-to-mp3"><h3>M4B to MP3</h3><p>Split an audiobook into one MP3 per chapter.</p></a>
+      <a class="card" href="/pages/epub-to-audiobook"><h3>EPUB to Audiobook</h3><p>Have an ebook read aloud by a natural AI voice and saved as MP3.</p></a>
+      <a class="card" href="/guides/what-is-m4b"><h3>What is an M4B?</h3><p>How audiobook files store chapters, covers, and your place.</p></a>
+    </div>
+  </section>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a></nav>
+  </div>
+</footer>
+<!-- /@footer -->
+
+<script src="/js/common.js"></script>
+<script src="/js/audio-core.js"></script>
+<script src="/js/m4b.js"></script>
+<script>
+(function () {
+  var files = [], cover = null;
+  var dz = CV.$('#dropzone'), input = CV.$('#fileInput'), listEl = CV.$('#chapterList'),
+      statusEl = CV.$('#status'), convertBtn = CV.$('#convertBtn'), resetBtn = CV.$('#resetBtn'),
+      progressWrap = CV.$('#progressWrap'), progressBar = CV.$('#progressBar'),
+      titleEl = CV.$('#bookTitle'), authorEl = CV.$('#bookAuthor'), qualityEl = CV.$('#quality'),
+      coverEl = CV.$('#coverInput'), adPost = CV.$('#adSlotPost');
+  var ACCEPT = ['.mp3', '.m4a', '.aac', '.ogg', '.opus', '.wav', '.flac'];
+
+  function move(i, d) {
+    var j = i + d;
+    if (j < 0 || j >= files.length) return;
+    var t = files[i]; files[i] = files[j]; files[j] = t;
+    refresh();
+    var btn = listEl.children[j] && listEl.children[j].querySelector(d < 0 ? '.up' : '.down');
+    if (btn && !btn.disabled) btn.focus();
+  }
+
+  function refresh() {
+    listEl.innerHTML = '';
+    files.forEach(function (f, i) {
+      var li = document.createElement('li');
+      li.className = 'chapter-item';
+      li.innerHTML = '<input type="text" class="ch-title" aria-label="Chapter name">' +
+        '<span class="size"></span>' +
+        '<button type="button" class="icon-btn up" aria-label="Move up">&uarr;</button>' +
+        '<button type="button" class="icon-btn down" aria-label="Move down">&darr;</button>' +
+        '<button type="button" class="icon-btn remove" aria-label="Remove">&times;</button>';
+      var t = li.querySelector('.ch-title');
+      t.value = f.title;
+      t.addEventListener('input', function () { f.title = t.value; });
+      li.querySelector('.size').textContent = f.file.name + ' · ' + CV.fmtBytes(f.file.size);
+      li.querySelector('.up').disabled = i === 0;
+      li.querySelector('.down').disabled = i === files.length - 1;
+      li.querySelector('.up').onclick = function () { move(i, -1); };
+      li.querySelector('.down').onclick = function () { move(i, 1); };
+      li.querySelector('.remove').onclick = function () { files.splice(i, 1); refresh(); };
+      listEl.appendChild(li);
+    });
+    convertBtn.disabled = files.length === 0;
+    resetBtn.disabled = files.length === 0;
+    if (!titleEl.value && files.length) titleEl.placeholder = Mp3ToM4b.chapterTitle(files[0].file.name, 0);
+  }
+
+  CV.bindDropzone(dz, input, function (picked) {
+    picked = picked.filter(function (f) {
+      return ACCEPT.some(function (e) { return f.name.toLowerCase().endsWith(e); });
+    });
+    picked.sort(function (a, b) { return AudioCore.naturalCompare(a.name, b.name); });
+    picked.forEach(function (f) {
+      files.push({ file: f, title: Mp3ToM4b.chapterTitle(f.name, files.length) });
+    });
+    CV.clearStatus(statusEl);
+    refresh();
+  }, ACCEPT);
+
+  coverEl.addEventListener('change', function () { cover = coverEl.files[0] || null; });
+
+  resetBtn.addEventListener('click', function () {
+    files = []; cover = null; coverEl.value = ''; titleEl.value = ''; authorEl.value = '';
+    refresh(); CV.clearStatus(statusEl);
+    progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
+    if (adPost) adPost.classList.remove('visible');
+  });
+
+  convertBtn.addEventListener('click', async function () {
+    if (!files.length) return;
+    convertBtn.disabled = true; resetBtn.disabled = true;
+    progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
+    CV.setStatus(statusEl, 'info', 'Starting…');
+    try {
+      var res = await Mp3ToM4b.convert(files.map(function (f) { return f.file; }), {
+        title: titleEl.value.trim(),
+        author: authorEl.value.trim(),
+        cover: cover,
+        quality: qualityEl.value,
+        titles: files.map(function (f) { return f.title.trim(); })
+      }, function (p, m) { CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m); });
+      CV.setProgress(progressBar, 100);
+      CV.downloadBlob(res.blob, res.filename);
+      CV.track('audio_export_complete', { out_ext: 'm4b', chapters: res.chapters.length });
+      CV.setStatus(statusEl, 'success', 'Done! ' + res.chapters.length + ' chapters, ' +
+        AudioCore.fmtDuration(res.duration) + ' long, saved as ' + res.filename);
+      if (adPost) adPost.classList.add('visible');
+    } catch (e) {
+      console.error(e);
+      CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));
+    } finally { refresh(); }
+  });
+})();
+</script>
+<script src="/js/consent.js"></script>
+</body>
+</html>
