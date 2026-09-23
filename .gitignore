@@ -5,3 +5,6 @@ node_modules/
 .env.local
 .vscode/
 .idea/
+
+# Private notes live outside this public repo.
+marketing/
