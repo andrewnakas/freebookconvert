@@ -9,14 +9,14 @@
  *
  * Ads and analytics are never intercepted.
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const PAGES = 'fbc-pages-' + VERSION;
 const STATIC = 'fbc-static-' + VERSION;
 const LIBS = 'fbc-libs-v1';   // versioned URLs: safe to keep across releases
 const LIB_HOSTS = ['cdn.jsdelivr.net', 'unpkg.com', 'cdnjs.cloudflare.com'];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(STATIC).then((c) => c.addAll(['/', '/css/style.css', '/js/common.js', '/js/universal-entry.js?v=retain1', '/js/consent.js'])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(STATIC).then((c) => c.addAll(['/', '/css/style.css', '/js/common.js', '/js/universal-entry.js?v=report1', '/js/consent.js'])).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {

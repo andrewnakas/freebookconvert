@@ -62,7 +62,8 @@
 </script>
 <!-- @pwa -->
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <!-- /@pwa -->
 <!-- @analytics -->
@@ -143,7 +144,7 @@
     <h1>Convert PDF for Kindle Scribe</h1>
     <p>Drop a PDF and get back an EPUB that the Kindle Scribe actually treats like a book — text reflows, font size works, the table of contents jumps, the pen still annotates. No more pinch-zoom on a 10.2-inch screen built for typeset prose.</p>
     <p class="trust"><span>&#10003; Files never leave your device</span> <span>&#10003; Works offline</span> <span>&#10003; No signup, no watermark</span></p>
-    <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
+    <p class="callout callout-warn">
       <strong>Got a scan?</strong> If you can't select text inside the PDF, it's an image — there's no text to reflow. Run <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> first, then come back here.
     </p>
   </section>
@@ -254,7 +255,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert/issues/new?template=tool-request.yml" rel="noopener">Suggest a tool</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
   </div>
 </footer>
 <script src="/js/pwa.js" defer></script>

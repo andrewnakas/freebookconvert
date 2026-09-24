@@ -26,7 +26,12 @@ a server. You can check this yourself: load a page, turn off Wi-Fi, and convert.
 | Audiobooks | [EPUB → audiobook](https://freebookconvert.com/pages/epub-to-audiobook) · [PDF → audiobook](https://freebookconvert.com/pages/pdf-to-audiobook) · [Read Aloud](https://freebookconvert.com/pages/read-aloud) · [MP3 → M4B](https://freebookconvert.com/pages/mp3-to-m4b) · [M4B → MP3](https://freebookconvert.com/pages/m4b-to-mp3) |
 
 It's also an installable app that works offline and can open files from the
-OS "Open with" menu.
+OS "Open with" menu. It follows your system's dark mode, and on desktop you can
+paste a screenshot (Ctrl/⌘+V) straight into any image tool.
+
+Found a file that won't convert? Every error message has a **Report this
+problem** link that pre-fills an issue here. Want a new tool?
+[Suggest one](https://github.com/andrewnakas/freebookconvert/issues/new?template=tool-request.yml).
 
 ### Private AI audiobooks
 

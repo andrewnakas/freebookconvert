@@ -121,7 +121,8 @@
 </script>
 <!-- @pwa -->
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <!-- /@pwa -->
 <!-- @analytics -->
@@ -194,7 +195,7 @@
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
       <p class="big">Drop your JPG files here</p>
-      <p>or <strong>click to browse</strong></p>
+      <p>or <strong>click to browse</strong>, or paste a screenshot (Ctrl/⌘+V)</p>
       <p style="font-size:0.85rem">Accepts: .jpg, .jpeg</p>
       <input type="file" id="fileInput" accept=".jpg,.jpeg" multiple>
     </div>
@@ -268,7 +269,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert/issues/new?template=tool-request.yml" rel="noopener">Suggest a tool</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
   </div>
 </footer>
 <script src="/js/pwa.js" defer></script>

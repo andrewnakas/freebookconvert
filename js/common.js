@@ -128,6 +128,27 @@
         dropzoneEl.classList.remove('dragover');
       });
     });
+    // Paste (Ctrl/Cmd+V) a screenshot or copied file anywhere on the page.
+    // Skipped while typing in a field so normal text paste keeps working.
+    document.addEventListener('paste', function (e) {
+      var t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      var items = (e.clipboardData && e.clipboardData.files) ? Array.from(e.clipboardData.files) : [];
+      if (!items.length) return;
+      e.preventDefault();
+      // Pasted screenshots arrive as "image.png"; give them a unique name.
+      var stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+      items = items.map(function (f, i) {
+        if (!/^image\.(png|jpe?g|gif|webp)$/i.test(f.name)) return f;
+        return new File([f], 'pasted-' + stamp + (items.length > 1 ? '-' + (i + 1) : '') + '.' + f.name.split('.').pop(), { type: f.type });
+      });
+      var accepted = accept ? items.filter(function (f) {
+        return accept.some(function (ext) { return f.name.toLowerCase().endsWith(ext); });
+      }) : items;
+      track('file_selected', { count: accepted.length, rejected: items.length - accepted.length, in_ext: extOf((accepted[0] || {}).name), method: 'paste' });
+      if (accepted.length) onFiles(accepted);
+    });
+
     dropzoneEl.addEventListener('drop', function (e) {
       var files = Array.from(e.dataTransfer.files);
       var dropped = files.length;
@@ -158,7 +179,61 @@
     }
     if (kind === 'error') track('conversion_error', { message: String(msg).slice(0, 100) });
     el.className = 'status ' + kind;
-    el.textContent = msg;
+    el.textContent = kind === 'error' ? friendlyError(msg) : msg;
+    if (kind === 'error') appendReportLink(el, msg);   // report keeps the raw text
+  }
+
+  // Library errors are written for developers ("Can't find end of central
+  // directory"). Say what it means for the person holding the file.
+  var FRIENDLY = [
+    [/end of central directory|is this a zip file|Corrupted zip|invalid zip/i,
+      'This file couldn’t be opened. It may be incomplete, DRM-protected, or a different format renamed with this extension.'],
+    [/PasswordException|No password given|password/i,
+      'This PDF is password-protected. Open it in your PDF reader, save a copy without the password, and try that.'],
+    [/InvalidPDFException|Invalid PDF structure|Invalid XRef|Missing PDF/i,
+      'This PDF couldn’t be read. It may be damaged or only partly downloaded.'],
+    [/Array buffer allocation failed|out of memory|RangeError|Maximum call stack|QuotaExceeded/i,
+      'Your device ran out of memory on this file. Try a smaller file, fewer files at once, or a laptop/desktop browser.'],
+    [/Could not load a required library|Failed to fetch|NetworkError|Load failed|audio engine download/i,
+      'Part of the converter couldn’t download. Check your connection or any ad/content blocker, then try again.'],
+    [/libheif|heic|HEIF/i,
+      'This HEIC photo couldn’t be decoded. Some Live Photos and edited images use variants the decoder can’t read yet.']
+  ];
+  function friendlyError(msg) {
+    var raw = String(msg || '');
+    var prefix = /^Failed:\s*/.test(raw) ? 'Failed: ' : '';
+    for (var i = 0; i < FRIENDLY.length; i++) {
+      if (FRIENDLY[i][0].test(raw)) return prefix + FRIENDLY[i][1];
+    }
+    return raw;
+  }
+
+  // Every error gets a one-click way to tell us. It opens a pre-filled GitHub
+  // issue; nothing is sent until the user reviews it and submits there.
+  var REPO = 'https://github.com/andrewnakas/freebookconvert';
+  function reportUrl(msg) {
+    var err = String(msg || '').replace(/^Failed:\s*/, '').slice(0, 200);
+    var q = {
+      template: 'bug.yml',
+      title: toolName() + ': ' + err.slice(0, 70),
+      tool: toolName(),
+      error: err,
+      browser: navigator.userAgent.slice(0, 200)
+    };
+    return REPO + '/issues/new?' + Object.keys(q).map(function (k) {
+      return k + '=' + encodeURIComponent(q[k]);
+    }).join('&');
+  }
+  function appendReportLink(el, msg) {
+    var a = document.createElement('a');
+    a.href = reportUrl(msg);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.className = 'report-link';
+    a.textContent = 'Report this problem';
+    a.addEventListener('click', function () { track('report_problem', {}); });
+    el.appendChild(document.createTextNode(' '));
+    el.appendChild(a);
   }
 
   function clearStatus(el) {
@@ -375,6 +450,9 @@
     downloadBlob: downloadBlob,
     renderFileList: renderFileList,
     showNextSteps: showNextSteps,
+    reportUrl: reportUrl,
+    appendReportLink: appendReportLink,
+    friendlyError: friendlyError,
     renderRecentTools: renderRecentTools
   };
 })(window);

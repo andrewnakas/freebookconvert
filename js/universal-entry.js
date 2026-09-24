@@ -304,7 +304,8 @@
 
     function setStatus(kind, msg) {
       statusEl.className = 'status ' + kind;
-      statusEl.textContent = msg;
+      statusEl.textContent = (kind === 'error' && CV.friendlyError) ? CV.friendlyError(msg) : msg;
+      if (kind === 'error' && CV.appendReportLink) CV.appendReportLink(statusEl, msg);
     }
     function clearStatus() {
       statusEl.className = 'status hidden';

@@ -8,9 +8,59 @@
   --card-bg: #ffffff;
   --success: #16a34a;
   --error: #dc2626;
+  --subtle: #f6f8fa;
+  --accent-bg: #f0f6ff;
+  --disabled: #cbd5e1;
+  --info-bg: #eff6ff;
+  --info-fg: #1e40af;
+  --success-bg: #f0fdf4;
+  --success-fg: #14532d;
+  --error-bg: #fef2f2;
+  --error-fg: #991b1b;
+  --error-border: #fecaca;
+  --highlight: #fde68a;
+  --highlight-fg: inherit;
+  --shadow: rgba(0,0,0,0.06);
+  --shadow-strong: rgba(0,0,0,0.12);
+  --btn-fg: #fff;
+  color-scheme: light;
+}
+
+/* Dark mode follows the OS setting. Readers use this site at night. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --fg: #e6e8eb;
+    --muted: #a0a7b1;
+    --accent: #6ea8ff;
+    --accent-dark: #9cc3ff;
+    --border: #2a2f37;
+    --card-bg: #171a20;
+    --success: #4ade80;
+    --error: #f87171;
+    --subtle: #1d2129;
+    --accent-bg: #16233a;
+    --disabled: #3a414c;
+    --info-bg: #14213a;
+    --info-fg: #b9d3ff;
+    --success-bg: #0f2a1a;
+    --success-fg: #a7f3c4;
+    --error-bg: #2d1414;
+    --error-fg: #fecaca;
+    --error-border: #5c1f1f;
+    --highlight: #5b4a12;
+    --highlight-fg: #fff7d6;
+    --shadow: rgba(0,0,0,0.4);
+    --shadow-strong: rgba(0,0,0,0.6);
+    --btn-fg: #0b1220;
+    color-scheme: dark;
+  }
 }
 
 * { box-sizing: border-box; }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -27,7 +77,7 @@ body {
 }
 
 .site-header {
-  background: #fff;
+  background: var(--card-bg);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -110,7 +160,7 @@ body {
 
 /* Universal converter entry (homepage) */
 .universal-entry {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 20px;
@@ -137,7 +187,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f6f8fa;
+  background: var(--subtle);
   border-radius: 6px;
   padding: 8px 12px;
   font-weight: 500;
@@ -173,14 +223,14 @@ body {
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.95rem;
-  background: #fff;
+  background: var(--card-bg);
 }
 
 /* Noscript banner */
 .noscript-banner {
-  background: #fef2f2;
+  background: var(--error-bg);
   color: var(--error);
-  border: 1px solid #fecaca;
+  border: 1px solid var(--error-border);
   padding: 14px 18px;
   border-radius: 8px;
   margin: 20px 0;
@@ -207,7 +257,7 @@ body {
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px var(--shadow);
   border-color: var(--accent);
 }
 
@@ -232,7 +282,7 @@ body {
 
 .features div {
   padding: 18px;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   border: 1px solid var(--border);
 }
@@ -250,7 +300,7 @@ body {
 }
 
 .faq details {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 14px 18px;
@@ -265,7 +315,7 @@ body {
 .site-footer {
   margin-top: 80px;
   padding: 30px 0;
-  background: #fff;
+  background: var(--card-bg);
   border-top: 1px solid var(--border);
   font-size: 0.9rem;
   color: var(--muted);
@@ -289,7 +339,7 @@ body {
 
 /* Converter page */
 .converter-app {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 30px;
@@ -307,7 +357,7 @@ body {
 
 .dropzone:hover, .dropzone.dragover {
   border-color: var(--accent);
-  background: #f0f6ff;
+  background: var(--accent-bg);
 }
 
 .dropzone p {
@@ -327,7 +377,7 @@ body {
 
 .btn {
   background: var(--accent);
-  color: #fff;
+  color: var(--btn-fg);
   border: none;
   padding: 12px 22px;
   border-radius: 8px;
@@ -341,12 +391,12 @@ body {
 .btn:hover { background: var(--accent-dark); }
 
 .btn:disabled {
-  background: #cbd5e1;
+  background: var(--disabled);
   cursor: not-allowed;
 }
 
 .btn-secondary {
-  background: #fff;
+  background: var(--card-bg);
   color: var(--accent);
   border: 1px solid var(--accent);
 }
@@ -360,7 +410,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 14px;
-  background: #f6f8fa;
+  background: var(--subtle);
   border-radius: 6px;
   margin: 6px 0;
 }
@@ -383,17 +433,17 @@ body {
   font-size: 0.95rem;
 }
 
-.status.info { background: #eff6ff; color: var(--accent-dark); }
+.status.info { background: var(--info-bg); color: var(--info-fg); }
 /* Darkened from --success/--error: the originals were 3.1:1 and 4.4:1 on these
    tints, both short of the 4.5:1 WCAG AA minimum for body text. */
-.status.success { background: #f0fdf4; color: #14532d; }
-.status.error { background: #fef2f2; color: #991b1b; }
+.status.success { background: var(--success-bg); color: var(--success-fg); }
+.status.error { background: var(--error-bg); color: var(--error-fg); }
 .status.hidden { display: none; }
 
 .progress {
   width: 100%;
   height: 6px;
-  background: #e5e7eb;
+  background: var(--border);
   border-radius: 3px;
   margin: 8px 0;
   overflow: hidden;
@@ -453,7 +503,7 @@ body {
 }
 
 .content-section {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 26px;
@@ -476,10 +526,10 @@ body {
   left: 16px;
   right: 16px;
   bottom: 16px;
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 40px var(--shadow-strong);
   padding: 16px 18px;
   z-index: 9999;
   max-width: 720px;
@@ -627,7 +677,7 @@ select:focus-visible,
 .read-text h2 { margin-top: 0; font-size: 1.2rem; }
 .read-text .sent { cursor: pointer; border-radius: 3px; }
 .read-text .sent:hover { background: rgba(37, 99, 235, 0.06); }
-.read-text .sent.reading { background: #fde68a; }
+.read-text .sent.reading { background: var(--highlight); color: var(--highlight-fg); }
 .read-hint { font-size: 0.9rem; color: var(--muted); }
 
 /* ---------- ebook to audiobook -------------------------------------------- */
@@ -654,3 +704,13 @@ select:focus-visible,
 
 /* Trust line under each converter's intro: the site's one differentiator. */
 .page-intro .trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: 0.88rem; color: var(--success); font-weight: 600; margin-top: 4px; }
+
+/* Inline tip/warning boxes inside converter pages. */
+.callout { font-size: 0.95rem; margin-top: 8px; padding: 10px 14px; border-radius: 6px; border-left: 3px solid; }
+.callout-warn { background: #fff8e1; border-color: #f0a500; }
+.callout-info { background: #e8f4fd; border-color: #2b7cd3; }
+@media (prefers-color-scheme: dark) {
+  .callout-warn { background: #2b2410; border-color: #c98a00; }
+  .callout-info { background: #10222f; border-color: #4a9be0; }
+}
+.status .report-link { margin-left: 6px; font-weight: 600; color: inherit; white-space: nowrap; }

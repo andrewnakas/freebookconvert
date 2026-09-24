@@ -1,0 +1,21 @@
+name: Suggest a tool
+description: A conversion or feature you'd like the site to have.
+labels: [tool request]
+body:
+  - type: input
+    id: conversion
+    attributes:
+      label: What should it convert or do?
+      placeholder: e.g. MOBI → EPUB, split PDF by bookmarks, audiobook speed changer
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What are you trying to get done?
+      description: The situation behind the request helps more than the format pair.
+  - type: markdown
+    attributes:
+      value: |
+        One rule for new tools: they have to run entirely in the browser. Anything that
+        needs to upload files to a server won't be added.

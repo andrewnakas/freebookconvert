@@ -1,0 +1,37 @@
+name: Something didn't convert
+description: A file failed, the output looks wrong, or a page misbehaves.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. **Please don't attach private files.** If the problem only
+        happens with a file you can't share, describe where it came from (app, store,
+        scanner) and its size instead.
+  - type: input
+    id: tool
+    attributes:
+      label: Which tool?
+      placeholder: e.g. epub-to-pdf, mp3-to-m4b
+    validations:
+      required: true
+  - type: input
+    id: error
+    attributes:
+      label: Error message (if any)
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: About the file
+      placeholder: e.g. 40 MB EPUB from Standard Ebooks, 300-page scanned PDF
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: e.g. Chrome 131 on Windows 11, Safari on iPhone 15

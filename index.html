@@ -33,7 +33,8 @@
 <link rel="stylesheet" href="/css/style.css">
 <!-- @pwa -->
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <!-- /@pwa -->
 <!-- @analytics -->
@@ -346,7 +347,7 @@
 
   <section class="converters">
     <h2 style="margin-top:40px">Read the guides</h2>
-    <p style="color:#555">Short explainers for people who want to understand what's actually going on, not just push a button.</p>
+    <p style="color:var(--muted)">Short explainers for people who want to understand what's actually going on, not just push a button.</p>
     <div class="card-grid">
       <a class="card" href="/guides/what-is-epub"><h3>What is an EPUB?</h3><p>The zipped XHTML container behind every modern ebook.</p></a>
       <a class="card" href="/guides/heic-explained"><h3>HEIC explained</h3><p>Why iPhone photos won't open on Windows, and the licensing reason.</p></a>
@@ -386,13 +387,13 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert/issues/new?template=tool-request.yml" rel="noopener">Suggest a tool</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
   </div>
 </footer>
 <script src="/js/pwa.js" defer></script>
 <!-- /@footer -->
 <script src="/js/common.js"></script>
-<script src="/js/universal-entry.js?v=retain1"></script>
+<script src="/js/universal-entry.js?v=report1"></script>
 <script>
   UniversalEntry.init(document.getElementById('universalEntry'));
   if (CV.renderRecentTools) CV.renderRecentTools(document.getElementById('recentTools'));

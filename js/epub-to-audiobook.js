@@ -85,6 +85,9 @@
           var err = new Error('The voice engine failed to start' + (e.message ? ': ' + e.message : '') + '.');
           reject(err);
           Object.keys(handlers).forEach(function (k) { handlers[k]({ type: 'error', message: err.message }); });
+          // Mark this worker dead so a Pool can drop it and carry on.
+          device = null;
+          try { worker.terminate(); } catch (x) { /* already gone */ }
         };
       });
       ready.catch(function () { worker.terminate(); worker = null; ready = null; });
@@ -108,7 +111,112 @@
       return p;
     }
     function cancel(id) { if (worker) worker.postMessage({ type: 'cancel', id: id }); }
-    return { ensure: ensure, speak: speak, cancel: cancel, device: function () { return device; } };
+    function terminate() { if (worker) worker.terminate(); worker = null; ready = null; }
+    return { ensure: ensure, speak: speak, cancel: cancel, terminate: terminate, device: function () { return device; } };
+  }
+
+  // How many voice workers this device can afford. Each is single-threaded
+  // WASM (multi-threading needs cross-origin isolation, which breaks ads) and
+  // holds its own copy of the model, roughly 300 MB of RAM.
+  function poolSize() {
+    // Manual override for testing and support: localStorage.fbc_tts_workers = 1..8
+    try { var o = parseInt(localStorage.getItem('fbc_tts_workers'), 10); if (o > 0) return Math.min(o, 8); } catch (e) {}
+    var cores = navigator.hardwareConcurrency || 2;
+    var mem = navigator.deviceMemory;                // GB, Chromium only
+    var mobile = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+    if (mobile || (mem && mem < 4)) return 1;
+    // navigator.deviceMemory tops out at 8, so "8" can mean an 8 GB laptop.
+    // Each worker costs several hundred MB; in testing, 4 workers took down
+    // Chrome on a loaded 8 GB Mac. 2 is the safe default, 3 only on 12+ core
+    // machines, which in practice come with more memory.
+    var n = cores >= 12 ? 3 : 2;
+    if (cores < 4 || (mem && mem < 8)) n = 1;
+    return n;
+  }
+
+  // Several Engines behind the same interface. A chapter's chunks are split
+  // into contiguous runs, one per worker, and the MP3 pieces are joined back
+  // in order (raw LAME frames concatenate cleanly). That makes one long chapter
+  // N times faster, not just a many-chapter book.
+  function Pool() {
+    var engines = [], readyEngines = [], started = null, nextId = 1, jobs = {};
+
+    function ensure(wanted, onLoad) {
+      if (started) return started;
+      var first = Engine();
+      engines.push(first);
+      started = first.ensure(wanted, onLoad).then(function (dev) {
+        readyEngines.push(first);
+        // Extra workers load from the browser cache now that the first has
+        // downloaded the model, so they don't each pull 92 MB.
+        for (var i = 1; i < poolSize(); i++) {
+          (function (e) {
+            engines.push(e);
+            e.ensure(wanted, null).then(function () { readyEngines.push(e); }).catch(function () {
+              e.terminate();   // an extra worker failing is not fatal
+            });
+          })(Engine());
+        }
+        return dev;
+      });
+      started.catch(function () { engines = []; readyEngines = []; started = null; });
+      return started;
+    }
+
+    function speak(chunks, voice, speed, onProgress) {
+      var id = nextId++;
+      var workers = readyEngines.slice(0, Math.max(1, Math.min(readyEngines.length, chunks.length)));
+      var per = Math.ceil(chunks.length / workers.length);
+      var t0 = performance.now();
+      var parts = workers.map(function (e, k) { return chunks.slice(k * per, (k + 1) * per); })
+        .filter(function (p) { return p.length; });
+      var stat = parts.map(function () { return { done: 0, seconds: 0 }; });
+      var subs = parts.map(function (p, k) {
+        return workers[k].speak(p, voice, speed, function (m) {
+          stat[k] = m;
+          if (!onProgress) return;
+          var done = 0, secs = 0;
+          stat.forEach(function (s) { done += s.done; secs += s.seconds; });
+          onProgress({ done: done, total: chunks.length, seconds: secs, elapsed: (performance.now() - t0) / 1000 });
+        });
+      });
+      jobs[id] = subs.map(function (p, k) { return { engine: workers[k], id: p.id }; });
+      // Once one run fails or is stopped, the others' rejections are expected.
+      subs.forEach(function (p) { p.catch(function () {}); });
+      var p = Promise.all(subs).then(function (res) {
+        delete jobs[id];
+        var len = 0, seconds = 0;
+        res.forEach(function (r) { len += r.mp3.length; seconds += r.seconds; });
+        var mp3 = new Uint8Array(len), off = 0;
+        res.forEach(function (r) { mp3.set(r.mp3, off); off += r.mp3.length; });
+        return { mp3: mp3, seconds: seconds };
+      }, function (err) {
+        cancel(id);          // stop the siblings too
+        if (err && err.cancelled) throw err;
+        // A worker that crashed (usually out of memory) is dropped, and the
+        // chapter is retried on whoever is left, down to a single worker.
+        var dead = workers.filter(function (e) { return !e.device(); });
+        if (!dead.length || readyEngines.length - dead.length < 1) throw err;
+        readyEngines = readyEngines.filter(function (e) { return dead.indexOf(e) === -1; });
+        CV.track('tts_worker_dropped', { target: String(readyEngines.length) });
+        var retry = speak(chunks, voice, speed, onProgress);
+        jobs[id] = jobs[retry.id];   // so Stop still reaches the retried run
+        return retry;
+      });
+      p.id = id;
+      return p;
+    }
+
+    function cancel(id) {
+      (jobs[id] || []).forEach(function (j) { j.engine.cancel(j.id); });
+      delete jobs[id];
+    }
+
+    return {
+      ensure: ensure, speak: speak, cancel: cancel,
+      device: function () { return readyEngines[0] && readyEngines[0].device(); },
+      size: function () { return readyEngines.length; }
+    };
   }
 
   // Announce the chapter title, unless the chapter text already opens with
@@ -134,7 +242,7 @@
   // ui: {dropzone, input, status, progressWrap, progressBar, setup, meta,
   //      list, voice, speed, previewBtn, goBtn, stopBtn, zipBtn, m4bBtn, player}
   function App(ui) {
-    var engine = Engine();
+    var engine = Pool();
     var book = null, fileKey = '', chapters = [], running = false, current = null, wakeLock = null;
     var measured = null; // seconds of audio per second of compute, from real runs
 
@@ -313,7 +421,8 @@
             rowState(c, Math.round(chapterFrac * 100) + '%', 'active');
             status('info', 'Chapter ' + (k + 1) + ' of ' + todo.length + ': ' + c.title.slice(0, 50) +
               ' · ' + Math.round(overall * 100) + '% overall' +
-              (rate > 0 ? ' · about ' + fmtEta(remainingAudio / rate) + ' left' : ''));
+              (rate > 0 ? ' · about ' + fmtEta(remainingAudio / rate) + ' left' : '') +
+              (engine.size() > 1 ? ' · ' + engine.size() + ' voice engines in parallel' : ''));
           });
           var res = await current;
           audioDone += res.seconds;

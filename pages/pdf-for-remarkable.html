@@ -49,7 +49,8 @@
 </script>
 <!-- @pwa -->
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <!-- /@pwa -->
 <!-- @analytics -->
@@ -130,7 +131,7 @@
     <h1>Convert PDF for reMarkable</h1>
     <p>The reMarkable 2 and Paper Pro open PDFs natively, but the text won't reflow and the margins eat the space you want for pen annotations. Convert your PDF into a reflowable EPUB and you get adjustable font sizes, a comfortable left margin, and a real table of contents. The whole thing runs in this tab.</p>
     <p class="trust"><span>&#10003; Files never leave your device</span> <span>&#10003; Works offline</span> <span>&#10003; No signup, no watermark</span></p>
-    <p style="font-size:0.95rem;margin-top:8px;background:#fff8e1;padding:10px 14px;border-radius:6px;border-left:3px solid #f0a500">
+    <p class="callout callout-warn">
       <strong>If the PDF is a scan</strong> (image-only, can't select text), there's nothing to reflow. Run <a href="/pages/scanned-pdf-to-text">Scanned PDF to Text</a> first.
     </p>
   </section>
@@ -230,7 +231,7 @@
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 FreeBookConvert. All conversions happen in your browser.</p>
-    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
+    <nav><a href="/guides/">Guides</a> &middot; <a href="/pages/about">About</a> &middot; <a href="/pages/privacy">Privacy</a> &middot; <a href="/pages/terms">Terms</a> &middot; <a href="/pages/contact">Contact</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert/issues/new?template=tool-request.yml" rel="noopener">Suggest a tool</a> &middot; <a href="https://github.com/andrewnakas/freebookconvert" rel="noopener">Open source on GitHub</a></nav>
   </div>
 </footer>
 <script src="/js/pwa.js" defer></script>
