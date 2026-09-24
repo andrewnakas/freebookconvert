@@ -130,9 +130,9 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop your CBZ file here</p>
+      <p class="big">Drop your CBZ files here, one or many</p>
       <p>or <strong>click to browse</strong> (also works with plain ZIPs of images)</p>
-      <input type="file" id="fileInput" accept=".cbz,.zip">
+      <input type="file" id="fileInput" accept=".cbz,.zip" multiple>
     </div>
 
     <div class="controls">
@@ -248,7 +248,7 @@
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.cbz', '.zip']);
+  CV.bindDropzone(dz, input, function (n) { files = files.concat(n); refresh(); CV.clearStatus(statusEl); }, ['.cbz', '.zip']);
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -260,12 +260,13 @@
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     CV.setStatus(statusEl, 'info', 'Starting\u2026');
     try {
-      var blob = await CbzToPdf.convert(files[0], { fitMode: fitEl.value }, function (p, m) {
-        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
-      });
-      var name = files[0].name.replace(/\.(cbz|zip)$/i, '') + '.pdf';
-      CV.downloadBlob(blob, name);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
+      await CV.runBatch(files, async function (file) {
+        var blob = await CbzToPdf.convert(file, { fitMode: fitEl.value }, function (p, m) {
+          CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+        });
+        var name = file.name.replace(/\.(cbz|zip)$/i, '') + '.pdf';
+        return { blob: blob, filename: name };
+      }, { status: statusEl, bar: progressBar });
       if (adPost) adPost.classList.add('visible');
     } catch (e) {
       console.error(e);

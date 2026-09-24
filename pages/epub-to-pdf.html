@@ -133,10 +133,10 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop your EPUB file here</p>
+      <p class="big">Drop your EPUB files here, one or many</p>
       <p>or <strong>click to browse</strong></p>
       <p style="font-size:0.85rem">Supports .epub files. Max size: limited by your device's RAM.</p>
-      <input type="file" id="fileInput" accept=".epub">
+      <input type="file" id="fileInput" accept=".epub" multiple>
     </div>
 
     <div class="file-list" id="fileList"></div>
@@ -259,7 +259,7 @@
   }
 
   CV.bindDropzone(dz, input, function (newFiles) {
-    files = newFiles.slice(0, 1);
+    files = files.concat(newFiles);
     refresh();
     CV.clearStatus(statusEl);
   }, ['.epub']);
@@ -276,12 +276,12 @@
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     CV.setStatus(statusEl, 'info', 'Starting\u2026');
     try {
-      var blob = await EpubToPdf.convert(files[0], function (pct, msg) {
-        CV.setProgress(progressBar, pct); CV.setStatus(statusEl, 'info', msg);
-      });
-      var name = files[0].name.replace(/\.epub$/i, '') + '.pdf';
-      CV.downloadBlob(blob, name);
-      CV.setStatus(statusEl, 'success', 'Converted! PDF downloaded as ' + name);
+      await CV.runBatch(files, async function (file) {
+        var blob = await EpubToPdf.convert(file, function (pct, msg) {
+          CV.setProgress(progressBar, pct); CV.setStatus(statusEl, 'info', msg);
+        });
+        return { blob: blob, filename: file.name.replace(/\.epub$/i, '') + '.pdf' };
+      }, { status: statusEl, bar: progressBar });
       if (adPost) adPost.classList.add('visible');
     } catch (err) {
       console.error(err);

@@ -39,8 +39,15 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 function pages() {
   const out = [];
+  // Homepage and guides index get their own cards.
+  const home = [['index.html', 'home', 'Ebooks · PDF · Images · Audiobooks'], ['guides/index.html', 'guide-index', null]];
+  for (const [file, slug, label] of home) {
+    if (only && slug !== only) continue;
+    const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(readFileSync(join(ROOT, file), 'utf8'));
+    if (h1) out.push({ slug, title: slug === 'guide-index' ? 'Guides to ebook, PDF, image and audiobook formats' : decode(h1[1]).trim(), guide: slug === 'guide-index', label });
+  }
   for (const dir of ['pages', 'guides']) {
-    for (const f of readdirSync(join(ROOT, dir)).filter((f) => f.endsWith('.html')).sort()) {
+    for (const f of readdirSync(join(ROOT, dir)).filter((f) => f.endsWith('.html') && f !== 'index.html').sort()) {
       const slug = (dir === 'guides' ? 'guide-' : '') + f.replace(/\.html$/, '');
       if (SKIP.has(slug) || (only && slug !== only)) continue;
       const src = readFileSync(join(ROOT, dir, f), 'utf8');
@@ -52,8 +59,9 @@ function pages() {
   return out;
 }
 
-function html({ slug, title, guide }) {
-  const [, label, color] = CATEGORY.find(([re]) => re.test(slug));
+function html({ slug, title, guide, label: override }) {
+  let [, label, color] = CATEGORY.find(([re]) => re.test(slug));
+  if (override) { label = override; color = '#2563eb'; }
   const size = title.length > 34 ? 64 : 78;
   return `<html><body style="margin:0;width:1200px;height:630px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fafbfc;display:flex;">
   <div style="width:24px;background:${color}"></div>

@@ -138,10 +138,10 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop your scanned PDF here</p>
+      <p class="big">Drop your scanned PDF files here, one or many</p>
       <p>or <strong>click to browse</strong></p>
       <p style="font-size:0.85rem">Accepts: .pdf</p>
-      <input type="file" id="fileInput" accept=".pdf">
+      <input type="file" id="fileInput" accept=".pdf" multiple>
     </div>
 
     <div class="controls">
@@ -251,7 +251,7 @@
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
+  CV.bindDropzone(dz, input, function (n) { files = files.concat(n); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -261,18 +261,19 @@
     convertBtn.disabled = true; resetBtn.disabled = true;
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     try {
-      CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
-      await waitForPdfjs();
-      CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
-      await Promise.all([loadTesseract(), loadPdfLib()]);
-      var result = await PdfOcr.convert(files[0], {
-        format: 'pdf',
-        scale: parseFloat(scaleEl.value)
-      }, function (p, m) {
-        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
-      });
-      CV.downloadBlob(result.blob, result.filename);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      await CV.runBatch(files, async function (file) {
+        CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
+        await waitForPdfjs();
+        CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
+        await Promise.all([loadTesseract(), loadPdfLib()]);
+        var result = await PdfOcr.convert(file, {
+          format: 'pdf',
+          scale: parseFloat(scaleEl.value)
+        }, function (p, m) {
+          CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+        });
+        return { blob: result.blob, filename: result.filename };
+      }, { status: statusEl, bar: progressBar });
     } catch (e) {
       console.error(e);
       CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));

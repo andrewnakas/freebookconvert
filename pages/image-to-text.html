@@ -138,10 +138,10 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop your image here</p>
+      <p class="big">Drop your image files here, one or many</p>
       <p>or <strong>click to browse</strong>, or paste a screenshot (Ctrl/⌘+V)</p>
       <p style="font-size:0.85rem">JPG &middot; PNG &middot; WEBP &middot; BMP &middot; GIF</p>
-      <input type="file" id="fileInput" accept="image/*">
+      <input type="file" id="fileInput" accept="image/*" multiple>
     </div>
 
     <div class="file-list" id="fileList"></div>
@@ -230,7 +230,7 @@
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); },
+  CV.bindDropzone(dz, input, function (n) { files = files.concat(n); refresh(); CV.clearStatus(statusEl); },
     ['.jpg', '.jpeg', '.png', '.webp', '.bmp', '.gif']);
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
@@ -241,13 +241,14 @@
     convertBtn.disabled = true; resetBtn.disabled = true;
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     try {
-      CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
-      await loadTesseract();
-      var result = await PdfOcr.convertImageToText(files[0], {}, function (p, m) {
-        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
-      });
-      CV.downloadBlob(result.blob, result.filename);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + result.filename);
+      await CV.runBatch(files, async function (file) {
+        CV.setStatus(statusEl, 'info', 'Loading OCR engine\u2026 (~10\u202fMB, cached after first run)');
+        await loadTesseract();
+        var result = await PdfOcr.convertImageToText(file, {}, function (p, m) {
+          CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+        });
+        return { blob: result.blob, filename: result.filename };
+      }, { status: statusEl, bar: progressBar });
     } catch (e) {
       console.error(e);
       CV.setStatus(statusEl, 'error', 'Failed: ' + (e.message || e));

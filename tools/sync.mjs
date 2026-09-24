@@ -124,9 +124,14 @@ function applyBlock(src, block, ctx, file) {
 // cache on /assets/* whenever the image is re-rendered.
 
 function applyOgImage(src, file) {
-  const m = /^(pages|guides)\/(.+)\.html$/.exec(file);
-  if (!m || m[2] === 'index') return src;
-  const slug = (m[1] === 'guides' ? 'guide-' : '') + m[2];
+  let slug;
+  if (file === 'index.html') slug = 'home';
+  else if (file === 'guides/index.html') slug = 'guide-index';
+  else {
+    const m = /^(pages|guides)\/(.+)\.html$/.exec(file);
+    if (!m) return src;
+    slug = (m[1] === 'guides' ? 'guide-' : '') + m[2];
+  }
   let bytes;
   try { bytes = readFileSync(join(ROOT, 'assets/og', slug + '.png')); } catch (e) { return src; }
   const v = createHash('sha1').update(bytes).digest('hex').slice(0, 8);

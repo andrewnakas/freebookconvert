@@ -251,6 +251,49 @@
       o.value = v[0]; o.textContent = v[1];
       ui.voice.appendChild(o);
     });
+
+    // Pre-recorded samples (made with this same model) let people hear every
+    // voice before committing to the 92 MB model download.
+    if (ui.samples) {
+      var sampleAudio = new Audio();
+      sampleAudio.preload = 'none';
+      var playing = null;
+      var row = document.createElement('div');
+      row.className = 'voice-sample-row';
+      VOICES.forEach(function (v) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'voice-chip';
+        b.dataset.voice = v[0];
+        b.innerHTML = '<span class="ic" aria-hidden="true">&#9654;</span> ';
+        b.appendChild(document.createTextNode(v[1].split(' · ')[0]));
+        b.title = v[1];
+        b.setAttribute('aria-label', 'Play sample: ' + v[1]);
+        b.addEventListener('click', function (e) {
+          e.stopPropagation();
+          ui.voice.value = v[0];
+          if (book) restore().then(refreshButtons);
+          if (playing === b && !sampleAudio.paused) { sampleAudio.pause(); return; }
+          sampleAudio.src = '/assets/audio/voices/' + v[0] + '.mp3';
+          sampleAudio.play().catch(function () {});
+          CV.track('voice_sample_play', { target: v[0] });
+        });
+        row.appendChild(b);
+      });
+      function mark() {
+        Array.prototype.forEach.call(row.children, function (b) {
+          var on = b.dataset.voice === ui.voice.value;
+          b.classList.toggle('selected', on);
+          b.classList.toggle('playing', on && !sampleAudio.paused);
+          b.querySelector('.ic').innerHTML = on && !sampleAudio.paused ? '&#10074;&#10074;' : '&#9654;';
+        });
+        playing = row.querySelector('.selected');
+      }
+      ['play', 'pause', 'ended'].forEach(function (ev) { sampleAudio.addEventListener(ev, mark); });
+      ui.voice.addEventListener('change', mark);
+      ui.samples.appendChild(row);
+      mark();
+    }
     function jobPrefix() { return fileKey + '|' + ui.voice.value + '|' + ui.speed.value + '|'; }
 
     function status(kind, msg) { CV.setStatus(ui.status, kind, msg); }

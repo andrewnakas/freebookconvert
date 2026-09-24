@@ -23,6 +23,19 @@
     try { localStorage.setItem(POS_KEY, JSON.stringify(all)); } catch (e) { /* private mode */ }
   }
 
+  // Apple ships joke voices (Albert, Bad News, Zarvox...) alongside real ones;
+  // never offer those for reading a book.
+  var NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Deranged|Hysterical|Pipe Organ|Princess|Junior|Ralph|Fred|Kathy)\b/i;
+
+  // Best first: natural/enhanced/cloud voices, then the system default, then
+  // well-known good system voices, then everything else.
+  function rank(v) {
+    if (/natural|neural|premium|enhanced|google|online/i.test(v.name)) return 0;
+    if (v.default) return 1;
+    if (/^(Samantha|Ava|Allison|Susan|Tom|Alex|Daniel|Karen|Moira|Serena|Microsoft (Aria|Jenny|Guy))\b/i.test(v.name)) return 2;
+    return 3;
+  }
+
   // ui: {text, chapterSel, voiceSel, rateSel, playBtn, prevBtn, nextBtn, where}
   function Reader(ui) {
     var synth = global.speechSynthesis;
@@ -32,10 +45,17 @@
       var lang = ((book && book.language) || 'en').slice(0, 2).toLowerCase();
       var all = synth.getVoices();
       var match = all.filter(function (v) { return v.lang.toLowerCase().indexOf(lang) === 0; });
-      return (match.length ? match : all).slice().sort(function (a, b) {
-        // Network/"natural" voices sound far better; list them first.
-        var q = function (v) { return /natural|neural|premium|enhanced|google|online/i.test(v.name) ? 0 : 1; };
-        return q(a) - q(b) || a.name.localeCompare(b.name);
+      var pool = match.length ? match : all;
+      var seen = {};
+      var real = pool.filter(function (v) {
+        if (NOVELTY.test(v.name) || seen[v.name]) return false;   // Safari lists variants twice
+        seen[v.name] = true;
+        return true;
+      });
+      return (real.length ? real : pool).slice().sort(function (a, b) {
+        var loc = (navigator.language || '').toLowerCase();
+        var near = function (v) { return v.lang.toLowerCase().replace('_', '-') === loc ? 0 : 1; };
+        return rank(a) - rank(b) || near(a) - near(b) || a.name.localeCompare(b.name);
       });
     }
 

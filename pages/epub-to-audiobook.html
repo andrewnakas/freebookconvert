@@ -128,6 +128,10 @@
       <input type="file" id="fileInput" accept=".epub,.pdf,.txt">
     </div>
 
+    <div class="voice-samples" id="voiceSamples">
+      <p class="voice-samples-label">Hear the voices first. Tap one to play a sample, no download needed:</p>
+    </div>
+
     <div class="status hidden" id="status"></div>
     <div class="progress" id="progressWrap" style="display:none"><div class="progress-bar" id="progressBar"></div></div>
 
@@ -242,7 +246,8 @@ EbookAudiobook.App({
   setup: CV.$('#setup'), meta: CV.$('#bookMeta'), list: CV.$('#chapterList'),
   voice: CV.$('#voice'), speed: CV.$('#speed'),
   previewBtn: CV.$('#previewBtn'), goBtn: CV.$('#goBtn'), stopBtn: CV.$('#stopBtn'),
-  zipBtn: CV.$('#zipBtn'), m4bBtn: CV.$('#m4bBtn'), player: CV.$('#player')
+  zipBtn: CV.$('#zipBtn'), m4bBtn: CV.$('#m4bBtn'), player: CV.$('#player'),
+  samples: CV.$('#voiceSamples')
 });
 </script>
 <script src="/js/consent.js"></script>

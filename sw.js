@@ -9,7 +9,7 @@
  *
  * Ads and analytics are never intercepted.
  */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const PAGES = 'fbc-pages-' + VERSION;
 const STATIC = 'fbc-static-' + VERSION;
 const LIBS = 'fbc-libs-v1';   // versioned URLs: safe to keep across releases

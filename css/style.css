@@ -714,3 +714,57 @@ select:focus-visible,
   .callout-info { background: #10222f; border-color: #4a9be0; }
 }
 .status .report-link { margin-left: 6px; font-weight: 600; color: inherit; white-space: nowrap; }
+.dropzone .folder-pick { margin-top: 8px; background: none; border: 0; padding: 4px 6px; color: var(--accent); font: inherit; font-size: 0.9rem; text-decoration: underline; cursor: pointer; }
+.dropzone .folder-pick:hover { color: var(--accent-dark); }
+
+/* Voice samples on the audiobook pages */
+.voice-samples { margin: 16px 0 4px; }
+.voice-samples-label { margin: 0 0 8px; font-size: 0.92rem; color: var(--muted); }
+.voice-sample-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.voice-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--card-bg); color: var(--fg); font: inherit; font-size: 0.92rem; cursor: pointer;
+}
+.voice-chip .ic { font-size: 0.7rem; color: var(--accent); width: 1em; text-align: center; }
+.voice-chip:hover { border-color: var(--accent); }
+.voice-chip.selected { border-color: var(--accent); background: var(--accent-bg); }
+
+/* Mobile: form controls must fit the screen and be thumb-sized (iOS draws
+   native selects ~23px tall by default). */
+.controls label { max-width: 100%; }
+.controls select, .controls input, .universal-picker select {
+  max-width: 100%;
+  min-height: 42px;
+}
+.dropzone .folder-pick { min-height: 40px; }
+@media (max-width: 560px) {
+  .controls { flex-direction: column; align-items: stretch; }
+  .controls label, .controls select, .controls input[type=text] { width: 100%; min-width: 0; }
+}
+/* Native selects ignore height on iOS/macOS WebKit; drop the native look so
+   they can be a comfortable 42px and match the theme. */
+.controls select, .universal-picker select, .converter-app select {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 42px;
+  padding: 8px 34px 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.95rem;
+  background: var(--card-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 12px center / 12px 8px;
+}
+
+/* Phones: a two-row sticky header ate ~20% of the screen. Keep it in the page
+   flow and make the nav a single swipeable row. */
+@media (max-width: 560px) {
+  .site-header { position: static; }
+  .site-header nav {
+    display: flex; flex-wrap: nowrap; overflow-x: auto; max-width: 100%;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px;
+  }
+  .site-header nav::-webkit-scrollbar { display: none; }
+  .site-header nav a { flex: 0 0 auto; margin: 0 14px 0 0; padding: 6px 0; }
+}

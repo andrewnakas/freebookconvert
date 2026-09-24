@@ -145,9 +145,9 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop your PDF here</p>
+      <p class="big">Drop your PDF files here, one or many</p>
       <p>or <strong>click to browse</strong></p>
-      <input type="file" id="fileInput" accept=".pdf">
+      <input type="file" id="fileInput" accept=".pdf" multiple>
     </div>
 
     <div class="controls">
@@ -258,7 +258,7 @@
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
+  CV.bindDropzone(dz, input, function (n) { files = files.concat(n); refresh(); CV.clearStatus(statusEl); }, ['.pdf']);
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -270,15 +270,16 @@
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     CV.setStatus(statusEl, 'info', 'Loading PDF engine\u2026');
     try {
-      await waitForPdfjs();
-      var mode = splitEl.value;
-      var pagesPerChapter = mode === 'auto' ? 0 : parseInt(mode, 10);
-      var blob = await PdfToEpub.convert(files[0], { pagesPerChapter: pagesPerChapter }, function (p, m) {
-        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
-      });
-      var name = files[0].name.replace(/\.pdf$/i, '') + '.epub';
-      CV.downloadBlob(blob, name);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
+      await CV.runBatch(files, async function (file) {
+        await waitForPdfjs();
+        var mode = splitEl.value;
+        var pagesPerChapter = mode === 'auto' ? 0 : parseInt(mode, 10);
+        var blob = await PdfToEpub.convert(file, { pagesPerChapter: pagesPerChapter }, function (p, m) {
+          CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+        });
+        var name = file.name.replace(/\.pdf$/i, '') + '.epub';
+        return { blob: blob, filename: name };
+      }, { status: statusEl, bar: progressBar });
       if (adPost) adPost.classList.add('visible');
     } catch (e) {
       console.error(e);

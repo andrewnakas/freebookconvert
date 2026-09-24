@@ -149,8 +149,41 @@
       if (accepted.length) onFiles(accepted);
     });
 
-    dropzoneEl.addEventListener('drop', function (e) {
-      var files = Array.from(e.dataTransfer.files);
+    // "Choose a folder" for multi-file tools (a whole camera roll of HEICs, a
+    // library folder of EPUBs). webkitdirectory works in all current browsers.
+    if (fileInputEl.multiple && !dropzoneEl.querySelector('.folder-pick')) {
+      var dirInput = document.createElement('input');
+      dirInput.type = 'file';
+      dirInput.hidden = true;
+      dirInput.setAttribute('webkitdirectory', '');
+      dirInput.multiple = true;
+      var link = document.createElement('button');
+      link.type = 'button';
+      link.className = 'folder-pick';
+      link.textContent = 'or choose a whole folder';
+      link.addEventListener('click', function (e) { e.stopPropagation(); dirInput.click(); });
+      dirInput.addEventListener('click', function (e) { e.stopPropagation(); });
+      dirInput.addEventListener('change', function () {
+        var all = Array.from(dirInput.files).filter(function (f) { return !/^\./.test(f.name); });
+        var ok = accept ? all.filter(function (f) {
+          return accept.some(function (ext) { return f.name.toLowerCase().endsWith(ext); });
+        }) : all;
+        ok.sort(function (a, b) { return (a.webkitRelativePath || a.name).localeCompare(b.webkitRelativePath || b.name, undefined, { numeric: true }); });
+        track('file_selected', { count: ok.length, rejected: all.length - ok.length, in_ext: extOf((ok[0] || {}).name), method: 'folder' });
+        onFiles(ok);
+        dirInput.value = '';
+      });
+      dropzoneEl.appendChild(link);
+      dropzoneEl.appendChild(dirInput);
+    }
+
+    dropzoneEl.addEventListener('drop', async function (e) {
+      // Dropped folders arrive as directory entries; walk them for files.
+      var entries = e.dataTransfer.items ? Array.from(e.dataTransfer.items)
+        .map(function (it) { return it.webkitGetAsEntry && it.webkitGetAsEntry(); })
+        .filter(Boolean) : [];
+      var hasDir = entries.some(function (en) { return en.isDirectory; });
+      var files = hasDir ? await filesFromEntries(entries) : Array.from(e.dataTransfer.files);
       var dropped = files.length;
       if (accept) {
         files = files.filter(function (f) {
@@ -171,7 +204,74 @@
     });
   }
 
+  // Recursively collect Files from dropped FileSystemEntries (folders).
+  async function filesFromEntries(entries) {
+    var out = [];
+    async function walk(entry) {
+      if (entry.isFile) {
+        if (/^\./.test(entry.name)) return;          // .DS_Store and friends
+        out.push(await new Promise(function (res, rej) { entry.file(res, rej); }));
+      } else if (entry.isDirectory) {
+        var reader = entry.createReader();
+        for (;;) {                                   // readEntries returns batches
+          var batch = await new Promise(function (res, rej) { reader.readEntries(res, rej); });
+          if (!batch.length) break;
+          for (var i = 0; i < batch.length; i++) await walk(batch[i]);
+        }
+      }
+    }
+    for (var i = 0; i < entries.length; i++) await walk(entries[i]);
+    out.sort(function (a, b) { return a.name.localeCompare(b.name, undefined, { numeric: true }); });
+    return out;
+  }
+
+  // ---------- batch conversion ----------------------------------------------
+  // Pages convert one file at a time with their own code. runBatch calls that
+  // code once per file; while it runs, setProgress/setStatus are scaled and
+  // prefixed so each page's own progress messages read "File 2 of 5 · …".
+  var batchCtx = null;
+
+  async function runBatch(files, convertOne, opts) {
+    var statusEl = opts.status;
+    if (files.length <= 1) {
+      var r = await convertOne(files[0]);
+      downloadBlob(r.blob, r.filename);
+      setStatus(statusEl, 'success', 'Done! Downloaded ' + r.filename);
+      return { ok: 1, failed: [] };
+    }
+    await load('jszip');
+    var zip = new JSZip(), ok = 0, failed = [], used = Object.create(null);
+    for (var i = 0; i < files.length; i++) {
+      batchCtx = { i: i, n: files.length, name: files[i].name, bar: opts.bar };
+      try {
+        var res = await convertOne(files[i]);
+        var name = res.filename, k = 2;
+        while (used[name]) name = res.filename.replace(/(\.[^.]+)?$/, ' (' + (k++) + ')$1');
+        used[name] = true;
+        zip.file(name, res.blob, { compression: 'STORE' });
+        ok++;
+      } catch (e) {
+        console.error(files[i].name, e);
+        track('conversion_error', { message: String(e && e.message || e).slice(0, 100), batch: true });
+        failed.push(files[i].name + ' (' + friendlyError(String(e && e.message || e)) + ')');
+      }
+    }
+    batchCtx = null;
+    if (!ok) throw new Error(failed.length === 1 ? failed[0] : 'None of the ' + files.length + ' files could be converted. First problem: ' + failed[0]);
+    if (opts.bar) setProgress(opts.bar, 100);
+    setStatus(statusEl, 'info', 'Zipping ' + ok + ' files…');
+    var blob = await zip.generateAsync({ type: 'blob', compression: 'STORE' });
+    downloadBlob(blob, toolName() + '-' + ok + '-files.zip');
+    setStatus(statusEl, 'success', 'Done! Converted ' + ok + ' of ' + files.length + ' files into one zip.' +
+      (failed.length ? ' Skipped: ' + failed.join('; ') : ''));
+    track('batch_complete', { count: ok, rejected: failed.length });
+    return { ok: ok, failed: failed };
+  }
+
   function setStatus(el, kind, msg) {
+    if (batchCtx && kind === 'info') {
+      msg = 'File ' + (batchCtx.i + 1) + ' of ' + batchCtx.n + ' · ' + batchCtx.name + ': ' + msg;
+    }
     // Progress text is the only feedback during a long OCR run, so announce it.
     if (!el.hasAttribute('role')) {
       el.setAttribute('role', 'status');
@@ -243,6 +343,8 @@
 
   function setProgress(barEl, pct) {
     var v = Math.max(0, Math.min(100, pct));
+    // During a batch, one file's 0-100 is a slice of the whole bar.
+    if (batchCtx && barEl === batchCtx.bar) v = (batchCtx.i + v / 100) / batchCtx.n * 100;
     barEl.style.width = v + '%';
     var wrap = barEl.parentElement;
     if (wrap) {
@@ -453,6 +555,7 @@
     reportUrl: reportUrl,
     appendReportLink: appendReportLink,
     friendlyError: friendlyError,
+    runBatch: runBatch,
     renderRecentTools: renderRecentTools
   };
 })(window);

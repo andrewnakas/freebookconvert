@@ -130,9 +130,9 @@
 
   <section class="converter-app">
     <div class="dropzone" id="dropzone">
-      <p class="big">Drop your EPUB file here</p>
+      <p class="big">Drop your EPUB files here, one or many</p>
       <p>or <strong>click to browse</strong></p>
-      <input type="file" id="fileInput" accept=".epub">
+      <input type="file" id="fileInput" accept=".epub" multiple>
     </div>
     <div class="file-list" id="fileList"></div>
     <div class="status hidden" id="status"></div>
@@ -235,7 +235,7 @@
     convertBtn.disabled = files.length === 0;
     resetBtn.disabled = files.length === 0;
   }
-  CV.bindDropzone(dz, input, function (n) { files = n.slice(0, 1); refresh(); CV.clearStatus(statusEl); }, ['.epub']);
+  CV.bindDropzone(dz, input, function (n) { files = files.concat(n); refresh(); CV.clearStatus(statusEl); }, ['.epub']);
   resetBtn.addEventListener('click', function () {
     files = []; refresh(); CV.clearStatus(statusEl);
     progressWrap.style.display = 'none'; CV.setProgress(progressBar, 0);
@@ -247,12 +247,13 @@
     progressWrap.style.display = 'block'; CV.setProgress(progressBar, 1);
     CV.setStatus(statusEl, 'info', 'Starting\u2026');
     try {
-      var blob = await EpubToTxt.convert(files[0], function (p, m) {
-        CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
-      });
-      var name = files[0].name.replace(/\.epub$/i, '') + '.txt';
-      CV.downloadBlob(blob, name);
-      CV.setStatus(statusEl, 'success', 'Done! Downloaded ' + name);
+      await CV.runBatch(files, async function (file) {
+        var blob = await EpubToTxt.convert(file, function (p, m) {
+          CV.setProgress(progressBar, p); CV.setStatus(statusEl, 'info', m);
+        });
+        var name = file.name.replace(/\.epub$/i, '') + '.txt';
+        return { blob: blob, filename: name };
+      }, { status: statusEl, bar: progressBar });
       if (adPost) adPost.classList.add('visible');
     } catch (e) {
       console.error(e);
