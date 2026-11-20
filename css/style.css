@@ -337,6 +337,37 @@ body {
 
 .site-footer a:hover { color: var(--accent); }
 
+/* Sister sites: a full-width row above the copyright line, on every page. */
+.site-footer .tool-family {
+  flex: 1 0 100%;
+  padding-bottom: 20px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.site-footer .tool-family h2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  margin: 0 0 10px;
+}
+.site-footer .tool-family ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 6px 24px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.site-footer .tool-family a { margin: 0; color: var(--fg); font-weight: 600; }
+.site-footer .tool-family a:hover { color: var(--accent); }
+@media (max-width: 640px) {
+  .site-footer .tool-family li { padding: 4px 0; }
+}
+
 /* Converter page */
 .converter-app {
   background: var(--card-bg);
